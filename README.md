@@ -1,6 +1,6 @@
 # 🇪🇸 Español Interactivo
 
-> Aulas de espanhol do nível A1 construídas com **storytelling**, **design moderno** e **tecnologia web** — cada aula é uma experiência interativa hospedada no GitHub Pages.
+> Aulas de espanhol construídas com **storytelling**, **design moderno** e **tecnologia web** — cada aula é uma experiência interativa hospedada no GitHub Pages.
 
 ---
 
