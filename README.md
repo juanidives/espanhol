@@ -140,5 +140,5 @@ Combinando experiência em dados, design e pedagogia para criar materiais que os
 ---
 
 <p align="center">
-  Espanhol A1 · Argentina sempre no coração 🇪🇸
+  Espanhol A1 · Argentina com Brasil sempre no coração 🇪🇸
 </p>
