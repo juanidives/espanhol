@@ -1,12 +1,12 @@
 # 🇪🇸 Español Interactivo
 
-> Aulas de espanhol do nível A1 construídas com **storytelling**, **design moderno** e **tecnologia web** — cada aula é uma experiência interativa hospedada no GitHub Pages.
+> Aulas de espanhol construídas com **storytelling**, **design moderno** e **tecnologia web** — cada aula é uma experiência interativa hospedada no GitHub Pages.
 
 ---
 
 ## ✨ O que é este projeto?
 
-Este repositório nasce da convicção de que aprender um idioma vai muito além de memorizar regras gramaticais. Cada aula foi pensada como uma **experiência visual e narrativa**, onde o aluno acompanha uma personagem real navegando pela cidade, resolvendo situações do cotidiano e usando o espanhol de forma contextualizada.
+Este repositório nasce da convicção de que aprender um idioma vai muito além de memorizar regras gramaticais. Cada aula foi pensada como uma **experiência visual e narrativa**, onde o aluno vai acompanhar diferentes personagens, resolvendo situações do cotidiano e usando o espanhol de forma contextualizada.
 
 A parte técnica é parte do projeto: as apresentações são **aplicações web completas** — HTML, CSS e JavaScript puro — hospedadas gratuitamente no GitHub Pages e acessíveis de qualquer dispositivo, sem instalação.
 
@@ -73,7 +73,6 @@ Personagem → Contexto real → Vocabulário → Gramática → Prática oral
 - Martina García, 28 anos, professora de arte em Madrid
 - O aluno acompanha sua rotina semanal pelos 19 lugares do bairro
 - Cada lugar tem foto real, frase de rotina e exemplo em presente indicativo
-- 7 slides dedicados — um por dia da semana — com imagem + atividades + frases
 
 ---
 
@@ -133,12 +132,12 @@ Cada aula vem acompanhada de:
 
 ## 👤 Sobre
 
-Projeto desenvolvido por **Juan** — educator, data professional e entusiasta de tecnologia aplicada ao ensino.
+Projeto desenvolvido por **Juan** — data professional, educador voluntario e entusiasta de tecnologia aplicada ao ensino.
 
 Combinando experiência em dados, design e pedagogia para criar materiais que os alunos realmente querem usar.
 
 ---
 
 <p align="center">
-  Feito com ❤️ · Espanhol A1 · Madrid sempre no coração 🇪🇸
+  Espanhol · Argentina e Brasil sempre no coração
 </p>
