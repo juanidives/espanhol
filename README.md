@@ -80,14 +80,14 @@ Personagem → Contexto real → Vocabulário → Gramática → Prática oral
 
 <table>
   <tr>
-    <td><img src="a1-aula08/images/panaderia.png" width="200" alt="Panadería"/><br><sub>Panadería</sub></td>
-    <td><img src="a1-aula08/images/carniceria.png" width="200" alt="Carnicería"/><br><sub>Carnicería</sub></td>
-    <td><img src="a1-aula08/images/estacion-metro.png" width="200" alt="Metro"/><br><sub>Estación Metro</sub></td>
+    <td><img src="a1-aula08/images/Panaderia.png" width="200" alt="Panadería"/><br><sub>Panadería</sub></td>
+    <td><img src="a1-aula08/images/Carniceria.png" width="200" alt="Carnicería"/><br><sub>Carnicería</sub></td>
+    <td><img src="a1-aula08/images/Estacion%20de%20metro.png" width="200" alt="Metro"/><br><sub>Estación Metro</sub></td>
   </tr>
   <tr>
-    <td><img src="a1-aula08/images/lunes.png" width="200" alt="Lunes"/><br><sub>Martina — Lunes</sub></td>
-    <td><img src="a1-aula08/images/miercoles.png" width="200" alt="Miércoles"/><br><sub>Martina — Miércoles</sub></td>
-    <td><img src="a1-aula08/images/sabado.png" width="200" alt="Sábado"/><br><sub>Martina — Sábado</sub></td>
+    <td><img src="a1-aula08/images/Lunes.%20Martina%20en%20la%20cafeteria.png" width="200" alt="Lunes"/><br><sub>Martina — Lunes</sub></td>
+    <td><img src="a1-aula08/images/Miercoles.%20Martina%20andando%20en%20bicicleta.png" width="200" alt="Miércoles"/><br><sub>Martina — Miércoles</sub></td>
+    <td><img src="a1-aula08/images/Sabado.%20Martina%20comiendo%20helado.png" width="200" alt="Sábado"/><br><sub>Martina — Sábado</sub></td>
   </tr>
 </table>
 
