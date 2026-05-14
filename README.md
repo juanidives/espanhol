@@ -1,12 +1,12 @@
 # 🇪🇸 Español Interactivo
 
-> Aulas de espanhol construídas com **storytelling**, **design moderno** e **tecnologia web** — cada aula é uma experiência interativa hospedada no GitHub Pages.
+> Aulas de espanhol do nível A1 construídas com **storytelling**, **design moderno** e **tecnologia web** — cada aula é uma experiência interativa hospedada no GitHub Pages.
 
 ---
 
 ## ✨ O que é este projeto?
 
-Este repositório nasce da convicção de que aprender um idioma vai muito além de memorizar regras gramaticais. Cada aula foi pensada como uma **experiência visual e narrativa**, onde o aluno acompanha personagens, resolvendo situações do cotidiano e usando o espanhol de forma contextualizada.
+Este repositório nasce da convicção de que aprender um idioma vai muito além de memorizar regras gramaticais. Cada aula foi pensada como uma **experiência visual e narrativa**, onde o aluno acompanha uma personagem real navegando pela cidade, resolvendo situações do cotidiano e usando o espanhol de forma contextualizada.
 
 A parte técnica é parte do projeto: as apresentações são **aplicações web completas** — HTML, CSS e JavaScript puro — hospedadas gratuitamente no GitHub Pages e acessíveis de qualquer dispositivo, sem instalação.
 
@@ -73,6 +73,7 @@ Personagem → Contexto real → Vocabulário → Gramática → Prática oral
 - Martina García, 28 anos, professora de arte em Madrid
 - O aluno acompanha sua rotina semanal pelos 19 lugares do bairro
 - Cada lugar tem foto real, frase de rotina e exemplo em presente indicativo
+- 7 slides dedicados — um por dia da semana — com imagem + atividades + frases
 
 ---
 
@@ -80,14 +81,14 @@ Personagem → Contexto real → Vocabulário → Gramática → Prática oral
 
 <table>
   <tr>
-    <td><img src="a1-aula08/images/Panaderia.png" width="200" alt="Panadería"/><br><sub>Panadería</sub></td>
-    <td><img src="a1-aula08/images/Carniceria.png" width="200" alt="Carnicería"/><br><sub>Carnicería</sub></td>
-    <td><img src="a1-aula08/images/Estacion%20de%20metro.png" width="200" alt="Metro"/><br><sub>Estación Metro</sub></td>
+    <td><img src="a1-aula08/images/panaderia.png" width="200" alt="Panadería"/><br><sub>Panadería</sub></td>
+    <td><img src="a1-aula08/images/carniceria.png" width="200" alt="Carnicería"/><br><sub>Carnicería</sub></td>
+    <td><img src="a1-aula08/images/estacion-metro.png" width="200" alt="Metro"/><br><sub>Estación Metro</sub></td>
   </tr>
   <tr>
-    <td><img src="a1-aula08/images/Lunes.%20Martina%20en%20la%20cafeteria.png" width="200" alt="Lunes"/><br><sub>Martina — Lunes</sub></td>
-    <td><img src="a1-aula08/images/Miercoles.%20Martina%20andando%20en%20bicicleta.png" width="200" alt="Miércoles"/><br><sub>Martina — Miércoles</sub></td>
-    <td><img src="a1-aula08/images/Sabado.%20Martina%20comiendo%20helado.png" width="200" alt="Sábado"/><br><sub>Martina — Sábado</sub></td>
+    <td><img src="a1-aula08/images/lunes.png" width="200" alt="Lunes"/><br><sub>Martina — Lunes</sub></td>
+    <td><img src="a1-aula08/images/miercoles.png" width="200" alt="Miércoles"/><br><sub>Martina — Miércoles</sub></td>
+    <td><img src="a1-aula08/images/sabado.png" width="200" alt="Sábado"/><br><sub>Martina — Sábado</sub></td>
   </tr>
 </table>
 
@@ -132,12 +133,12 @@ Cada aula vem acompanhada de:
 
 ## 👤 Sobre
 
-Projeto desenvolvido por **Juan** — educador voluntario, data professional e entusiasta de tecnologia aplicada ao ensino.
+Projeto desenvolvido por **Juan** — educator, data professional e entusiasta de tecnologia aplicada ao ensino.
 
 Combinando experiência em dados, design e pedagogia para criar materiais que os alunos realmente querem usar.
 
 ---
 
 <p align="center">
-  Espanhol · Argentina e Brasil sempre no coração.
+  Feito com ❤️ · Espanhol A1 · Madrid sempre no coração 🇪🇸
 </p>
