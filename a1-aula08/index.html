@@ -4,21 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Un día con Martina 🗺️</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --amarillo: #FFD93D;
-    --coral: #FF6B6B;
-    --verde: #6BCB77;
-    --azul: #4D96FF;
-    --lavanda: #C77DFF;
+    --rosa:    #FF6B9D;
+    --coral:   #FF6B6B;
     --naranja: #FF9F1C;
-    --fondo: #FFF9F0;
-    --oscuro: #2D2D2D;
-    --blanco: #FFFFFF;
+    --amarillo:#FFD93D;
+    --verde:   #06D6A0;
+    --azul:    #4CC9F0;
+    --violeta: #7B5EA7;
+    --lavanda: #C77DFF;
+    --fondo:   #F7F3FF;
+    --oscuro:  #2D2D2D;
+    --borde:   #DEDEDE;
+    --blanco:  #FFFFFF;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
 
   body {
     font-family: 'Nunito', sans-serif;
@@ -29,34 +32,27 @@
     width: 100vw;
   }
 
-  /* SLIDES */
+  /* ── SLIDES ── */
   .slide {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    transform: translateX(60px);
-    padding: 20px;
+    transition: opacity .5s ease, transform .5s ease;
+    transform: translateX(50px);
+    padding: 40px 60px 90px;
   }
-  .slide.active {
-    opacity: 1;
-    pointer-events: all;
-    transform: translateX(0);
-  }
-  .slide.exit {
-    opacity: 0;
-    transform: translateX(-60px);
-  }
+  .slide.active  { opacity:1; pointer-events:all; transform:translateX(0); }
+  .slide.exit    { opacity:0; transform:translateX(-50px); }
 
-  /* NAV */
+  /* ── NAV ── */
   .nav {
     position: fixed;
-    bottom: 28px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -68,1158 +64,825 @@
     background: var(--oscuro);
     color: white;
     border: none;
-    padding: 12px 28px;
+    padding: 13px 32px;
     border-radius: 50px;
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all .2s;
+    letter-spacing: .3px;
   }
-  .nav button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
-  .nav button.prev { background: white; color: var(--oscuro); border: 2px solid var(--oscuro); }
+  .nav button:hover { transform: translateY(-2px); opacity:.85; }
+  .nav button.prev { background: white; color: var(--oscuro); border: 1.5px solid var(--borde); }
   .nav .counter {
     background: white;
-    border: 2px solid var(--oscuro);
+    border: 1.5px solid var(--borde);
     border-radius: 50px;
-    padding: 10px 20px;
+    padding: 11px 22px;
     font-weight: 800;
-    font-size: 14px;
-    color: var(--oscuro);
+    font-size: 15px;
   }
 
-  /* PROGRESS */
+  /* ── PROGRESS ── */
   .progress {
     position: fixed;
-    top: 0;
-    left: 0;
-    height: 5px;
-    background: var(--coral);
-    transition: width 0.5s ease;
+    top: 0; left: 0;
+    height: 4px;
+    background: var(--rosa);
+    transition: width .5s ease;
     z-index: 200;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 4px 4px 0;
   }
 
-  /* ===== SLIDE 0: PORTADA ===== */
-  #s0 {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    flex-direction: column;
-    text-align: center;
+  /* ── SLIDE CHIP ── */
+  .slide-chip {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 14px;
   }
-  #s0 .street-art {
+
+  /* ── TYPOGRAPHY ── */
+  .titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    line-height: .95;
+    letter-spacing: 1px;
+  }
+
+  /* ─────────────────────────────────────
+     SLIDE 0 — PORTADA
+  ───────────────────────────────────── */
+  #s0 {
+    background: linear-gradient(145deg, #1a0533 0%, #3d1478 60%, #6b21a8 100%);
+    padding: 0;
+  }
+  #s0 .city {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 120px;
-    background: #2D2D2D;
-    border-radius: 20px 20px 0 0;
-    overflow: hidden;
-  }
-  #s0 .street-art::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 0; right: 0;
-    height: 4px;
-    background: var(--amarillo);
-    border-radius: 2px;
-    margin: 0 40px;
-    box-shadow: 0 0 20px var(--amarillo);
-  }
-  #s0 .buildings {
     display: flex;
-    gap: 8px;
-    position: absolute;
-    bottom: 120px;
-    left: 50%;
-    transform: translateX(-50%);
+    align-items: flex-end;
+    gap: 6px;
+    padding: 0 30px;
+    opacity: .18;
   }
-  .building {
-    border-radius: 8px 8px 0 0;
-    animation: buildingRise 1s ease forwards;
-    animation-delay: var(--d, 0s);
-    transform: translateY(100px);
-    opacity: 0;
+  .bld { border-radius: 6px 6px 0 0; }
+  #s0 .center {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
   }
-  @keyframes buildingRise {
-    to { transform: translateY(0); opacity: 1; }
+  #s0 .label-top {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(255,255,255,.8);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
   }
   #s0 h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: clamp(36px, 6vw, 72px);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 12vw, 160px);
     color: white;
-    text-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-    position: relative;
-    z-index: 10;
-    margin-bottom: 10px;
-    animation: fadeDown 0.8s ease 0.3s both;
+    line-height: .9;
+    text-shadow: 0 4px 40px rgba(0,0,0,.3);
+    animation: fadeUp .8s ease both;
   }
-  #s0 .subtitle {
-    font-size: clamp(16px, 2.5vw, 22px);
-    color: rgba(255,255,255,0.9);
-    position: relative;
-    z-index: 10;
+  #s0 .sub {
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: rgba(255,255,255,.7);
     font-weight: 700;
-    animation: fadeDown 0.8s ease 0.5s both;
+    animation: fadeUp .8s ease .2s both;
   }
-  #s0 .emoji-row {
-    font-size: 36px;
-    margin-top: 15px;
-    position: relative;
-    z-index: 10;
-    animation: fadeDown 0.8s ease 0.7s both;
-    letter-spacing: 8px;
+  #s0 .pills {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp .8s ease .4s both;
   }
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+  #s0 .pill {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
   }
 
-  /* ===== SLIDE 1: CONOCE A MARTINA ===== */
-  #s1 { background: #FFF9F0; flex-direction: row; gap: 60px; align-items: center; justify-content: center; flex-wrap: wrap; }
-  .martina-card {
-    background: white;
-    border-radius: 30px;
-    padding: 40px 35px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-    max-width: 340px;
-    text-align: center;
-    border: 3px solid var(--oscuro);
-    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
-  }
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0.7); }
-    to { opacity: 1; transform: scale(1); }
-  }
+  /* ─────────────────────────────────────
+     SLIDE 1 — MARTINA
+  ───────────────────────────────────── */
+  #s1 { background: #FFF7F0; flex-direction: row; gap: 70px; flex-wrap: wrap; justify-content: center; }
+  .martina-wrap { display:flex; flex-direction:column; align-items:center; gap:16px; }
   .avatar {
-    width: 140px;
-    height: 140px;
+    width: 170px; height: 170px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--amarillo), var(--naranja));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 70px;
-    margin: 0 auto 20px;
-    border: 4px solid var(--oscuro);
-    box-shadow: 6px 6px 0 var(--oscuro);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    border: 1.5px solid var(--borde);
   }
-  .martina-card h2 { font-family: 'Fredoka One', cursive; font-size: 32px; color: var(--oscuro); margin-bottom: 5px; }
-  .martina-card .tag {
-    display: inline-block;
-    background: var(--amarillo);
-    border: 2px solid var(--oscuro);
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 13px;
-    font-weight: 700;
-    margin: 3px;
+  .martina-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 58px;
+    line-height: 1;
+    color: var(--oscuro);
+    text-align: center;
   }
-  .speech-bubble {
-    background: var(--verde);
-    border: 3px solid var(--oscuro);
-    border-radius: 20px;
-    padding: 25px 30px;
-    max-width: 420px;
-    position: relative;
+  .martina-sub {
     font-size: 18px;
     font-weight: 700;
-    line-height: 1.6;
-    color: var(--oscuro);
-    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s both;
-  }
-  .speech-bubble::before {
-    content: '';
-    position: absolute;
-    left: -22px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 12px solid transparent;
-    border-right-color: var(--oscuro);
-  }
-  .speech-bubble::after {
-    content: '';
-    position: absolute;
-    left: -16px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: 10px solid transparent;
-    border-right-color: var(--verde);
-  }
-  .speech-bubble .highlight { color: #764ba2; text-decoration: underline; text-underline-offset: 3px; }
-  .slide-title {
-    position: absolute;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(20px, 3vw, 32px);
-    background: var(--oscuro);
-    color: white;
-    padding: 10px 30px;
-    border-radius: 50px;
-    white-space: nowrap;
-  }
-
-  /* ===== SLIDE 2: EL MAPA ===== */
-  #s2 { background: #E8F4F8; flex-direction: column; padding: 20px; }
-  #s2 .map-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(18px, 3vw, 28px);
-    color: var(--oscuro);
-    margin-bottom: 12px;
+    color: #888;
     text-align: center;
+  }
+  .tag-row { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+  .tag {
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 800;
+    border: 1px solid var(--borde);
+  }
+  .info-panel {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 28px;
+    padding: 44px 48px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .info-panel h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--oscuro);
+  }
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .info-row .icon { font-size: 30px; }
+
+  /* ─────────────────────────────────────
+     SLIDE 2 — MAPA
+  ───────────────────────────────────── */
+  #s2 { background: #EEF6FF; padding: 20px 40px 80px; }
+  #s2 .map-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--oscuro);
+    margin-bottom: 14px;
+    letter-spacing: 1px;
   }
   .map-container {
     width: 100%;
-    max-width: 980px;
-    background: #C8E6C9;
+    max-width: 1100px;
+    height: 520px;
+    background: #D4EDDA;
     border-radius: 24px;
-    border: 4px solid var(--oscuro);
-    box-shadow: 8px 8px 0 var(--oscuro);
+    border: 1px solid var(--borde);
     position: relative;
     overflow: hidden;
-    height: 500px;
   }
-
-  /* STREETS */
   .h-street {
-    position: absolute;
-    left: 0; right: 0;
-    background: #B0BEC5;
-    display: flex;
-    align-items: center;
+    position: absolute; left:0; right:0;
+    background: #CFD8DC;
   }
   .h-street::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0;
-    top: 50%;
-    height: 3px;
-    background: repeating-linear-gradient(90deg, #FFD93D 0 25px, transparent 25px 45px);
+    content:'';
+    position:absolute; left:0; right:0; top:50%; height:3px;
+    background: repeating-linear-gradient(90deg,#FFD93D 0 22px,transparent 22px 40px);
   }
   .v-street {
-    position: absolute;
-    top: 0; bottom: 0;
-    background: #B0BEC5;
+    position:absolute; top:0; bottom:0;
+    background: #CFD8DC;
   }
   .v-street::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0; bottom: 0;
-    width: 3px;
-    background: repeating-linear-gradient(180deg, #FFD93D 0 25px, transparent 25px 45px);
+    content:'';
+    position:absolute; left:50%; top:0; bottom:0; width:3px;
+    background: repeating-linear-gradient(180deg,#FFD93D 0 22px,transparent 22px 40px);
   }
   .street-label {
-    position: absolute;
-    font-size: 10px;
-    font-weight: 800;
-    color: white;
-    background: #546E7A;
-    padding: 2px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-    z-index: 5;
+    position:absolute; font-size:11px; font-weight:800;
+    color:white; background:#607D8B;
+    padding:2px 8px; border-radius:4px; white-space:nowrap; z-index:5;
   }
-
-  /* PLACES */
   .place {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s;
-    z-index: 10;
+    position:absolute;
+    display:flex; flex-direction:column; align-items:center;
+    cursor:pointer; transition:transform .2s; z-index:10;
   }
-  .place:hover { transform: scale(1.15); }
+  .place:hover { transform:scale(1.18); }
   .place-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 12px;
-    border: 3px solid var(--oscuro);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 3px 3px 0 var(--oscuro);
-    transition: all 0.2s;
+    width:56px; height:56px; border-radius:14px;
+    border:1px solid var(--borde);
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    transition:all .2s;
   }
-  .place:hover .place-icon {
-    box-shadow: 5px 5px 0 var(--oscuro);
-    transform: translateY(-3px);
-  }
+  .place:hover .place-icon { box-shadow:0 6px 20px rgba(0,0,0,.14); transform:translateY(-3px); }
   .place-name {
-    font-size: 9px;
-    font-weight: 800;
-    text-align: center;
-    margin-top: 3px;
-    background: white;
-    border: 1.5px solid var(--oscuro);
-    border-radius: 6px;
-    padding: 2px 5px;
-    max-width: 70px;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
+    font-size:9.5px; font-weight:800; text-align:center; margin-top:3px;
+    background:white; border:1px solid var(--borde);
+    border-radius:6px; padding:2px 5px;
+    max-width:72px; line-height:1.2; text-transform:uppercase; letter-spacing:.3px;
   }
-  .place.highlight-place .place-icon {
-    animation: pulse 1s ease infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 3px 3px 0 var(--oscuro); }
-    50% { box-shadow: 0 0 0 6px rgba(255,107,107,0.4), 3px 3px 0 var(--oscuro); }
-  }
-
-  /* MARTINA HOUSE */
   .my-house {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 15;
+    position:absolute; display:flex; flex-direction:column; align-items:center; z-index:15;
   }
   .house-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 12px;
-    border: 3px solid var(--oscuro);
-    background: linear-gradient(135deg, #FF6B6B, #FF9F1C);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    box-shadow: 4px 4px 0 var(--oscuro);
-    animation: housePulse 2s ease infinite;
+    width:68px; height:68px; border-radius:16px;
+    background:linear-gradient(135deg,var(--rosa),var(--naranja));
+    border:1px solid var(--borde);
+    display:flex; align-items:center; justify-content:center;
+    font-size:32px;
+    box-shadow:0 4px 16px rgba(255,107,157,.3);
+    animation:housePulse 2.5s ease infinite;
   }
   @keyframes housePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    0%,100%{transform:scale(1)} 50%{transform:scale(1.05)}
   }
   .house-label {
-    font-size: 9px;
-    font-weight: 800;
-    background: var(--coral);
-    color: white;
-    border: 2px solid var(--oscuro);
-    border-radius: 6px;
-    padding: 2px 6px;
-    margin-top: 3px;
-    text-transform: uppercase;
+    font-size:9.5px; font-weight:800;
+    background:var(--rosa); color:white;
+    border:1px solid var(--borde); border-radius:6px;
+    padding:2px 7px; margin-top:3px; text-transform:uppercase;
   }
-
-  /* TOOLTIP */
+  .transport-overlay {
+    position:absolute; font-size:26px;
+    animation:moveT linear infinite; z-index:8;
+  }
+  @keyframes moveT {
+    from{left:-40px} to{left:105%}
+  }
+  /* tooltip */
   .tooltip {
-    position: fixed;
-    background: white;
-    border: 3px solid var(--oscuro);
-    border-radius: 16px;
-    padding: 14px 18px;
-    box-shadow: 5px 5px 0 var(--oscuro);
-    z-index: 1000;
-    max-width: 240px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
+    position:fixed; background:white;
+    border:1px solid var(--borde); border-radius:18px;
+    padding:16px 20px;
+    box-shadow:0 8px 32px rgba(0,0,0,.12);
+    z-index:1000; max-width:250px;
+    pointer-events:none; opacity:0; transition:opacity .2s;
   }
-  .tooltip.visible { opacity: 1; }
-  .tooltip h4 { font-family: 'Fredoka One', cursive; font-size: 16px; margin-bottom: 5px; }
-  .tooltip .freq-badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    border: 2px solid var(--oscuro);
-    margin-top: 5px;
-  }
-  .tooltip p { font-size: 13px; color: #555; line-height: 1.4; }
+  .tooltip.visible{opacity:1}
+  .tooltip h4{font-family:'Bebas Neue';font-size:20px;margin-bottom:4px;}
+  .tooltip p{font-size:13px;color:#666;line-height:1.4;}
+  .freq-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:12px;font-weight:800;border:1px solid var(--borde);margin-top:6px;}
 
-  /* ===== SLIDE 3: TRANSPORTE ===== */
-  #s3 { background: #FFF3E0; }
-  .transport-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 16px;
-    max-width: 900px;
-    width: 100%;
-    padding: 20px;
+  /* ─────────────────────────────────────
+     SLIDE 3 — TRANSPORTE
+  ───────────────────────────────────── */
+  #s3 { background: #FFFAF0; }
+  #s3 .wrap { max-width:1000px; width:100%; display:flex; flex-direction:column; align-items:center; gap:24px; }
+  .t-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    width:100%;
   }
-  .transport-card {
-    background: white;
-    border: 3px solid var(--oscuro);
-    border-radius: 20px;
-    padding: 20px 15px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 4px 4px 0 var(--oscuro);
-    animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0s) both;
+  .t-card {
+    background:white;
+    border:1px solid var(--borde);
+    border-radius:24px;
+    padding:28px 20px;
+    text-align:center;
+    cursor:default;
+    transition:all .2s;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
   }
-  .transport-card:hover {
-    transform: translateY(-5px) rotate(-2deg);
-    box-shadow: 6px 8px 0 var(--oscuro);
+  .t-card:hover { transform:translateY(-4px); box-shadow:0 10px 28px rgba(0,0,0,.1); }
+  .t-card .icon { font-size:52px; margin-bottom:12px; }
+  .t-card .name { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--oscuro); }
+  .t-card .ex { font-size:15px; font-weight:700; color:#888; margin-top:4px; }
+  .martina-quote {
+    background:white; border:1px solid var(--borde);
+    border-radius:20px; padding:22px 30px;
+    font-size:19px; font-weight:700; line-height:1.6;
+    max-width:860px; width:100%;
+    box-shadow:0 3px 12px rgba(0,0,0,.05);
   }
-  .transport-card .icon { font-size: 44px; margin-bottom: 10px; }
-  .transport-card .name { font-family: 'Fredoka One', cursive; font-size: 16px; }
-  .transport-card .example { font-size: 12px; color: #777; margin-top: 5px; font-weight: 600; }
+  .martina-quote strong { color:var(--violeta); }
 
-  /* ===== SLIDE 4: FRECUENCIA ===== */
-  #s4 { background: white; flex-direction: column; }
-  .freq-table-wrapper {
-    max-width: 800px;
-    width: 100%;
-    padding: 10px 20px;
-  }
-  .freq-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 3px solid var(--oscuro);
-    box-shadow: 6px 6px 0 var(--oscuro);
-  }
-  .freq-table th {
-    padding: 14px;
-    font-family: 'Fredoka One', cursive;
-    font-size: 16px;
-    color: white;
-    text-align: left;
-  }
-  .freq-table th:nth-child(1) { background: var(--coral); }
-  .freq-table th:nth-child(2) { background: var(--azul); }
-  .freq-table th:nth-child(3) { background: var(--verde); }
-  .freq-table td {
-    padding: 12px 14px;
-    border-top: 2px solid #eee;
-    font-size: 15px;
-    font-weight: 700;
-  }
-  .freq-table tr:hover td { background: #f9f9f9; }
-  .freq-badge-big {
-    display: inline-block;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-weight: 800;
-    font-size: 13px;
-    border: 2px solid var(--oscuro);
-  }
-  .always { background: var(--verde); }
-  .often { background: var(--amarillo); }
-  .sometimes { background: var(--naranja); color: white; }
-  .never { background: #EEE; }
-
-  .freq-martina {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    justify-content: center;
-    max-width: 900px;
-    padding: 10px 20px;
-  }
-  .freq-item {
-    background: white;
-    border: 3px solid var(--oscuro);
-    border-radius: 16px;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 4px 4px 0 var(--oscuro);
-    animation: slideUp 0.4s ease var(--d, 0s) both;
-    cursor: default;
+  /* ─────────────────────────────────────
+     SLIDE 4 — FRECUENCIA
+  ───────────────────────────────────── */
+  #s4 { background: #F4FFF8; }
+  #s4 .wrap { max-width:960px; width:100%; display:flex; flex-direction:column; align-items:center; gap:22px; }
+  .freq-rows { display:flex; flex-direction:column; gap:14px; width:100%; }
+  .freq-row {
+    display:grid; grid-template-columns:220px 1fr 1fr;
+    align-items:center; gap:16px;
+    background:white; border:1px solid var(--borde);
+    border-radius:18px; padding:18px 24px;
+    box-shadow:0 3px 10px rgba(0,0,0,.04);
+    animation: slideUp .4s ease var(--d,0s) both;
   }
   @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)}
   }
-  .freq-item .fi-icon { font-size: 28px; }
-  .freq-item .fi-info { }
-  .freq-item .fi-place { font-weight: 800; font-size: 15px; }
-  .freq-item .fi-freq { font-size: 12px; font-weight: 700; }
+  .freq-pill {
+    display:inline-block; padding:10px 22px;
+    border-radius:50px; font-family:'Bebas Neue',sans-serif;
+    font-size:26px; letter-spacing:.5px;
+    border:1px solid var(--borde); text-align:center;
+  }
+  .freq-when { font-size:17px; font-weight:700; color:#666; }
+  .freq-ex { font-size:17px; font-weight:700; }
 
-  /* ===== SLIDE 5: LA SEMANA DE MARTINA ===== */
-  #s5 { background: #F3E5F5; flex-direction: column; }
+  /* ─────────────────────────────────────
+     SLIDE 5 — SEMANA
+  ───────────────────────────────────── */
+  #s5 { background: #F9F4FF; padding:20px 40px 80px; }
+  #s5 .s-title { font-family:'Bebas Neue',sans-serif; font-size:52px; margin-bottom:16px; }
   .week-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    max-width: 950px;
-    width: 100%;
-    padding: 10px 20px;
+    display:grid; grid-template-columns:repeat(7,1fr);
+    gap:10px; max-width:1100px; width:100%;
   }
   .day-card {
-    background: white;
-    border: 3px solid var(--oscuro);
-    border-radius: 16px;
-    padding: 12px 8px;
-    text-align: center;
-    box-shadow: 4px 4px 0 var(--oscuro);
-    animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0s) both;
+    background:white; border:1px solid var(--borde);
+    border-radius:18px; padding:14px 8px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
+    animation:popIn .4s cubic-bezier(.34,1.56,.64,1) var(--d,0s) both;
   }
-  .day-card .day-name {
-    font-family: 'Fredoka One', cursive;
-    font-size: 14px;
-    margin-bottom: 8px;
-    color: white;
-    background: var(--oscuro);
-    border-radius: 8px;
-    padding: 3px 6px;
+  @keyframes popIn {
+    from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)}
   }
-  .day-card .day-items {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  .day-name {
+    font-family:'Bebas Neue',sans-serif; font-size:22px;
+    color:white; border-radius:10px; padding:4px 6px; margin-bottom:8px;
   }
-  .day-activity {
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 6px;
-    border-radius: 8px;
-    border: 1.5px solid rgba(0,0,0,0.15);
+  .day-act {
+    font-size:12px; font-weight:800; padding:5px 6px;
+    border-radius:10px; margin-bottom:5px;
+    border:1px solid rgba(0,0,0,.06);
+    line-height:1.3;
+  }
+  .week-quote {
+    background:white; border:1px solid var(--borde);
+    border-radius:18px; padding:16px 24px;
+    font-size:17px; font-weight:700; line-height:1.6;
+    max-width:1100px; width:100%;
+    margin-top:14px;
+    box-shadow:0 3px 10px rgba(0,0,0,.05);
   }
 
-  /* ===== SLIDE 6: ACTIVIDAD ===== */
-  #s6 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; flex-direction: column; }
-  .activity-box {
-    background: rgba(255,255,255,0.1);
-    border: 3px solid rgba(255,255,255,0.3);
-    border-radius: 30px;
-    padding: 40px;
-    max-width: 800px;
-    backdrop-filter: blur(10px);
-    animation: popIn 0.6s ease 0.2s both;
+  /* ─────────────────────────────────────
+     SLIDE 6 — ACTIVIDAD
+  ───────────────────────────────────── */
+  #s6 {
+    background: linear-gradient(145deg,#0f0c29,#302b63,#24243e);
+    color:white;
   }
-  .activity-box h2 { font-family: 'Fredoka One', cursive; font-size: 36px; margin-bottom: 20px; text-align: center; }
-  .activity-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .act-wrap {
+    max-width:860px; width:100%;
+    display:flex; flex-direction:column; gap:22px; align-items:center;
+  }
+  #s6 h2 {
+    font-family:'Bebas Neue',sans-serif;
+    font-size:clamp(52px,7vw,90px);
+    text-align:center; line-height:1;
   }
   .step {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 16px;
-    padding: 14px 18px;
-    animation: slideUp 0.4s ease var(--d, 0s) both;
+    display:flex; align-items:flex-start; gap:20px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px; padding:22px 26px;
+    width:100%;
+    animation:slideUp .4s ease var(--d,0s) both;
   }
   .step-num {
-    width: 40px;
-    height: 40px;
-    background: var(--amarillo);
-    color: var(--oscuro);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Fredoka One', cursive;
-    font-size: 20px;
-    flex-shrink: 0;
+    width:48px; height:48px; flex-shrink:0;
+    background:var(--amarillo); color:var(--oscuro);
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'Bebas Neue',sans-serif; font-size:26px;
   }
-  .step-text { font-size: 16px; font-weight: 700; line-height: 1.4; }
-  .stars {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    overflow: hidden;
-    pointer-events: none;
+  .step-text { font-size:19px; font-weight:700; line-height:1.5; padding-top:8px; }
+  .modelo {
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:18px; padding:20px 28px;
+    font-size:18px; font-weight:700; line-height:1.7;
+    text-align:center; width:100%;
+    animation:slideUp .4s ease .7s both;
   }
-  .star {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    animation: twinkle var(--dur, 3s) ease-in-out infinite;
-  }
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.5); }
-  }
-
-  /* TRANSPORT in map */
-  .transport-overlay {
-    position: absolute;
-    font-size: 24px;
-    animation: moveTransport linear infinite;
-    z-index: 8;
-  }
-  @keyframes moveTransport {
-    from { left: -40px; }
-    to { left: 105%; }
-  }
-
-  /* Slide header */
-  .slide-header {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(22px, 3vw, 36px);
-    text-align: center;
-    margin-bottom: 16px;
-    position: relative;
-  }
-  .slide-header .underline {
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 4px;
-    width: 80px;
-    border-radius: 2px;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .week-grid { grid-template-columns: repeat(4, 1fr); }
-    .martina-card { max-width: 100%; }
-    .speech-bubble::before, .speech-bubble::after { display: none; }
-    .transport-grid { grid-template-columns: repeat(3, 1fr); }
-    .map-container { height: 380px; }
-    .place-icon { width: 40px; height: 40px; font-size: 18px; }
-    .house-icon { width: 50px; height: 50px; font-size: 24px; }
-  }
+  .modelo em { color:var(--amarillo); font-style:normal; }
 </style>
 </head>
 <body>
 
 <div class="progress" id="progress"></div>
 
-<!-- =========================================
-     SLIDE 0: PORTADA
-========================================= -->
+<!-- ══════════════════════════════════════
+     S0 — PORTADA
+══════════════════════════════════════ -->
 <div class="slide active" id="s0">
-  <div class="stars" id="stars0"></div>
-  <h1>🗺️ Un día con Martina</h1>
-  <div class="subtitle">Los lugares de la ciudad • Los transportes • La rutina semanal</div>
-  <div class="emoji-row">🏠 🚌 🛒 💊 🍕</div>
-  <div style="margin-top:30px; font-size:14px; color:rgba(255,255,255,0.6); position:relative;z-index:10; animation: fadeDown 0.8s 1s both;">
-    Español Inicial — Nivel A1/A2
+  <div class="city">
+    <div class="bld" style="background:white;width:50px;height:110px;"></div>
+    <div class="bld" style="background:white;width:70px;height:150px;"></div>
+    <div class="bld" style="background:white;width:45px;height:90px;"></div>
+    <div class="bld" style="background:white;width:80px;height:180px;"></div>
+    <div class="bld" style="background:white;width:55px;height:120px;"></div>
+    <div class="bld" style="background:white;width:65px;height:140px;"></div>
+    <div class="bld" style="background:white;width:42px;height:95px;"></div>
+    <div class="bld" style="background:white;width:75px;height:160px;"></div>
+    <div class="bld" style="background:white;width:50px;height:105px;"></div>
+    <div class="bld" style="background:white;width:60px;height:130px;"></div>
+    <div class="bld" style="background:white;width:48px;height:115px;"></div>
+    <div class="bld" style="background:white;width:55px;height:145px;"></div>
   </div>
-  <div class="buildings">
-    <div class="building" style="background:#FF6B6B; width:50px; height:80px; --d:0.3s;"></div>
-    <div class="building" style="background:#FFD93D; width:40px; height:110px; --d:0.5s;"></div>
-    <div class="building" style="background:#6BCB77; width:60px; height:65px; --d:0.4s;"></div>
-    <div class="building" style="background:#4D96FF; width:45px; height:130px; --d:0.6s;"></div>
-    <div class="building" style="background:#C77DFF; width:55px; height:90px; --d:0.2s;"></div>
-    <div class="building" style="background:#FF9F1C; width:42px; height:75px; --d:0.7s;"></div>
-    <div class="building" style="background:#FF6B6B; width:48px; height:100px; --d:0.35s;"></div>
+  <div class="center">
+    <div class="label-top">🇪🇸 Español · Nivel A1</div>
+    <h1>UN DÍA<br>CON MARTINA</h1>
+    <div class="sub">Lugares · Transportes · Rutina semanal</div>
+    <div class="pills">
+      <span class="pill">🏙️ La ciudad</span>
+      <span class="pill">🚌 Transportes</span>
+      <span class="pill">📅 La semana</span>
+      <span class="pill">🔄 Frecuencia</span>
+    </div>
   </div>
-  <div class="street-art"></div>
 </div>
 
-<!-- =========================================
-     SLIDE 1: CONOCE A MARTINA
-========================================= -->
+<!-- ══════════════════════════════════════
+     S1 — MARTINA
+══════════════════════════════════════ -->
 <div class="slide" id="s1">
-  <div class="slide-title">👋 ¡Hola! Conoce a Martina</div>
-  <div style="display:flex; gap:50px; align-items:center; flex-wrap:wrap; justify-content:center; margin-top:40px;">
-    <div class="martina-card">
+  <div class="slide-chip">Personaje principal</div>
+  <div style="display:flex;gap:70px;align-items:center;flex-wrap:wrap;justify-content:center;">
+    <div class="martina-wrap">
       <div class="avatar">👩</div>
-      <h2>Martina García</h2>
-      <p style="color:#777; margin:8px 0; font-size:14px;">Profesora de arte • 28 años</p>
-      <div>
-        <span class="tag">🏙️ Madrid</span>
-        <span class="tag">🎨 Arte</span>
-        <span class="tag">☕ Café</span>
-        <span class="tag">🚲 Bicicleta</span>
-      </div>
-      <div style="margin-top:16px; background:#F9F0FF; border-radius:12px; padding:12px; font-size:13px; color:#555; line-height:1.5;">
-        <strong>Su barrio:</strong> El Retiro, Madrid<br>
-        <strong>Vive en:</strong> Calle de Alcalá, 42
+      <div class="martina-name">MARTINA<br>GARCÍA</div>
+      <div class="martina-sub">Profesora de arte · 28 años · Madrid</div>
+      <div class="tag-row">
+        <span class="tag" style="background:#FFF0F5;">🎨 Arte</span>
+        <span class="tag" style="background:#F0FFF4;">🚲 Bicicleta</span>
+        <span class="tag" style="background:#FFF9F0;">☕ Café</span>
+        <span class="tag" style="background:#F0F4FF;">🏙️ Madrid</span>
       </div>
     </div>
-    <div style="display:flex; flex-direction:column; gap:16px; max-width:420px;">
-      <div class="speech-bubble">
-        ¡Hola! Soy Martina. <span class="highlight">Vivo en Madrid</span> y tengo una semana muy ocupada. 
-        ¿Quieren conocer <span class="highlight">mi barrio y mi rutina</span>? 🗺️
+    <div class="info-panel">
+      <h2>HOLA, SOY MARTINA</h2>
+      <div class="info-row" style="background:#FFF0F5;">
+        <span class="icon">🏠</span>
+        <span style="font-size:20px;">Calle de Alcalá, 42 — Madrid</span>
       </div>
-      <div style="background:#FFF9C4; border:3px solid var(--oscuro); border-radius:16px; padding:20px; font-size:14px; line-height:1.6; box-shadow: 4px 4px 0 var(--oscuro);">
-        <strong style="font-family:'Fredoka One';font-size:16px;">🎓 En esta clase aprenden:</strong><br><br>
-        📍 Los <strong>lugares</strong> de la ciudad<br>
-        🚌 Los <strong>medios de transporte</strong><br>
-        📅 La <strong>rutina semanal</strong><br>
-        🔄 La <strong>frecuencia</strong>: siempre, a menudo...
+      <div class="info-row" style="background:#F0FFF4;">
+        <span class="icon">🗺️</span>
+        <span style="font-size:20px;">Vivo en <strong>El Retiro</strong></span>
+      </div>
+      <div class="info-row" style="background:#F0F4FF;">
+        <span class="icon">📚</span>
+        <span style="font-size:20px;">¡Tengo una semana muy ocupada!</span>
+      </div>
+      <div style="background:#F9F4FF;border-radius:16px;padding:18px;font-size:18px;font-weight:700;line-height:1.6;color:#555;">
+        En esta clase vas a aprender:<br>
+        📍 Lugares · 🚌 Transportes · 🔄 Frecuencia
       </div>
     </div>
   </div>
 </div>
 
-<!-- =========================================
-     SLIDE 2: EL MAPA DEL BARRIO
-========================================= -->
+<!-- ══════════════════════════════════════
+     S2 — MAPA
+══════════════════════════════════════ -->
 <div class="slide" id="s2">
-  <div class="map-title">🗺️ El barrio de Martina — Haz click en los lugares</div>
+  <div class="map-title">🗺️ EL BARRIO DE MARTINA</div>
   <div class="map-container" id="mapContainer">
-    <!-- Streets horizontal -->
-    <div class="h-street" style="top:165px; height:38px;">
-      <span class="street-label" style="top:8px; left:15px;">Calle de Alcalá</span>
+    <div class="h-street" style="top:168px;height:40px;">
+      <span class="street-label" style="top:10px;left:14px;">Calle de Alcalá</span>
     </div>
-    <div class="h-street" style="top:340px; height:38px;">
-      <span class="street-label" style="top:8px; left:15px;">Gran Vía</span>
+    <div class="h-street" style="top:348px;height:40px;">
+      <span class="street-label" style="top:10px;left:14px;">Gran Vía</span>
     </div>
-    <!-- Streets vertical -->
-    <div class="v-street" style="left:280px; width:34px;"></div>
-    <div class="v-street" style="left:580px; width:34px;"></div>
+    <div class="v-street" style="left:280px;width:36px;"></div>
+    <div class="v-street" style="left:590px;width:36px;"></div>
 
-    <!-- Transport animations -->
-    <div class="transport-overlay" style="top:175px; animation-duration:8s; animation-delay:0s;">🚌</div>
-    <div class="transport-overlay" style="top:352px; animation-duration:12s; animation-delay:3s; transform:scaleX(-1);">🚕</div>
-    <div class="transport-overlay" style="top:175px; animation-duration:15s; animation-delay:6s;">🚲</div>
+    <div class="transport-overlay" style="top:178px;animation-duration:9s;animation-delay:0s;">🚌</div>
+    <div class="transport-overlay" style="top:358px;animation-duration:13s;animation-delay:4s;transform:scaleX(-1);">🚕</div>
+    <div class="transport-overlay" style="top:178px;animation-duration:16s;animation-delay:7s;">🚲</div>
 
-    <!-- MY HOUSE -->
-    <div class="my-house" style="left:110px; top:65px;">
+    <div class="my-house" style="left:100px;top:62px;">
       <div class="house-icon">🏠</div>
       <div class="house-label">Mi Casa</div>
     </div>
 
-    <!-- PLACES: top row -->
-    <div class="place" style="left:235px; top:55px;" onclick="showTooltip(event, 'Panadería', '🥖', 'Pan, galletas, facturas', 'always', 'Martina va todos los días a buscar medialunas.')">
-      <div class="place-icon" style="background:#FFE082;">🥖</div>
-      <div class="place-name">Panadería</div>
+    <!-- fila top -->
+    <div class="place" style="left:228px;top:55px;" onclick="tt(event,'Panadería','🥖','Pan, galletas, medialunas','always','Va todos los días a buscar medialunas.')">
+      <div class="place-icon" style="background:#FFF9C4;">🥖</div><div class="place-name">Panadería</div>
     </div>
-    <div class="place" style="left:340px; top:55px;" onclick="showTooltip(event, 'Farmacia', '💊', 'Medicinas, vitaminas', 'sometimes', 'Martina va cuando está enferma.')">
-      <div class="place-icon" style="background:#A5D6A7;">💊</div>
-      <div class="place-name">Farmacia</div>
+    <div class="place" style="left:334px;top:55px;" onclick="tt(event,'Farmacia','💊','Medicinas','sometimes','Va cuando está enferma.')">
+      <div class="place-icon" style="background:#C8F7D4;">💊</div><div class="place-name">Farmacia</div>
     </div>
-    <div class="place" style="left:440px; top:55px;" onclick="showTooltip(event, 'Pescadería', '🐟', 'Pescado fresco', 'often', 'Martina compra pescado los viernes.')">
-      <div class="place-icon" style="background:#81D4FA;">🐟</div>
-      <div class="place-name">Pescadería</div>
+    <div class="place" style="left:440px;top:55px;" onclick="tt(event,'Pescadería','🐟','Pescado fresco','often','Compra pescado los viernes.')">
+      <div class="place-icon" style="background:#BDE8FF;">🐟</div><div class="place-name">Pescadería</div>
     </div>
-    <div class="place" style="left:540px; top:55px;" onclick="showTooltip(event, 'Cine', '🎬', 'Películas', 'sometimes', 'Martina va al cine los sábados con amigos.')">
-      <div class="place-icon" style="background:#CE93D8;">🎬</div>
-      <div class="place-name">Cine</div>
+    <div class="place" style="left:548px;top:55px;" onclick="tt(event,'Cine','🎬','Películas','sometimes','Va al cine los sábados.')">
+      <div class="place-icon" style="background:#E8D5FF;">🎬</div><div class="place-name">Cine</div>
     </div>
-    <div class="place" style="left:650px; top:55px;" onclick="showTooltip(event, 'Bar', '☕', 'Café, desayuno', 'always', 'Martina toma café aquí cada mañana.')">
-      <div class="place-icon" style="background:#FFCC80;">☕</div>
-      <div class="place-name">Bar</div>
+    <div class="place" style="left:656px;top:55px;" onclick="tt(event,'Bar','☕','Café, desayuno','always','Toma café aquí cada mañana.')">
+      <div class="place-icon" style="background:#FFE5B4;">☕</div><div class="place-name">Bar</div>
     </div>
-    <div class="place" style="left:750px; top:55px;" onclick="showTooltip(event, 'Lotería', '🎟️', 'Lotería, quiniela', 'never', 'Martina nunca juega a la lotería.')">
-      <div class="place-icon" style="background:#F48FB1;">🎟️</div>
-      <div class="place-name">Lotería</div>
+    <div class="place" style="left:764px;top:55px;" onclick="tt(event,'Lotería','🎟️','Lotería, quiniela','never','Nunca juega a la lotería.')">
+      <div class="place-icon" style="background:#FFD6E7;">🎟️</div><div class="place-name">Lotería</div>
+    </div>
+    <div class="place" style="left:872px;top:55px;" onclick="tt(event,'Kiosco','📰','Periódicos, golosinas','always','Compra el diario cada mañana.')">
+      <div class="place-icon" style="background:#FFFDE7;">📰</div><div class="place-name">Kiosco</div>
     </div>
 
-    <!-- PLACES: middle row -->
-    <div class="place" style="left:235px; top:230px;" onclick="showTooltip(event, 'Supermercado', '🛒', 'Compras semanales', 'often', 'Martina hace las compras los miércoles y sábados.')">
-      <div class="place-icon" style="background:#B2EBF2;">🛒</div>
-      <div class="place-name">Supermercado</div>
+    <!-- fila media -->
+    <div class="place" style="left:228px;top:236px;" onclick="tt(event,'Supermercado','🛒','Compras semanales','often','Hace las compras mié y sáb.')">
+      <div class="place-icon" style="background:#B2EBF2;">🛒</div><div class="place-name">Supermercado</div>
     </div>
-    <div class="place" style="left:355px; top:230px;" onclick="showTooltip(event, 'Carnicería', '🥩', 'Carne, pollo', 'often', 'Martina compra carne los jueves.')">
-      <div class="place-icon" style="background:#FFCDD2;">🥩</div>
-      <div class="place-name">Carnicería</div>
+    <div class="place" style="left:350px;top:236px;" onclick="tt(event,'Carnicería','🥩','Carne, pollo','often','Compra carne los jueves.')">
+      <div class="place-icon" style="background:#FFCDD2;">🥩</div><div class="place-name">Carnicería</div>
     </div>
-    <div class="place" style="left:470px; top:230px;" onclick="showTooltip(event, 'Pollería', '🐔', 'Pollo, gallinas', 'sometimes', 'Martina va a veces a la pollería.')">
-      <div class="place-icon" style="background:#FFF9C4;">🐔</div>
-      <div class="place-name">Pollería</div>
+    <div class="place" style="left:468px;top:236px;" onclick="tt(event,'Pollería','🐔','Pollo, gallinas','sometimes','Va a veces a la pollería.')">
+      <div class="place-icon" style="background:#FFF9C4;">🐔</div><div class="place-name">Pollería</div>
     </div>
-    <div class="place" style="left:640px; top:230px;" onclick="showTooltip(event, 'Heladería', '🍦', 'Helados, granizados', 'often', 'Martina toma helado los fines de semana.')">
-      <div class="place-icon" style="background:#E1F5FE;">🍦</div>
-      <div class="place-name">Heladería</div>
+    <div class="place" style="left:656px;top:236px;" onclick="tt(event,'Heladería','🍦','Helados','often','Toma helado los fines de semana.')">
+      <div class="place-icon" style="background:#E1F5FE;">🍦</div><div class="place-name">Heladería</div>
     </div>
-    <div class="place" style="left:760px; top:230px;" onclick="showTooltip(event, 'Gimnasio', '💪', 'Ejercicio, fitness', 'always', 'Martina va al gimnasio lunes, miércoles y viernes.')">
-      <div class="place-icon" style="background:#DCEDC8;">💪</div>
-      <div class="place-name">Gimnasio</div>
+    <div class="place" style="left:764px;top:236px;" onclick="tt(event,'Gimnasio','💪','Ejercicio','always','Va lun, mié y vie.')">
+      <div class="place-icon" style="background:#DCEDC8;">💪</div><div class="place-name">Gimnasio</div>
+    </div>
+    <div class="place" style="left:872px;top:236px;" onclick="tt(event,'Estación Metro','🚇','Metro, subte','always','Toma el metro para ir al trabajo.')">
+      <div class="place-icon" style="background:#E3F2FD;">🚇</div><div class="place-name">Estación Metro</div>
     </div>
 
-    <!-- PLACES: bottom row -->
-    <div class="place" style="left:235px; top:410px;" onclick="showTooltip(event, 'Verdulería', '🥦', 'Frutas y verduras', 'always', 'Martina compra frutas y verduras cada 2 días.')">
-      <div class="place-icon" style="background:#C8E6C9;">🥦</div>
-      <div class="place-name">Verdulería</div>
+    <!-- fila bottom -->
+    <div class="place" style="left:228px;top:415px;" onclick="tt(event,'Verdulería','🥦','Frutas y verduras','always','Compra verduras cada 2 días.')">
+      <div class="place-icon" style="background:#C8E6C9;">🥦</div><div class="place-name">Verdulería</div>
     </div>
-    <div class="place" style="left:360px; top:410px;" onclick="showTooltip(event, 'Joyería', '💍', 'Anillos, collares', 'never', 'Martina casi nunca va a la joyería.')">
-      <div class="place-icon" style="background:#F3E5F5;">💍</div>
-      <div class="place-name">Joyería</div>
+    <div class="place" style="left:350px;top:415px;" onclick="tt(event,'Joyería','💍','Anillos, collares','never','Casi nunca va a la joyería.')">
+      <div class="place-icon" style="background:#F3E5F5;">💍</div><div class="place-name">Joyería</div>
     </div>
-    <div class="place" style="left:470px; top:410px;" onclick="showTooltip(event, 'Tienda de Ropa', '👗', 'Ropa, moda', 'sometimes', 'Martina va a comprar ropa a veces.')">
-      <div class="place-icon" style="background:#FCE4EC;">👗</div>
-      <div class="place-name">Tienda de Ropa</div>
+    <div class="place" style="left:468px;top:415px;" onclick="tt(event,'Tienda de Ropa','👗','Ropa, moda','sometimes','Va a comprar ropa a veces.')">
+      <div class="place-icon" style="background:#FCE4EC;">👗</div><div class="place-name">Tienda de Ropa</div>
     </div>
-    <div class="place" style="left:600px; top:410px;" onclick="showTooltip(event, 'Iglesia', '⛪', 'Misa, eventos', 'sometimes', 'Martina va a la iglesia los domingos.')">
-      <div class="place-icon" style="background:#FFF3E0;">⛪</div>
-      <div class="place-name">Iglesia</div>
+    <div class="place" style="left:610px;top:415px;" onclick="tt(event,'Iglesia','⛪','Misa, eventos','sometimes','Va los domingos.')">
+      <div class="place-icon" style="background:#FFF3E0;">⛪</div><div class="place-name">Iglesia</div>
     </div>
-    <div class="place" style="left:720px; top:410px;" onclick="showTooltip(event, 'Teatro', '🎭', 'Obras de teatro', 'sometimes', 'Martina va al teatro una vez al mes.')">
-      <div class="place-icon" style="background:#E8EAF6;">🎭</div>
-      <div class="place-name">Teatro</div>
+    <div class="place" style="left:730px;top:415px;" onclick="tt(event,'Teatro','🎭','Obras de teatro','sometimes','Va una vez al mes.')">
+      <div class="place-icon" style="background:#E8EAF6;">🎭</div><div class="place-name">Teatro</div>
     </div>
-
-    <!-- KIOSKO special -->
-    <div class="place" style="left:850px; top:240px;" onclick="showTooltip(event, 'Kiosco', '📰', 'Periódicos, golosinas', 'always', 'Martina compra el diario cada mañana.')">
-      <div class="place-icon" style="background:#FFFDE7;">📰</div>
-      <div class="place-name">Kiosco</div>
-    </div>
-
-    <!-- ESTACION -->
-    <div class="place" style="left:850px; top:410px;" onclick="showTooltip(event, 'Estación de Tren', '🚇', 'Metro, subte', 'always', 'Martina toma el metro para ir al trabajo.')">
-      <div class="place-icon" style="background:#E3F2FD;">🚇</div>
-      <div class="place-name">Estación Metro</div>
+    <div class="place" style="left:872px;top:415px;" onclick="tt(event,'Hospital','🏥','Emergencias','never','Casi nunca va al hospital.')">
+      <div class="place-icon" style="background:#E8F5E9;">🏥</div><div class="place-name">Hospital</div>
     </div>
   </div>
-  <div style="font-size:12px; color:#666; margin-top:8px; text-align:center;">
-    👆 Haz clic en cualquier lugar para ver información de Martina
-  </div>
+  <div style="font-size:14px;color:#888;margin-top:8px;font-weight:700;">👆 Hacé clic en cualquier lugar para ver información</div>
 </div>
 
-<!-- TOOLTIP -->
+<!-- tooltip -->
 <div class="tooltip" id="tooltip">
   <h4 id="tt-title"></h4>
-  <p id="tt-items" style="color:#888; font-size:12px; margin:3px 0;"></p>
+  <p id="tt-items" style="color:#aaa;font-size:12px;margin:2px 0;"></p>
   <p id="tt-story"></p>
   <div><span class="freq-badge" id="tt-freq"></span></div>
 </div>
 
-<!-- =========================================
-     SLIDE 3: TRANSPORTES
-========================================= -->
+<!-- ══════════════════════════════════════
+     S3 — TRANSPORTES
+══════════════════════════════════════ -->
 <div class="slide" id="s3">
-  <div style="width:100%; max-width:950px; display:flex; flex-direction:column; align-items:center; padding:15px;">
-    <div class="slide-header">
-      🚌 Los Medios de Transporte
-      <div class="underline" style="background:var(--naranja);"></div>
-    </div>
-    <p style="font-size:16px; margin-bottom:16px; color:#555; font-weight:600; text-align:center;">Martina usa diferentes transportes según el día y el destino</p>
-    <div class="transport-grid">
-      <div class="transport-card" style="--d:0.1s; background:#FFF9C4;">
+  <div class="wrap">
+    <div class="slide-chip">Medios de transporte</div>
+    <div class="titulo" style="font-size:clamp(52px,7vw,86px);text-align:center;">🚌 LOS TRANSPORTES</div>
+    <div class="t-grid">
+      <div class="t-card" style="background:#FFFDE7;">
         <div class="icon">🚌</div>
-        <div class="name">Colectivo / Bus</div>
-        <div class="example">Al trabajo</div>
+        <div class="name">COLECTIVO / BUS</div>
+        <div class="ex">Al trabajo</div>
       </div>
-      <div class="transport-card" style="--d:0.15s; background:#E8F5E9;">
+      <div class="t-card" style="background:#F1F8E9;">
         <div class="icon">🚲</div>
-        <div class="name">Bicicleta</div>
-        <div class="example">Al parque</div>
+        <div class="name">BICICLETA</div>
+        <div class="ex">Al mercado</div>
       </div>
-      <div class="transport-card" style="--d:0.2s; background:#E3F2FD;">
+      <div class="t-card" style="background:#E3F2FD;">
         <div class="icon">🚇</div>
-        <div class="name">Metro / Subte</div>
-        <div class="example">Al centro</div>
+        <div class="name">METRO / SUBTE</div>
+        <div class="ex">Al centro</div>
       </div>
-      <div class="transport-card" style="--d:0.25s; background:#FFF3E0;">
+      <div class="t-card" style="background:#FFF3E0;">
         <div class="icon">🚕</div>
-        <div class="name">Taxi</div>
-        <div class="example">De noche</div>
+        <div class="name">TAXI</div>
+        <div class="ex">De noche</div>
       </div>
-      <div class="transport-card" style="--d:0.3s; background:#F3E5F5;">
+      <div class="t-card" style="background:#F3E5F5;">
         <div class="icon">🚗</div>
-        <div class="name">Auto</div>
-        <div class="example">Fin de semana</div>
+        <div class="name">AUTO</div>
+        <div class="ex">Fin de semana</div>
       </div>
-      <div class="transport-card" style="--d:0.35s; background:#FCE4EC;">
+      <div class="t-card" style="background:#FCE4EC;">
         <div class="icon">🛵</div>
-        <div class="name">Moto</div>
-        <div class="example">Por la ciudad</div>
-      </div>
-      <div class="transport-card" style="--d:0.4s; background:#E8EAF6;">
-        <div class="icon">🚶</div>
-        <div class="name">A pie</div>
-        <div class="example">Al kiosco</div>
-      </div>
-      <div class="transport-card" style="--d:0.45s; background:#E0F2F1;">
-        <div class="icon">🛴</div>
-        <div class="name">Patín / Scooter</div>
-        <div class="example">Al gimnasio</div>
-      </div>
-      <div class="transport-card" style="--d:0.5s; background:#FFF8E1;">
-        <div class="icon">🚂</div>
-        <div class="name">Tren</div>
-        <div class="example">De viaje</div>
+        <div class="name">MOTO</div>
+        <div class="ex">Por la ciudad</div>
       </div>
     </div>
-    <div style="background:white; border:3px solid var(--oscuro); border-radius:20px; padding:16px 24px; margin-top:14px; max-width:700px; box-shadow: 4px 4px 0 var(--oscuro);">
-      <strong style="font-family:'Fredoka One'; font-size:17px;">💬 Martina dice:</strong>
-      <p style="margin-top:8px; font-size:15px; line-height:1.5; color:#333;">
-        <em>"Los lunes voy al trabajo <strong>en metro</strong>. Los sábados voy al mercado <strong>en bicicleta</strong>. Cuando llueve, voy <strong>en colectivo</strong>. De noche, prefiero ir <strong>en taxi</strong>."</em>
-      </p>
+    <div class="martina-quote">
+      💬 <strong>Martina dice:</strong> "Los lunes voy al trabajo <strong>en metro</strong>. Los sábados voy al mercado <strong>en bicicleta</strong>. Cuando llueve, voy <strong>en colectivo</strong>. De noche, prefiero ir <strong>en taxi</strong>."
     </div>
   </div>
 </div>
 
-<!-- =========================================
-     SLIDE 4: FRECUENCIA
-========================================= -->
+<!-- ══════════════════════════════════════
+     S4 — FRECUENCIA
+══════════════════════════════════════ -->
 <div class="slide" id="s4">
-  <div style="width:100%; max-width:950px; display:flex; flex-direction:column; align-items:center; padding:15px;">
-    <div class="slide-header">
-      🔄 ¿Con qué frecuencia?
-      <div class="underline" style="background:var(--verde);"></div>
-    </div>
-    <table class="freq-table" style="margin-bottom:16px;">
-      <thead>
-        <tr>
-          <th>Frecuencia</th>
-          <th>¿Cuándo?</th>
-          <th>Ejemplo de Martina</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="freq-badge-big always">Siempre</span></td>
-          <td>todos los días</td>
-          <td>🥖 Va a la panadería todos los días</td>
-        </tr>
-        <tr>
-          <td><span class="freq-badge-big often">A menudo</span></td>
-          <td>muchos días</td>
-          <td>🛒 Va al supermercado 2 veces por semana</td>
-        </tr>
-        <tr>
-          <td><span class="freq-badge-big" style="background:var(--azul);color:white;">A veces</span></td>
-          <td>algunos días</td>
-          <td>🎬 Va al cine los sábados</td>
-        </tr>
-        <tr>
-          <td><span class="freq-badge-big sometimes">Casi nunca</span></td>
-          <td>muy poco</td>
-          <td>💍 Va a la joyería una vez al año</td>
-        </tr>
-        <tr>
-          <td><span class="freq-badge-big never">Nunca</span></td>
-          <td>jamás</td>
-          <td>🎟️ No va a la lotería</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="freq-martina">
-      <div class="freq-item" style="--d:0.1s; background:#E8F5E9;">
-        <span class="fi-icon">☕</span>
-        <div class="fi-info">
-          <div class="fi-place">Bar (café)</div>
-          <div class="fi-freq">✅ Siempre — por la mañana</div>
-        </div>
+  <div class="wrap">
+    <div class="slide-chip">Vocabulario de frecuencia</div>
+    <div class="titulo" style="font-size:clamp(52px,7vw,86px);text-align:center;">🔄 ¿CON QUÉ FRECUENCIA?</div>
+    <div class="freq-rows">
+      <div class="freq-row" style="--d:.05s;">
+        <span class="freq-pill" style="background:#C8F7D4;color:#1a7a3c;">SIEMPRE</span>
+        <span class="freq-when">todos los días</span>
+        <span class="freq-ex">🥖 Va a la panadería todos los días</span>
       </div>
-      <div class="freq-item" style="--d:0.2s; background:#FFF9C4;">
-        <span class="fi-icon">💪</span>
-        <div class="fi-info">
-          <div class="fi-place">Gimnasio</div>
-          <div class="fi-freq">🔁 A menudo — lun/mié/vie</div>
-        </div>
+      <div class="freq-row" style="--d:.15s;">
+        <span class="freq-pill" style="background:#FFE082;color:#7a5a00;">A MENUDO</span>
+        <span class="freq-when">muchos días</span>
+        <span class="freq-ex">🛒 Va al supermercado 2 veces por semana</span>
       </div>
-      <div class="freq-item" style="--d:0.3s; background:#E3F2FD;">
-        <span class="fi-icon">🎭</span>
-        <div class="fi-info">
-          <div class="fi-place">Teatro</div>
-          <div class="fi-freq">🔷 A veces — 1 vez/mes</div>
-        </div>
+      <div class="freq-row" style="--d:.25s;">
+        <span class="freq-pill" style="background:#BDE8FF;color:#0a5a80;">A VECES</span>
+        <span class="freq-when">algunos días</span>
+        <span class="freq-ex">🎬 Va al cine los sábados</span>
       </div>
-      <div class="freq-item" style="--d:0.4s; background:#FCE4EC;">
-        <span class="fi-icon">💊</span>
-        <div class="fi-info">
-          <div class="fi-place">Farmacia</div>
-          <div class="fi-freq">⚠️ Casi nunca</div>
-        </div>
+      <div class="freq-row" style="--d:.35s;">
+        <span class="freq-pill" style="background:#FFD6E7;color:#7a1a3c;">CASI NUNCA</span>
+        <span class="freq-when">muy poco</span>
+        <span class="freq-ex">💍 Va a la joyería una vez al año</span>
       </div>
-      <div class="freq-item" style="--d:0.5s; background:#FAFAFA;">
-        <span class="fi-icon">🎟️</span>
-        <div class="fi-info">
-          <div class="fi-place">Lotería</div>
-          <div class="fi-freq">❌ Nunca</div>
-        </div>
+      <div class="freq-row" style="--d:.45s;">
+        <span class="freq-pill" style="background:#EEEEEE;color:#666;">NUNCA</span>
+        <span class="freq-when">jamás</span>
+        <span class="freq-ex">🎟️ No va a la lotería</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- =========================================
-     SLIDE 5: LA SEMANA
-========================================= -->
+<!-- ══════════════════════════════════════
+     S5 — LA SEMANA
+══════════════════════════════════════ -->
 <div class="slide" id="s5">
-  <div style="width:100%; max-width:960px; display:flex; flex-direction:column; align-items:center; padding:15px;">
-    <div class="slide-header">
-      📅 La semana de Martina
-      <div class="underline" style="background:var(--lavanda);"></div>
+  <div class="s-title">📅 LA SEMANA DE MARTINA</div>
+  <div class="week-grid">
+    <div class="day-card" style="--d:.05s;">
+      <div class="day-name" style="background:#FF6B6B;">LUN</div>
+      <div class="day-act" style="background:#FFF0F5;">☕ Bar</div>
+      <div class="day-act" style="background:#E3F2FD;">🚇 Metro</div>
+      <div class="day-act" style="background:#F1F8E9;">💪 Gimnasio</div>
+      <div class="day-act" style="background:#E8F5E9;">🥦 Verdulería</div>
     </div>
-    <div class="week-grid">
-      <div class="day-card" style="--d:0.05s;">
-        <div class="day-name" style="background:#FF6B6B;">LUN</div>
-        <div class="day-items">
-          <div class="day-activity" style="background:#DCEDC8;">☕ Bar</div>
-          <div class="day-activity" style="background:#E3F2FD;">🚇 Metro</div>
-          <div class="day-activity" style="background:#FFF9C4;">💪 Gimnasio</div>
-          <div class="day-activity" style="background:#C8E6C9;">🥦 Verdulería</div>
-        </div>
-      </div>
-      <div class="day-card" style="--d:0.1s;">
-        <div class="day-name" style="background:#FF9F1C;">MAR</div>
-        <div class="day-items">
-          <div class="day-activity" style="background:#DCEDC8;">☕ Bar</div>
-          <div class="day-activity" style="background:#FFE082;">🥖 Panadería</div>
-          <div class="day-activity" style="background:#E3F2FD;">🚇 Metro</div>
-          <div class="day-activity" style="background:#F3E5F5;">📰 Kiosco</div>
-        </div>
-      </div>
-      <div class="day-card" style="--d:0.15s;">
-        <div class="day-name" style="background:#6BCB77;">MIÉ</div>
-        <div class="day-items">
-          <div class="day-activity" style="background:#DCEDC8;">☕ Bar</div>
-          <div class="day-activity" style="background:#FFF9C4;">💪 Gimnasio</div>
-          <div class="day-activity" style="background:#B2EBF2;">🛒 Supermercado</div>
-          <div class="day-activity" style="background:#E3F2FD;">🚲 Bicicleta</div>
-        </div>
-      </div>
-      <div class="day-card" style="--d:0.2s;">
-        <div class="day-name" style="background:#4D96FF;">JUE</div>
-        <div class="day-items">
-          <div class="day-activity" style="background:#DCEDC8;">☕ Bar</div>
-          <div class="day-activity" style="background:#FFCDD2;">🥩 Carnicería</div>
-          <div class="day-activity" style="background:#E3F2FD;">🚇 Metro</div>
-          <div class="day-activity" style="background:#C8E6C9;">🥦 Verdulería</div>
-        </div>
-      </div>
-      <div class="day-card" style="--d:0.25s;">
-        <div class="day-name" style="background:#C77DFF;">VIE</div>
-        <div class="day-items">
-          <div class="day-activity" style="background:#DCEDC8;">☕ Bar</div>
-          <div class="day-activity" style="background:#81D4FA;">🐟 Pescadería</div>
-          <div class="day-activity" style="background:#FFF9C4;">💪 Gimnasio</div>
-          <div class="day-activity" style="background:#FFCC80;">🎨 Clase de arte</div>
-        </div>
-      </div>
-      <div class="day-card" style="--d:0.3s; border-color:var(--coral);">
-        <div class="day-name" style="background:var(--coral);">SÁB</div>
-        <div class="day-items">
-          <div class="day-activity" style="background:#B2EBF2;">🛒 Supermercado</div>
-          <div class="day-activity" style="background:#E1F5FE;">🍦 Heladería</div>
-          <div class="day-activity" style="background:#CE93D8;">🎬 Cine</div>
-          <div class="day-activity" style="background:#FFF9C4;">🚕 Taxi</div>
-        </div>
-      </div>
-      <div class="day-card" style="--d:0.35s; border-color:var(--naranja);">
-        <div class="day-name" style="background:var(--naranja);">DOM</div>
-        <div class="day-items">
-          <div class="day-activity" style="background:#FFF3E0;">⛪ Iglesia</div>
-          <div class="day-activity" style="background:#E3F2FD;">🚶 A pie</div>
-          <div class="day-activity" style="background:#FFCDD2;">👨‍👩‍👧 Familia</div>
-          <div class="day-activity" style="background:#DCEDC8;">🌳 Parque</div>
-        </div>
-      </div>
+    <div class="day-card" style="--d:.1s;">
+      <div class="day-name" style="background:#FF9F1C;">MAR</div>
+      <div class="day-act" style="background:#FFF0F5;">☕ Bar</div>
+      <div class="day-act" style="background:#FFFDE7;">🥖 Panadería</div>
+      <div class="day-act" style="background:#E3F2FD;">🚇 Metro</div>
+      <div class="day-act" style="background:#F3E5F5;">📰 Kiosco</div>
     </div>
-    <div style="background:white; border:3px solid var(--oscuro); border-radius:16px; padding:14px 20px; margin-top:12px; max-width:700px; box-shadow:4px 4px 0 var(--oscuro); font-size:14px;">
-      <strong style="font-family:'Fredoka One'; font-size:16px;">💬 Practica:</strong>
-      <em> "Los lunes, Martina va al bar <strong>por la mañana</strong>, luego toma el <strong>metro</strong> para ir al trabajo, y <strong>por la tarde</strong> va al gimnasio."</em>
+    <div class="day-card" style="--d:.15s;">
+      <div class="day-name" style="background:#06D6A0;">MIÉ</div>
+      <div class="day-act" style="background:#FFF0F5;">☕ Bar</div>
+      <div class="day-act" style="background:#F1F8E9;">💪 Gimnasio</div>
+      <div class="day-act" style="background:#B2EBF2;">🛒 Supermercado</div>
+      <div class="day-act" style="background:#E3F2FD;">🚲 Bicicleta</div>
     </div>
+    <div class="day-card" style="--d:.2s;">
+      <div class="day-name" style="background:#4CC9F0;">JUE</div>
+      <div class="day-act" style="background:#FFF0F5;">☕ Bar</div>
+      <div class="day-act" style="background:#FFCDD2;">🥩 Carnicería</div>
+      <div class="day-act" style="background:#E3F2FD;">🚇 Metro</div>
+      <div class="day-act" style="background:#E8F5E9;">🥦 Verdulería</div>
+    </div>
+    <div class="day-card" style="--d:.25s;">
+      <div class="day-name" style="background:#C77DFF;">VIE</div>
+      <div class="day-act" style="background:#FFF0F5;">☕ Bar</div>
+      <div class="day-act" style="background:#BDE8FF;">🐟 Pescadería</div>
+      <div class="day-act" style="background:#F1F8E9;">💪 Gimnasio</div>
+      <div class="day-act" style="background:#FFF9C4;">🎨 Arte</div>
+    </div>
+    <div class="day-card" style="--d:.3s;border-color:var(--rosa);">
+      <div class="day-name" style="background:#FF6B9D;">SÁB</div>
+      <div class="day-act" style="background:#B2EBF2;">🛒 Supermercado</div>
+      <div class="day-act" style="background:#E1F5FE;">🍦 Heladería</div>
+      <div class="day-act" style="background:#E8D5FF;">🎬 Cine</div>
+      <div class="day-act" style="background:#FFF9C4;">🚕 Taxi</div>
+    </div>
+    <div class="day-card" style="--d:.35s;border-color:var(--naranja);">
+      <div class="day-name" style="background:#FF9F1C;">DOM</div>
+      <div class="day-act" style="background:#FFF3E0;">⛪ Iglesia</div>
+      <div class="day-act" style="background:#E3F2FD;">🚶 A pie</div>
+      <div class="day-act" style="background:#FCE4EC;">👨‍👩‍👧 Familia</div>
+      <div class="day-act" style="background:#E8F5E9;">🌳 Parque</div>
+    </div>
+  </div>
+  <div class="week-quote">
+    💬 <strong>Practica:</strong> <em>"Los lunes, Martina va al bar <strong>por la mañana</strong>, luego toma el <strong>metro</strong> para ir al trabajo y <strong>por la tarde</strong> va al gimnasio."</em>
   </div>
 </div>
 
-<!-- =========================================
-     SLIDE 6: ¡AHORA TÚ!
-========================================= -->
+<!-- ══════════════════════════════════════
+     S6 — ACTIVIDAD
+══════════════════════════════════════ -->
 <div class="slide" id="s6">
-  <div class="stars" id="stars6"></div>
-  <div class="activity-box">
-    <h2>🎯 ¡Ahora hablen de ustedes!</h2>
-    <div class="activity-steps">
-      <div class="step" style="--d:0.2s;">
-        <div class="step-num">1</div>
-        <div class="step-text">📍 <strong>Dibuja tu barrio:</strong> ¿Qué lugares hay cerca de tu casa? Menciona 5 lugares.</div>
-      </div>
-      <div class="step" style="--d:0.35s;">
-        <div class="step-num">2</div>
-        <div class="step-text">🚌 <strong>¿Cómo vas?</strong> Cuenta cómo te transportas: <em>"Voy al supermercado en bicicleta..."</em></div>
-      </div>
-      <div class="step" style="--d:0.5s;">
-        <div class="step-num">3</div>
-        <div class="step-text">🔄 <strong>¿Con qué frecuencia?</strong> Usa: siempre / a menudo / a veces / casi nunca / nunca</div>
-      </div>
-      <div class="step" style="--d:0.65s;">
-        <div class="step-num">4</div>
-        <div class="step-text">📅 <strong>Tu semana:</strong> Cuenta 3 actividades de tu semana con día, momento y transporte.</div>
-      </div>
+  <div class="act-wrap">
+    <h2>🎯 AHORA<br>HABLEN DE USTEDES</h2>
+    <div class="step" style="--d:.15s;">
+      <div class="step-num">1</div>
+      <div class="step-text">📍 <strong>Tu barrio:</strong> ¿Qué lugares hay cerca de tu casa? Mencioná 5.</div>
     </div>
-    <div style="margin-top:24px; background:rgba(255,255,255,0.15); border-radius:16px; padding:16px; text-align:center; animation: slideUp 0.4s ease 0.8s both;">
-      <strong style="font-size:16px;">Modelo para usar:</strong>
-      <p style="margin-top:8px; font-size:15px; opacity:0.9; line-height:1.7;">
-        "Los <em>[día]</em>, <em>[yo/Martina]</em> va a <em>[lugar]</em> <strong>en</strong> <em>[transporte]</em>.<br>
-        Va <em>[siempre / a menudo / a veces]</em> porque <em>[razón]</em>."
-      </p>
+    <div class="step" style="--d:.3s;">
+      <div class="step-num">2</div>
+      <div class="step-text">🚌 <strong>¿Cómo vas?</strong> Contá cómo te transportás: <em>"Voy al supermercado en bicicleta..."</em></div>
+    </div>
+    <div class="step" style="--d:.45s;">
+      <div class="step-num">3</div>
+      <div class="step-text">🔄 <strong>¿Con qué frecuencia?</strong> Usá: siempre / a menudo / a veces / casi nunca / nunca</div>
+    </div>
+    <div class="modelo">
+      "Los <em>[día]</em>, yo voy a <em>[lugar]</em> <strong>en</strong> <em>[transporte]</em>.<br>
+      Voy <em>[siempre / a veces / nunca]</em> porque <em>[razón]</em>."
     </div>
   </div>
 </div>
 
-<!-- NAVIGATION -->
+<!-- NAV -->
 <div class="nav">
-  <button class="prev" onclick="changeSlide(-1)">← Anterior</button>
+  <button class="prev" onclick="go(-1)">← Anterior</button>
   <span class="counter" id="counter">1 / 7</span>
-  <button onclick="changeSlide(1)">Siguiente →</button>
+  <button onclick="go(1)">Siguiente →</button>
 </div>
 
 <script>
-  let current = 0;
+  let cur = 0;
   const slides = document.querySelectorAll('.slide');
-  const total = slides.length;
+  const total  = slides.length;
 
-  function updateProgress() {
-    const pct = ((current + 1) / total) * 100;
-    document.getElementById('progress').style.width = pct + '%';
-    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
-  }
-
-  function changeSlide(dir) {
-    const next = current + dir;
+  function go(dir) {
+    const next = cur + dir;
     if (next < 0 || next >= total) return;
-    slides[current].classList.remove('active');
-    slides[current].classList.add('exit');
-    setTimeout(() => slides[current].classList.remove('exit'), 600);
-    current = next;
-    slides[current].classList.add('active');
-    updateProgress();
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('exit');
+    setTimeout(() => slides[cur].classList.remove('exit'), 500);
+    cur = next;
+    slides[cur].classList.add('active');
+    document.getElementById('progress').style.width = ((cur+1)/total*100)+'%';
+    document.getElementById('counter').textContent = (cur+1)+' / '+total;
   }
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ') changeSlide(1);
-    if (e.key === 'ArrowLeft') changeSlide(-1);
+    if (e.key==='ArrowRight'||e.key===' ') go(1);
+    if (e.key==='ArrowLeft') go(-1);
   });
 
-  // Stars for slide 0 and 6
-  function createStars(containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    for (let i = 0; i < 60; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.left = Math.random() * 100 + '%';
-      star.style.top = Math.random() * 100 + '%';
-      star.style.setProperty('--dur', (2 + Math.random() * 3) + 's');
-      star.style.animationDelay = (Math.random() * 3) + 's';
-      star.style.width = star.style.height = (2 + Math.random() * 3) + 'px';
-      container.appendChild(star);
-    }
-  }
-  createStars('stars0');
-  createStars('stars6');
-
-  // Tooltip logic
+  // tooltip
   const tooltip = document.getElementById('tooltip');
-  const freqColors = {
-    always: { bg: '#6BCB77', label: '✅ Siempre' },
-    often: { bg: '#FFD93D', label: '🔁 A menudo' },
-    sometimes: { bg: '#4D96FF', label: '🔷 A veces' },
-    never: { bg: '#EEE', label: '❌ Nunca' }
+  const freqMap = {
+    always:    {bg:'#C8F7D4',label:'✅ Siempre'},
+    often:     {bg:'#FFE082',label:'🔁 A menudo'},
+    sometimes: {bg:'#BDE8FF',label:'🔷 A veces'},
+    never:     {bg:'#EEE',   label:'❌ Nunca / Casi nunca'},
   };
-
-  function showTooltip(event, name, icon, items, freq, story) {
-    event.stopPropagation();
-    document.getElementById('tt-title').textContent = icon + ' ' + name;
-    document.getElementById('tt-items').textContent = 'Productos: ' + items;
+  function tt(e, name, icon, items, freq, story) {
+    e.stopPropagation();
+    document.getElementById('tt-title').textContent = icon+' '+name;
+    document.getElementById('tt-items').textContent = items;
     document.getElementById('tt-story').textContent = story;
-    const fc = freqColors[freq] || freqColors.sometimes;
-    const badge = document.getElementById('tt-freq');
-    badge.textContent = fc.label;
-    badge.style.background = fc.bg;
-
-    const x = event.clientX;
-    const y = event.clientY;
-    tooltip.style.left = Math.min(x + 10, window.innerWidth - 260) + 'px';
-    tooltip.style.top = Math.max(y - 120, 10) + 'px';
+    const f = freqMap[freq]||freqMap.sometimes;
+    const b = document.getElementById('tt-freq');
+    b.textContent = f.label; b.style.background = f.bg;
+    tooltip.style.left = Math.min(e.clientX+12,window.innerWidth-260)+'px';
+    tooltip.style.top  = Math.max(e.clientY-130,10)+'px';
     tooltip.classList.add('visible');
-
-    clearTimeout(tooltip._timer);
-    tooltip._timer = setTimeout(() => tooltip.classList.remove('visible'), 4000);
+    clearTimeout(tooltip._t);
+    tooltip._t = setTimeout(()=>tooltip.classList.remove('visible'),4000);
   }
+  document.addEventListener('click',()=>tooltip.classList.remove('visible'));
 
-  document.addEventListener('click', () => tooltip.classList.remove('visible'));
-
-  updateProgress();
+  document.getElementById('progress').style.width = (1/total*100)+'%';
 </script>
 </body>
 </html>
