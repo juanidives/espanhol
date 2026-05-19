@@ -52,18 +52,18 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 /* CALENTAMIENTO */
 .slide-full-img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
-.slide-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.15) 100%); }
-.slide-bottom-text { position:absolute; bottom:80px; left:0; right:0; text-align:center; padding:0 60px; }
-.pregunta-grande { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(44px,6vw,76px); color:var(--blanco); text-shadow:0 2px 20px rgba(0,0,0,0.8); }
-.pregunta-sub { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:clamp(24px,3vw,40px); margin-top:14px; color:rgba(255,255,255,0.65); }
+.slide-overlay { display:none; }
+.slide-bottom-text { position:absolute; top:24px; left:0; right:0; text-align:center; padding:0 60px; z-index:10; }
+.pregunta-grande { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(28px,3.5vw,44px); color:var(--blanco); text-shadow:0 3px 12px rgba(0,0,0,0.95), 0 0 30px rgba(0,0,0,0.8); }
+.pregunta-sub { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:clamp(18px,2vw,28px); margin-top:6px; color:rgba(255,255,255,0.85); text-shadow:0 2px 10px rgba(0,0,0,0.95); }
 
 /* SEBASTIÁN */
-#s2 { background:var(--gris-oscuro); }
-.seb-layout { display:grid; grid-template-columns:420px 1fr; height:100vh; }
-.seb-foto { position:relative; overflow:hidden; }
-.seb-foto img { width:100%; height:100%; object-fit:cover; object-position:top center; }
-.seb-foto-ov { position:absolute; inset:0; background:linear-gradient(to right, transparent 65%, var(--gris-oscuro) 100%); }
-.seb-info { display:flex; flex-direction:column; justify-content:center; padding:60px 56px; }
+#s2 { background:var(--gris-oscuro); align-items:center; justify-content:center; }
+.seb-layout { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; gap:0; width:100%; }
+.seb-foto { position:relative; overflow:hidden; flex:1; width:100%; }
+.seb-foto img { width:100%; height:100%; object-fit:contain; object-position:center; }
+.seb-foto-ov { display:none; }
+.seb-info { display:flex; flex-direction:column; justify-content:center; padding:24px 56px 36px; width:100%; background:var(--gris-oscuro); }
 .seb-nombre { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(56px,7vw,90px); line-height:0.9; margin-bottom:8px; }
 .seb-nombre .ap { color:var(--naranja); }
 .seb-rol { font-size:clamp(17px,2vw,22px); color:rgba(255,255,255,0.5); margin-bottom:32px; }
@@ -78,27 +78,27 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 .vocab-slide { display:none; grid-template-columns:1fr 1fr; height:100vh; }
 .vocab-img { position:relative; overflow:hidden; }
 .vocab-img img { width:100%; height:100%; object-fit:cover; }
-.vocab-img .vov { position:absolute; inset:0; background:linear-gradient(to right, transparent 50%, var(--negro) 100%); }
+.vocab-img .vov { display:none; }
 .vocab-txt { background:var(--negro); display:flex; flex-direction:column; justify-content:center; padding:60px 64px; }
 .vocab-cat { font-family:'Bebas Neue',sans-serif; letter-spacing:3px; font-size:16px; color:var(--naranja); margin-bottom:8px; }
 .vocab-titulo { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(52px,7vw,84px); line-height:0.9; margin-bottom:28px; }
-.vocab-list { display:flex; flex-direction:column; gap:10px; }
-.vocab-item { font-size:clamp(22px,2.8vw,32px); font-weight:600; padding:13px 20px; background:rgba(255,255,255,0.06); border-radius:10px; border-left:5px solid var(--rojo); display:flex; align-items:center; gap:12px; }
+.vocab-list { display:flex; flex-direction:column; gap:7px; }
+.vocab-item { font-size:clamp(18px,2.2vw,26px); font-weight:600; padding:10px 18px; background:rgba(255,255,255,0.06); border-radius:10px; border-left:5px solid var(--rojo); display:flex; align-items:center; gap:12px; }
 .vi-em { font-size:26px; }
 
 /* MAPA MENTAL */
 #s4a { background:var(--naranja-claro); align-items:center; justify-content:center; }
 .mm-wrap { display:grid; grid-template-columns:auto auto auto; align-items:center; width:100%; max-width:1100px; padding:40px 60px; }
 .mm-izq { display:flex; flex-direction:column; gap:12px; align-items:flex-end; }
-.mm-izq-item { font-size:clamp(19px,2.2vw,26px); font-weight:700; color:var(--negro); text-align:right; padding:7px 14px; background:rgba(0,0,0,0.1); border-radius:8px; min-width:210px; }
+.mm-izq-item { font-size:clamp(22px,2.8vw,32px); font-weight:700; color:var(--negro); text-align:right; padding:10px 18px; background:rgba(0,0,0,0.1); border-radius:8px; min-width:240px; }
 .mm-izq-item span { color:var(--rojo-oscuro); font-weight:900; margin-right:8px; }
 .mm-ctr { display:flex; flex-direction:column; align-items:center; padding:0 40px; }
-.mm-verb { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(56px,7vw,84px); color:var(--rojo); text-align:center; line-height:1; }
+.mm-verb { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(72px,10vw,110px); color:var(--rojo); text-align:center; line-height:1; }
 .mm-verb span { display:block; color:var(--rojo-oscuro); }
 .mm-der { display:flex; flex-direction:column; gap:16px; }
-.mm-blq { background:var(--rojo); border-radius:12px; padding:12px 20px; min-width:210px; }
-.mm-blq-t { font-family:'Bebas Neue',sans-serif; letter-spacing:2px; font-size:14px; color:rgba(255,255,255,0.65); margin-bottom:4px; }
-.mm-blq-e { font-size:clamp(14px,1.6vw,18px); color:var(--blanco); line-height:1.4; }
+.mm-blq { background:var(--rojo); border-radius:12px; padding:14px 22px; min-width:240px; }
+.mm-blq-t { font-family:'Bebas Neue',sans-serif; letter-spacing:2px; font-size:17px; color:rgba(255,255,255,0.65); margin-bottom:4px; }
+.mm-blq-e { font-size:clamp(17px,2vw,22px); color:var(--blanco); line-height:1.4; }
 
 /* SING/PLURAL */
 #s4b { background:var(--gris-oscuro); align-items:center; justify-content:center; }
@@ -134,8 +134,8 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 #s5a { background:var(--gris-oscuro); }
 .esc-layout { display:grid; grid-template-columns:360px 1fr; height:100vh; }
 .esc-foto { position:relative; overflow:hidden; }
-.esc-foto img { width:100%; height:100%; object-fit:cover; object-position:top center; }
-.esc-foto-ov { position:absolute; inset:0; background:linear-gradient(to right, transparent 60%, var(--gris-oscuro) 100%); }
+.esc-foto img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--negro); }
+.esc-foto-ov { display:none; }
 .esc-cnt { display:flex; flex-direction:column; justify-content:center; padding:50px 56px; }
 .esc-t { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(42px,5vw,66px); line-height:0.95; margin-bottom:18px; }
 .esc-t span { color:var(--naranja); }
@@ -160,7 +160,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 .habla-slide { display:none; grid-template-columns:1fr 1fr; height:100vh; }
 .habla-img { position:relative; overflow:hidden; }
 .habla-img img { width:100%; height:100%; object-fit:cover; }
-.habla-img-ov { position:absolute; inset:0; background:linear-gradient(to right, transparent 55%, var(--negro) 100%); }
+.habla-img-ov { display:none; }
 .habla-flag { position:absolute; top:28px; left:28px; font-size:52px; filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
 .habla-txt { background:var(--negro); display:flex; flex-direction:column; justify-content:center; padding:52px 58px; }
 .habla-plato { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(52px,6.5vw,82px); line-height:0.9; margin-bottom:4px; }
@@ -217,7 +217,6 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
   <div class="seb-layout">
     <div class="seb-foto">
       <img src="images/sebastian-mora.png" alt="Sebastián Mora">
-      <div class="seb-foto-ov"></div>
     </div>
     <div class="seb-info">
       <h1 class="seb-nombre">SEBASTIÁN<br><span class="ap">MORA</span></h1>
@@ -235,7 +234,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S3a CARNES -->
 <section class="slide vocab-slide" id="s3a">
-  <div class="vocab-img"><img src="images/sebastian-carnes.png" alt="Carnes"><div class="vov"></div></div>
+  <div class="vocab-img"><img src="images/sebastian-carnes.png" alt="Carnes"></div>
   <div class="vocab-txt">
     <div class="vocab-cat">🥩 VOCABULARIO</div>
     <h2 class="vocab-titulo">CARNES</h2>
@@ -251,15 +250,17 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S3b VERDURAS -->
 <section class="slide vocab-slide" id="s3b">
-  <div class="vocab-img"><img src="images/sebastian-verduras.png" alt="Verduras"><div class="vov"></div></div>
+  <div class="vocab-img"><img src="images/sebastian-verduras.png" alt="Verduras"></div>
   <div class="vocab-txt">
     <div class="vocab-cat">🥦 VOCABULARIO</div>
     <h2 class="vocab-titulo">VERDURAS</h2>
     <div class="vocab-list">
       <div class="vocab-item"><span class="vi-em">🌽</span> maíz</div>
-      <div class="vocab-item"><span class="vi-em">🍠</span> yuca · papa</div>
+      <div class="vocab-item"><span class="vi-em">🍠</span> yuca</div>
+      <div class="vocab-item"><span class="vi-em">🥔</span> papa</div>
       <div class="vocab-item"><span class="vi-em">🥑</span> aguacate</div>
-      <div class="vocab-item"><span class="vi-em">🌶️</span> ají · tomate</div>
+      <div class="vocab-item"><span class="vi-em">🌶️</span> ají</div>
+      <div class="vocab-item"><span class="vi-em">🍅</span> tomate</div>
       <div class="vocab-item"><span class="vi-em">🧅</span> cebolla</div>
     </div>
   </div>
@@ -267,7 +268,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S3c FRUTAS -->
 <section class="slide vocab-slide" id="s3c">
-  <div class="vocab-img"><img src="images/sebastian-frutas.png" alt="Frutas"><div class="vov"></div></div>
+  <div class="vocab-img"><img src="images/sebastian-frutas.png" alt="Frutas"></div>
   <div class="vocab-txt">
     <div class="vocab-cat">🍌 VOCABULARIO</div>
     <h2 class="vocab-titulo">FRUTAS<br>TROPICALES</h2>
@@ -276,14 +277,15 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
       <div class="vocab-item"><span class="vi-em">🍈</span> papaya</div>
       <div class="vocab-item"><span class="vi-em">🟡</span> maracuyá</div>
       <div class="vocab-item"><span class="vi-em">🍐</span> guayaba</div>
-      <div class="vocab-item"><span class="vi-em">🍌</span> plátano · ananá</div>
+      <div class="vocab-item"><span class="vi-em">🍌</span> plátano</div>
+      <div class="vocab-item"><span class="vi-em">🍍</span> ananá</div>
     </div>
   </div>
 </section>
 
 <!-- S3d CEREALES -->
 <section class="slide vocab-slide" id="s3d">
-  <div class="vocab-img"><img src="images/sebastian-cereales.png" alt="Cereales"><div class="vov"></div></div>
+  <div class="vocab-img"><img src="images/sebastian-cereales.png" alt="Cereales"></div>
   <div class="vocab-txt">
     <div class="vocab-cat">🍚 VOCABULARIO</div>
     <h2 class="vocab-titulo">CEREALES<br>Y LEGUMBRES</h2>
@@ -299,7 +301,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S3e LÁCTEOS -->
 <section class="slide vocab-slide" id="s3e">
-  <div class="vocab-img"><img src="images/sebastian-lacteos.png" alt="Lácteos"><div class="vov"></div></div>
+  <div class="vocab-img"><img src="images/sebastian-lacteos.png" alt="Lácteos"></div>
   <div class="vocab-txt">
     <div class="vocab-cat">🧀 VOCABULARIO</div>
     <h2 class="vocab-titulo">LÁCTEOS</h2>
@@ -314,14 +316,15 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S3f CONDIMENTOS -->
 <section class="slide vocab-slide" id="s3f">
-  <div class="vocab-img"><img src="images/sebastian-condimentos.png" alt="Condimentos"><div class="vov"></div></div>
+  <div class="vocab-img"><img src="images/sebastian-condimentos.png" alt="Condimentos"></div>
   <div class="vocab-txt">
     <div class="vocab-cat">🌶️ VOCABULARIO</div>
     <h2 class="vocab-titulo">CONDIMENTOS</h2>
     <div class="vocab-list">
       <div class="vocab-item"><span class="vi-em">🌿</span> cilantro</div>
       <div class="vocab-item"><span class="vi-em">🌶️</span> ají</div>
-      <div class="vocab-item"><span class="vi-em">🟤</span> comino · achiote</div>
+      <div class="vocab-item"><span class="vi-em">🟤</span> comino</div>
+      <div class="vocab-item"><span class="vi-em">🟠</span> achiote</div>
       <div class="vocab-item"><span class="vi-em">🍋</span> limón</div>
     </div>
   </div>
@@ -383,7 +386,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
   <div class="frase-txt">
     <div class="frase-pais">🇨🇴 COLOMBIA</div>
     <h2 class="frase-plato">BANDEJA<br>PAISA</h2>
-    <div class="frase-box">A mí <span class="hl">me encanta</span> el bandeja paisa.<br><span class="hl">Me parece</span> el desayuno más completo del mundo.</div>
+    <div class="frase-box">A mí <span class="hl">me encanta</span> la bandeja paisa.<br><span class="hl">Me parece</span> el desayuno más completo del mundo.</div>
   </div>
 </section>
 
@@ -403,7 +406,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
   <div class="frase-txt">
     <div class="frase-pais">🇦🇷 ARGENTINA</div>
     <h2 class="frase-plato">MATE</h2>
-    <div class="frase-box">El mate al principio <span class="hl">me caía</span> un poco raro.<br>Pero ahora <span class="hl">me apetece</span> tomarlo todas las tardes.</div>
+    <div class="frase-box">El mate al principio <span class="hl">me caía</span> un poco raro.<br>Pero ahora <span class="hl">me gusta</span> tomarlo todas las tardes.</div>
   </div>
 </section>
 
@@ -413,7 +416,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
   <div class="frase-txt">
     <div class="frase-pais">🇲🇽 MÉXICO</div>
     <h2 class="frase-plato">TACOS</h2>
-    <div class="frase-box"><span class="hl">Me molesta</span> un poco el picante extremo.<br>Pero <span class="hl">me importa</span> mucho probar todo.</div>
+    <div class="frase-box"><span class="hl">Me molesta</span> un poco el picante extremo.<br>Pero igualmente <span class="hl">me gusta</span> mucho probar de todo.</div>
   </div>
 </section>
 
@@ -422,7 +425,6 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
   <div class="esc-layout">
     <div class="esc-foto">
       <img src="images/sebastian-blog.png" alt="Sebastián blog">
-      <div class="esc-foto-ov"></div>
     </div>
     <div class="esc-cnt">
       <h2 class="esc-t">🎧 <span>Escucha</span><br>a Sebastián</h2>
@@ -436,8 +438,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
         <div class="pq"><div class="pq-n">1</div><div class="pq-tx">¿De dónde es Sebastián?</div></div>
         <div class="pq"><div class="pq-n">2</div><div class="pq-tx">¿Qué lleva el ceviche peruano?</div></div>
         <div class="pq"><div class="pq-n">3</div><div class="pq-tx">¿Por qué el mate le caía raro?</div></div>
-        <div class="pq"><div class="pq-n">4</div><div class="pq-tx">¿Cuántos verbos tipo <em>gustar</em> escuchas?</div></div>
-        <div class="pq"><div class="pq-n">5</div><div class="pq-tx">¿Qué le molesta? ¿Qué le encanta?</div></div>
+        <div class="pq"><div class="pq-n">4</div><div class="pq-tx">¿Cuántos países menciona Sebastián?</div></div>
       </div>
     </div>
   </div>
@@ -462,7 +463,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S6a AREPA -->
 <section class="slide habla-slide" id="s6a">
-  <div class="habla-img"><img src="images/arepa-colombiana.png" alt="Arepa"><div class="habla-img-ov"></div><div class="habla-flag">🇨🇴</div></div>
+  <div class="habla-img"><img src="images/arepa-colombiana.png" alt="Arepa"><div class="habla-flag">🇨🇴</div></div>
   <div class="habla-txt">
     <h2 class="habla-plato">AREPA</h2>
     <div class="habla-pais">Colombia</div>
@@ -470,7 +471,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
     <div class="habla-instr"><div class="hi-l">🗣️ Tu turno</div><div class="hi-t">Habla sobre esta comida usando los verbos tipo <em>gustar</em></div></div>
     <div class="habla-pasos">
       <div class="hp"><div class="hp-n">1</div><div class="hp-t">¿Qué te <em>parece</em> la arepa?</div></div>
-      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>gusta</em> / <em>encanta</em> / <em>molesta</em>?</div></div>
+      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>gusta</em> con queso o con mantequilla?</div></div>
       <div class="hp"><div class="hp-n">3</div><div class="hp-t">¿Te <em>apetece</em> comerla ahora?</div></div>
       <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>cae</em> la comida con queso?</div></div>
     </div>
@@ -479,7 +480,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S6b CEVICHE -->
 <section class="slide habla-slide" id="s6b">
-  <div class="habla-img"><img src="images/ceviche-peruano.png" alt="Ceviche"><div class="habla-img-ov"></div><div class="habla-flag">🇵🇪</div></div>
+  <div class="habla-img"><img src="images/ceviche-peruano.png" alt="Ceviche"><div class="habla-flag">🇵🇪</div></div>
   <div class="habla-txt">
     <h2 class="habla-plato">CEVICHE</h2>
     <div class="habla-pais">Perú</div>
@@ -487,7 +488,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
     <div class="habla-instr"><div class="hi-l">🗣️ Tu turno</div><div class="hi-t">Habla sobre esta comida usando los verbos tipo <em>gustar</em></div></div>
     <div class="habla-pasos">
       <div class="hp"><div class="hp-n">1</div><div class="hp-t">¿Qué te <em>parece</em> el ceviche?</div></div>
-      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>fascina</em> / <em>interesa</em> probar?</div></div>
+      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>gusta</em> la comida con limón y ají?</div></div>
       <div class="hp"><div class="hp-n">3</div><div class="hp-t">¿Te <em>apetece</em> comerlo ahora?</div></div>
       <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>cae</em> la comida ácida?</div></div>
     </div>
@@ -496,7 +497,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S6c ASADO -->
 <section class="slide habla-slide" id="s6c">
-  <div class="habla-img"><img src="images/asado-argentino.png" alt="Asado"><div class="habla-img-ov"></div><div class="habla-flag">🇦🇷</div></div>
+  <div class="habla-img"><img src="images/asado-argentino.png" alt="Asado"><div class="habla-flag">🇦🇷</div></div>
   <div class="habla-txt">
     <h2 class="habla-plato">ASADO</h2>
     <div class="habla-pais">Argentina</div>
@@ -504,7 +505,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
     <div class="habla-instr"><div class="hi-l">🗣️ Tu turno</div><div class="hi-t">Habla sobre esta comida usando los verbos tipo <em>gustar</em></div></div>
     <div class="habla-pasos">
       <div class="hp"><div class="hp-n">1</div><div class="hp-t">¿Qué te <em>parece</em> el asado?</div></div>
-      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>encanta</em> la carne a la parrilla?</div></div>
+      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>gusta</em> la carne a la parrilla?</div></div>
       <div class="hp"><div class="hp-n">3</div><div class="hp-t">¿Te <em>apetece</em> un asado hoy?</div></div>
       <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>cae</em> la carne muy hecha?</div></div>
     </div>
@@ -513,7 +514,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S6d TACOS -->
 <section class="slide habla-slide" id="s6d">
-  <div class="habla-img"><img src="images/tacos-mexicanos.png" alt="Tacos"><div class="habla-img-ov"></div><div class="habla-flag">🇲🇽</div></div>
+  <div class="habla-img"><img src="images/tacos-mexicanos.png" alt="Tacos"><div class="habla-flag">🇲🇽</div></div>
   <div class="habla-txt">
     <h2 class="habla-plato">TACOS</h2>
     <div class="habla-pais">México</div>
@@ -530,7 +531,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S6e EMPANADA -->
 <section class="slide habla-slide" id="s6e">
-  <div class="habla-img"><img src="images/empanada-venezolana.png" alt="Empanada"><div class="habla-img-ov"></div><div class="habla-flag">🇻🇪</div></div>
+  <div class="habla-img"><img src="images/empanada-venezolana.png" alt="Empanada"><div class="habla-flag">🇻🇪</div></div>
   <div class="habla-txt">
     <h2 class="habla-plato">EMPANADA</h2>
     <div class="habla-pais">Venezuela</div>
@@ -538,7 +539,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
     <div class="habla-instr"><div class="hi-l">🗣️ Tu turno</div><div class="hi-t">Habla sobre esta comida usando los verbos tipo <em>gustar</em></div></div>
     <div class="habla-pasos">
       <div class="hp"><div class="hp-n">1</div><div class="hp-t">¿Qué te <em>parece</em> la empanada?</div></div>
-      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>gusta</em> / <em>encanta</em> el maíz?</div></div>
+      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>gusta</em> el maíz?</div></div>
       <div class="hp"><div class="hp-n">3</div><div class="hp-t">¿Te <em>apetece</em> comerla ahora?</div></div>
       <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>cae</em> la comida frita?</div></div>
     </div>
@@ -547,7 +548,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 <!-- S6f FEIJOADA -->
 <section class="slide habla-slide" id="s6f">
-  <div class="habla-img"><img src="images/feijoada-brasileira.png" alt="Feijoada"><div class="habla-img-ov"></div><div class="habla-flag">🇧🇷</div></div>
+  <div class="habla-img"><img src="images/feijoada-brasileira.png" alt="Feijoada"><div class="habla-flag">🇧🇷</div></div>
   <div class="habla-txt">
     <h2 class="habla-plato">FEIJOADA</h2>
     <div class="habla-pais">Brasil</div>
@@ -555,7 +556,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
     <div class="habla-instr"><div class="hi-l">🗣️ Tu turno</div><div class="hi-t">Habla sobre esta comida usando los verbos tipo <em>gustar</em></div></div>
     <div class="habla-pasos">
       <div class="hp"><div class="hp-n">1</div><div class="hp-t">¿Qué te <em>parece</em> la feijoada?</div></div>
-      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>interesan</em> los platos con frijoles?</div></div>
+      <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>gustan</em> los frijoles negros?</div></div>
       <div class="hp"><div class="hp-n">3</div><div class="hp-t">¿Te <em>apetece</em> probarla?</div></div>
       <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>cae</em> la comida muy contundente?</div></div>
     </div>
@@ -620,4 +621,3 @@ document.getElementById('navCounter').textContent = '1/'+total;
 </script>
 </body>
 </html>
-
