@@ -58,12 +58,12 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 .pregunta-sub { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:clamp(18px,2vw,28px); margin-top:6px; color:rgba(255,255,255,0.85); text-shadow:0 2px 10px rgba(0,0,0,0.95); }
 
 /* SEBASTIÁN */
-#s2 { background:var(--gris-oscuro); align-items:center; justify-content:center; }
-.seb-layout { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; gap:0; width:100%; }
-.seb-foto { position:relative; overflow:hidden; flex:1; width:100%; }
-.seb-foto img { width:100%; height:100%; object-fit:contain; object-position:center; }
+#s2 { background:var(--gris-oscuro); }
+.seb-layout { display:grid; grid-template-columns:1fr 1fr; height:100vh; }
+.seb-foto { position:relative; overflow:hidden; }
+.seb-foto img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--gris-oscuro); }
 .seb-foto-ov { display:none; }
-.seb-info { display:flex; flex-direction:column; justify-content:center; padding:24px 56px 36px; width:100%; background:var(--gris-oscuro); }
+.seb-info { display:flex; flex-direction:column; justify-content:center; padding:60px 56px; }
 .seb-nombre { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(56px,7vw,90px); line-height:0.9; margin-bottom:8px; }
 .seb-nombre .ap { color:var(--naranja); }
 .seb-rol { font-size:clamp(17px,2vw,22px); color:rgba(255,255,255,0.5); margin-bottom:32px; }
@@ -77,7 +77,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 /* VOCAB */
 .vocab-slide { display:none; grid-template-columns:1fr 1fr; height:100vh; }
 .vocab-img { position:relative; overflow:hidden; }
-.vocab-img img { width:100%; height:100%; object-fit:cover; }
+.vocab-img img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--negro); }
 .vocab-img .vov { display:none; }
 .vocab-txt { background:var(--negro); display:flex; flex-direction:column; justify-content:center; padding:60px 64px; }
 .vocab-cat { font-family:'Bebas Neue',sans-serif; letter-spacing:3px; font-size:16px; color:var(--naranja); margin-bottom:8px; }
@@ -123,7 +123,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 /* FRASES PAÍS */
 .frase-slide { display:none; grid-template-columns:1fr 1fr; height:100vh; }
 .frase-img { position:relative; overflow:hidden; }
-.frase-img img { width:100%; height:100%; object-fit:cover; }
+.frase-img img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--negro); }
 .frase-txt { background:var(--negro); display:flex; flex-direction:column; justify-content:center; padding:60px 64px; }
 .frase-pais { font-family:'Bebas Neue',sans-serif; letter-spacing:3px; font-size:18px; color:var(--naranja); margin-bottom:10px; }
 .frase-plato { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(48px,6.5vw,80px); line-height:0.9; margin-bottom:26px; }
@@ -132,9 +132,9 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 
 /* ESCUCHA */
 #s5a { background:var(--gris-oscuro); }
-.esc-layout { display:grid; grid-template-columns:360px 1fr; height:100vh; }
+.esc-layout { display:grid; grid-template-columns:1fr 1fr; height:100vh; }
 .esc-foto { position:relative; overflow:hidden; }
-.esc-foto img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--negro); }
+.esc-foto img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--negro); max-height:100vh; }
 .esc-foto-ov { display:none; }
 .esc-cnt { display:flex; flex-direction:column; justify-content:center; padding:50px 56px; }
 .esc-t { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(42px,5vw,66px); line-height:0.95; margin-bottom:18px; }
@@ -174,6 +174,19 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 .hp-n { background:var(--naranja); color:var(--negro); width:26px; height:26px; min-width:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; }
 .hp-t { font-size:clamp(15px,1.7vw,20px); font-weight:600; }
 .hp-t em { color:var(--naranja-claro); font-style:normal; }
+
+/* DESPEDIDA */
+#s_fin { background:var(--negro); }
+.fin-layout { display:grid; grid-template-columns:1fr 1fr; height:100vh; }
+.fin-img { position:relative; overflow:hidden; }
+.fin-img img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--negro); }
+.fin-txt { background:var(--negro); display:flex; flex-direction:column; justify-content:center; padding:60px 64px; }
+.fin-titulo { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(60px,8vw,100px); line-height:0.9; margin-bottom:20px; color:var(--blanco); }
+.fin-titulo span { color:var(--naranja); display:block; }
+.fin-frase { font-size:clamp(22px,2.8vw,32px); line-height:1.65; color:var(--texto-claro); background:rgba(255,255,255,0.05); border-radius:16px; padding:24px 28px; border-left:6px solid var(--rojo); margin-bottom:24px; font-style:italic; }
+.fin-verbos { display:flex; flex-direction:column; gap:10px; }
+.fin-verbo { font-size:clamp(18px,2vw,24px); font-weight:700; color:var(--naranja-claro); padding:10px 16px; background:rgba(255,255,255,0.04); border-radius:10px; }
+.fin-verbo em { color:rgba(255,255,255,0.45); font-style:normal; font-weight:400; font-size:0.85em; margin-left:8px; }
 </style>
 </head>
 <body>
@@ -295,6 +308,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
       <div class="vocab-item"><span class="vi-em">🌾</span> quinua</div>
       <div class="vocab-item"><span class="vi-em">🫘</span> lentejas</div>
       <div class="vocab-item"><span class="vi-em">🌽</span> maíz</div>
+      <div class="vocab-item"><span class="vi-em">🥚</span> huevos</div>
     </div>
   </div>
 </section>
@@ -507,7 +521,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
       <div class="hp"><div class="hp-n">1</div><div class="hp-t">¿Qué te <em>parece</em> el asado?</div></div>
       <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>gusta</em> la carne a la parrilla?</div></div>
       <div class="hp"><div class="hp-n">3</div><div class="hp-t">¿Te <em>apetece</em> un asado hoy?</div></div>
-      <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>cae</em> la carne muy hecha?</div></div>
+      <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>cae</em> la carne bien pasada?</div></div>
     </div>
   </div>
 </section>
@@ -524,7 +538,7 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
       <div class="hp"><div class="hp-n">1</div><div class="hp-t">¿Qué te <em>parece</em> el taco?</div></div>
       <div class="hp"><div class="hp-n">2</div><div class="hp-t">¿Te <em>molesta</em> el picante?</div></div>
       <div class="hp"><div class="hp-n">3</div><div class="hp-t">¿Te <em>apetece</em> comer tacos ahora?</div></div>
-      <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>queda</em> el limón con cilantro?</div></div>
+      <div class="hp"><div class="hp-n">4</div><div class="hp-t">¿Cómo te <em>cae</em> la comida bien casera?</div></div>
     </div>
   </div>
 </section>
@@ -564,8 +578,8 @@ body { font-family:'Barlow',sans-serif; background:var(--negro); color:var(--bla
 </section>
 
 <script>
-const slideIds = ['s0','s1','s2','s3a','s3b','s3c','s3d','s3e','s3f','s4a','s4b','s4c','s4d','s4e','s4f','s4g','s5a','s5b','s6a','s6b','s6c','s6d','s6e','s6f'];
-const labels = ['Portada','Calentamiento','Sebastián Mora','Carnes','Verduras','Frutas','Cereales','Lácteos','Condimentos','Mapa Mental','Sing/Plural','10 Verbos','Colombia','Perú','Argentina','México','Escucha','Texto audio','Arepa','Ceviche','Asado','Tacos','Empanada','Feijoada'];
+const slideIds = ['s0','s1','s2','s3a','s3b','s3c','s3d','s3e','s3f','s4a','s4b','s4c','s4d','s4e','s4f','s4g','s5a','s5b','s6a','s6b','s6c','s6d','s6e','s6f','s_fin'];
+const labels = ['Portada','Calentamiento','Sebastián Mora','Carnes','Verduras','Frutas','Cereales','Lácteos','Condimentos','Mapa Mental','Sing/Plural','10 Verbos','Colombia','Perú','Argentina','México','Escucha','Texto audio','Arepa','Ceviche','Asado','Tacos','Empanada','Feijoada','¡Hasta la próxima!'];
 let cur = 0;
 const total = slideIds.length;
 
@@ -582,7 +596,7 @@ function buildDots() {
 }
 
 // Grid slides need display:grid, others display:flex
-const gridSlides = new Set(['s3a','s3b','s3c','s3d','s3e','s3f','s4a','s4d','s4e','s4f','s4g','s5a','s6a','s6b','s6c','s6d','s6e','s6f']);
+const gridSlides = new Set(['s3a','s3b','s3c','s3d','s3e','s3f','s4a','s4d','s4e','s4f','s4g','s5a','s6a','s6b','s6c','s6d','s6e','s6f','s_fin']);
 const scrollSlides = new Set(['s5b']);
 
 function showSlide(id) {
@@ -619,5 +633,27 @@ buildDots();
 document.getElementById('btnPrev').disabled = true;
 document.getElementById('navCounter').textContent = '1/'+total;
 </script>
+
+<!-- S_FIN DESPEDIDA -->
+<section class="slide" id="s_fin">
+  <div class="fin-layout">
+    <div class="fin-img">
+      <img src="images/sebastian-chau.png" alt="Sebastián se despide">
+    </div>
+    <div class="fin-txt">
+      <h2 class="fin-titulo">¡HASTA<br><span>LA PRÓXIMA!</span></h2>
+      <div class="fin-frase">
+        ¡Me encantó compartir este viaje gastronómico con ustedes! Viajar me fascina porque puedo conocer nuevas culturas y nuevos sabores. ¡Nos vemos en la próxima aula!
+      </div>
+      <div class="fin-verbos">
+        <div class="fin-verbo">gustar <em>· preferencia general</em></div>
+        <div class="fin-verbo">encantar <em>· amor intenso</em></div>
+        <div class="fin-verbo">fascinar <em>· admiración</em></div>
+        <div class="fin-verbo">interesar · apetecer · importar <em>· y más...</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </body>
 </html>
