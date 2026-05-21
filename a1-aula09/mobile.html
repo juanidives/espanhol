@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Aula 09 · Alimentos & Comidas Típicas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --negro: #111111;
+    --naranja: #F28500;
+    --rojo: #C0281A;
+    --amarillo: #F5B800;
+    --blanco: #FFFFFF;
+    --gris: #222222;
+    --gris2: #2a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    overflow: hidden;
+    height: 100dvh;
+    width: 100vw;
+    touch-action: none;
+  }
+
+  /* ── WRAPPER de slides ── */
+  .slides-wrapper {
+    width: 100%;
+    height: 100dvh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100dvh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  .slide.active { display: flex; }
+
+  /* ── NAV INFERIOR ── */
+  .nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+    background: rgba(17,17,17,0.95);
+    backdrop-filter: blur(12px);
+    padding: 12px 20px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(255,255,255,0.08);
+    gap: 12px;
+  }
+  .nav button {
+    background: none;
+    border: 2px solid var(--naranja);
+    color: var(--naranja);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 12px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+    min-width: 90px;
+  }
+  .nav button:active { background: var(--naranja); color: var(--negro); transform: scale(0.97); }
+  .nav .counter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 3px;
+    text-align: center;
+    flex: 1;
+  }
+
+  /* NAV HEIGHT placeholder para conteúdo não ficar atrás */
+  .nav-spacer { height: 80px; flex-shrink: 0; }
+
+  /* ====================================================
+     SLIDE 1 — CAPA
+  ==================================================== */
+  .s1 {
+    background: var(--negro);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 24px 20px;
+    position: relative;
+    min-height: 100dvh;
+  }
+  .s1::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(to bottom, var(--rojo), var(--naranja));
+  }
+  .s1 .aula-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--naranja);
+    margin-bottom: 28px;
+  }
+  .s1 h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 22vw, 110px);
+    line-height: 0.88;
+    color: var(--blanco);
+    letter-spacing: 1px;
+  }
+  .s1 h1 .amp { color: var(--naranja); }
+  .s1 h1 .tip { color: var(--rojo); }
+  .s1 .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 28px;
+    line-height: 1.5;
+    padding: 0 16px;
+  }
+  .s1 .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+    justify-content: center;
+  }
+  .s1 .tag {
+    background: var(--gris2);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  /* ====================================================
+     SLIDE 2 — FOTO ABERTURA
+  ==================================================== */
+  .s2 { background: var(--negro); min-height: 100dvh; }
+  .s2 .img-block {
+    width: 100%;
+    height: 55vw;
+    min-height: 220px;
+    max-height: 340px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .s2 .img-block img { width: 100%; height: 100%; object-fit: cover; }
+  .s2 .img-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #2a1a00, #4a2e00);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+  }
+  .s2 .content {
+    flex: 1;
+    padding: 36px 28px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .s2 .pregunta {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 14vw, 64px);
+    line-height: 1;
+    color: var(--blanco);
+    margin-bottom: 20px;
+  }
+  .s2 .instruccion {
+    font-size: 22px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  /* ====================================================
+     SLIDE 3 — SEBASTIÁN
+  ==================================================== */
+  .s3 { background: var(--negro); min-height: 100dvh; }
+  .s3 .img-block {
+    width: 100%;
+    height: 60vw;
+    min-height: 240px;
+    max-height: 360px;
+    background: var(--amarillo);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .s3 .img-block img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .s3 .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 100px;
+  }
+  .s3 .content {
+    flex: 1;
+    padding: 32px 24px 20px;
+  }
+  .s3 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 16vw, 80px);
+    line-height: 0.9;
+    color: var(--blanco);
+    letter-spacing: 2px;
+  }
+  .s3 h2 span { color: var(--naranja); display: block; }
+  .s3 .bio {
+    font-size: 16px;
+    color: rgba(255,255,255,0.45);
+    margin: 14px 0 24px;
+    letter-spacing: 0.5px;
+  }
+  .s3 .info-cards { display: flex; flex-direction: column; gap: 10px; }
+  .s3 .info-card {
+    background: var(--gris2);
+    border-left: 4px solid var(--naranja);
+    padding: 12px 18px;
+    border-radius: 0 8px 8px 0;
+  }
+  .s3 .info-card .label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .s3 .info-card .value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blanco);
+    margin-top: 4px;
+  }
+  .s3 .quote {
+    margin-top: 20px;
+    background: var(--rojo);
+    padding: 16px 18px;
+    border-radius: 8px;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  /* ====================================================
+     SLIDES VOCABULARIO (4–9)
+  ==================================================== */
+  .s-vocab { background: var(--negro); min-height: 100dvh; }
+  .s-vocab .img-block {
+    width: 100%;
+    height: 50vw;
+    min-height: 200px;
+    max-height: 300px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .s-vocab .img-block img { width: 100%; height: 100%; object-fit: cover; }
+  .s-vocab .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+  }
+  .s-vocab .content {
+    flex: 1;
+    padding: 28px 24px 20px;
+  }
+  .s-vocab .vocab-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--naranja);
+    margin-bottom: 8px;
+  }
+  .s-vocab h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 13vw, 70px);
+    line-height: 1;
+    color: var(--blanco);
+    margin-bottom: 24px;
+  }
+  .s-vocab .words { display: flex; flex-direction: column; gap: 0; }
+  .s-vocab .word {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--blanco);
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .s-vocab .word::before {
+    content: '';
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--naranja);
+    flex-shrink: 0;
+  }
+
+  /* ====================================================
+     SLIDE 10 — GRAMÁTICA GUSTAR (tabela)
+  ==================================================== */
+  .s10 { background: var(--amarillo); min-height: 100dvh; padding: 36px 24px 20px; justify-content: flex-start; }
+  .s10 .gram-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--rojo);
+    margin-bottom: 20px;
+  }
+  .s10 h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--rojo);
+    margin-bottom: 24px;
+    line-height: 1;
+  }
+  .s10 .pronombres {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .s10 .pron-row {
+    background: #f5d980;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--rojo);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .s10 .pron-row .pronoun { font-size: 28px; font-weight: 900; }
+  .s10 .boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .s10 .box {
+    background: var(--rojo);
+    border-radius: 8px;
+    padding: 14px 18px;
+    color: var(--blanco);
+  }
+  .s10 .box .box-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    opacity: 0.7;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .s10 .box .box-text { font-size: 20px; font-weight: 600; }
+
+  /* ====================================================
+     SLIDE 11 — SINGULAR vs PLURAL
+  ==================================================== */
+  .s11 { background: var(--negro); min-height: 100dvh; padding: 36px 24px 20px; }
+  .s11 .gram-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--naranja);
+    margin-bottom: 20px;
+  }
+  .s11 h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--blanco);
+    margin-bottom: 28px;
+    line-height: 1;
+  }
+  .s11 .examples { display: flex; flex-direction: column; gap: 14px; }
+  .s11 .ex {
+    background: var(--gris2);
+    border-radius: 10px;
+    padding: 18px 20px;
+    border-left: 4px solid var(--naranja);
+  }
+  .s11 .ex .sentence {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 1.4;
+  }
+  .s11 .ex .sentence .highlight { color: var(--naranja); }
+  .s11 .ex .type {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  /* ====================================================
+     SLIDE 12 — 10 VERBOS TIPO GUSTAR
+  ==================================================== */
+  .s12 { background: var(--negro); min-height: 100dvh; padding: 36px 24px 20px; }
+  .s12 .gram-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--naranja);
+    margin-bottom: 16px;
+  }
+  .s12 h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    color: var(--blanco);
+    margin-bottom: 24px;
+    line-height: 1;
+  }
+  .s12 .verbos { display: flex; flex-direction: column; gap: 0; }
+  .s12 .verbo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .s12 .verbo .v-name {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--naranja);
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+  .s12 .verbo .v-desc {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ====================================================
+     SLIDES COMIDAS (13–16) — narrativa Sebastián
+  ==================================================== */
+  .s-comida { background: var(--negro); min-height: 100dvh; }
+  .s-comida .img-block {
+    width: 100%;
+    height: 55vw;
+    min-height: 220px;
+    max-height: 340px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .s-comida .img-block img { width: 100%; height: 100%; object-fit: cover; }
+  .s-comida .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+  }
+  .s-comida .pais-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--naranja);
+    letter-spacing: 3px;
+  }
+  .s-comida .content {
+    flex: 1;
+    padding: 28px 24px 20px;
+  }
+  .s-comida h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 16vw, 80px);
+    line-height: 0.9;
+    color: var(--blanco);
+    margin-bottom: 24px;
+  }
+  .s-comida .frases { display: flex; flex-direction: column; gap: 14px; }
+  .s-comida .frase {
+    background: var(--gris2);
+    border-left: 4px solid var(--rojo);
+    padding: 16px 18px;
+    border-radius: 0 10px 10px 0;
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--blanco);
+  }
+  .s-comida .frase .highlight { color: var(--naranja); font-weight: 900; }
+
+  /* ====================================================
+     SLIDE 17 — ESCUCHA
+  ==================================================== */
+  .s17 { background: var(--negro); min-height: 100dvh; padding: 40px 24px 20px; }
+  .s17 .gram-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--naranja);
+    margin-bottom: 20px;
+  }
+  .s17 h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--blanco);
+    margin-bottom: 28px;
+    line-height: 1;
+  }
+  .s17 .audio-btn {
+    width: 100%;
+    background: var(--naranja);
+    color: var(--negro);
+    border: none;
+    border-radius: 16px;
+    padding: 22px 24px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    transition: all 0.15s;
+    letter-spacing: 1px;
+  }
+  .s17 .audio-btn:active { transform: scale(0.97); background: var(--rojo); color: var(--blanco); }
+  .s17 .preguntas { display: flex; flex-direction: column; gap: 12px; }
+  .s17 .pregunta-item {
+    background: var(--gris2);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .s17 .pregunta-item .num {
+    background: var(--naranja);
+    color: var(--negro);
+    font-weight: 900;
+    font-size: 16px;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .s17 .pregunta-item .text {
+    font-size: 20px;
+    line-height: 1.45;
+    color: var(--blanco);
+  }
+
+  /* ====================================================
+     SLIDE 18 — TEXTO DEL AUDIO
+  ==================================================== */
+  .s18 { background: var(--gris2); min-height: 100dvh; padding: 36px 24px 20px; }
+  .s18 .gram-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--naranja);
+    margin-bottom: 20px;
+  }
+  .s18 h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 46px;
+    color: var(--blanco);
+    margin-bottom: 24px;
+    line-height: 1;
+  }
+  .s18 .paragraphs { display: flex; flex-direction: column; gap: 16px; }
+  .s18 .para {
+    font-size: 19px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.9);
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    border-left: 3px solid var(--naranja);
+  }
+  .s18 .para .highlight { color: var(--naranja); font-weight: 700; }
+
+  /* ====================================================
+     SLIDES TU TURNO (19–24)
+  ==================================================== */
+  .s-turno { background: var(--negro); min-height: 100dvh; }
+  .s-turno .img-block {
+    width: 100%;
+    height: 50vw;
+    min-height: 200px;
+    max-height: 300px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .s-turno .img-block img { width: 100%; height: 100%; object-fit: cover; }
+  .s-turno .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+  }
+  .s-turno .content { flex: 1; padding: 24px 24px 20px; }
+  .s-turno .pais { font-size: 14px; color: var(--naranja); font-weight: 700; letter-spacing: 2px; margin-bottom: 4px; }
+  .s-turno h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(50px, 14vw, 70px);
+    line-height: 0.9;
+    color: var(--blanco);
+    margin-bottom: 6px;
+  }
+  .s-turno .ingredientes {
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+  .s-turno .turno-header {
+    background: var(--rojo);
+    border-radius: 10px 10px 0 0;
+    padding: 14px 18px;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .s-turno .preguntas { display: flex; flex-direction: column; gap: 0; }
+  .s-turno .pregunta-item {
+    background: var(--gris2);
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .s-turno .pregunta-item:last-child { border-radius: 0 0 10px 10px; border-bottom: none; }
+  .s-turno .pregunta-item .num {
+    background: var(--naranja);
+    color: var(--negro);
+    font-weight: 900;
+    font-size: 15px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .s-turno .pregunta-item .text { font-size: 20px; line-height: 1.45; color: var(--blanco); }
+
+  /* ====================================================
+     SLIDE 25 — CIERRE
+  ==================================================== */
+  .s25 {
+    background: var(--negro);
+    min-height: 100dvh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 24px 20px;
+    position: relative;
+  }
+  .s25::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(to bottom, var(--naranja), var(--rojo));
+  }
+  .s25 .img-block {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 28px;
+    border: 4px solid var(--naranja);
+  }
+  .s25 .img-block img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .s25 .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 60px;
+    background: var(--gris2);
+  }
+  .s25 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 20vw, 90px);
+    line-height: 0.9;
+    color: var(--blanco);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+  .s25 h2 span { color: var(--naranja); display: block; }
+  .s25 .message {
+    font-size: 20px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .s25 .message .highlight { color: var(--naranja); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="slides-wrapper">
+
+  <!-- SLIDE 1 — CAPA -->
+  <div class="slide s1 active" id="slide-1">
+    <div class="aula-tag">AULA 09 · ESPAÑOL A1</div>
+    <h1>
+      ALIMENTOS<br>
+      <span class="amp">&</span> COMIDAS<br>
+      <span class="tip">TÍPICAS</span>
+    </h1>
+    <p class="subtitle">Un viaje por Latinoamérica con Sebastián Mora</p>
+    <div class="tags">
+      <div class="tag">🎧 Escucha</div>
+      <div class="tag">💬 Habla</div>
+      <div class="tag">📚 Vocabulario</div>
+      <div class="tag">🧠 Gramática</div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 2 — FOTO ABERTURA -->
+  <div class="slide s2" id="slide-2">
+    <div class="img-block">
+      <img src="images/pratos-latinoamericanos.png" alt="Pratos latinoamericanos"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>🍽️</div>'">
+    </div>
+    <div class="content">
+      <p class="pregunta">¿Qué ves en la foto?</p>
+      <p class="instruccion">Di en voz alta todo lo que conoces</p>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 3 — SEBASTIÁN -->
+  <div class="slide s3" id="slide-3">
+    <div class="img-block">
+      <img src="images/sebastian-mora.png" alt="Sebastián Mora"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>👨‍🍳</div>'">
+    </div>
+    <div class="content">
+      <h2>SEBASTIÁN <span>MORA</span></h2>
+      <p class="bio">Bloguero gastronómico · 27 años · Medellín</p>
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="label">📍 Ciudad</div>
+          <div class="value">Medellín, Colombia</div>
+        </div>
+        <div class="info-card">
+          <div class="label">💼 Trabajo</div>
+          <div class="value">Bloguero gastronómico</div>
+        </div>
+        <div class="info-card">
+          <div class="label">✈️ Viaja por</div>
+          <div class="value">Toda Latinoamérica</div>
+        </div>
+        <div class="info-card">
+          <div class="label">📱 Blog</div>
+          <div class="value">@saboreslatinos</div>
+        </div>
+      </div>
+      <div class="quote">"La cocina latinoamericana me fascina — cada plato cuenta una historia."</div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 4 — CARNES -->
+  <div class="slide s-vocab" id="slide-4">
+    <div class="img-block">
+      <img src="images/sebastian-carnes.png" alt="Carnes"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#3a1a0a\'>🥩</div>'">
+    </div>
+    <div class="content">
+      <div class="vocab-label">VOCABULARIO</div>
+      <h3>CARNES</h3>
+      <div class="words">
+        <div class="word">carne</div>
+        <div class="word">pollo</div>
+        <div class="word">cerdo</div>
+        <div class="word">pescado</div>
+        <div class="word">mariscos</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 5 — VERDURAS -->
+  <div class="slide s-vocab" id="slide-5">
+    <div class="img-block">
+      <img src="images/sebastian-verduras.png" alt="Verduras"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#0a2a0a\'>🥦</div>'">
+    </div>
+    <div class="content">
+      <div class="vocab-label">VOCABULARIO</div>
+      <h3>VERDURAS</h3>
+      <div class="words">
+        <div class="word">maíz</div>
+        <div class="word">yuca</div>
+        <div class="word">papa</div>
+        <div class="word">aguacate</div>
+        <div class="word">ají</div>
+        <div class="word">tomate</div>
+        <div class="word">cebolla</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 6 — FRUTAS -->
+  <div class="slide s-vocab" id="slide-6">
+    <div class="img-block">
+      <img src="images/sebastian-frutas.png" alt="Frutas"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#2a1a00\'>🥭</div>'">
+    </div>
+    <div class="content">
+      <div class="vocab-label">VOCABULARIO</div>
+      <h3>FRUTAS<br>TROPICALES</h3>
+      <div class="words">
+        <div class="word">mango</div>
+        <div class="word">papaya</div>
+        <div class="word">maracuyá</div>
+        <div class="word">guayaba</div>
+        <div class="word">plátano</div>
+        <div class="word">ananá</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 7 — CEREALES -->
+  <div class="slide s-vocab" id="slide-7">
+    <div class="img-block">
+      <img src="images/sebastian-cereales.png" alt="Cereales"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#1a1400\'>🌾</div>'">
+    </div>
+    <div class="content">
+      <div class="vocab-label">VOCABULARIO</div>
+      <h3>CEREALES<br>Y LEGUMBRES</h3>
+      <div class="words">
+        <div class="word">arroz</div>
+        <div class="word">frijoles</div>
+        <div class="word">quinua</div>
+        <div class="word">lentejas</div>
+        <div class="word">maíz</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 8 — LÁCTEOS -->
+  <div class="slide s-vocab" id="slide-8">
+    <div class="img-block">
+      <img src="images/sebastian-lacteos.png" alt="Lácteos"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#1a1a2a\'>🧀</div>'">
+    </div>
+    <div class="content">
+      <div class="vocab-label">VOCABULARIO</div>
+      <h3>LÁCTEOS</h3>
+      <div class="words">
+        <div class="word">queso</div>
+        <div class="word">leche</div>
+        <div class="word">mantequilla</div>
+        <div class="word">crema</div>
+        <div class="word">huevos</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 9 — CONDIMENTOS -->
+  <div class="slide s-vocab" id="slide-9">
+    <div class="img-block">
+      <img src="images/sebastian-condimentos.png" alt="Condimentos"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#2a0a00\'>🌶️</div>'">
+    </div>
+    <div class="content">
+      <div class="vocab-label">VOCABULARIO</div>
+      <h3>CONDIMENTOS</h3>
+      <div class="words">
+        <div class="word">cilantro</div>
+        <div class="word">ají</div>
+        <div class="word">comino</div>
+        <div class="word">achiote</div>
+        <div class="word">limón</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 10 — GRAMÁTICA GUSTAR -->
+  <div class="slide s10" id="slide-10">
+    <div class="gram-label">GRAMÁTICA</div>
+    <h3>GUSTA / GUSTAN</h3>
+    <div class="pronombres">
+      <div class="pron-row">A mí <span class="pronoun">me</span></div>
+      <div class="pron-row">A ti <span class="pronoun">te</span></div>
+      <div class="pron-row">A él / ella <span class="pronoun">le</span></div>
+      <div class="pron-row">A nosotros <span class="pronoun">nos</span></div>
+      <div class="pron-row">A vosotros <span class="pronoun">os</span></div>
+      <div class="pron-row">A ellos <span class="pronoun">les</span></div>
+    </div>
+    <div class="boxes">
+      <div class="box">
+        <div class="box-label">INFINITIVO</div>
+        <div class="box-text">comer · cocinar · probar</div>
+      </div>
+      <div class="box">
+        <div class="box-label">SUSTANTIVO SINGULAR → GUSTA</div>
+        <div class="box-text">el ceviche · la arepa</div>
+      </div>
+      <div class="box">
+        <div class="box-label">SUSTANTIVO PLURAL → GUSTAN</div>
+        <div class="box-text">los tacos · las frutas</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 11 — SINGULAR vs PLURAL -->
+  <div class="slide s11" id="slide-11">
+    <div class="gram-label">GRAMÁTICA</div>
+    <h3>SINGULAR vs PLURAL</h3>
+    <div class="examples">
+      <div class="ex">
+        <div class="sentence">Me <span class="highlight">GUSTA</span> el aguacate.</div>
+        <div class="type">→ singular</div>
+      </div>
+      <div class="ex">
+        <div class="sentence">Me <span class="highlight">GUSTAN</span> los frijoles.</div>
+        <div class="type">→ plural</div>
+      </div>
+      <div class="ex">
+        <div class="sentence">Nos <span class="highlight">ENCANTA</span> la quinua.</div>
+        <div class="type">→ singular</div>
+      </div>
+      <div class="ex">
+        <div class="sentence">Nos <span class="highlight">ENCANTAN</span> los tacos.</div>
+        <div class="type">→ plural</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 12 — 10 VERBOS -->
+  <div class="slide s12" id="slide-12">
+    <div class="gram-label">GRAMÁTICA</div>
+    <h3>LOS 10 VERBOS<br>TIPO GUSTAR</h3>
+    <div class="verbos">
+      <div class="verbo"><span class="v-name">gustar</span><span class="v-desc">preferencia general</span></div>
+      <div class="verbo"><span class="v-name">encantar</span><span class="v-desc">amor intenso</span></div>
+      <div class="verbo"><span class="v-name">fascinar</span><span class="v-desc">fascinación</span></div>
+      <div class="verbo"><span class="v-name">interesar</span><span class="v-desc">interés intelectual</span></div>
+      <div class="verbo"><span class="v-name">apetecer</span><span class="v-desc">deseo en el momento</span></div>
+      <div class="verbo"><span class="v-name">importar</span><span class="v-desc">dar importancia</span></div>
+      <div class="verbo"><span class="v-name">molestar</span><span class="v-desc">incomodar, disgustar</span></div>
+      <div class="verbo"><span class="v-name">parecer</span><span class="v-desc">opinión / impresión</span></div>
+      <div class="verbo"><span class="v-name">caer bien/mal</span><span class="v-desc">impresión de algo</span></div>
+      <div class="verbo"><span class="v-name">quedar bien/mal</span><span class="v-desc">combinación</span></div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 13 — BANDEJA PAISA -->
+  <div class="slide s-comida" id="slide-13">
+    <div class="img-block">
+      <div class="pais-badge">🇨🇴 COLOMBIA</div>
+      <img src="images/sebastian-bandeja-paisa.png" alt="Bandeja Paisa"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>🍛</div>'">
+    </div>
+    <div class="content">
+      <h3>BANDEJA<br>PAISA</h3>
+      <div class="frases">
+        <div class="frase">A mí <span class="highlight">me encanta</span> la bandeja paisa.</div>
+        <div class="frase"><span class="highlight">Me parece</span> el desayuno más completo del mundo.</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 14 — CEVICHE -->
+  <div class="slide s-comida" id="slide-14">
+    <div class="img-block">
+      <div class="pais-badge">🇵🇪 PERÚ</div>
+      <img src="images/sebastian-ceviche.png" alt="Ceviche"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>🐟</div>'">
+    </div>
+    <div class="content">
+      <h3>CEVICHE</h3>
+      <div class="frases">
+        <div class="frase">El ceviche <span class="highlight">me fascina</span>.</div>
+        <div class="frase">El limón y el ají <span class="highlight">le quedan muy bien</span> al pescado fresco.</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 15 — MATE -->
+  <div class="slide s-comida" id="slide-15">
+    <div class="img-block">
+      <div class="pais-badge">🇦🇷 ARGENTINA</div>
+      <img src="images/sebastian-mate.png" alt="Mate"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>🧉</div>'">
+    </div>
+    <div class="content">
+      <h3>MATE</h3>
+      <div class="frases">
+        <div class="frase">El mate al principio <span class="highlight">me caía</span> un poco raro.</div>
+        <div class="frase">Pero ahora <span class="highlight">me gusta</span> tomarlo todas las tardes.</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 16 — TACOS -->
+  <div class="slide s-comida" id="slide-16">
+    <div class="img-block">
+      <div class="pais-badge">🇲🇽 MÉXICO</div>
+      <img src="images/sebastian-tacos.png" alt="Tacos"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>🌮</div>'">
+    </div>
+    <div class="content">
+      <h3>TACOS</h3>
+      <div class="frases">
+        <div class="frase"><span class="highlight">Me molesta</span> un poco el picante extremo.</div>
+        <div class="frase">Pero igualmente <span class="highlight">me gusta</span> mucho probar de todo.</div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 17 — ESCUCHA -->
+  <div class="slide s17" id="slide-17">
+    <div class="gram-label">ACTIVIDAD</div>
+    <h3>🎧 ESCUCHA<br>A SEBASTIÁN</h3>
+    <button class="audio-btn" onclick="playAudio()">▶ REPRODUCIR AUDIO</button>
+    <div class="preguntas">
+      <div class="pregunta-item"><div class="num">1</div><div class="text">¿De dónde es Sebastián?</div></div>
+      <div class="pregunta-item"><div class="num">2</div><div class="text">¿Qué lleva el ceviche peruano?</div></div>
+      <div class="pregunta-item"><div class="num">3</div><div class="text">¿Por qué el mate le caía raro?</div></div>
+      <div class="pregunta-item"><div class="num">4</div><div class="text">¿Cuántos países menciona Sebastián?</div></div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 18 — TEXTO DEL AUDIO -->
+  <div class="slide s18" id="slide-18">
+    <div class="gram-label">TEXTO DEL AUDIO</div>
+    <h3>📄 TRANSCRIPCIÓN</h3>
+    <div class="paragraphs">
+      <div class="para">¡Hola a todos! Soy <span class="highlight">Sebastián</span>. Esta semana viajé por varios países de Latinoamérica y probé comidas increíbles.</div>
+      <div class="para">En <span class="highlight">Colombia</span>, me encanta el sancocho. A mi mamá le parece el plato más reconfortante del mundo.</div>
+      <div class="para">En <span class="highlight">Perú</span>, me fascina la gastronomía. El ceviche me gusta mucho: pescado, limón, ají y cebolla.</div>
+      <div class="para">En <span class="highlight">Argentina</span>, siempre me apetece un buen asado. El mate antes no me gustaba. Ahora me encanta.</div>
+      <div class="para">En <span class="highlight">México</span>, me encantan los tacos. El picante no me fascina, pero me gusta probar sabores nuevos.</div>
+      <div class="para">¡Viajar me encanta porque puedo conocer nuevas culturas y nuevos sabores!</div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 19 — TU TURNO: AREPA -->
+  <div class="slide s-turno" id="slide-19">
+    <div class="img-block">
+      <img src="images/arepa-colombiana.png" alt="Arepa"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#2a1800\'>🫓</div>'">
+    </div>
+    <div class="content">
+      <div class="pais">🇨🇴 Colombia</div>
+      <h3>AREPA</h3>
+      <div class="ingredientes">maíz · queso · mantequilla</div>
+      <div class="turno-header">💬 TU TURNO — Usa los verbos tipo gustar</div>
+      <div class="preguntas">
+        <div class="pregunta-item"><div class="num">1</div><div class="text">¿Qué te parece la arepa?</div></div>
+        <div class="pregunta-item"><div class="num">2</div><div class="text">¿Te gusta con queso o con mantequilla?</div></div>
+        <div class="pregunta-item"><div class="num">3</div><div class="text">¿Te apetece comerla ahora?</div></div>
+        <div class="pregunta-item"><div class="num">4</div><div class="text">¿Cómo te cae la comida con queso?</div></div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 20 — TU TURNO: CEVICHE -->
+  <div class="slide s-turno" id="slide-20">
+    <div class="img-block">
+      <img src="images/ceviche-peruano.png" alt="Ceviche"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#001a1a\'>🐟</div>'">
+    </div>
+    <div class="content">
+      <div class="pais">🇵🇪 Perú</div>
+      <h3>CEVICHE</h3>
+      <div class="ingredientes">pescado · limón · ají · cebolla morada</div>
+      <div class="turno-header">💬 TU TURNO — Usa los verbos tipo gustar</div>
+      <div class="preguntas">
+        <div class="pregunta-item"><div class="num">1</div><div class="text">¿Qué te parece el ceviche?</div></div>
+        <div class="pregunta-item"><div class="num">2</div><div class="text">¿Te gusta la comida con limón y ají?</div></div>
+        <div class="pregunta-item"><div class="num">3</div><div class="text">¿Te apetece comerlo ahora?</div></div>
+        <div class="pregunta-item"><div class="num">4</div><div class="text">¿Cómo te cae la comida ácida?</div></div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 21 — TU TURNO: ASADO -->
+  <div class="slide s-turno" id="slide-21">
+    <div class="img-block">
+      <img src="images/asado-argentino.png" alt="Asado"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#2a0a00\'>🥩</div>'">
+    </div>
+    <div class="content">
+      <div class="pais">🇦🇷 Argentina</div>
+      <h3>ASADO</h3>
+      <div class="ingredientes">carne · parrilla · chimichurri</div>
+      <div class="turno-header">💬 TU TURNO — Usa los verbos tipo gustar</div>
+      <div class="preguntas">
+        <div class="pregunta-item"><div class="num">1</div><div class="text">¿Qué te parece el asado?</div></div>
+        <div class="pregunta-item"><div class="num">2</div><div class="text">¿Te gusta la carne a la parrilla?</div></div>
+        <div class="pregunta-item"><div class="num">3</div><div class="text">¿Te apetece un asado hoy?</div></div>
+        <div class="pregunta-item"><div class="num">4</div><div class="text">¿Cómo te cae la carne bien pasada?</div></div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 22 — TU TURNO: TACOS -->
+  <div class="slide s-turno" id="slide-22">
+    <div class="img-block">
+      <img src="images/tacos-mexicanos.png" alt="Tacos"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#1a0a00\'>🌮</div>'">
+    </div>
+    <div class="content">
+      <div class="pais">🇲🇽 México</div>
+      <h3>TACOS</h3>
+      <div class="ingredientes">cerdo · piña · cilantro · ají</div>
+      <div class="turno-header">💬 TU TURNO — Usa los verbos tipo gustar</div>
+      <div class="preguntas">
+        <div class="pregunta-item"><div class="num">1</div><div class="text">¿Qué te parece el taco?</div></div>
+        <div class="pregunta-item"><div class="num">2</div><div class="text">¿Te molesta el picante?</div></div>
+        <div class="pregunta-item"><div class="num">3</div><div class="text">¿Te apetece comer tacos ahora?</div></div>
+        <div class="pregunta-item"><div class="num">4</div><div class="text">¿Cómo te cae la comida bien casera?</div></div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 23 — TU TURNO: EMPANADA -->
+  <div class="slide s-turno" id="slide-23">
+    <div class="img-block">
+      <img src="images/empanada-venezolana.png" alt="Empanada"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#1a1000\'>🥟</div>'">
+    </div>
+    <div class="content">
+      <div class="pais">🇻🇪 Venezuela</div>
+      <h3>EMPANADA</h3>
+      <div class="ingredientes">maíz · carne · queso</div>
+      <div class="turno-header">💬 TU TURNO — Usa los verbos tipo gustar</div>
+      <div class="preguntas">
+        <div class="pregunta-item"><div class="num">1</div><div class="text">¿Qué te parece la empanada?</div></div>
+        <div class="pregunta-item"><div class="num">2</div><div class="text">¿Te gusta el maíz?</div></div>
+        <div class="pregunta-item"><div class="num">3</div><div class="text">¿Te apetece comerla ahora?</div></div>
+        <div class="pregunta-item"><div class="num">4</div><div class="text">¿Cómo te cae la comida frita?</div></div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 24 — TU TURNO: FEIJOADA -->
+  <div class="slide s-turno" id="slide-24">
+    <div class="img-block">
+      <img src="images/feijoada-brasileira.png" alt="Feijoada"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\' style=\'background:#0a0a1a\'>🫘</div>'">
+    </div>
+    <div class="content">
+      <div class="pais">🇧🇷 Brasil</div>
+      <h3>FEIJOADA</h3>
+      <div class="ingredientes">frijoles negros · cerdo · arroz</div>
+      <div class="turno-header">💬 TU TURNO — Usa los verbos tipo gustar</div>
+      <div class="preguntas">
+        <div class="pregunta-item"><div class="num">1</div><div class="text">¿Qué te parece la feijoada?</div></div>
+        <div class="pregunta-item"><div class="num">2</div><div class="text">¿Te gustan los frijoles negros?</div></div>
+        <div class="pregunta-item"><div class="num">3</div><div class="text">¿Te apetece probarla?</div></div>
+        <div class="pregunta-item"><div class="num">4</div><div class="text">¿Cómo te cae la comida muy contundente?</div></div>
+      </div>
+    </div>
+    <div class="nav-spacer"></div>
+  </div>
+
+  <!-- SLIDE 25 — CIERRE -->
+  <div class="slide s25" id="slide-25">
+    <div class="img-block">
+      <img src="images/sebastian-chau.png" alt="Sebastián"
+           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>👋</div>'">
+    </div>
+    <h2>¡HASTA<br><span>LA PRÓXIMA!</span></h2>
+    <p class="message">¡Me encantó compartir este viaje gastronómico con ustedes! Viajar me <span class="highlight">fascina</span> porque puedo conocer nuevas culturas y nuevos sabores. ¡Nos vemos en la próxima aula!</p>
+    <div class="nav-spacer"></div>
+  </div>
+
+</div><!-- /slides-wrapper -->
+
+<!-- NAV -->
+<nav class="nav">
+  <button id="btn-prev" onclick="changeSlide(-1)">← ANT</button>
+  <div class="counter" id="counter">1 / 25</div>
+  <button id="btn-next" onclick="changeSlide(1)">SIG →</button>
+</nav>
+
+<script>
+  const TOTAL = 25;
+  let current = 1;
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  function showSlide(n) {
+    const prev = document.getElementById('slide-' + current);
+    if (prev) { prev.classList.remove('active'); prev.scrollTop = 0; }
+    current = Math.max(1, Math.min(TOTAL, n));
+    const next = document.getElementById('slide-' + current);
+    if (next) next.classList.add('active');
+    document.getElementById('counter').textContent = current + ' / ' + TOTAL;
+    document.getElementById('btn-prev').style.opacity = current === 1 ? '0.3' : '1';
+    document.getElementById('btn-next').style.opacity = current === TOTAL ? '0.3' : '1';
+  }
+
+  function changeSlide(dir) {
+    showSlide(current + dir);
+  }
+
+  // Swipe horizontal
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Só ativa swipe horizontal se o movimento horizontal for dominante
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      changeSlide(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+
+  // Teclado (útil para testar no navegador)
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') changeSlide(1);
+    if (e.key === 'ArrowLeft') changeSlide(-1);
+  });
+
+  function playAudio() {
+    const audio = new Audio('audio/sebastian-audio-blog.mp3');
+    audio.play().catch(() => alert('Audio não encontrado. Verifique o arquivo: audio/sebastian-audio-blog.mp3'));
+  }
+
+  showSlide(1);
+</script>
+</body>
+</html>
