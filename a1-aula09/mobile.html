@@ -154,9 +154,7 @@
   .s2 { background: var(--negro); min-height: 100dvh; }
   .s2 .img-block {
     width: 100%;
-    height: 55vw;
-    min-height: 220px;
-    max-height: 340px;
+    height: 65dvh;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -193,9 +191,7 @@
   .s3 { background: var(--negro); min-height: 100dvh; }
   .s3 .img-block {
     width: 100%;
-    height: 60vw;
-    min-height: 240px;
-    max-height: 360px;
+    height: 65dvh;
     background: var(--amarillo);
     overflow: hidden;
     flex-shrink: 0;
@@ -259,9 +255,7 @@
   .s-vocab { background: var(--negro); min-height: 100dvh; }
   .s-vocab .img-block {
     width: 100%;
-    height: 50vw;
-    min-height: 200px;
-    max-height: 300px;
+    height: 65dvh;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -452,9 +446,7 @@
   .s-comida { background: var(--negro); min-height: 100dvh; }
   .s-comida .img-block {
     width: 100%;
-    height: 55vw;
-    min-height: 220px;
-    max-height: 340px;
+    height: 65dvh;
     overflow: hidden;
     flex-shrink: 0;
     position: relative;
@@ -602,9 +594,7 @@
   .s-turno { background: var(--negro); min-height: 100dvh; }
   .s-turno .img-block {
     width: 100%;
-    height: 50vw;
-    min-height: 200px;
-    max-height: 300px;
+    height: 65dvh;
     overflow: hidden;
     flex-shrink: 0;
   }
@@ -668,10 +658,10 @@
   .s25 {
     background: var(--negro);
     min-height: 100dvh;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
-    padding: 40px 24px 20px;
+    padding: 0 0 0 0;
     position: relative;
   }
   .s25::before {
@@ -682,13 +672,8 @@
     background: linear-gradient(to bottom, var(--naranja), var(--rojo));
   }
   .s25 .img-block {
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 28px;
-    border: 4px solid var(--naranja);
+    display: none; /* substituído por div inline no HTML */
   }
-  .s25 .img-block img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
   .s25 .img-placeholder {
     width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
@@ -1047,6 +1032,12 @@
 
   <!-- SLIDE 17 — ESCUCHA -->
   <div class="slide s17" id="slide-17">
+    <div style="width:100%;height:65dvh;overflow:hidden;flex-shrink:0;">
+      <img src="images/sebastian-blog.png" alt="Sebastián blog"
+           style="width:100%;height:100%;object-fit:cover;object-position:top center;"
+           onerror="this.parentElement.style.display='none'">
+    </div>
+    <div style="padding:28px 24px 0;">
     <div class="gram-label">ACTIVIDAD</div>
     <h3>🎧 ESCUCHA<br>A SEBASTIÁN</h3>
     <button class="audio-btn" onclick="playAudio()">▶ REPRODUCIR AUDIO</button>
@@ -1055,6 +1046,7 @@
       <div class="pregunta-item"><div class="num">2</div><div class="text">¿Qué lleva el ceviche peruano?</div></div>
       <div class="pregunta-item"><div class="num">3</div><div class="text">¿Por qué el mate le caía raro?</div></div>
       <div class="pregunta-item"><div class="num">4</div><div class="text">¿Cuántos países menciona Sebastián?</div></div>
+    </div>
     </div>
     <div class="nav-spacer"></div>
   </div>
@@ -1202,12 +1194,15 @@
 
   <!-- SLIDE 25 — CIERRE -->
   <div class="slide s25" id="slide-25">
-    <div class="img-block">
+    <div style="width:100%;height:65dvh;overflow:hidden;flex-shrink:0;">
       <img src="images/sebastian-chau.png" alt="Sebastián"
-           onerror="this.parentElement.innerHTML='<div class=\'img-placeholder\'>👋</div>'">
+           style="width:100%;height:100%;object-fit:cover;object-position:top center;"
+           onerror="this.parentElement.innerHTML='<div style=\'background:#222;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:80px\'>👋</div>'">
     </div>
+    <div style="padding: 32px 24px 0; width:100%;">
     <h2>¡HASTA<br><span>LA PRÓXIMA!</span></h2>
     <p class="message">¡Me encantó compartir este viaje gastronómico con ustedes! Viajar me <span class="highlight">fascina</span> porque puedo conocer nuevas culturas y nuevos sabores. ¡Nos vemos en la próxima aula!</p>
+    </div>
     <div class="nav-spacer"></div>
   </div>
 
