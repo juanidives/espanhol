@@ -84,11 +84,11 @@ body {
 
 /* ── PERSONAGEM S3 ── */
 #s3 { background:var(--grafite); }
-#s3 .pcol { display:flex; flex-direction:column; align-items:center; gap:20px; }
-#s3 .frame { width:300px; height:300px; border-radius:50%; background:var(--card); border:5px solid var(--azul); box-shadow:0 0 0 3px var(--oro),0 20px 60px rgba(0,84,166,.4); overflow:hidden; display:flex; align-items:center; justify-content:center; flex-direction:column; color:var(--cinza); gap:8px; }
-#s3 .frame img { width:100%; height:100%; object-fit:cover; }
-#s3 .frame .ph { font-size:70px; }
-#s3 .frame .phl { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; }
+#s3 .pcol { position:relative; overflow:hidden; }
+#s3 .pcol img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--card); }
+#s3 .pcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); background:var(--card); }
+#s3 .pcol .ph { font-size:100px; }
+#s3 .pcol .phl { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; }
 #s3 .nblock { text-align:center; }
 #s3 .nblock h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; line-height:1; color:#fff; letter-spacing:2px; }
 #s3 .nblock .role { font-size:14px; color:var(--celeste); margin-top:4px; }
@@ -101,11 +101,14 @@ body {
 #s3 .quote strong { color:var(--oro); font-style:normal; }
 
 /* ── SLIDES DE DEPORTE (S4–S18) ── */
-.deporte-imgcol { width:100%; height:500px; border-radius:24px; background:var(--card); border:2px solid rgba(116,192,232,.15); overflow:hidden; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); position:relative; }
-.deporte-imgcol img { width:100%; height:100%; object-fit:cover; }
+.deporte-imgcol { position:relative; overflow:hidden; background:var(--card); }
+.deporte-imgcol img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--card); display:block; }
+.deporte-imgcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:var(--cinza); }
 .deporte-imgcol .ph  { font-size:80px; }
 .deporte-imgcol .phl { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; }
-.deporte-badge { position:absolute; top:16px; left:16px; background:rgba(0,0,0,.55); backdrop-filter:blur(8px); border-radius:8px; padding:6px 14px; font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; color:#fff; border:1px solid rgba(255,255,255,.15); }
+.deporte-imgcol .ph  { font-size:80px; }
+.deporte-imgcol .phl { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; }
+
 .deporte-tcol { display:flex; flex-direction:column; gap:22px; }
 .deporte-cat { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; }
 .cat-equipo    { color:var(--oro); }
@@ -150,17 +153,17 @@ body {
 
 /* ── ESCUCHA S21 ── */
 #s21 { background:#050E1F; }
-#s21 .imgcol { width:100%; height:480px; border-radius:20px; background:var(--card); border:2px solid rgba(116,192,232,.15); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); overflow:hidden; position:relative; }
-#s21 .imgcol img { width:100%; height:100%; object-fit:cover; }
-#s21 .imgcol .ph  { font-size:60px; }
+#s21 .imgcol { position:relative; overflow:hidden; background:var(--card); }
+#s21 .imgcol img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--card); display:block; }
+#s21 .imgcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:var(--cinza); }
+#s21 .imgcol .ph  { font-size:80px; }
 #s21 .imgcol .phl { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; }
 #s21 .badge { position:absolute; top:14px; left:14px; background:rgba(0,0,0,.6); backdrop-filter:blur(8px); border-radius:8px; padding:7px 12px; display:flex; align-items:center; gap:6px; font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; color:#fff; border:1px solid rgba(116,192,232,.3); }
 #s21 .rcol { display:flex; flex-direction:column; gap:18px; }
 #s21 h2 { font-family:'Bebas Neue',sans-serif; font-size:58px; color:#fff; line-height:1; }
 #s21 h2 em { color:var(--celeste); font-style:normal; }
-#s21 .player { background:var(--card); border-radius:14px; padding:14px 18px; display:flex; align-items:center; gap:12px; border:1px solid rgba(116,192,232,.2); }
-#s21 .player .ico { font-size:26px; }
-#s21 .player .fn  { font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:2px; color:var(--celeste); }
+#s21 .audio-wrap { background:var(--card); border-radius:14px; padding:18px 20px; border:2px solid var(--azul); }
+#s21 .audio-lbl { font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--oro); margin-bottom:10px; }
 #s21 .qs { display:flex; flex-direction:column; gap:11px; }
 #s21 .q  { background:var(--card); border-radius:12px; padding:15px 18px; display:flex; align-items:center; gap:12px; border:1px solid rgba(255,255,255,.06); }
 #s21 .q .n { width:30px; height:30px; background:var(--azul); border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-size:15px; font-weight:700; color:#fff; flex-shrink:0; }
@@ -193,11 +196,11 @@ body {
 #s24 { background:var(--grafite); }
 #s24 .stripes { position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(-55deg,transparent,transparent 48px,rgba(0,84,166,.1) 48px,rgba(0,84,166,.1) 50px); }
 #s24 .inner { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; padding:60px 80px; width:100%; }
-#s24 .icol { display:flex; align-items:center; justify-content:center; }
-#s24 .frame { width:300px; height:300px; border-radius:50%; background:var(--card); border:5px solid var(--azul); box-shadow:0 0 0 3px var(--oro),0 20px 60px rgba(0,84,166,.4); overflow:hidden; display:flex; align-items:center; justify-content:center; flex-direction:column; color:var(--cinza); gap:8px; }
-#s24 .frame img { width:100%; height:100%; object-fit:cover; }
-#s24 .frame .ph  { font-size:70px; }
-#s24 .frame .phl { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; }
+#s24 .icol { position:relative; overflow:hidden; }
+#s24 .icol img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--card); }
+#s24 .icol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); background:var(--card); }
+#s24 .icol .ph  { font-size:100px; }
+#s24 .icol .phl { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; }
 #s24 .tcol { display:flex; flex-direction:column; gap:18px; }
 #s24 h2 { font-family:'Bebas Neue',sans-serif; font-size:76px; line-height:.95; color:#fff; letter-spacing:2px; }
 #s24 h2 em { color:var(--oro); font-style:normal; }
@@ -235,7 +238,7 @@ body {
   <div class="imgbox">
     <img src="images/deportes-calentamiento.png" alt="Deportes"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏆</span><span class="phl">deportes-calentamiento.png</span>
     </div>
   </div>
@@ -244,19 +247,17 @@ body {
 <!-- S3 PERSONAGEM -->
 <section class="slide layout-two-col" id="s3">
   <div class="pcol">
-    <div class="frame">
-      <img src="images/mateo-gonzalez.png" alt="Mateo González"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div style="display:none;flex-direction:column;align-items:center;gap:8px">
-        <span class="ph">🎤</span><span class="phl">mateo-gonzalez.png</span>
-      </div>
-    </div>
-    <div class="nblock">
-      <h2>MATEO<br>GONZÁLEZ</h2>
-      <p class="role">Periodista deportivo · 30 años · Buenos Aires</p>
+    <img src="images/mateo-gonzalez.png" alt="Mateo González"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-wrap" style="display:none">
+      <span class="ph">🎤</span><span class="phl">mateo-gonzalez.png</span>
     </div>
   </div>
   <div class="icol">
+    <div class="nblock" style="margin-bottom:16px">
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:#fff;letter-spacing:2px">MATEO<br>GONZÁLEZ</h2>
+      <p style="font-size:14px;color:var(--celeste);margin-top:4px">Periodista deportivo · 30 años · Buenos Aires</p>
+    </div>
     <div class="eyebrow" style="margin-bottom:10px">👋 Conoce al personaje</div>
     <div class="card"><span class="lbl">Ciudad</span><span class="val">🇦🇷 Buenos Aires, Argentina</span></div>
     <div class="card"><span class="lbl">Trabajo</span><span class="val">📺 Periodista deportivo</span></div>
@@ -271,10 +272,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-futbol.png" alt="Mateo juega al fútbol"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">⚽</span><span class="phl">mateo-futbol.png</span>
     </div>
-    <div class="deporte-badge">mateo-futbol.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
@@ -294,10 +294,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-basquet.png" alt="Mateo juega al básquet"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏀</span><span class="phl">mateo-basquet.png</span>
     </div>
-    <div class="deporte-badge">mateo-basquet.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
@@ -317,10 +316,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-voley.png" alt="Mateo juega al vóley"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏐</span><span class="phl">mateo-voley.png</span>
     </div>
-    <div class="deporte-badge">mateo-voley.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
@@ -340,10 +338,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-hockey.png" alt="Mateo juega al hockey"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏑</span><span class="phl">mateo-hockey.png</span>
     </div>
-    <div class="deporte-badge">mateo-hockey.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
@@ -363,10 +360,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-rugby.png" alt="Mateo juega al rugby"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏉</span><span class="phl">mateo-rugby.png</span>
     </div>
-    <div class="deporte-badge">mateo-rugby.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
@@ -386,10 +382,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-beisbol.png" alt="Mateo juega al béisbol"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">⚾</span><span class="phl">mateo-beisbol.png</span>
     </div>
-    <div class="deporte-badge">mateo-beisbol.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
@@ -409,10 +404,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-futbol-americano.png" alt="Mateo juega al fútbol americano"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏈</span><span class="phl">mateo-futbol-americano.png</span>
     </div>
-    <div class="deporte-badge">mateo-futbol-americano.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
@@ -432,10 +426,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-running.png" alt="Mateo practica running"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏃</span><span class="phl">mateo-running.png</span>
     </div>
-    <div class="deporte-badge">mateo-running.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
@@ -455,10 +448,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-tenis.png" alt="Mateo practica tenis"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🎾</span><span class="phl">mateo-tenis.png</span>
     </div>
-    <div class="deporte-badge">mateo-tenis.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
@@ -478,10 +470,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-boxeo.png" alt="Mateo practica boxeo"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🥊</span><span class="phl">mateo-boxeo.png</span>
     </div>
-    <div class="deporte-badge">mateo-boxeo.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
@@ -501,10 +492,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-golf.png" alt="Mateo practica golf"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">⛳</span><span class="phl">mateo-golf.png</span>
     </div>
-    <div class="deporte-badge">mateo-golf.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
@@ -524,10 +514,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-atletismo.png" alt="Mateo practica atletismo"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏅</span><span class="phl">mateo-atletismo.png</span>
     </div>
-    <div class="deporte-badge">mateo-atletismo.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
@@ -547,10 +536,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-natacion.png" alt="Mateo practica natación"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🏊</span><span class="phl">mateo-natacion.png</span>
     </div>
-    <div class="deporte-badge">mateo-natacion.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
@@ -570,10 +558,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-ciclismo.png" alt="Mateo practica ciclismo"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🚴</span><span class="phl">mateo-ciclismo.png</span>
     </div>
-    <div class="deporte-badge">mateo-ciclismo.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
@@ -593,10 +580,9 @@ body {
   <div class="deporte-imgcol">
     <img src="images/mateo-esqui.png" alt="Mateo practica esquí"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">⛷️</span><span class="phl">mateo-esqui.png</span>
     </div>
-    <div class="deporte-badge">mateo-esqui.png</div>
   </div>
   <div class="deporte-tcol">
     <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
@@ -690,7 +676,7 @@ body {
   <div class="imgcol">
     <img src="images/mateo-audio.png" alt="Mateo reportaje"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div style="display:none;flex-direction:column;align-items:center;gap:8px">
+    <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🎙️</span><span class="phl">mateo-audio.png</span>
     </div>
     <div class="badge">🎧 mateo-audio-deporte.mp3</div>
@@ -698,7 +684,12 @@ body {
   <div class="rcol">
     <div class="eyebrow">🎧 Escucha</div>
     <h2>ESCUCHÁ<br>A <em>MATEO</em></h2>
-    <div class="player"><span class="ico">▶️</span><span class="fn">mateo-audio-deporte.mp3</span></div>
+    <div class="audio-wrap">
+    <div class="audio-lbl">🎧 ESCUCHÁ EL AUDIO</div>
+    <audio controls style="width:100%;accent-color:var(--oro);">
+      <source src="audio/mateo-audio-deporte.mp3" type="audio/mpeg">
+    </audio>
+  </div>
     <div class="qs">
       <div class="q"><div class="n">1</div><div class="t">¿Dónde está Mateo y qué evento cubre?</div></div>
       <div class="q"><div class="n">2</div><div class="t">¿Qué deporte jugaba Mateo cuando era niño?</div></div>
@@ -746,12 +737,10 @@ body {
   <div class="stripes"></div>
   <div class="inner">
     <div class="icol">
-      <div class="frame">
-        <img src="images/mateo-chau.png" alt="Mateo despedida"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div style="display:none;flex-direction:column;align-items:center;gap:8px">
-          <span class="ph">🎤</span><span class="phl">mateo-chau.png</span>
-        </div>
+      <img src="images/mateo-chau.png" alt="Mateo despedida"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph-wrap" style="display:none">
+        <span class="ph">🎤</span><span class="phl">mateo-chau.png</span>
       </div>
     </div>
     <div class="tcol">
