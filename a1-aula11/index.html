@@ -33,9 +33,9 @@ body {
 .slide.active                 { display:flex; }
 .slide.active.layout-center   { align-items:center; justify-content:center; flex-direction:column; }
 .slide.active.layout-two-col  { display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:60px 80px; gap:60px; }
-.slide.active.layout-col-wide { display:grid; grid-template-columns:1.1fr 0.9fr; align-items:center; padding:60px 80px; gap:60px; }
+.slide.active.layout-col-wide { display:grid; grid-template-columns:0.8fr 1.2fr; align-items:center; padding:60px 80px; gap:60px; }
 .slide.active.layout-flex-col { flex-direction:column; align-items:center; justify-content:center; padding:40px 80px; gap:24px; }
-.slide.active.layout-deporte  { display:grid; grid-template-columns:1.2fr 0.8fr; align-items:center; padding:60px 80px; gap:60px; }
+.slide.active.layout-deporte  { display:grid; grid-template-columns:0.8fr 1.2fr; align-items:center; padding:60px 80px; gap:60px; }
 
 /* ── NAV ── */
 .nav {
@@ -84,7 +84,7 @@ body {
 
 /* ── PERSONAGEM S3 ── */
 #s3 { background:var(--grafite); }
-#s3 .pcol { position:relative; overflow:hidden; border-radius:20px; height:50vh; border:2px solid rgba(116,192,232,.2); }
+#s3 .pcol { position:relative; overflow:hidden; border-radius:20px; height:75vh; border:2px solid rgba(116,192,232,.2); }
 #s3 .pcol img { width:100%; height:100%; object-fit:cover; object-position:center; background:var(--card); }
 #s3 .pcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); background:var(--card); }
 #s3 .pcol .ph { font-size:100px; }
@@ -101,7 +101,7 @@ body {
 #s3 .quote strong { color:var(--oro); font-style:normal; }
 
 /* ── SLIDES DE DEPORTE (S4–S18) ── */
-.deporte-imgcol { position:relative; overflow:hidden; background:var(--card); border-radius:20px; height:50vh; border:2px solid rgba(116,192,232,.2); }
+.deporte-imgcol { position:relative; overflow:hidden; background:var(--card); border-radius:20px; height:75vh; border:2px solid rgba(116,192,232,.2); }
 .deporte-imgcol img { width:100%; height:100%; object-fit:cover; object-position:center; background:var(--card); display:block; }
 .deporte-imgcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:var(--cinza); }
 .deporte-imgcol .ph  { font-size:80px; }
@@ -153,7 +153,7 @@ body {
 
 /* ── ESCUCHA S21 ── */
 #s21 { background:#050E1F; }
-#s21 .imgcol { position:relative; overflow:hidden; background:var(--card); border-radius:20px; height:50vh; border:2px solid rgba(116,192,232,.2); }
+#s21 .imgcol { position:relative; overflow:hidden; background:var(--card); border-radius:20px; height:75vh; border:2px solid rgba(116,192,232,.2); }
 #s21 .imgcol img { width:100%; height:100%; object-fit:cover; object-position:center; background:var(--card); display:block; }
 #s21 .imgcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:var(--cinza); }
 #s21 .imgcol .ph  { font-size:80px; }
@@ -195,8 +195,8 @@ body {
 /* ── DESPEDIDA S24 ── */
 #s24 { background:var(--grafite); }
 #s24 .stripes { position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(-55deg,transparent,transparent 48px,rgba(0,84,166,.1) 48px,rgba(0,84,166,.1) 50px); }
-#s24 .inner { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; padding:60px 80px; width:100%; }
-#s24 .icol { position:relative; overflow:hidden; border-radius:20px; height:50vh; border:2px solid rgba(116,192,232,.2); }
+#s24 .inner { position:relative; z-index:2; display:grid; grid-template-columns:0.8fr 1.2fr; gap:60px; align-items:center; padding:60px 80px; width:100%; }
+#s24 .icol { position:relative; overflow:hidden; border-radius:20px; height:75vh; border:2px solid rgba(116,192,232,.2); }
 #s24 .icol img { width:100%; height:100%; object-fit:cover; object-position:center; background:var(--card); }
 #s24 .icol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); background:var(--card); }
 #s24 .icol .ph  { font-size:100px; }
@@ -245,7 +245,7 @@ body {
 </section>
 
 <!-- S3 PERSONAGEM -->
-<section class="slide layout-two-col" id="s3">
+<section class="slide layout-col-wide" id="s3">
   <div class="pcol">
     <img src="images/mateo-gonzalez.png" alt="Mateo González"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -679,7 +679,7 @@ body {
     <div class="ph-wrap" style="display:none;flex-direction:column;align-items:center;gap:8px">
       <span class="ph">🎙️</span><span class="phl">mateo-audio.png</span>
     </div>
-    <div class="badge">🎧 mateo-audio-deporte.mp3</div>
+    <div class="badge">🎧 mateo-audio.mp3</div>
   </div>
   <div class="rcol">
     <div class="eyebrow">🎧 Escucha</div>
@@ -687,7 +687,7 @@ body {
     <div class="audio-wrap">
     <div class="audio-lbl">🎧 ESCUCHÁ EL AUDIO</div>
     <audio controls style="width:100%;accent-color:var(--oro);">
-      <source src="audio/mateo-audio-deporte.mp3" type="audio/mpeg">
+      <source src="audio/mateo-audio.mp3" type="audio/mpeg">
     </audio>
   </div>
     <div class="qs">
