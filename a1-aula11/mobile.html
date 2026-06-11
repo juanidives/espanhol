@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Aula 11 · Los Deportes · Mateo González</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&family=Oswald:wght@400;600;700&display=swap');
+
+    :root {
+      --azul: #0054A6;
+      --celeste: #74C0E8;
+      --blanco: #FFFFFF;
+      --oro: #F4C430;
+      --grafite: #1A1A2E;
+      --card: #0F1B35;
+      --texto: #E8EFF8;
+      --cinza: #8899AA;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--grafite);
+      color: var(--texto);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 27, 53, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(116, 192, 232, 0.15);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .topbar .tb-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--celeste);
+      text-transform: uppercase;
+      flex: 1;
+    }
+
+    .topbar .tb-badge {
+      background: var(--azul);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--oro);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+
+    /* ── SECTION CARDS ── */
+    .sec {
+      padding: 24px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .sec:last-child {
+      border-bottom: none;
+      padding-bottom: 80px;
+    }
+
+    /* ── SECTION LABELS ── */
+    .sec-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--celeste);
+      margin-bottom: 12px;
+      opacity: 0.7;
+    }
+
+    /* ── PORTADA ── */
+    #s1 {
+      background: var(--grafite);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #s1 .stripes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(-55deg, transparent, transparent 32px, rgba(0, 84, 166, .1) 32px, rgba(0, 84, 166, .1) 34px);
+    }
+
+    #s1 .circle {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 84, 166, .3) 0%, transparent 70%);
+      top: -150px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    #s1 .box {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    #s1 .lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--celeste);
+    }
+
+    #s1 h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 20vw, 110px);
+      line-height: 0.9;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    #s1 h1 em {
+      color: var(--oro);
+      font-style: normal;
+    }
+
+    #s1 .sub {
+      font-size: 14px;
+      color: var(--celeste);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    #s1 .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    /* ── TAGS ── */
+    .tag {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .tag-azul { background: var(--azul); color: #fff; }
+    .tag-oro { background: var(--oro); color: #000; }
+
+    /* ── SCROLL HINT ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--cinza);
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-family: 'Oswald', sans-serif;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── CALENTAMIENTO ── */
+    #s2 {
+      background: var(--grafite);
+      padding: 32px 16px;
+    }
+
+    #s2 .eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 5px;
+      color: var(--celeste);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    #s2 h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 20vw, 100px);
+      line-height: 0.88;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    #s2 h2 em {
+      color: var(--oro);
+      font-style: normal;
+    }
+
+    #s2 .pregunta {
+      font-size: 18px;
+      color: var(--celeste);
+      font-style: italic;
+      border-left: 5px solid var(--oro);
+      padding-left: 16px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    #s2 .hint {
+      font-size: 15px;
+      color: var(--texto);
+      background: rgba(255,255,255,0.05);
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    #s2 .imgbox {
+      margin-top: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid rgba(116,192,232,0.15);
+    }
+
+    #s2 .imgbox img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* ── PERSONAGEM ── */
+    #s3 {
+      background: var(--grafite);
+    }
+
+    .persona-img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 16px;
+      border: 2px solid rgba(116,192,232,0.2);
+      margin-bottom: 20px;
+      background: var(--card);
+      display: block;
+    }
+
+    .ph-placeholder {
+      width: 100%;
+      height: 200px;
+      background: var(--card);
+      border-radius: 16px;
+      border: 2px solid rgba(116,192,232,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: var(--cinza);
+    }
+
+    .ph-placeholder .ph { font-size: 48px; }
+    .ph-placeholder .phl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .persona-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      line-height: 1;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+
+    .persona-role {
+      font-size: 13px;
+      color: var(--celeste);
+      margin-bottom: 16px;
+    }
+
+    .info-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 12px 16px;
+      border-left: 4px solid var(--azul);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+
+    .info-card.gold { border-left-color: var(--oro); }
+
+    .info-card .lbl {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--celeste);
+    }
+
+    .info-card .val {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .quote-box {
+      background: rgba(0,84,166,.15);
+      border: 1px solid rgba(116,192,232,.2);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--texto);
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .quote-box strong {
+      color: var(--oro);
+      font-style: normal;
+    }
+
+    /* ── DEPORTE CARDS ── */
+    .deporte-sec {
+      background: var(--grafite);
+    }
+
+    .deporte-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .deporte-cat {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .cat-equipo { color: var(--oro); }
+    .cat-individual { color: var(--celeste); }
+
+    .deporte-hero {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .deporte-emoji {
+      font-size: 44px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .deporte-nombre {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 14vw, 72px);
+      line-height: 1;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    .deporte-img {
+      width: 100%;
+      border-radius: 16px;
+      border: 2px solid rgba(116,192,232,0.2);
+      background: var(--card);
+      margin-bottom: 16px;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      object-position: top;
+    }
+
+    .deporte-frase {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      border-left: 6px solid var(--azul);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--texto);
+    }
+
+    .deporte-frase .vb { color: var(--celeste); font-weight: 700; }
+    .deporte-frase .ctx { color: var(--oro); font-weight: 600; }
+    .deporte-frase .nm { color: #fff; font-weight: 700; }
+
+    .deporte-extra {
+      font-size: 12px;
+      color: var(--cinza);
+      font-style: italic;
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .sec-divider {
+      text-align: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(116,192,232,0.08);
+    }
+
+    .sec-divider span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--cinza);
+      text-transform: uppercase;
+    }
+
+    /* ── GRAMÁTICA ── */
+    .gram-sec {
+      background: var(--grafite);
+    }
+
+    .gram-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 44px;
+      color: #fff;
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .gram-title em { color: var(--oro); font-style: normal; }
+    .gram-title em.cel { color: var(--celeste); font-style: normal; }
+
+    .vbox {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      border-top: 4px solid var(--azul);
+      margin-bottom: 14px;
+    }
+
+    .vbox.cel { border-top-color: var(--celeste); }
+
+    .vbox h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      color: var(--oro);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .vbox.cel h3 { color: var(--celeste); }
+
+    .vbox table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .vbox table tr {
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .vbox table td {
+      padding: 8px 4px;
+      font-size: 13px;
+      vertical-align: middle;
+    }
+
+    .pr { color: var(--cinza); width: 40%; }
+    .vf { color: var(--celeste); font-weight: 700; }
+    .ex { color: var(--texto); font-size: 12px; font-style: italic; }
+
+    .vbox table tr.hl td { background: rgba(244,196,48,.07); }
+    .vbox table tr.hl .vf { color: var(--oro); }
+
+    .note {
+      background: rgba(244,196,48,.08);
+      border: 1px solid rgba(244,196,48,.25);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--texto);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .note em { color: var(--oro); font-style: normal; font-weight: 700; }
+    .note b { color: var(--celeste); }
+
+    .ejs {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .ejs .eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--celeste);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .ejs p { font-size: 13px; color: var(--texto); }
+    .ejs p b { color: var(--celeste); }
+    .ejs p i { color: var(--oro); font-style: normal; font-weight: 700; }
+
+    .gram-quote {
+      background: rgba(0,84,166,.15);
+      border: 1px solid rgba(116,192,232,.2);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    /* ── ESCUCHA ── */
+    #s21 { background: #050E1F; }
+
+    #s21 h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    #s21 h2 em { color: var(--celeste); font-style: normal; }
+
+    .audio-wrap {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px;
+      border: 2px solid var(--azul);
+      margin-bottom: 16px;
+    }
+
+    .audio-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--oro);
+      margin-bottom: 10px;
+    }
+
+    audio {
+      width: 100%;
+      accent-color: var(--oro);
+    }
+
+    .q-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .q-item {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .q-item .n {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: var(--azul);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .q-item .t { font-size: 14px; color: var(--texto); line-height: 1.5; }
+
+    /* ── TRANSCRIPT ── */
+    #s22 { background: #050E1F; }
+
+    #s22 h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    #s22 h2 em { color: var(--celeste); font-style: normal; }
+
+    .tx {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      line-height: 1.9;
+      font-size: 14px;
+      color: var(--texto);
+      border: 1px solid rgba(116,192,232,.1);
+    }
+
+    .tx p { margin-bottom: 10px; }
+    .tx p:last-child { color: var(--celeste); font-weight: 600; font-style: italic; margin-bottom: 0; }
+    .tx .vb { color: var(--celeste); font-weight: 700; }
+    .tx .ob { color: var(--oro); font-weight: 700; }
+
+    /* ── HABLA ── */
+    #s23 { background: var(--grafite); }
+
+    #s23 h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: #fff;
+      letter-spacing: 3px;
+      line-height: 1;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    #s23 h2 em { color: var(--oro); font-style: normal; }
+
+    .pmain {
+      background: var(--azul);
+      border-radius: 16px;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,84,166,.4);
+      margin-bottom: 14px;
+    }
+
+    .pmain span {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,.8);
+      margin-top: 6px;
+      display: block;
+    }
+
+    .tips {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tip {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 14px;
+      border-top: 3px solid var(--celeste);
+    }
+
+    .tip .tl {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--celeste);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .tip .te { font-size: 14px; color: var(--texto); line-height: 1.5; }
+    .tip .te strong { color: var(--oro); }
+
+    /* ── DESPEDIDA ── */
+    #s24 {
+      background: var(--grafite);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #s24 .stripes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(-55deg, transparent, transparent 32px, rgba(0,84,166,.08) 32px, rgba(0,84,166,.08) 34px);
+    }
+
+    #s24 .inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    #s24 h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      line-height: 0.95;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    #s24 h2 em { color: var(--oro); font-style: normal; }
+
+    #s24 .fw {
+      font-size: 15px;
+      color: var(--texto);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    #s24 .fw strong { color: var(--celeste); }
+
+    #s24 .ntag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--azul);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      padding: 10px 16px;
+      border-radius: 10px;
+    }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(10, 16, 35, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(116,192,232,0.12);
+      padding: 10px 20px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .bottom-nav .section-info {
+      flex: 1;
+      text-align: center;
+    }
+
+    .bottom-nav .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--celeste);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .bottom-nav .section-num {
+      font-size: 10px;
+      color: var(--cinza);
+    }
+
+    .nav-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: background .2s;
+      line-height: 1;
+    }
+
+    .nav-btn:active { background: rgba(255,255,255,0.2); }
+
+    /* ── FLOATING SECTION DOTS ── */
+    .side-dots {
+      position: fixed;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 998;
+    }
+
+    .sdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .sdot.on {
+      background: var(--oro);
+      height: 14px;
+      border-radius: 3px;
+    }
+
+    /* ── SCROLLABLE CONTENT INSIDE SLIDES ── */
+    .scroll-inner {
+      overflow-y: auto;
+      max-height: calc(100vh - 60px);
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ── DEPORTE GROUP HEADER ── */
+    .group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 16px 8px;
+      background: var(--grafite);
+    }
+
+    .group-header .gh-icon { font-size: 20px; }
+
+    .group-header .gh-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--cinza);
+    }
+
+    .group-header .gh-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* ── SWIPE INDICATOR ── */
+    .swipe-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      font-size: 11px;
+      color: var(--cinza);
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span class="tb-title">🇦🇷 Aula 11 · Deportes</span>
+    <span class="tb-badge">A1</span>
+  </div>
+
+  <!-- ══ S1 PORTADA ══ -->
+  <section class="sec" id="s1">
+    <div class="stripes"></div>
+    <div class="circle"></div>
+    <div class="box">
+      <span class="lbl">A U L A &nbsp;1 1 &nbsp;· &nbsp;E S P A Ñ O L &nbsp;· &nbsp;A 1</span>
+      <h1>LOS <em>DEPORTES</em></h1>
+      <p class="sub">La Copa del Mundo con Mateo González · Buenos Aires, Argentina</p>
+      <div class="row">
+        <span class="tag tag-azul">🎧 Escucha</span>
+        <span class="tag tag-oro">💬 Habla</span>
+        <span class="tag tag-azul">📖 Vocabulario</span>
+        <span class="tag tag-oro">✏️ Gramática</span>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>▼</span>
+      <span>DESLIZÁ</span>
+    </div>
+  </section>
+
+  <!-- ══ S2 CALENTAMIENTO ══ -->
+  <section class="sec" id="s2">
+    <div class="eyebrow">🔥 Calentamiento</div>
+    <h2>¿QUÉ<br><em>DEPORTE</em><br>ES?</h2>
+    <p class="pregunta">"¿Qué ves en la foto?<br>Di en voz alta todo<br>lo que conoces."</p>
+    <p class="hint">🗣️ ¡No hay respuestas incorrectas!</p>
+    <div class="imgbox">
+      <img src="images/deportes-calentamiento.png" alt="Deportes"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph-placeholder" style="display:none">
+        <span class="ph">🏆</span><span class="phl">deportes-calentamiento.png</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ S3 PERSONAJE ══ -->
+  <section class="sec" id="s3">
+    <div class="sec-label">👋 Conoce al personaje</div>
+    <img src="images/mateo-gonzalez.png" alt="Mateo González" class="persona-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🎤</span><span class="phl">mateo-gonzalez.png</span>
+    </div>
+    <div class="persona-name">MATEO<br>GONZÁLEZ</div>
+    <p class="persona-role">Periodista deportivo · 30 años · Buenos Aires</p>
+    <div class="info-card"><span class="lbl">Ciudad</span><span class="val">🇦🇷 Buenos Aires, Argentina</span></div>
+    <div class="info-card"><span class="lbl">Trabajo</span><span class="val">📺 Periodista deportivo</span></div>
+    <div class="info-card gold"><span class="lbl">Cobertura actual</span><span class="val">🏆 Copa del Mundo</span></div>
+    <div class="info-card"><span class="lbl">Redes</span><span class="val">📱 @cronica_deportiva</span></div>
+    <div class="quote-box">"El deporte <strong>une a los pueblos</strong> — y yo tengo el mejor trabajo del mundo:
+      <strong>contar esas historias</strong>."</div>
+  </section>
+
+  <!-- ══ DEPORTES DE EQUIPO HEADER ══ -->
+  <div class="group-header">
+    <span class="gh-icon">⚽</span>
+    <span class="gh-title">Deportes de equipo</span>
+    <div class="gh-line"></div>
+  </div>
+
+  <!-- ══ S4 FÚTBOL ══ -->
+  <section class="sec deporte-sec" id="s4">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">⚽</span>
+      <div class="deporte-nombre">FÚTBOL</div>
+    </div>
+    <img src="images/mateo-futbol.png" alt="Mateo juega al fútbol" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">⚽</span><span class="phl">mateo-futbol.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">juega al</span> fútbol en el <span class="ctx">estadio Monumental</span> todos los
+      domingos con sus amigos del barrio.
+      <div class="deporte-extra">jugar al fútbol · el estadio · los domingos</div>
+    </div>
+  </section>
+
+  <!-- ══ S5 BÁSQUET ══ -->
+  <section class="sec deporte-sec" id="s5">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🏀</span>
+      <div class="deporte-nombre">BÁSQUET</div>
+    </div>
+    <img src="images/mateo-basquet.png" alt="Mateo juega al básquet" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🏀</span><span class="phl">mateo-basquet.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">juega al</span> básquet en la <span class="ctx">cancha del barrio</span> los sábados por
+      la tarde con sus colegas del trabajo.
+      <div class="deporte-extra">jugar al básquet · la cancha · los sábados</div>
+    </div>
+  </section>
+
+  <!-- ══ S6 VÓLEY ══ -->
+  <section class="sec deporte-sec" id="s6">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🏐</span>
+      <div class="deporte-nombre">VÓLEY</div>
+    </div>
+    <img src="images/mateo-voley.png" alt="Mateo juega al vóley" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🏐</span><span class="phl">mateo-voley.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">juega al</span> vóley en la <span class="ctx">playa de Mar del Plata</span> cuando va de
+      vacaciones en verano.
+      <div class="deporte-extra">jugar al vóley · la playa · en verano</div>
+    </div>
+  </section>
+
+  <!-- ══ S7 HOCKEY ══ -->
+  <section class="sec deporte-sec" id="s7">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🏑</span>
+      <div class="deporte-nombre">HOCKEY</div>
+    </div>
+    <img src="images/mateo-hockey.png" alt="Mateo juega al hockey" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🏑</span><span class="phl">mateo-hockey.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">juega al</span> hockey en el <span class="ctx">club Atlético de Buenos Aires</span> los
+      miércoles por la noche.
+      <div class="deporte-extra">jugar al hockey · el club · los miércoles</div>
+    </div>
+  </section>
+
+  <!-- ══ S8 RUGBY ══ -->
+  <section class="sec deporte-sec" id="s8">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🏉</span>
+      <div class="deporte-nombre">RUGBY</div>
+    </div>
+    <img src="images/mateo-rugby.png" alt="Mateo juega al rugby" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🏉</span><span class="phl">mateo-rugby.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">juega al</span> rugby con <span class="ctx">Los Pumas</span> — asi se llama el equipo
+      amateur de su barrio.
+      <div class="deporte-extra">jugar al rugby · el equipo · la Copa</div>
+    </div>
+  </section>
+
+  <!-- ══ S9 BÉISBOL ══ -->
+  <section class="sec deporte-sec" id="s9">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">⚾</span>
+      <div class="deporte-nombre">BÉISBOL</div>
+    </div>
+    <img src="images/mateo-beisbol.png" alt="Mateo juega al béisbol" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">⚾</span><span class="phl">mateo-beisbol.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">juega al</span> béisbol en el <span class="ctx">parque Centenario</span> los domingos —
+      lo aprendió cuando cubrió la Serie del Caribe.
+      <div class="deporte-extra">jugar al béisbol · el parque · los domingos</div>
+    </div>
+  </section>
+
+  <!-- ══ S10 FÚTBOL AMERICANO ══ -->
+  <section class="sec deporte-sec" id="s10">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-equipo">⚽ Deporte de equipo</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🏈</span>
+      <div class="deporte-nombre" style="font-size:clamp(32px,10vw,56px)">FÚTBOL AMERICANO</div>
+    </div>
+    <img src="images/mateo-futbol-americano.png" alt="Mateo juega al fútbol americano" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🏈</span><span class="phl">mateo-futbol-americano.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">juega al</span> fútbol americano con amigos en el <span class="ctx">Super Bowl
+        porteño</span> — un partido informal que organiza cada año.
+      <div class="deporte-extra">jugar al fútbol americano · el partido · cada año</div>
+    </div>
+  </section>
+
+  <!-- ══ DEPORTES INDIVIDUALES HEADER ══ -->
+  <div class="group-header">
+    <span class="gh-icon">🏃</span>
+    <span class="gh-title">Deportes individuales</span>
+    <div class="gh-line"></div>
+  </div>
+
+  <!-- ══ S11 RUNNING ══ -->
+  <section class="sec deporte-sec" id="s11">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🏃</span>
+      <div class="deporte-nombre">RUNNING</div>
+    </div>
+    <img src="images/mateo-running.png" alt="Mateo practica running" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🏃</span><span class="phl">mateo-running.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">practica</span> running por la <span class="ctx">costanera del Río de la Plata</span>
+      todas las mañanas antes de ir al trabajo.
+      <div class="deporte-extra">practicar running · la costanera · todas las mañanas</div>
+    </div>
+  </section>
+
+  <!-- ══ S12 TENIS ══ -->
+  <section class="sec deporte-sec" id="s12">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🎾</span>
+      <div class="deporte-nombre">TENIS</div>
+    </div>
+    <img src="images/mateo-tenis.png" alt="Mateo practica tenis" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🎾</span><span class="phl">mateo-tenis.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">practica</span> tenis en el <span class="ctx">Club de Tenis Palermo</span> los fines de
+      semana — su ídolo es Juan Martín del Potro.
+      <div class="deporte-extra">practicar tenis · el club · los fines de semana</div>
+    </div>
+  </section>
+
+  <!-- ══ S13 BOXEO ══ -->
+  <section class="sec deporte-sec" id="s13">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🥊</span>
+      <div class="deporte-nombre">BOXEO</div>
+    </div>
+    <img src="images/mateo-boxeo.png" alt="Mateo practica boxeo" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🥊</span><span class="phl">mateo-boxeo.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">practica</span> boxeo en el <span class="ctx">gimnasio del centro</span> los martes y
+      jueves — dice que es perfecto para liberar el estrés.
+      <div class="deporte-extra">practicar boxeo · el gimnasio · los martes y jueves</div>
+    </div>
+  </section>
+
+  <!-- ══ S14 GOLF ══ -->
+  <section class="sec deporte-sec" id="s14">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">⛳</span>
+      <div class="deporte-nombre">GOLF</div>
+    </div>
+    <img src="images/mateo-golf.png" alt="Mateo practica golf" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">⛳</span><span class="phl">mateo-golf.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">practica</span> golf en el <span class="ctx">campo de Tortugas Country Club</span> con su
+      padre los domingos por la mañana.
+      <div class="deporte-extra">practicar golf · el campo · los domingos</div>
+    </div>
+  </section>
+
+  <!-- ══ S15 ATLETISMO ══ -->
+  <section class="sec deporte-sec" id="s15">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🏅</span>
+      <div class="deporte-nombre">ATLETISMO</div>
+    </div>
+    <img src="images/mateo-atletismo.png" alt="Mateo practica atletismo" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🏅</span><span class="phl">mateo-atletismo.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">practica</span> atletismo en la <span class="ctx">pista olímpica del centro
+        deportivo</span> — cubre los 100 metros en competencias amateur.
+      <div class="deporte-extra">practicar atletismo · la pista · las competencias</div>
+    </div>
+  </section>
+
+  <!-- ══ S16 NATACIÓN ══ -->
+  <section class="sec deporte-sec" id="s16">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🏊</span>
+      <div class="deporte-nombre">NATACIÓN</div>
+    </div>
+    <img src="images/mateo-natacion.png" alt="Mateo practica natación" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🏊</span><span class="phl">mateo-natacion.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">practica</span> natación en la <span class="ctx">pileta del club Náutico</span> los lunes
+      y miércoles — dice que es el deporte más completo.
+      <div class="deporte-extra">practicar natación · la pileta · los lunes y miércoles</div>
+    </div>
+  </section>
+
+  <!-- ══ S17 CICLISMO ══ -->
+  <section class="sec deporte-sec" id="s17">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">🚴</span>
+      <div class="deporte-nombre">CICLISMO</div>
+    </div>
+    <img src="images/mateo-ciclismo.png" alt="Mateo practica ciclismo" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🚴</span><span class="phl">mateo-ciclismo.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">practica</span> ciclismo por el <span class="ctx">Parque 3 de Febrero</span> en Palermo
+      todos los sábados a las 7 de la mañana.
+      <div class="deporte-extra">practicar ciclismo · el parque · los sábados</div>
+    </div>
+  </section>
+
+  <!-- ══ S18 ESQUÍ ══ -->
+  <section class="sec deporte-sec" id="s18">
+    <div class="deporte-header">
+      <span class="deporte-cat cat-individual">🏃 Deporte individual</span>
+    </div>
+    <div class="deporte-hero">
+      <span class="deporte-emoji">⛷️</span>
+      <div class="deporte-nombre">ESQUÍ</div>
+    </div>
+    <img src="images/mateo-esqui.png" alt="Mateo practica esquí" class="deporte-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">⛷️</span><span class="phl">mateo-esqui.png</span>
+    </div>
+    <div class="deporte-frase">
+      Mateo <span class="vb">practica</span> esquí en <span class="ctx">Bariloche</span> cada invierno — dice que las
+      montañas de la Patagonia son las más hermosas del mundo.
+      <div class="deporte-extra">practicar esquí · las montañas · cada invierno</div>
+    </div>
+  </section>
+
+  <!-- ══ GRAMÁTICA HEADER ══ -->
+  <div class="group-header">
+    <span class="gh-icon">✏️</span>
+    <span class="gh-title">Gramática</span>
+    <div class="gh-line"></div>
+  </div>
+
+  <!-- ══ S19 GRAMÁTICA JUGAR ══ -->
+  <section class="sec gram-sec" id="s19">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">VERBO<br><em>JUGAR A</em></div>
+    <div class="note">
+      Usamos <em>jugar a</em> con deportes de <b>equipo</b>: fútbol, básquet, vóley, hockey, rugby, béisbol, fútbol americano.
+    </div>
+    <div class="vbox">
+      <h3>⚽ JUGAR (A) — presente indicativo</h3>
+      <table>
+        <tr>
+          <td class="pr">Yo</td>
+          <td class="vf">juego</td>
+          <td class="ex">al fútbol</td>
+        </tr>
+        <tr>
+          <td class="pr">Tu</td>
+          <td class="vf">juegas</td>
+          <td class="ex">al básquet</td>
+        </tr>
+        <tr class="hl">
+          <td class="pr">Vos</td>
+          <td class="vf">jugás</td>
+          <td class="ex">al básquet</td>
+        </tr>
+        <tr>
+          <td class="pr">El/Ella/Usted</td>
+          <td class="vf">juega</td>
+          <td class="ex">al vóley</td>
+        </tr>
+        <tr>
+          <td class="pr">Nosotros/Nosotras</td>
+          <td class="vf">jugamos</td>
+          <td class="ex">al rugby</td>
+        </tr>
+        <tr>
+          <td class="pr">Vosotros/Vosotras</td>
+          <td class="vf">jugáis</td>
+          <td class="ex">al hockey</td>
+        </tr>
+        <tr>
+          <td class="pr">Ellos/Ellas/Ustedes</td>
+          <td class="vf">juegan</td>
+          <td class="ex">al béisbol</td>
+        </tr>
+      </table>
+    </div>
+    <div class="note">
+      ⚠️ <em>Vos</em> es el pronombre del español <b>rioplatense</b> (Argentina y Uruguay). Mateo usa <em>vos</em> en su vida diaria.
+    </div>
+    <div class="ejs">
+      <div class="eyebrow">Ejemplos con Mateo</div>
+      <p>✅ Yo <b>juego al</b> fútbol en el estadio.</p>
+      <p>✅ Mateo <b>juega al</b> básquet los sábados.</p>
+      <p>✅ ¿Vos <i>jugás al</i> hockey?</p>
+      <p>✅ Nosotros <b>jugamos al</b> vóley en la playa.</p>
+    </div>
+    <div class="gram-quote">
+      "Yo <span style="color:var(--celeste);font-weight:700;font-style:normal">juego al</span> fútbol desde los cinco
+      años. Es mi pasión."<br>
+      <span style="font-size:12px;color:var(--cinza);font-style:normal">— Mateo González, Buenos Aires 🇦🇷</span>
+    </div>
+  </section>
+
+  <!-- ══ S20 GRAMÁTICA PRACTICAR ══ -->
+  <section class="sec gram-sec" id="s20">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">VERBO<br><em class="cel">PRACTICAR</em></div>
+    <div class="note">
+      Usamos <em>practicar</em> con deportes <b>individuales</b>: running, tenis, boxeo, golf, atletismo, natación, ciclismo, esquí.
+    </div>
+    <div class="vbox cel">
+      <h3>🏃 PRACTICAR — presente indicativo</h3>
+      <table>
+        <tr>
+          <td class="pr">Yo</td>
+          <td class="vf">practico</td>
+          <td class="ex">natación</td>
+        </tr>
+        <tr>
+          <td class="pr">Tu</td>
+          <td class="vf">practicas</td>
+          <td class="ex">ciclismo</td>
+        </tr>
+        <tr class="hl">
+          <td class="pr">Vos</td>
+          <td class="vf">practicás</td>
+          <td class="ex">ciclismo</td>
+        </tr>
+        <tr>
+          <td class="pr">El/Ella/Usted</td>
+          <td class="vf">practica</td>
+          <td class="ex">atletismo</td>
+        </tr>
+        <tr>
+          <td class="pr">Nosotros/Nosotras</td>
+          <td class="vf">practicamos</td>
+          <td class="ex">boxeo</td>
+        </tr>
+        <tr>
+          <td class="pr">Vosotros/Vosotras</td>
+          <td class="vf">practicáis</td>
+          <td class="ex">tenis</td>
+        </tr>
+        <tr>
+          <td class="pr">Ellos/Ellas/Ustedes</td>
+          <td class="vf">practican</td>
+          <td class="ex">esquí</td>
+        </tr>
+      </table>
+    </div>
+    <div class="note">
+      💡 <em>Practicar</em> también funciona con deportes de equipo: <b>"practico fútbol"</b> es correcto. Pero <em>jugar a</em> es más natural para equipos.
+    </div>
+    <div class="ejs">
+      <div class="eyebrow">Ejemplos con Mateo</div>
+      <p>✅ Yo <b>practico</b> running por la costanera.</p>
+      <p>✅ Mateo <b>practica</b> tenis los fines de semana.</p>
+      <p>✅ ¿Vos <i>practicás</i> natación?</p>
+      <p>✅ Nosotros <b>practicamos</b> ciclismo en el parque.</p>
+    </div>
+    <div class="gram-quote">
+      "Yo <span style="color:var(--celeste);font-weight:700;font-style:normal">practico</span> running todos los días
+      — es mi manera de pensar."<br>
+      <span style="font-size:12px;color:var(--cinza);font-style:normal">— Mateo González, Buenos Aires 🇦🇷</span>
+    </div>
+  </section>
+
+  <!-- ══ S21 ESCUCHA ══ -->
+  <section class="sec" id="s21">
+    <div class="sec-label">🎧 Escucha</div>
+    <h2>ESCUCHÁ<br>A <em>MATEO</em></h2>
+    <div class="audio-wrap">
+      <div class="audio-lbl">🎧 ESCUCHÁ EL AUDIO</div>
+      <audio controls>
+        <source src="audio/mateo-audio.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <div class="q-list">
+      <div class="q-item">
+        <div class="n">1</div>
+        <div class="t">¿Dónde está Mateo y qué evento cubre?</div>
+      </div>
+      <div class="q-item">
+        <div class="n">2</div>
+        <div class="t">¿Qué deporte jugaba Mateo cuando era niño?</div>
+      </div>
+      <div class="q-item">
+        <div class="n">3</div>
+        <div class="t">¿Qué deporte juega Mateo los fines de semana?</div>
+      </div>
+      <div class="q-item">
+        <div class="n">4</div>
+        <div class="t">¿Qué deporte le parece más completo a Mateo?</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ S22 TRANSCRIPT ══ -->
+  <section class="sec" id="s22">
+    <h2>📄 TEXTO DEL <em>AUDIO</em></h2>
+    <div class="tx">
+      <p>¡Hola a todos! Soy Mateo González y soy periodista deportivo de Buenos Aires.</p>
+      <p>Hoy <span class="vb">estoy</span> en el estadio Monumental. <span class="vb">Estoy</span> muy feliz, porque
+        <span class="vb">estoy</span> cubriendo la Copa del Mundo. ¡Es un sueño para mí!</p>
+      <p>Desde chico <span class="vb">me gustan</span> mucho los deportes. Cuando era niño, <span class="vb">jugaba
+          al</span> <span class="ob">fútbol</span> todos los días en la calle con mis amigos del barrio.</p>
+      <p>Ahora no <span class="vb">juego al</span> <span class="ob">fútbol</span> todos los días, pero <span
+          class="vb">juego al</span> <span class="ob">tenis</span> los fines de semana.</p>
+      <p>En la Copa del Mundo <span class="vb">vemos</span> mucho <span class="ob">fútbol</span>. Pero también <span
+          class="vb">me gustan</span> otros deportes.</p>
+      <p>Una vez cubrí los Juegos Olímpicos y fue increíble. Allí pude ver <span class="ob">atletismo</span>, <span
+          class="ob">básquet</span>, <span class="ob">natación</span>, <span class="ob">ciclismo</span> y muchos
+        deportes más.</p>
+      <p><span class="vb">Me encanta</span> el <span class="ob">atletismo</span>. Los corredores son muy rápidos.
+        También <span class="vb">me gusta</span> el <span class="ob">básquet</span>, porque los jugadores saltan muy
+        alto.</p>
+      <p>La <span class="ob">natación</span> me <span class="vb">parece</span> un deporte muy completo. Y el <span
+          class="ob">ciclismo</span> también <span class="vb">me gusta</span> mucho. En Argentina hay ciclistas muy
+        talentosos.</p>
+      <p>¿Y vos, qué deporte <span class="vb">practicás</span>? ¿Te <span class="vb">gustan</span> más los deportes en
+        equipo o los deportes individuales? ¡Nos vemos en la próxima transmisión desde la Copa del Mundo! 🏆</p>
+    </div>
+  </section>
+
+  <!-- ══ S23 HABLA ══ -->
+  <section class="sec" id="s23">
+    <div class="sec-label">🗣️ Actividad oral</div>
+    <h2>¡AHORA<br><em>HABLÁS</em> VOS!</h2>
+    <div class="pmain">
+      ¿Qué deporte <strong>practicás</strong> o <strong>jugás</strong>?
+      <span>¿Con quién? ¿Cuándo? ¿En equipo o solo/sola?</span>
+    </div>
+    <div class="tips">
+      <div class="tip">
+        <div class="tl">💡 Deporte</div>
+        <div class="te">Yo <strong>juego al</strong> fútbol.<br>Yo <strong>practico</strong> natación.</div>
+      </div>
+      <div class="tip">
+        <div class="tl">👥 Con quién</div>
+        <div class="te">con mis amigos.<br>solo / sola.</div>
+      </div>
+      <div class="tip">
+        <div class="tl">📅 Cuándo</div>
+        <div class="te">los fines de semana.<br>todos los días.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ S24 DESPEDIDA ══ -->
+  <section class="sec" id="s24">
+    <div class="stripes"></div>
+    <div class="inner">
+      <img src="images/mateo-chau.png" alt="Mateo despedida" class="persona-img"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph-placeholder" style="display:none">
+        <span class="ph">🎤</span><span class="phl">mateo-chau.png</span>
+      </div>
+      <h2>¡HASTA<br><em>LA PRÓXIMA!</em></h2>
+      <p class="fw">¡Me encantó compartir este viaje por el mundo del deporte con ustedes! <strong>El deporte une a la
+          gente</strong> — y aprender español también. ¡Nos vemos en la próxima transmisión!</p>
+      <div class="ntag">📺 @cronica_deportiva · Buenos Aires 🇦🇷</div>
+    </div>
+  </section>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn" id="btnPrev" onclick="navPrev()">←</button>
+    <div class="section-info">
+      <span class="section-title" id="navTitle">Portada</span>
+      <span class="section-num" id="navNum">1 / 24</span>
+    </div>
+    <button class="nav-btn" id="btnNext" onclick="navNext()">→</button>
+  </nav>
+
+  <!-- SIDE DOTS -->
+  <div class="side-dots" id="sideDots"></div>
+
+  <script>
+    // ── SECTIONS DEFINITION ──
+    const sections = [
+      { id: 's1',  label: 'Portada' },
+      { id: 's2',  label: 'Calentamiento' },
+      { id: 's3',  label: 'Mateo González' },
+      { id: 's4',  label: 'Fútbol' },
+      { id: 's5',  label: 'Básquet' },
+      { id: 's6',  label: 'Vóley' },
+      { id: 's7',  label: 'Hockey' },
+      { id: 's8',  label: 'Rugby' },
+      { id: 's9',  label: 'Béisbol' },
+      { id: 's10', label: 'Fútbol Americano' },
+      { id: 's11', label: 'Running' },
+      { id: 's12', label: 'Tenis' },
+      { id: 's13', label: 'Boxeo' },
+      { id: 's14', label: 'Golf' },
+      { id: 's15', label: 'Atletismo' },
+      { id: 's16', label: 'Natación' },
+      { id: 's17', label: 'Ciclismo' },
+      { id: 's18', label: 'Esquí' },
+      { id: 's19', label: 'Gramática: Jugar' },
+      { id: 's20', label: 'Gramática: Practicar' },
+      { id: 's21', label: 'Escucha' },
+      { id: 's22', label: 'Transcripto' },
+      { id: 's23', label: '¡Hablás Vos!' },
+      { id: 's24', label: 'Despedida' },
+    ];
+
+    const total = sections.length;
+    let activeSec = 0;
+
+    // Build side dots
+    const dotsEl = document.getElementById('sideDots');
+    sections.forEach((s, i) => {
+      const d = document.createElement('div');
+      d.className = 'sdot' + (i === 0 ? ' on' : '');
+      d.title = s.label;
+      d.onclick = () => scrollToSection(i);
+      dotsEl.appendChild(d);
+    });
+
+    function updateNav(idx) {
+      activeSec = idx;
+      document.getElementById('navTitle').textContent = sections[idx].label;
+      document.getElementById('navNum').textContent = (idx + 1) + ' / ' + total;
+      // update dots
+      document.querySelectorAll('.sdot').forEach((d, i) => {
+        d.classList.toggle('on', i === idx);
+      });
+      // progress bar
+      const pct = ((idx + 1) / total) * 100;
+      document.getElementById('progressBar').style.width = pct + '%';
+    }
+
+    function scrollToSection(idx) {
+      const el = document.getElementById(sections[idx].id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateNav(idx);
+    }
+
+    function navPrev() {
+      if (activeSec > 0) scrollToSection(activeSec - 1);
+    }
+
+    function navNext() {
+      if (activeSec < total - 1) scrollToSection(activeSec + 1);
+    }
+
+    // ── INTERSECTION OBSERVER for active section tracking ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = sections.findIndex(s => s.id === entry.target.id);
+          if (idx !== -1) updateNav(idx);
+        }
+      });
+    }, {
+      threshold: 0.4,
+      rootMargin: '-60px 0px -50% 0px'
+    });
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+
+    // ── KEYBOARD NAV ──
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') navNext();
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navPrev();
+    });
+
+    // ── SWIPE SUPPORT ──
+    let touchStartY = 0;
+    document.addEventListener('touchstart', e => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+      const diff = touchStartY - e.changedTouches[0].clientY;
+      // Only trigger nav if swipe is very fast and long (intentional swipe)
+      // For normal scroll we let the browser handle it naturally
+    }, { passive: true });
+  </script>
+
+</body>
+
+</html>
