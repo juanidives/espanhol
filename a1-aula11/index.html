@@ -72,11 +72,11 @@ body {
 
 /* ── CALENTAMIENTO S2 ── */
 #s2 { background:var(--grafite); }
-#s2 .left { display:flex; flex-direction:column; gap:20px; }
-#s2 h2 { font-family:'Bebas Neue',sans-serif; font-size:72px; line-height:1; color:#fff; }
+#s2 .left { display:flex; flex-direction:column; gap:40px; }
+#s2 h2 { font-family:'Bebas Neue',sans-serif; font-size:120px; line-height:0.95; color:#fff; letter-spacing:2px; }
 #s2 h2 em { color:var(--oro); font-style:normal; }
-#s2 .pregunta { font-size:22px; color:var(--celeste); font-style:italic; border-left:4px solid var(--oro); padding-left:16px; line-height:1.5; }
-#s2 .hint { font-size:16px; color:var(--cinza); }
+#s2 .pregunta { font-size:32px; color:var(--celeste); font-style:italic; border-left:6px solid var(--oro); padding-left:24px; line-height:1.4; }
+#s2 .hint { font-size:20px; color:var(--cinza); }
 #s2 .imgbox { width:100%; height:75vh; border-radius:20px; background:var(--card); border:2px solid rgba(116,192,232,.2); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); overflow:hidden; }
 #s2 .imgbox img { width:100%; height:100%; object-fit:cover; border-radius:18px; }
 #s2 .imgbox .ph { font-size:60px; }
@@ -84,8 +84,8 @@ body {
 
 /* ── PERSONAGEM S3 ── */
 #s3 { background:var(--grafite); }
-#s3 .pcol { position:relative; overflow:hidden; border-radius:20px; height:75vh; border:2px solid rgba(116,192,232,.2); }
-#s3 .pcol img { width:100%; height:100%; object-fit:cover; object-position:center; background:var(--card); }
+#s3 .pcol { position:relative; overflow:hidden; border-radius:20px; height:75vh; aspect-ratio: 1086 / 1448; justify-self: center; border:2px solid rgba(116,192,232,.2); }
+#s3 .pcol img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--card); }
 #s3 .pcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); background:var(--card); }
 #s3 .pcol .ph { font-size:100px; }
 #s3 .pcol .phl { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; }
@@ -101,8 +101,8 @@ body {
 #s3 .quote strong { color:var(--oro); font-style:normal; }
 
 /* ── SLIDES DE DEPORTE (S4–S18) ── */
-.deporte-imgcol { position:relative; overflow:hidden; background:var(--card); border-radius:20px; height:75vh; border:2px solid rgba(116,192,232,.2); }
-.deporte-imgcol img { width:100%; height:100%; object-fit:cover; object-position:center; background:var(--card); display:block; }
+.deporte-imgcol { position:relative; overflow:hidden; background:var(--card); border-radius:20px; height:75vh; aspect-ratio: 1086 / 1448; justify-self: center; border:2px solid rgba(116,192,232,.2); }
+.deporte-imgcol img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--card); display:block; }
 .deporte-imgcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:var(--cinza); }
 .deporte-imgcol .ph  { font-size:80px; }
 .deporte-imgcol .phl { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; }
@@ -110,11 +110,12 @@ body {
 .deporte-imgcol .phl { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; }
 
 .deporte-tcol { display:flex; flex-direction:column; gap:22px; }
+.deporte-tcol > div:nth-of-type(1) { display: flex; align-items: center; gap: 18px; }
 .deporte-cat { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:4px; text-transform:uppercase; }
 .cat-equipo    { color:var(--oro); }
 .cat-individual{ color:var(--celeste); }
-.deporte-nombre { font-family:'Bebas Neue',sans-serif; font-size:72px; line-height:1; color:#fff; letter-spacing:2px; }
-.deporte-emoji  { font-size:52px; line-height:1; }
+.deporte-nombre { font-family:'Bebas Neue',sans-serif; font-size:72px; line-height:1; color:#fff; letter-spacing:2px; margin-top: 6px; }
+.deporte-emoji  { font-size:60px; line-height:1; }
 .deporte-frase {
   background:var(--card); border-radius:16px; padding:24px 28px;
   border-left:4px solid var(--azul); font-size:18px; line-height:1.7; color:var(--texto);
@@ -153,8 +154,8 @@ body {
 
 /* ── ESCUCHA S21 ── */
 #s21 { background:#050E1F; }
-#s21 .imgcol { position:relative; overflow:hidden; background:var(--card); border-radius:20px; height:75vh; border:2px solid rgba(116,192,232,.2); }
-#s21 .imgcol img { width:100%; height:100%; object-fit:cover; object-position:center; background:var(--card); display:block; }
+#s21 .imgcol { position:relative; overflow:hidden; background:var(--card); border-radius:20px; height:75vh; aspect-ratio: 1086 / 1448; justify-self: center; border:2px solid rgba(116,192,232,.2); }
+#s21 .imgcol img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--card); display:block; }
 #s21 .imgcol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; color:var(--cinza); }
 #s21 .imgcol .ph  { font-size:80px; }
 #s21 .imgcol .phl { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; }
@@ -196,8 +197,8 @@ body {
 #s24 { background:var(--grafite); }
 #s24 .stripes { position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(-55deg,transparent,transparent 48px,rgba(0,84,166,.1) 48px,rgba(0,84,166,.1) 50px); }
 #s24 .inner { position:relative; z-index:2; display:grid; grid-template-columns:0.8fr 1.2fr; gap:60px; align-items:center; padding:60px 80px; width:100%; }
-#s24 .icol { position:relative; overflow:hidden; border-radius:20px; height:75vh; border:2px solid rgba(116,192,232,.2); }
-#s24 .icol img { width:100%; height:100%; object-fit:cover; object-position:center; background:var(--card); }
+#s24 .icol { position:relative; overflow:hidden; border-radius:20px; height:75vh; aspect-ratio: 1086 / 1448; justify-self: center; border:2px solid rgba(116,192,232,.2); }
+#s24 .icol img { width:100%; height:100%; object-fit:contain; object-position:center; background:var(--card); }
 #s24 .icol .ph-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--cinza); background:var(--card); }
 #s24 .icol .ph  { font-size:100px; }
 #s24 .icol .phl { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; }
