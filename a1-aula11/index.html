@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula 10 · Los Deportes · Mateo González</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&family=Oswald:wght@400;600;700&display=swap');
+
+  /* ===================== TOKENS ===================== */
+  :root {
+    --azul:    #0054A6;   /* celeste argentino */
+    --celeste: #74C0E8;   /* azul claro */
+    --blanco:  #FFFFFF;
+    --oro:     #F4C430;   /* dourado Copa */
+    --negro:   #0D0D0D;
+    --grafite: #1A1A2E;   /* fundo escuro slides */
+    --card-bg: #0F1B35;   /* card fundo */
+    --texto:   #E8EFF8;
+    --cinza:   #8899AA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--grafite);
+    color: var(--texto);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ===================== SLIDE ENGINE ===================== */
+  .slide {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .slide.active { display: grid !important; }
+
+  /* ===================== NAV ===================== */
+  .nav {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50px;
+    padding: 10px 24px;
+    z-index: 1000;
+  }
+  .nav button {
+    background: none;
+    border: none;
+    color: var(--blanco);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .nav button:hover { background: rgba(255,255,255,0.15); }
+  .nav .counter {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    color: var(--celeste);
+    letter-spacing: 2px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .nav .dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .nav .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav .dot.active { background: var(--oro); width: 22px; border-radius: 4px; }
+
+  /* ===================== SHARED COMPONENTS ===================== */
+  .eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--celeste);
+    margin-bottom: 10px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .tag-azul  { background: var(--azul);  color: #fff; }
+  .tag-oro   { background: var(--oro);   color: #000; }
+  .highlight { color: var(--oro); }
+  .hl-cel    { color: var(--celeste); }
+
+  /* ===================== SLIDE 1 — PORTADA ===================== */
+  #s1 {
+    place-items: center;
+    background: var(--grafite);
+    overflow: hidden;
+  }
+  #s1 .bg-stripes {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -55deg,
+      transparent,
+      transparent 48px,
+      rgba(0,84,166,0.12) 48px,
+      rgba(0,84,166,0.12) 50px
+    );
+    pointer-events: none;
+  }
+  #s1 .bg-circle {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,84,166,0.25) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none;
+  }
+  #s1 .content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 820px;
+    padding: 40px;
+  }
+  #s1 .aula-tag {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: var(--celeste);
+    margin-bottom: 20px;
+    display: block;
+  }
+  #s1 h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 10vw, 130px);
+    line-height: 0.9;
+    color: var(--blanco);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  #s1 h1 span { color: var(--oro); }
+  #s1 .subtitle {
+    font-size: 18px;
+    color: var(--celeste);
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  #s1 .skills-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ===================== SLIDE 2 — CALENTAMIENTO ===================== */
+  #s2 {
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    background: var(--grafite);
+    padding: 60px;
+    gap: 60px;
+  }
+  #s2 .left { display: flex; flex-direction: column; gap: 20px; }
+  #s2 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--blanco);
+  }
+  #s2 h2 span { color: var(--oro); }
+  #s2 .pregunta {
+    font-size: 22px;
+    color: var(--celeste);
+    font-style: italic;
+    border-left: 4px solid var(--oro);
+    padding-left: 16px;
+    line-height: 1.5;
+  }
+  #s2 .instruccion {
+    font-size: 16px;
+    color: var(--cinza);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #s2 .img-box {
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    border: 2px solid rgba(116,192,232,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--cinza);
+    font-size: 14px;
+  }
+  #s2 .img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+  }
+  #s2 .img-box .placeholder-icon { font-size: 64px; }
+  #s2 .img-box .placeholder-text { font-family: 'Oswald', sans-serif; letter-spacing: 2px; font-size: 12px; }
+
+  /* ===================== SLIDE 3 — PERSONAGEM ===================== */
+  #s3 {
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    background: var(--grafite);
+    padding: 60px;
+    gap: 60px;
+  }
+  #s3 .photo-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  #s3 .photo-frame {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 5px solid var(--azul);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 0 0 3px var(--oro), 0 20px 60px rgba(0,84,166,0.4);
+    position: relative;
+  }
+  #s3 .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #s3 .photo-frame .ph-icon { font-size: 80px; }
+  #s3 .photo-frame .ph-label {
+    position: absolute;
+    bottom: 14px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--cinza);
+  }
+  #s3 .name-block {
+    text-align: center;
+  }
+  #s3 .name-block h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--blanco);
+    letter-spacing: 2px;
+  }
+  #s3 .name-block .role {
+    font-size: 15px;
+    color: var(--celeste);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+  #s3 .info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 460px;
+  }
+  #s3 .info-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 18px 22px;
+    border-left: 4px solid var(--azul);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  #s3 .info-card .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--celeste);
+  }
+  #s3 .info-card .value {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--blanco);
+  }
+  #s3 .info-card.gold { border-left-color: var(--oro); }
+  #s3 .quote {
+    background: rgba(0,84,166,0.15);
+    border: 1px solid rgba(116,192,232,0.2);
+    border-radius: 14px;
+    padding: 20px 24px;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--texto);
+    line-height: 1.6;
+  }
+  #s3 .quote span { color: var(--oro); font-style: normal; font-weight: 700; }
+
+  /* ===================== SLIDE 4 — VOCAB EQUIPOS ===================== */
+  #s4 {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--grafite);
+    padding: 50px 70px;
+    gap: 30px;
+  }
+  #s4 .slide-header { text-align: center; }
+  #s4 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--blanco);
+    letter-spacing: 2px;
+  }
+  #s4 h2 span { color: var(--oro); }
+  #s4 .sports-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 1100px;
+  }
+  #s4 .sport-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  #s4 .sport-card:hover {
+    border-color: var(--azul);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,84,166,0.3);
+  }
+  #s4 .sport-card .emoji { font-size: 46px; margin-bottom: 10px; }
+  #s4 .sport-card .name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  #s4 .sport-card .img-slot {
+    width: 100%;
+    height: 80px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--cinza);
+    letter-spacing: 1px;
+    font-family: 'Oswald', sans-serif;
+  }
+  #s4 .sport-card img.sport-img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 8px;
+  }
+  #s4 .mateo-dice {
+    background: rgba(0,84,166,0.15);
+    border: 1px solid rgba(116,192,232,0.2);
+    border-radius: 14px;
+    padding: 16px 28px;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--texto);
+    max-width: 900px;
+    text-align: center;
+    line-height: 1.6;
+  }
+  #s4 .mateo-dice strong { color: var(--celeste); font-style: normal; }
+  #s4 .mateo-dice .hl { color: var(--oro); font-style: normal; font-weight: 700; }
+
+  /* ===================== SLIDE 5 — VOCAB INDIVIDUALES ===================== */
+  #s5 {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--grafite);
+    padding: 50px 70px;
+    gap: 26px;
+  }
+  #s5 .slide-header { text-align: center; }
+  #s5 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--blanco);
+    letter-spacing: 2px;
+  }
+  #s5 h2 span { color: var(--celeste); }
+  #s5 .sports-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    width: 100%;
+    max-width: 1100px;
+  }
+  #s5 .sport-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 22px 14px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  #s5 .sport-card:hover {
+    border-color: var(--celeste);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(116,192,232,0.2);
+  }
+  #s5 .sport-card .emoji { font-size: 40px; margin-bottom: 8px; }
+  #s5 .sport-card .name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blanco);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  #s5 .mateo-dice {
+    background: rgba(0,84,166,0.15);
+    border: 1px solid rgba(116,192,232,0.2);
+    border-radius: 14px;
+    padding: 16px 28px;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--texto);
+    max-width: 900px;
+    text-align: center;
+    line-height: 1.6;
+  }
+  #s5 .mateo-dice strong { color: var(--celeste); font-style: normal; }
+  #s5 .mateo-dice .hl { color: var(--oro); font-style: normal; font-weight: 700; }
+
+  /* ===================== SLIDE 6 — GRAMÁTICA ===================== */
+  #s6 {
+    grid-template-columns: 1fr 1fr;
+    place-items: start;
+    align-items: center;
+    background: var(--grafite);
+    padding: 60px 80px;
+    gap: 50px;
+  }
+  #s6 .col { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+  #s6 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--blanco);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  #s6 h2 span { color: var(--oro); }
+  #s6 .verb-box {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 28px;
+    border-top: 4px solid var(--azul);
+  }
+  #s6 .verb-box h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    color: var(--oro);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #s6 .conj-table { width: 100%; border-collapse: collapse; }
+  #s6 .conj-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+  #s6 .conj-table td {
+    padding: 10px 8px;
+    font-size: 16px;
+    vertical-align: middle;
+  }
+  #s6 .conj-table .pronoun { color: var(--cinza); font-weight: 400; width: 38%; }
+  #s6 .conj-table .verb-form { color: var(--celeste); font-weight: 700; }
+  #s6 .conj-table .example { color: var(--texto); font-size: 14px; font-style: italic; }
+  #s6 .conj-table tr.highlight-row td { background: rgba(244,196,48,0.07); }
+  #s6 .conj-table tr.highlight-row .verb-form { color: var(--oro); }
+  #s6 .note-box {
+    background: rgba(244,196,48,0.08);
+    border: 1px solid rgba(244,196,48,0.25);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 15px;
+    color: var(--texto);
+    line-height: 1.6;
+  }
+  #s6 .note-box .hl { color: var(--oro); font-weight: 700; }
+  #s6 .note-box .hl-c { color: var(--celeste); font-weight: 700; }
+
+  /* ===================== SLIDE 7 — MATEO EN EL ESTADIO ===================== */
+  #s7 {
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    background: var(--grafite);
+    padding: 60px;
+    gap: 60px;
+  }
+  #s7 .img-col {
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    border: 2px solid rgba(116,192,232,0.2);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--cinza);
+  }
+  #s7 .img-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #s7 .img-col .ph-icon { font-size: 64px; }
+  #s7 .img-col .ph-label { font-family: 'Oswald', sans-serif; letter-spacing: 2px; font-size: 12px; }
+  #s7 .text-col { display: flex; flex-direction: column; gap: 22px; }
+  #s7 .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #CC0000;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    padding: 6px 16px;
+    border-radius: 6px;
+  }
+  #s7 .live-badge .dot-live {
+    width: 8px; height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  #s7 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 1.05;
+    color: var(--blanco);
+    letter-spacing: 2px;
+  }
+  #s7 h2 span { color: var(--oro); }
+  #s7 .desc {
+    font-size: 17px;
+    color: var(--texto);
+    line-height: 1.7;
+  }
+  #s7 .desc strong { color: var(--celeste); }
+  #s7 .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  #s7 .stat {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 16px 18px;
+    border-left: 3px solid var(--azul);
+  }
+  #s7 .stat .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--oro);
+    line-height: 1;
+  }
+  #s7 .stat .stat-label {
+    font-size: 12px;
+    color: var(--cinza);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* ===================== SLIDE 8 — ESCUCHA ===================== */
+  #s8 {
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    background: #050E1F;
+    padding: 60px;
+    gap: 60px;
+  }
+  #s8 .img-col {
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    border: 2px solid rgba(116,192,232,0.15);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    color: var(--cinza);
+    position: relative;
+  }
+  #s8 .img-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #s8 .img-col .ph-icon { font-size: 64px; }
+  #s8 .img-col .ph-label { font-family: 'Oswald', sans-serif; letter-spacing: 2px; font-size: 12px; }
+  #s8 .audio-badge {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--blanco);
+    border: 1px solid rgba(116,192,232,0.3);
+  }
+  #s8 .right-col { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+  #s8 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    color: var(--blanco);
+    line-height: 1;
+  }
+  #s8 h2 span { color: var(--celeste); }
+  #s8 .audio-player {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid rgba(116,192,232,0.2);
+  }
+  #s8 .audio-player .icon {
+    font-size: 28px;
+    cursor: pointer;
+  }
+  #s8 .audio-player .filename {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--celeste);
+  }
+  #s8 .questions { display: flex; flex-direction: column; gap: 12px; }
+  #s8 .question {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  #s8 .question .qnum {
+    width: 32px; height: 32px;
+    background: var(--azul);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  #s8 .question .qtext {
+    font-size: 16px;
+    color: var(--texto);
+  }
+
+  /* ===================== SLIDE 9 — TEXTO AUDIO ===================== */
+  #s9 {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #050E1F;
+    padding: 50px 100px;
+    gap: 24px;
+  }
+  #s9 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--blanco);
+    letter-spacing: 2px;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  #s9 h2 span { color: var(--celeste); }
+  #s9 .transcript {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 36px 44px;
+    max-width: 1000px;
+    width: 100%;
+    line-height: 2;
+    font-size: 17px;
+    color: var(--texto);
+    border: 1px solid rgba(116,192,232,0.1);
+  }
+  #s9 .transcript p { margin-bottom: 12px; }
+  #s9 .transcript p:last-child { margin-bottom: 0; color: var(--celeste); font-weight: 600; font-style: italic; }
+  #s9 .vhl { color: var(--celeste); font-weight: 700; }   /* verbo */
+  #s9 .ohl { color: var(--oro);     font-weight: 700; }   /* objeto deportes */
+
+  /* ===================== SLIDE 10 — HABLA ===================== */
+  #s10 {
+    place-items: center;
+    background: var(--grafite);
+    padding: 60px;
+  }
+  #s10 .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 860px;
+    text-align: center;
+  }
+  #s10 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: var(--blanco);
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+  #s10 h2 span { color: var(--oro); }
+  #s10 .pregunta-main {
+    background: var(--azul);
+    border-radius: 20px;
+    padding: 28px 44px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--blanco);
+    line-height: 1.5;
+    box-shadow: 0 12px 40px rgba(0,84,166,0.4);
+  }
+  #s10 .pregunta-main .sub {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    margin-top: 8px;
+    display: block;
+  }
+  #s10 .tips {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+  }
+  #s10 .tip {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 20px;
+    border-top: 3px solid var(--celeste);
+    text-align: left;
+  }
+  #s10 .tip .tip-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--celeste);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  #s10 .tip .tip-example {
+    font-size: 16px;
+    color: var(--texto);
+    line-height: 1.5;
+  }
+  #s10 .tip .tip-example strong { color: var(--oro); }
+
+  /* ===================== SLIDE 11 — DESPEDIDA ===================== */
+  #s11 {
+    place-items: center;
+    background: var(--grafite);
+    overflow: hidden;
+  }
+  #s11 .bg-stripes {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -55deg,
+      transparent,
+      transparent 48px,
+      rgba(0,84,166,0.1) 48px,
+      rgba(0,84,166,0.1) 50px
+    );
+    pointer-events: none;
+  }
+  #s11 .content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    place-items: center;
+    padding: 60px;
+    width: 100%;
+    max-width: 1200px;
+  }
+  #s11 .img-col {
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 5px solid var(--azul);
+    box-shadow: 0 0 0 3px var(--oro), 0 20px 60px rgba(0,84,166,0.4);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--cinza);
+    gap: 8px;
+  }
+  #s11 .img-col img { width:100%; height:100%; object-fit:cover; }
+  #s11 .img-col .ph-icon { font-size: 70px; }
+  #s11 .img-col .ph-label { font-size: 11px; letter-spacing: 2px; font-family: 'Oswald', sans-serif; }
+  #s11 .text-col { display: flex; flex-direction: column; gap: 20px; }
+  #s11 h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    line-height: 0.95;
+    color: var(--blanco);
+    letter-spacing: 2px;
+  }
+  #s11 h2 .line2 { color: var(--oro); }
+  #s11 .farewell {
+    font-size: 17px;
+    color: var(--texto);
+    line-height: 1.7;
+    max-width: 420px;
+  }
+  #s11 .farewell strong { color: var(--celeste); }
+  #s11 .next-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--azul);
+    color: var(--blanco);
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: fit-content;
+  }
+
+  /* ===================== KEYBOARD HINT ===================== */
+  .kbd-hint {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    font-size: 12px;
+    color: var(--cinza);
+    letter-spacing: 1px;
+    font-family: 'Oswald', sans-serif;
+    z-index: 999;
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================================================= -->
+<!-- SLIDE 1 — PORTADA                                        -->
+<!-- ======================================================= -->
+<section class="slide active" id="s1">
+  <div class="bg-stripes"></div>
+  <div class="bg-circle"></div>
+  <div class="content">
+    <span class="aula-tag">A U L A  1 0  ·  E S P A Ñ O L  A 1</span>
+    <h1>LOS <span>DEPORTES</span></h1>
+    <p class="subtitle">La Copa del Mundo con Mateo González · Buenos Aires, Argentina</p>
+    <div class="skills-row">
+      <span class="tag tag-azul">🎧 Escucha</span>
+      <span class="tag tag-oro">💬 Habla</span>
+      <span class="tag tag-azul">📖 Vocabulario</span>
+      <span class="tag tag-oro">✏️ Gramática</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 2 — CALENTAMIENTO                                  -->
+<!-- ======================================================= -->
+<section class="slide" id="s2">
+  <div class="left">
+    <div class="eyebrow">🔥 Calentamiento</div>
+    <h2>¿QUÉ<br><span>DEPORTE</span><br>ES?</h2>
+    <p class="pregunta">"¿Qué ves en la foto?<br>Di en voz alta todo<br>lo que conoces."</p>
+    <p class="instruccion">🗣️ Habla sin miedo — ¡no hay respuestas incorrectas!</p>
+  </div>
+  <div class="img-box">
+    <img src="images/deportes-calentamiento.png" alt="Deportes varios"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div style="display:none; flex-direction:column; align-items:center; gap:8px;">
+      <span class="placeholder-icon">🏆</span>
+      <span class="placeholder-text">deportes-calentamiento.png</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 3 — PERSONAGEM MATEO                               -->
+<!-- ======================================================= -->
+<section class="slide" id="s3">
+  <div class="photo-col">
+    <div class="photo-frame">
+      <img src="images/mateo-gonzalez.png" alt="Mateo González"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="ph-icon" style="display:none">🎤</div>
+      <span class="ph-label">mateo-gonzalez.png</span>
+    </div>
+    <div class="name-block">
+      <h2>MATEO<br>GONZÁLEZ</h2>
+      <p class="role">Periodista deportivo · 30 años · Buenos Aires</p>
+    </div>
+  </div>
+  <div class="info-col">
+    <div class="eyebrow">👋 Conoce al personaje</div>
+    <div class="info-card">
+      <span class="label">Ciudad</span>
+      <span class="value">🇦🇷 Buenos Aires, Argentina</span>
+    </div>
+    <div class="info-card">
+      <span class="label">Trabajo</span>
+      <span class="value">📺 Periodista deportivo</span>
+    </div>
+    <div class="info-card gold">
+      <span class="label">Cobertura actual</span>
+      <span class="value">🏆 Copa del Mundo</span>
+    </div>
+    <div class="info-card">
+      <span class="label">Redes</span>
+      <span class="value">📱 @cronica_deportiva</span>
+    </div>
+    <div class="quote">
+      "El deporte <span>une a los pueblos</span> — y yo tengo el mejor trabajo del mundo: <span>contar esas historias</span>."
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 4 — VOCAB DEPORTES DE EQUIPO                       -->
+<!-- ======================================================= -->
+<section class="slide" id="s4">
+  <div class="slide-header">
+    <div class="eyebrow">⚽ Vocabulario</div>
+    <h2>DEPORTES DE <span>EQUIPO</span></h2>
+  </div>
+  <div class="sports-grid">
+    <div class="sport-card">
+      <div class="emoji">⚽</div>
+      <div class="name">Fútbol</div>
+      <div class="img-slot">futbol.png</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">🏀</div>
+      <div class="name">Básquet</div>
+      <div class="img-slot">basquet.png</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">🏐</div>
+      <div class="name">Vóley</div>
+      <div class="img-slot">voley.png</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">🏉</div>
+      <div class="name">Rugby</div>
+      <div class="img-slot">rugby.png</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">⚾</div>
+      <div class="name">Béisbol</div>
+      <div class="img-slot">beisbol.png</div>
+    </div>
+  </div>
+  <div class="mateo-dice">
+    <strong>Mateo dice:</strong> "En la Copa del Mundo, <span class="hl">juego al fútbol</span> con mis primos. Mi equipo favorito es <span class="hl">la Selección Argentina</span>. ¡Somos campeones del mundo!"
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 5 — VOCAB DEPORTES INDIVIDUALES                    -->
+<!-- ======================================================= -->
+<section class="slide" id="s5">
+  <div class="slide-header">
+    <div class="eyebrow">🏃 Vocabulario</div>
+    <h2>DEPORTES <span>INDIVIDUALES</span></h2>
+  </div>
+  <div class="sports-grid">
+    <div class="sport-card">
+      <div class="emoji">🎾</div>
+      <div class="name">Tenis</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">🏊</div>
+      <div class="name">Natación</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">🏃</div>
+      <div class="name">Atletismo</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">🚴</div>
+      <div class="name">Ciclismo</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">🥊</div>
+      <div class="name">Boxeo</div>
+    </div>
+    <div class="sport-card">
+      <div class="emoji">⛷️</div>
+      <div class="name">Esquí</div>
+    </div>
+  </div>
+  <div class="mateo-dice">
+    <strong>Mateo dice:</strong> "<span class="hl">Practico tenis</span> los fines de semana. No <span class="hl">practico natación</span> — el agua fría no me gusta. Pero me <span class="hl">fascina el atletismo</span>: los velocistas son increíbles."
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 6 — GRAMÁTICA: JUGAR / PRACTICAR                   -->
+<!-- ======================================================= -->
+<section class="slide" id="s6">
+  <div class="col">
+    <div class="eyebrow">✏️ Gramática</div>
+    <h2>JUGAR A /<br><span>PRACTICAR</span></h2>
+    <div class="note-box">
+      Usamos <span class="hl">jugar a</span> con deportes de <span class="hl-c">equipo</span>.<br>
+      Usamos <span class="hl">practicar</span> con deportes <span class="hl-c">individuales</span> — y también con todos.
+    </div>
+    <div class="verb-box">
+      <h3>🐾 JUGAR (A) — presente</h3>
+      <table class="conj-table">
+        <tr><td class="pronoun">Yo</td><td class="verb-form">juego</td><td class="example">al fútbol</td></tr>
+        <tr class="highlight-row"><td class="pronoun">Vos / Tú</td><td class="verb-form">jugás / juegas</td><td class="example">al tenis</td></tr>
+        <tr><td class="pronoun">Él / Ella</td><td class="verb-form">juega</td><td class="example">al básquet</td></tr>
+        <tr><td class="pronoun">Nosotros</td><td class="verb-form">jugamos</td><td class="example">al vóley</td></tr>
+        <tr><td class="pronoun">Ustedes</td><td class="verb-form">juegan</td><td class="example">al rugby</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="col">
+    <div class="verb-box" style="border-top-color: var(--celeste);">
+      <h3 style="color: var(--celeste);">🏃 PRACTICAR — presente</h3>
+      <table class="conj-table">
+        <tr><td class="pronoun">Yo</td><td class="verb-form">practico</td><td class="example">natación</td></tr>
+        <tr class="highlight-row"><td class="pronoun">Vos / Tú</td><td class="verb-form">practicás / practicas</td><td class="example">ciclismo</td></tr>
+        <tr><td class="pronoun">Él / Ella</td><td class="verb-form">practica</td><td class="example">atletismo</td></tr>
+        <tr><td class="pronoun">Nosotros</td><td class="verb-form">practicamos</td><td class="example">boxeo</td></tr>
+        <tr><td class="pronoun">Ustedes</td><td class="verb-form">practican</td><td class="example">esquí</td></tr>
+      </table>
+    </div>
+    <div class="note-box">
+      ⚠️ <span class="hl">Vos</span> es el pronombre típico del español <span class="hl-c">rioplatense</span> (Argentina y Uruguay). Mateo usa <span class="hl">vos</span> — ¡igual que los argentinos!
+    </div>
+    <div style="background:var(--card-bg); border-radius:12px; padding:18px 20px; display:flex; flex-direction:column; gap:8px;">
+      <div class="eyebrow" style="margin:0; font-size:11px;">Ejemplos rápidos</div>
+      <div style="font-size:15px; color:var(--texto);">✅ <em>Yo <strong style="color:var(--celeste)">juego al</strong> fútbol.</em></div>
+      <div style="font-size:15px; color:var(--texto);">✅ <em>Ella <strong style="color:var(--celeste)">practica</strong> natación.</em></div>
+      <div style="font-size:15px; color:var(--texto);">✅ <em>¿Vos <strong style="color:var(--oro)">jugás al</strong> tenis?</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 7 — MATEO EN EL ESTADIO (gancho audio)             -->
+<!-- ======================================================= -->
+<section class="slide" id="s7">
+  <div class="img-col">
+    <img src="images/mateo-estadio.png" alt="Mateo en el estadio"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div style="display:none; flex-direction:column; align-items:center; gap:8px;">
+      <span class="ph-icon">🏟️</span>
+      <span class="ph-label">mateo-estadio.png</span>
+    </div>
+  </div>
+  <div class="text-col">
+    <div class="live-badge"><div class="dot-live"></div> EN VIVO</div>
+    <h2>MATEO ESTÁ<br>EN EL <span>ESTADIO</span><br>MONUMENTAL</h2>
+    <p class="desc">
+      Son las 10 de la mañana. Mateo ya está frente a las cámaras. 
+      <strong>Hay millones de personas mirando.</strong> Hoy cubre los mejores 
+      deportes del mundo para su canal.
+    </p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-val">32</div>
+        <div class="stat-label">Países participantes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">64</div>
+        <div class="stat-label">Partidos jugados</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">🎤</div>
+        <div class="stat-label">Mateo González</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">🇦🇷</div>
+        <div class="stat-label">Buenos Aires</div>
+      </div>
+    </div>
+    <div style="background:rgba(244,196,48,0.1); border:1px solid rgba(244,196,48,0.3); border-radius:12px; padding:14px 18px; font-size:15px; color:var(--texto); font-style:italic;">
+      "¿Estás listo? En el próximo slide... <strong style="color:var(--oro)">¡escuchás a Mateo en vivo!</strong>"
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 8 — ESCUCHA                                        -->
+<!-- ======================================================= -->
+<section class="slide" id="s8">
+  <div class="img-col">
+    <img src="images/mateo-audio.png" alt="Mateo reportaje"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div style="display:none; flex-direction:column; align-items:center; gap:8px;">
+      <span class="ph-icon">🎙️</span>
+      <span class="ph-label">mateo-audio.png</span>
+    </div>
+    <div class="audio-badge">🎧 mateo-audio-deporte.mp3</div>
+  </div>
+  <div class="right-col">
+    <div class="eyebrow">🎧 Escucha</div>
+    <h2>ESCUCHÁ<br>A <span>MATEO</span></h2>
+    <div class="audio-player">
+      <span class="icon">▶️</span>
+      <span class="filename">mateo-audio-deporte.mp3</span>
+    </div>
+    <div class="questions">
+      <div class="question">
+        <div class="qnum">1</div>
+        <div class="qtext">¿Dónde está Mateo?</div>
+      </div>
+      <div class="question">
+        <div class="qnum">2</div>
+        <div class="qtext">¿Qué deporte practica Mateo los fines de semana?</div>
+      </div>
+      <div class="question">
+        <div class="qnum">3</div>
+        <div class="qtext">¿Qué deporte le parece más completo?</div>
+      </div>
+      <div class="question">
+        <div class="qnum">4</div>
+        <div class="qtext">¿De dónde es Mateo?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 9 — TEXTO DEL AUDIO                                -->
+<!-- ======================================================= -->
+<section class="slide" id="s9">
+  <h2>📄 TEXTO DEL <span>AUDIO</span></h2>
+  <div class="transcript">
+    <p>¡Hola a todos! Soy Mateo González, periodista deportivo de Buenos Aires.</p>
+    <p>Estoy en el estadio Monumental cubriendo la Copa del Mundo. ¡Es el sueño de todo periodista argentino!</p>
+    <p>Yo <span class="vhl">practico</span> deportes desde chico. De pequeño, <span class="vhl">jugaba al</span> <span class="ohl">fútbol</span> todos los días en la calle con mis amigos del barrio. Ahora <span class="vhl">juego al</span> <span class="ohl">tenis</span> los fines de semana.</p>
+    <p>En la Copa del Mundo <span class="vhl">veo</span> muchos deportes diferentes. Me <span class="vhl">encanta</span> el <span class="ohl">atletismo</span> — los velocistas <span class="vhl">corren</span> increíble. El <span class="ohl">básquet</span> también me <span class="vhl">fascina</span>: los jugadores <span class="vhl">saltan</span> muy alto.</p>
+    <p>La <span class="ohl">natación</span> me <span class="vhl">parece</span> uno de los deportes más completos. Y el <span class="ohl">ciclismo</span> me <span class="vhl">gusta</span> mucho — acá en Argentina, <span class="vhl">tenemos</span> ciclistas muy talentosos.</p>
+    <p>¿Y vos? ¿Qué deporte <span class="vhl">practicás</span>? ¿<span class="vhl">Jugás</span> en equipo o <span class="vhl">preferís</span> los deportes individuales? ¡Nos vemos en la próxima transmisión desde la Copa! 🏆</p>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 10 — HABLA                                         -->
+<!-- ======================================================= -->
+<section class="slide" id="s10">
+  <div class="content">
+    <div class="eyebrow">🗣️ Actividad oral</div>
+    <h2>¡AHORA<br><span>HABLÁS</span> VOS!</h2>
+    <div class="pregunta-main">
+      ¿Qué deporte <strong>practicás</strong> o <strong>jugás</strong>?
+      <span class="sub">¿Con quién? ¿Cuándo? ¿En equipo o solo/sola?</span>
+    </div>
+    <div class="tips">
+      <div class="tip">
+        <div class="tip-label">💡 Deporte</div>
+        <div class="tip-example">Yo <strong>juego al</strong> fútbol.<br>Yo <strong>practico</strong> natación.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-label">👥 Con quién</div>
+        <div class="tip-example">con mis amigos.<br>solo / sola.</div>
+      </div>
+      <div class="tip">
+        <div class="tip-label">📅 Cuándo</div>
+        <div class="tip-example">los fines de semana.<br>todos los días.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- SLIDE 11 — DESPEDIDA                                     -->
+<!-- ======================================================= -->
+<section class="slide" id="s11">
+  <div class="bg-stripes"></div>
+  <div class="content">
+    <div class="img-col">
+      <img src="images/mateo-chau.png" alt="Mateo despedida"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="ph-icon" style="display:none">🎤</div>
+      <span class="ph-label">mateo-chau.png</span>
+    </div>
+    <div class="text-col">
+      <h2>¡HASTA<br><span class="line2">LA PRÓXIMA!</span></h2>
+      <p class="farewell">
+        ¡Me encantó compartir este viaje por el mundo del deporte con ustedes! 
+        <strong>El deporte une a la gente</strong> — y aprender español también. 
+        ¡Nos vemos en la próxima transmisión!
+      </p>
+      <div class="next-tag">📺 @cronica_deportiva · Buenos Aires 🇦🇷</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== KEYBOARD HINT ===================== -->
+<div class="kbd-hint">← → para navegar</div>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <button id="prevBtn" onclick="navigate(-1)">←</button>
+  <span class="counter" id="counter">1 / 11</span>
+  <div class="dots" id="dots"></div>
+  <button id="nextBtn" onclick="navigate(1)">→</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let current  = 0;
+
+  // Build dots
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dotsEl.children[current].classList.remove('active');
+    current = (idx + total) % total;
+    slides[current].classList.add('active');
+    dotsEl.children[current].classList.add('active');
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+  }
+
+  function navigate(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+    if (e.key === 'ArrowLeft')  navigate(-1);
+  });
+</script>
+</body>
+</html>
