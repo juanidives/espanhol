@@ -28,7 +28,7 @@ Correção da tarefa acontece **antes e fora** destes 40 minutos. Não entra na 
 | Min | Etapa | Atividade | Interação | Arquivo |
 |---|---|---|---|---|
 | 0–4 | Aquecimento | Áudio de Valentina se apresentando. Alunos anotam duas coisas que entenderam | Professor ↔ Alunos | `index.html` + áudio |
-| 4–9 | Awareness | Diagnóstico, **não** reapresentação. Frases na tela para julgar e completar; daí sai o contraste `gusta`/`gustan` e a descoberta de `encantar`/`molestar` por contexto | Professor ↔ Alunos | `index.html` |
+| 4–9 | Awareness | Diagnóstico, **não** reapresentação. Frases na tela para julgar e completar; daí sai o contraste `gusta`/`gustan` e a descoberta de `fascinar`/`molestar` por contexto | Professor ↔ Alunos | `index.html` |
 | 9–13 | Awareness | As quatro reações: `a mí también`, `a mí tampoco`, `a mí sí`, `a mí no`. Por contraste, com repetição breve | Professor ↔ Alunos | `index.html` |
 | 13–21 | Appropriation | Roda de campos semânticos, um por vez na tela. O aluno diz uma preferência sua, o par reage com uma das quatro | Aluno ↔ Aluno | `index.html` |
 | 21–33 | Autonomy | ¿Coincidimos? — listas diferentes, achar 3 coincidências e 2 divergências | Aluno ↔ Aluno | `aluno-a.html` / `aluno-b.html` |
@@ -53,11 +53,35 @@ Esta é a peça que transforma gustar em conversa. Escolher entre as quatro exig
 
 ## Áudio
 
-**`valentina-presentacion.mp3`** — abertura, voz feminina mexicana, ritmo pausado:
+**`audio-valentina.mp3`** — abertura, voz feminina mexicana, ritmo pausado:
 
-> ¡Hola! Soy Valentina Ríos, tengo veinticinco años y vivo en la Ciudad de México. Soy ilustradora: dibujo libros para niños. Me encanta el mercado de mi barrio; voy todos los miércoles. Me molesta mucho el metro por la mañana, entonces ando en bicicleta. Y el fútbol… la verdad, no me interesa nada.
+> Buenos días. Soy Valentina, y hoy les voy a contar un poco de mi vida.
+>
+> Los miércoles son mi día favorito de la semana. Bueno... casi. Porque el despertador suena a las siete, y a mí levantarme temprano no me gusta nada. Nadita.
+>
+> Pero mi gata Frida no entiende de eso. Se sienta en mi pecho, me mira, y espera. Entonces me levanto.
+>
+> Preparo café. El café sí me encanta, ¿eh? Con eso ya soy otra persona.
+>
+> Trabajo en casa: dibujo libros para niños, soy ilustradora. Los miércoles dibujo poco, porque los miércoles voy al mercado.
+>
+> Y el mercado, ay, el mercado me fascina. Los colores, la gente que grita, las frutas que no conozco... Voy en bicicleta, siempre. El metro por la mañana me molesta muchísimo: mucha gente, mucho calor, no, gracias.
+>
+> Compro tomate, cebolla, chile... poquito chile. Porque en México todo pica, pero a mí la comida muy picante no me gusta.
+>
+> Por la tarde, si hay tiempo, voy a la alberca. Nadar me relaja. El fútbol no, el fútbol de verdad no me interesa nada, y en mi familia todos me preguntan por qué.
+>
+> Y en la noche, leo. Siempre leo.
+>
+> El año pasado ilustré un libro sobre una niña que tenía miedo del agua. En una página escribí, con letras muy grandes: "Nadie aprende a nadar mirando el agua."
+>
+> Y ustedes, que están aprendiendo español... es lo mismo, ¿no? Nadie aprende a hablar escuchando.
+>
+> Hay que hablar. ¡Nos vemos, chicos!
 
-Cobre `encantar`, `molestar`, `interesar` e uma negação enfática, que são exatamente os alvos da aula.
+Cobre `gustar`, `encantar`, `fascinar`, `molestar` e `interesar`, que são os alvos da aula. `relajar` aparece de bônus (mesma estrutura, fora da lista oficial de verbos).
+
+Áudio mais longo que o roteiro original desta seção — o `index.html` ganhou um slide extra de transcript logo depois do slide de Escucha, com o texto completo em duas colunas.
 
 ## Conteúdo dos arquivos por aluno
 
@@ -96,7 +120,7 @@ Com 5 a 8 pares simultâneos não dá para ouvir todos. Amostrar 3 pares durante
 - `a1-aula12/index.html` — projeção
 - `a1-aula12/aluno-a.html` e `aluno-b.html`
 - `a1-aula12/mobile.html`
-- `a1-aula12/audio/valentina-presentacion.mp3`
+- `a1-aula12/audio/audio-valentina.mp3`
 - `a1-aula12/images/` — Valentina, mercado, bicicleta, metrô
 - `.pptx` → PDF
 - `.md` do Obsidian
