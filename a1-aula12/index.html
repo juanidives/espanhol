@@ -238,7 +238,7 @@
       background: var(--card);
       border-radius: 20px;
       height: 75vh;
-      aspect-ratio: 1086 / 1448;
+      aspect-ratio: 1122 / 1402;
       justify-self: center;
       border: 2px solid rgba(192, 87, 70, .25);
     }
@@ -409,30 +409,24 @@
       font-style: normal;
     }
 
-    #s3t .tx-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      width: 100%;
-      max-width: 1500px;
-    }
-
-    #s3t .tx-col {
+    #s3t .tx-block {
       display: flex;
       flex-direction: column;
-      gap: 13px;
+      gap: 24px;
+      width: 100%;
+      max-width: 880px;
+      overflow-y: auto;
+      max-height: 66vh;
+      padding-right: 8px;
     }
 
-    #s3t .tx-col p {
-      font-size: 16px;
-      line-height: 1.55;
+    #s3t .tx-block p {
+      font-size: 17px;
+      line-height: 1.9;
       color: var(--cafe);
-      background: var(--card);
-      border-radius: 10px;
-      padding: 10px 14px;
     }
 
-    #s3t .tx-col p .vb {
+    #s3t .tx-block p .vb {
       color: var(--rosa);
       font-weight: 700;
     }
@@ -498,63 +492,40 @@
       text-align: center;
     }
 
-    .diag-cards {
-      display: flex;
-      gap: 24px;
-      width: 100%;
-      max-width: 1080px;
-      justify-content: center;
-    }
-
-    .diag-card {
-      background: var(--card);
-      border-radius: 18px;
-      padding: 26px 28px;
-      border-top: 5px solid var(--rosa);
-      flex: 1;
+    .diag-full {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      align-items: center;
-      text-align: center;
+      gap: 22px;
     }
 
-    .diag-card .thumb {
-      width: 110px;
-      height: 110px;
-      border-radius: 14px;
-      overflow: hidden;
-      background: var(--areia);
-      border: 2px solid rgba(192, 87, 70, .25);
+    .diag-full h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(58px, 7vw, 92px);
+      color: var(--terracota);
+      line-height: 1;
+      letter-spacing: 1px;
     }
 
-    .diag-card .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .diag-card .thumb .ph-wrap {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-      color: var(--cinza);
-    }
-
-    .diag-card .frase {
-      font-size: 24px;
+    .diag-full .frase {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 26px 30px;
+      font-size: 30px;
       font-weight: 600;
       color: var(--cafe);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
-    .diag-card .nota {
-      font-size: 16px;
+    .diag-full .frase em {
+      color: var(--rosa);
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .diag-full .nota {
+      font-size: 19px;
       color: var(--terracota);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     /* ── REACCIONES S6 ── */
@@ -736,7 +707,7 @@
   <!-- S3 ESCUCHA -->
   <section class="slide layout-two-col" id="s3">
     <div class="imgcol">
-      <img src="images/bicicleta.png" alt="Valentina anda en bicicleta"
+      <img src="images/valentina-bicicleta.png" alt="Valentina anda en bicicleta"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ph-wrap" style="display:none">
         <span class="ph">🚲</span><span class="phl">bicicleta.png</span>
@@ -759,30 +730,25 @@
   <section class="slide layout-flex-col" id="s3t">
     <div class="eyebrow">📄 Texto del audio</div>
     <h2>LO QUE <em>DIJO</em> VALENTINA</h2>
-    <div class="tx-grid">
-      <div class="tx-col">
-        <p>Buenos días. Soy Valentina, y hoy les voy a contar un poco de mi vida.</p>
-        <p>Los miércoles son mi día favorito de la semana. Bueno… casi. Porque el despertador suena a las siete, y
-          a mí levantarme temprano no me <span class="vb">gusta</span> nada. Nadita.</p>
-        <p>Pero mi gata Frida no entiende de eso. Se sienta en mi pecho, me mira, y espera. Entonces me levanto.</p>
-        <p>Preparo café. El café sí me <span class="vb">encanta</span>, ¿eh? Con eso ya soy otra persona.</p>
-        <p>Trabajo en casa: dibujo libros para niños, soy ilustradora. Los miércoles dibujo poco, porque los
-          miércoles voy al mercado.</p>
-      </div>
-      <div class="tx-col">
-        <p>Y el mercado, ay, el mercado me <span class="vb">fascina</span>. Los colores, la gente que grita, las
-          frutas que no conozco… Voy en bicicleta, siempre. El metro por la mañana me <span class="vb">molesta</span>
-          muchísimo: mucha gente, mucho calor, no, gracias.</p>
-        <p>Compro tomate, cebolla, chile… poquito chile. Porque en México todo pica, pero a mí la comida muy
-          picante no me <span class="vb">gusta</span>.</p>
-        <p>Por la tarde, si hay tiempo, voy a la alberca. Nadar me <span class="vb">relaja</span>. El fútbol no, el
-          fútbol de verdad no me <span class="vb">interesa</span> nada, y en mi familia todos me preguntan por qué.
-        </p>
-        <p>Y en la noche, leo. Siempre leo. El año pasado ilustré un libro sobre una niña que tenía miedo del agua.
-          En una página escribí, con letras muy grandes: «Nadie aprende a nadar mirando el agua».</p>
-        <p>Y ustedes, que están aprendiendo español… es lo mismo, ¿no? Nadie aprende a hablar escuchando. Hay que
-          hablar. ¡Nos vemos, chicos!</p>
-      </div>
+    <div class="tx-block">
+      <p>Buenos días. Soy Valentina, y hoy les voy a contar un poco de mi vida.</p>
+      <p>Los miércoles son mi día favorito de la semana. Bueno… casi. Porque el despertador suena a las siete, y a
+        mí levantarme temprano no me <span class="vb">gusta</span> nada. Nadita.</p>
+      <p>Pero mi gata Frida no entiende de eso. Se sienta en mi pecho, me mira, y espera. Entonces me levanto.</p>
+      <p>Preparo café. El café sí me <span class="vb">encanta</span>, ¿eh? Con eso ya soy otra persona.</p>
+      <p>Trabajo en casa: dibujo libros para niños, soy ilustradora. Los miércoles dibujo poco, porque los
+        miércoles voy al mercado.</p>
+      <p>Y el mercado, ay, el mercado me <span class="vb">fascina</span>. Los colores, la gente que grita, las
+        frutas que no conozco… Voy en bicicleta, siempre. El metro por la mañana me <span class="vb">molesta</span>
+        muchísimo: mucha gente, mucho calor, no, gracias.</p>
+      <p>Compro tomate, cebolla, chile… poquito chile. Porque en México todo pica, pero a mí la comida muy picante
+        no me <span class="vb">gusta</span>.</p>
+      <p>Por la tarde, si hay tiempo, voy a la alberca. Nadar me <span class="vb">relaja</span>. El fútbol no, el
+        fútbol de verdad no me <span class="vb">interesa</span> nada, y en mi familia todos me preguntan por qué.</p>
+      <p>Y en la noche, leo. Siempre leo. El año pasado ilustré un libro sobre una niña que tenía miedo del agua. En
+        una página escribí, con letras muy grandes: «Nadie aprende a nadar mirando el agua».</p>
+      <p>Y ustedes, que están aprendiendo español… es lo mismo, ¿no? Nadie aprende a hablar escuchando. Hay que
+        hablar. ¡Nos vemos, chicos!</p>
     </div>
   </section>
 
@@ -803,34 +769,36 @@
   </section>
 
   <!-- S5 DIAGNÓSTICO FASCINAR/MOLESTAR -->
-  <section class="slide layout-flex-col" id="s5">
-    <div class="eyebrow diag-eyebrow">🔍 Observa</div>
-    <h2 class="diag-title">FASCINAR Y <em>MOLESTAR</em></h2>
-    <p class="diag-sub">¿Qué significan? Fíjate en el contexto.</p>
-    <div class="diag-cards">
-      <div class="diag-card">
-        <div class="thumb">
-          <img src="images/mercado.png" alt="Mercado"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ph-wrap" style="display:none">
-            <span>🛒</span>
-          </div>
-        </div>
-        <div class="frase">"El mercado me <em style="color:var(--rosa);font-style:normal">fascina</em>."</div>
-        <div class="nota">😍 fascinar = gustar muchísimo</div>
+  <section class="slide layout-col-wide" id="s5">
+    <div class="imgcol">
+      <img src="images/valentina-mercado.png" alt="Valentina en el mercado"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph-wrap" style="display:none">
+        <span class="ph">🛒</span><span class="phl">valentina-mercado.png</span>
       </div>
-      <div class="diag-card">
-        <div class="thumb">
-          <img src="images/metro.png" alt="Metro"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ph-wrap" style="display:none">
-            <span>🚇</span>
-          </div>
-        </div>
-        <div class="frase">"El metro por la mañana me <em style="color:var(--rosa);font-style:normal">molesta</em>
-          muchísimo."</div>
-        <div class="nota">😖 molestar = no gustar / fastidiar</div>
+    </div>
+    <div class="diag-full">
+      <div class="eyebrow">🔍 Observa</div>
+      <h2>FASCINAR</h2>
+      <div class="frase">"El mercado me <em>fascina</em>."</div>
+      <div class="nota">😍 fascinar = gustar muchísimo</div>
+    </div>
+  </section>
+
+  <!-- S5B DIAGNÓSTICO MOLESTAR -->
+  <section class="slide layout-col-wide" id="s5b">
+    <div class="imgcol">
+      <img src="images/valentina-metro.png" alt="Valentina en el metro"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph-wrap" style="display:none">
+        <span class="ph">🚇</span><span class="phl">valentina-metro.png</span>
       </div>
+    </div>
+    <div class="diag-full">
+      <div class="eyebrow">🔍 Observa</div>
+      <h2>MOLESTAR</h2>
+      <div class="frase">"El metro por la mañana me <em>molesta</em> muchísimo."</div>
+      <div class="nota">😖 molestar = no gustar / fastidiar</div>
     </div>
   </section>
 
@@ -947,7 +915,7 @@
   <div class="kbd">← → para navegar</div>
   <nav class="nav">
     <button onclick="navigate(-1)">←</button>
-    <span class="counter" id="counter">1 / 14</span>
+    <span class="counter" id="counter">1 / 15</span>
     <div class="dots" id="dots"></div>
     <button onclick="navigate(1)">→</button>
   </nav>

@@ -121,7 +121,7 @@ Com 5 a 8 pares simultâneos não dá para ouvir todos. Amostrar 3 pares durante
 - `a1-aula12/aluno-a.html` e `aluno-b.html`
 - `a1-aula12/mobile.html`
 - `a1-aula12/audio/audio-valentina.mp3`
-- `a1-aula12/images/` — Valentina, mercado, bicicleta, metrô
+- `a1-aula12/images/` — valentina-rios.png, valentina-mercado.png, valentina-bicicleta.png, valentina-metro.png
 - `.pptx` → PDF
 - `.md` do Obsidian
 
