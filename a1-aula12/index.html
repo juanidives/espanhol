@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 12 · ¿Coincidimos? · Valentina Ríos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&family=Oswald:wght@400;600;700&display=swap');
+
+    :root {
+      --terracota: #C05746;
+      --rosa: #E4007C;
+      --areia: #EFE1CE;
+      --cafe: #2E211B;
+      --card: #FBF5EA;
+      --cinza: #7A6A5C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--areia);
+      color: var(--cafe);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      font-size: 19px;
+    }
+
+    /* ── SLIDE ENGINE ── */
+    .slide {
+      display: none;
+      position: absolute;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--areia);
+    }
+
+    .slide.active.layout-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .slide.active.layout-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 60px 80px;
+      gap: 60px;
+    }
+
+    .slide.active.layout-col-wide {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: center;
+      padding: 60px 80px;
+      gap: 60px;
+    }
+
+    .slide.active.layout-flex-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 80px;
+      gap: 26px;
+    }
+
+    .slide.active.layout-campo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 80px;
+      gap: 34px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(46, 33, 27, 0.9);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 50px;
+      padding: 10px 24px;
+      z-index: 9999;
+    }
+
+    .nav button {
+      background: none;
+      border: none;
+      color: var(--areia);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+
+    .nav button:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav .counter {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      color: var(--rosa);
+      letter-spacing: 2px;
+      min-width: 56px;
+      text-align: center;
+    }
+
+    .dots {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .dot.on {
+      background: var(--rosa);
+      width: 18px;
+      border-radius: 4px;
+    }
+
+    /* ── SHARED ── */
+    .eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rosa);
+      font-weight: 600;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .tag-terracota {
+      background: var(--terracota);
+    }
+
+    .tag-rosa {
+      background: var(--rosa);
+    }
+
+    .kbd {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      font-size: 12px;
+      color: var(--cinza);
+      letter-spacing: 1px;
+      font-family: 'Oswald', sans-serif;
+      z-index: 999;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px 22px;
+      border-left: 5px solid var(--terracota);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .card.rosa {
+      border-left-color: var(--rosa);
+    }
+
+    .card .lbl {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terracota);
+    }
+
+    .card .val {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--cafe);
+    }
+
+    .quote {
+      background: rgba(192, 87, 70, .1);
+      border: 1px solid rgba(192, 87, 70, .3);
+      border-radius: 14px;
+      padding: 18px 22px;
+      font-size: 17px;
+      font-style: italic;
+      color: var(--cafe);
+      line-height: 1.6;
+    }
+
+    .quote strong {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    /* imagem: sempre contain, nunca cover */
+    .imgcol {
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+      border-radius: 20px;
+      height: 75vh;
+      aspect-ratio: 1086 / 1448;
+      justify-self: center;
+      border: 2px solid rgba(192, 87, 70, .25);
+    }
+
+    .imgcol img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: var(--card);
+      display: block;
+    }
+
+    .imgcol .ph-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: var(--cinza);
+    }
+
+    .imgcol .ph {
+      font-size: 90px;
+    }
+
+    .imgcol .phl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    /* ── PORTADA S1 ── */
+    #s1 .box {
+      position: relative;
+      text-align: center;
+      max-width: 860px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    #s1 .lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 5px;
+      color: var(--terracota);
+      font-weight: 600;
+    }
+
+    #s1 h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(80px, 10vw, 130px);
+      line-height: .9;
+      color: var(--cafe);
+      letter-spacing: 2px;
+    }
+
+    #s1 h1 em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    #s1 .sub {
+      font-size: 20px;
+      color: var(--terracota);
+      font-weight: 500;
+    }
+
+    #s1 .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    /* ── PERSONAJE S2 ── */
+    #s2 .nblock {
+      margin-bottom: 18px;
+    }
+
+    #s2 .nblock h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 56px;
+      line-height: 1;
+      color: var(--cafe);
+      letter-spacing: 2px;
+    }
+
+    #s2 .nblock .role {
+      font-size: 16px;
+      color: var(--terracota);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    #s2 .icol {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* ── ESCUCHA S3 ── */
+    #s3 h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 58px;
+      color: var(--cafe);
+      line-height: 1;
+    }
+
+    #s3 h2 em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    #s3 .rcol {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    #s3 .audio-wrap {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px 22px;
+      border: 2px solid var(--terracota);
+    }
+
+    #s3 .audio-lbl {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terracota);
+      margin-bottom: 10px;
+    }
+
+    #s3 audio {
+      width: 100%;
+    }
+
+    #s3 .instr {
+      background: var(--rosa);
+      border-radius: 18px;
+      padding: 26px 30px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    /* ── DIAGNÓSTICO S4/S5 ── */
+    .diag-eyebrow {
+      align-self: center;
+    }
+
+    .diag-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 6vw, 76px);
+      color: var(--cafe);
+      line-height: 1;
+      text-align: center;
+    }
+
+    .diag-title em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    .diag-sub {
+      font-size: 20px;
+      color: var(--terracota);
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .diag-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 980px;
+    }
+
+    .diag-frase {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px 28px;
+      font-size: 24px;
+      line-height: 1.5;
+      color: var(--cafe);
+      border-left: 6px solid var(--terracota);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .diag-frase .n {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--terracota);
+      flex-shrink: 0;
+    }
+
+    .diag-frase .blank {
+      display: inline-block;
+      min-width: 90px;
+      border-bottom: 3px solid var(--rosa);
+      text-align: center;
+    }
+
+    .diag-cards {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+      max-width: 1080px;
+      justify-content: center;
+    }
+
+    .diag-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 26px 28px;
+      border-top: 5px solid var(--rosa);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .diag-card .thumb {
+      width: 110px;
+      height: 110px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--areia);
+      border: 2px solid rgba(192, 87, 70, .25);
+    }
+
+    .diag-card .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .diag-card .thumb .ph-wrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: var(--cinza);
+    }
+
+    .diag-card .frase {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--cafe);
+      line-height: 1.4;
+    }
+
+    .diag-card .nota {
+      font-size: 16px;
+      color: var(--terracota);
+      font-weight: 500;
+    }
+
+    /* ── REACCIONES S6 ── */
+    #s6 .titulo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 6vw, 80px);
+      color: var(--cafe);
+      text-align: center;
+      line-height: 1;
+    }
+
+    #s6 .titulo em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    #s6 .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 1080px;
+    }
+
+    #s6 .reac {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 24px 28px;
+      border-top: 6px solid var(--terracota);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #s6 .reac.rosa {
+      border-top-color: var(--rosa);
+    }
+
+    #s6 .reac .frase {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+      letter-spacing: 1px;
+      color: var(--rosa);
+    }
+
+    #s6 .reac.rosa .frase {
+      color: var(--terracota);
+    }
+
+    #s6 .reac .ej {
+      font-size: 17px;
+      color: var(--cafe);
+      line-height: 1.5;
+    }
+
+    /* ── CAMPO S7–S12 ── */
+    .campo-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 7vw, 96px);
+      color: var(--terracota);
+      letter-spacing: 2px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .campo-preguntas {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .campo-pregunta {
+      font-size: clamp(30px, 3.4vw, 42px);
+      font-weight: 700;
+      color: var(--cafe);
+      background: var(--card);
+      border-radius: 20px;
+      padding: 22px 40px;
+      text-align: center;
+      max-width: 980px;
+    }
+
+    .campo-recordatorio {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .campo-recordatorio span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #fff;
+      background: var(--rosa);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* ── RECORDATORIO S13 ── */
+    #s13 .meta {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 7vw, 92px);
+      color: var(--cafe);
+      text-align: center;
+      line-height: 1.05;
+      max-width: 1000px;
+    }
+
+    #s13 .meta em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    #s13 .reacciones-grande {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    #s13 .reacciones-grande span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 3vw, 42px);
+      letter-spacing: 1px;
+      color: #fff;
+      background: var(--terracota);
+      padding: 16px 32px;
+      border-radius: 18px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- S1 PORTADA -->
+  <section class="slide active layout-center" id="s1">
+    <div class="box">
+      <span class="lbl">A U L A 12 · E S P A Ñ O L · A 1</span>
+      <h1>¿<em>COINCIDIMOS</em>?</h1>
+      <p class="sub">Gustos y opiniones · con Valentina Ríos, Ciudad de México</p>
+      <div class="row">
+        <span class="tag tag-terracota">🎧 Escucha</span>
+        <span class="tag tag-rosa">💬 Habla</span>
+        <span class="tag tag-terracota">📖 Vocabulario</span>
+        <span class="tag tag-rosa">✏️ Gramática</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- S2 PERSONAJE -->
+  <section class="slide layout-col-wide" id="s2">
+    <div class="imgcol">
+      <img src="images/valentina-rios.png" alt="Valentina Ríos"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph-wrap" style="display:none">
+        <span class="ph">🎨</span><span class="phl">valentina-rios.png</span>
+      </div>
+    </div>
+    <div class="icol">
+      <div class="nblock">
+        <h2>VALENTINA<br>RÍOS</h2>
+        <p class="role">Ilustradora de libros infantiles · 25 años · Ciudad de México</p>
+      </div>
+      <div class="eyebrow" style="margin-bottom:6px">👋 Conoce a Valentina</div>
+      <div class="card"><span class="lbl">Ciudad</span><span class="val">🇲🇽 Ciudad de México (Colonia Roma)</span></div>
+      <div class="card rosa"><span class="lbl">Trabajo</span><span class="val">🎨 Ilustradora de libros infantiles</span></div>
+      <div class="card"><span class="lbl">Mascota</span><span class="val">🐱 Frida, su gata</span></div>
+      <div class="card rosa"><span class="lbl">Rutina</span><span class="val">🛒 Va al mercado del barrio los miércoles</span></div>
+      <div class="quote">"Odio despertarme temprano, pero <strong>amo el silencio</strong> de las seis de la
+        mañana."</div>
+    </div>
+  </section>
+
+  <!-- S3 ESCUCHA -->
+  <section class="slide layout-two-col" id="s3">
+    <div class="imgcol">
+      <img src="images/bicicleta.png" alt="Valentina anda en bicicleta"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ph-wrap" style="display:none">
+        <span class="ph">🚲</span><span class="phl">bicicleta.png</span>
+      </div>
+    </div>
+    <div class="rcol">
+      <div class="eyebrow">🎧 Escucha</div>
+      <h2>ESCUCHA A <em>VALENTINA</em></h2>
+      <div class="audio-wrap">
+        <div class="audio-lbl">🎧 Escucha el audio</div>
+        <audio controls>
+          <source src="audio/valentina-presentacion.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+      <div class="instr">📝 Anota dos cosas que entendiste.</div>
+    </div>
+  </section>
+
+  <!-- S4 DIAGNÓSTICO GUSTA/GUSTAN -->
+  <section class="slide layout-flex-col" id="s4">
+    <div class="eyebrow diag-eyebrow">🔍 Observa</div>
+    <h2 class="diag-title">¿<em>GUSTA</em> O <em>GUSTAN</em>?</h2>
+    <p class="diag-sub">Completa con gusta o gustan.</p>
+    <div class="diag-lista">
+      <div class="diag-frase"><span class="n">1</span>A Valentina <span class="blank">&nbsp;</span> el mercado de su
+        barrio.</div>
+      <div class="diag-frase"><span class="n">2</span>A Valentina <span class="blank">&nbsp;</span> los gatos.</div>
+      <div class="diag-frase"><span class="n">3</span>A Valentina <span class="blank">&nbsp;</span> la Ciudad de
+        México.</div>
+      <div class="diag-frase"><span class="n">4</span>A Valentina <span class="blank">&nbsp;</span> los libros para
+        niños.</div>
+    </div>
+  </section>
+
+  <!-- S5 DIAGNÓSTICO ENCANTAR/MOLESTAR -->
+  <section class="slide layout-flex-col" id="s5">
+    <div class="eyebrow diag-eyebrow">🔍 Observa</div>
+    <h2 class="diag-title">ENCANTAR Y <em>MOLESTAR</em></h2>
+    <p class="diag-sub">¿Qué significan? Fíjate en el contexto.</p>
+    <div class="diag-cards">
+      <div class="diag-card">
+        <div class="thumb">
+          <img src="images/mercado.png" alt="Mercado"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph-wrap" style="display:none">
+            <span>🛒</span>
+          </div>
+        </div>
+        <div class="frase">"Me <em style="color:var(--rosa);font-style:normal">encanta</em> el mercado de mi
+          barrio."</div>
+        <div class="nota">😍 encantar = gustar mucho</div>
+      </div>
+      <div class="diag-card">
+        <div class="thumb">
+          <img src="images/metro.png" alt="Metro"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph-wrap" style="display:none">
+            <span>🚇</span>
+          </div>
+        </div>
+        <div class="frase">"Me <em style="color:var(--rosa);font-style:normal">molesta</em> mucho el metro por la
+          mañana."</div>
+        <div class="nota">😖 molestar = no gustar / fastidiar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S6 CUATRO REACCIONES -->
+  <section class="slide layout-center" id="s6">
+    <div class="titulo" style="margin-bottom:36px">LAS CUATRO <em>REACCIONES</em></div>
+    <div class="grid">
+      <div class="reac">
+        <div class="frase">A MÍ TAMBIÉN</div>
+        <div class="ej">— Me gusta el chocolate.<br>— ¡A mí también!</div>
+      </div>
+      <div class="reac rosa">
+        <div class="frase">A MÍ TAMPOCO</div>
+        <div class="ej">— No me gusta el metro.<br>— ¡A mí tampoco!</div>
+      </div>
+      <div class="reac rosa">
+        <div class="frase">A MÍ SÍ</div>
+        <div class="ej">— No me gusta cocinar.<br>— Pues a mí sí.</div>
+      </div>
+      <div class="reac">
+        <div class="frase">A MÍ NO</div>
+        <div class="ej">— Me gusta madrugar.<br>— Pues a mí no.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 CAMPO COMIDAS -->
+  <section class="slide layout-campo" id="s7">
+    <div class="eyebrow">💬 Tu turno</div>
+    <div class="campo-label">🍽️ COMIDAS</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta la comida picante?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- S8 CAMPO LUGARES Y TRANSPORTES -->
+  <section class="slide layout-campo" id="s8">
+    <div class="eyebrow">💬 Tu turno</div>
+    <div class="campo-label">🚇 LUGARES Y TRANSPORTES</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta viajar en metro?</div>
+      <div class="campo-pregunta">¿Te gusta ir al supermercado?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- S9 CAMPO DEPORTES -->
+  <section class="slide layout-campo" id="s9">
+    <div class="eyebrow">💬 Tu turno</div>
+    <div class="campo-label">⚽ DEPORTES</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta el fútbol?</div>
+      <div class="campo-pregunta">¿Te gusta la natación?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- S10 CAMPO FAMILIA -->
+  <section class="slide layout-campo" id="s10">
+    <div class="eyebrow">💬 Tu turno</div>
+    <div class="campo-label">👨‍👩‍👧 FAMILIA</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gustan las fiestas familiares?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- S11 CAMPO RUTINA -->
+  <section class="slide layout-campo" id="s11">
+    <div class="eyebrow">💬 Tu turno</div>
+    <div class="campo-label">🌅 RUTINA</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta levantarte temprano?</div>
+      <div class="campo-pregunta">¿Te gusta cocinar?</div>
+      <div class="campo-pregunta">¿Te gusta dormir hasta tarde?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- S12 CAMPO DÍAS, ESTACIONES Y HORAS -->
+  <section class="slide layout-campo" id="s12">
+    <div class="eyebrow">💬 Tu turno</div>
+    <div class="campo-label">📅 DÍAS, ESTACIONES Y HORAS</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta el invierno?</div>
+      <div class="campo-pregunta">¿Te gustan los lunes?</div>
+      <div class="campo-pregunta">¿Te gusta estudiar de noche?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- S13 RECORDATORIO ¿COINCIDIMOS? -->
+  <section class="slide layout-center" id="s13">
+    <div class="eyebrow" style="margin-bottom:20px">🎯 ¿Coincidimos?</div>
+    <div class="meta">Encuentra <em>3 coincidencias</em><br>y <em>2 diferencias</em>.</div>
+    <div class="reacciones-grande">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <div class="kbd">← → para navegar</div>
+  <nav class="nav">
+    <button onclick="navigate(-1)">←</button>
+    <span class="counter" id="counter">1 / 13</span>
+    <div class="dots" id="dots"></div>
+    <button onclick="navigate(1)">→</button>
+  </nav>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const total = slides.length;
+    let cur = 0;
+    const dotsEl = document.getElementById('dots');
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' on' : '');
+      d.onclick = () => goTo(i);
+      dotsEl.appendChild(d);
+    });
+    function goTo(idx) {
+      slides[cur].classList.remove('active');
+      dotsEl.children[cur].classList.remove('on');
+      cur = (idx + total) % total;
+      slides[cur].classList.add('active');
+      dotsEl.children[cur].classList.add('on');
+      document.getElementById('counter').textContent = (cur + 1) + ' / ' + total;
+    }
+    function navigate(dir) { goTo(cur + dir); }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') navigate(1);
+      if (e.key === 'ArrowLeft') navigate(-1);
+    });
+  </script>
+</body>
+
+</html>
