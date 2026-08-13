@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Aula 12 · ¿Coincidimos? · Valentina Ríos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&family=Oswald:wght@400;600;700&display=swap');
+
+    :root {
+      --terracota: #C05746;
+      --rosa: #E4007C;
+      --areia: #EFE1CE;
+      --cafe: #2E211B;
+      --card: #FBF5EA;
+      --cinza: #7A6A5C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--areia);
+      color: var(--cafe);
+      overflow-x: hidden;
+      min-height: 100vh;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(46, 33, 27, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .topbar .tb-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--areia);
+      text-transform: uppercase;
+      flex: 1;
+    }
+
+    .topbar .tb-badge {
+      background: var(--rosa);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--rosa);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+
+    /* ── SECTIONS ── */
+    .sec {
+      padding: 28px 18px;
+      border-bottom: 1px solid rgba(46, 33, 27, 0.06);
+    }
+
+    .sec:last-child {
+      border-bottom: none;
+      padding-bottom: 90px;
+    }
+
+    .sec-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rosa);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    /* ── IMÁGENES (sempre contain, sem crop) ── */
+    .foto {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      border: 2px solid rgba(192, 87, 70, .25);
+      background: var(--card);
+      margin-bottom: 18px;
+    }
+
+    .ph-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--card);
+      border-radius: 18px;
+      border: 2px solid rgba(192, 87, 70, .25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--cinza);
+    }
+
+    .ph-placeholder .ph {
+      font-size: 48px;
+    }
+
+    .ph-placeholder .phl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    /* ── TAGS ── */
+    .tag {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .tag-terracota {
+      background: var(--terracota);
+    }
+
+    .tag-rosa {
+      background: var(--rosa);
+    }
+
+    /* ── PORTADA S1 ── */
+    #s1 {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 22px 80px;
+      position: relative;
+    }
+
+    #s1 .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #s1 .lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--terracota);
+      font-weight: 600;
+    }
+
+    #s1 h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 18vw, 92px);
+      line-height: 0.95;
+      color: var(--cafe);
+      letter-spacing: 1px;
+    }
+
+    #s1 h1 em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    #s1 .sub {
+      font-size: 16px;
+      color: var(--terracota);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    #s1 .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--cinza);
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-family: 'Oswald', sans-serif;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(6px);
+      }
+    }
+
+    /* ── PERSONAJE S2 ── */
+    .persona-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      line-height: 1;
+      color: var(--cafe);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .persona-role {
+      font-size: 14px;
+      color: var(--terracota);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px 18px;
+      border-left: 5px solid var(--terracota);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+
+    .card.rosa {
+      border-left-color: var(--rosa);
+    }
+
+    .card .lbl {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terracota);
+    }
+
+    .card .val {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--cafe);
+    }
+
+    .quote {
+      background: rgba(192, 87, 70, .1);
+      border: 1px solid rgba(192, 87, 70, .3);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--cafe);
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .quote strong {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    /* ── ESCUCHA S3 ── */
+    #s3 h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--cafe);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    #s3 h2 em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    .audio-wrap {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px;
+      border: 2px solid var(--terracota);
+      margin-bottom: 16px;
+    }
+
+    .audio-lbl {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terracota);
+      margin-bottom: 10px;
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    .instr {
+      background: var(--rosa);
+      border-radius: 16px;
+      padding: 20px 22px;
+      font-size: 21px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    /* ── TRANSCRIPT S3T ── */
+    #s3t h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      color: var(--cafe);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    #s3t h2 em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    .tx-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .tx-block p {
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--cafe);
+    }
+
+    .tx-block p .vb {
+      color: var(--rosa);
+      font-weight: 700;
+    }
+
+    /* ── DIAGNÓSTICO S4 ── */
+    #s4 h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(38px, 11vw, 56px);
+      color: var(--cafe);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    #s4 h2 em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    .diag-sub {
+      font-size: 16px;
+      color: var(--terracota);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .diag-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .diag-frase {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--cafe);
+      border-left: 6px solid var(--terracota);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .diag-frase .n {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--terracota);
+      flex-shrink: 0;
+    }
+
+    .diag-frase .blank {
+      display: inline-block;
+      min-width: 60px;
+      border-bottom: 3px solid var(--rosa);
+      text-align: center;
+    }
+
+    /* ── FASCINAR / MOLESTAR S5 / S5B ── */
+    .diag-full h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(44px, 13vw, 68px);
+      color: var(--terracota);
+      line-height: 1;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .diag-full .frase {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px 22px;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--cafe);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .diag-full .frase em {
+      color: var(--rosa);
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .diag-full .nota {
+      font-size: 16px;
+      color: var(--terracota);
+      font-weight: 600;
+    }
+
+    /* ── REACCIONES S6 ── */
+    #s6 .titulo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 12vw, 60px);
+      color: var(--cafe);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    #s6 .titulo em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    #s6 .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    #s6 .reac {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px 20px;
+      border-top: 5px solid var(--terracota);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    #s6 .reac.rosa {
+      border-top-color: var(--rosa);
+    }
+
+    #s6 .reac .frase {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: .5px;
+      color: var(--rosa);
+    }
+
+    #s6 .reac.rosa .frase {
+      color: var(--terracota);
+    }
+
+    #s6 .reac .ej {
+      font-size: 15px;
+      color: var(--cafe);
+      line-height: 1.5;
+    }
+
+    /* ── CAMPO S7–S12 ── */
+    .campo-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 12vw, 60px);
+      color: var(--terracota);
+      letter-spacing: 1px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .campo-preguntas {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .campo-pregunta {
+      font-size: clamp(22px, 6.5vw, 30px);
+      font-weight: 700;
+      color: var(--cafe);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+
+    .campo-recordatorio {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .campo-recordatorio span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: #fff;
+      background: var(--rosa);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    /* ── RECORDATORIO S13 ── */
+    #s13 {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #s13 .meta {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 12vw, 60px);
+      color: var(--cafe);
+      line-height: 1.1;
+      margin: 14px 0 22px;
+    }
+
+    #s13 .meta em {
+      color: var(--rosa);
+      font-style: normal;
+    }
+
+    #s13 .reacciones-grande {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    #s13 .reacciones-grande span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 30px;
+      letter-spacing: 1px;
+      color: #fff;
+      background: var(--terracota);
+      padding: 16px;
+      border-radius: 16px;
+    }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(46, 33, 27, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 20px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .bottom-nav .section-info {
+      flex: 1;
+      text-align: center;
+    }
+
+    .bottom-nav .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--rosa);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .bottom-nav .section-num {
+      font-size: 10px;
+      color: rgba(239, 225, 206, .6);
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--areia);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: background .2s;
+      line-height: 1;
+    }
+
+    .nav-btn:active {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* ── SIDE DOTS ── */
+    .side-dots {
+      position: fixed;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 998;
+    }
+
+    .sdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(46, 33, 27, 0.25);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .sdot.on {
+      background: var(--rosa);
+      height: 14px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span class="tb-title">🇲🇽 Aula 12 · ¿Coincidimos?</span>
+    <span class="tb-badge">A1</span>
+  </div>
+
+  <!-- ══ S1 PORTADA ══ -->
+  <section class="sec" id="s1">
+    <div class="box">
+      <span class="lbl">A U L A 1 2 · E S P A Ñ O L · A 1</span>
+      <h1>¿<em>COINCIDIMOS</em>?</h1>
+      <p class="sub">Gustos y opiniones · con Valentina Ríos, Ciudad de México</p>
+      <div class="row">
+        <span class="tag tag-terracota">🎧 Escucha</span>
+        <span class="tag tag-rosa">💬 Habla</span>
+        <span class="tag tag-terracota">📖 Vocabulario</span>
+        <span class="tag tag-rosa">✏️ Gramática</span>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>▼</span>
+      <span>DESLIZÁ</span>
+    </div>
+  </section>
+
+  <!-- ══ S2 PERSONAJE ══ -->
+  <section class="sec" id="s2">
+    <div class="sec-label">👋 Conoce a Valentina</div>
+    <img src="images/valentina-rios.png" alt="Valentina Ríos" class="foto"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🎨</span><span class="phl">valentina-rios.png</span>
+    </div>
+    <div class="persona-name">VALENTINA RÍOS</div>
+    <p class="persona-role">Ilustradora de libros infantiles · 25 años · Ciudad de México</p>
+    <div class="card"><span class="lbl">Ciudad</span><span class="val">🇲🇽 Ciudad de México (Colonia Roma)</span></div>
+    <div class="card rosa"><span class="lbl">Trabajo</span><span class="val">🎨 Ilustradora de libros infantiles</span>
+    </div>
+    <div class="card"><span class="lbl">Mascota</span><span class="val">🐱 Frida, su gata</span></div>
+    <div class="card rosa"><span class="lbl">Rutina</span><span class="val">🛒 Va al mercado del barrio los
+        miércoles</span></div>
+    <div class="quote">"Odio despertarme temprano, pero <strong>amo el silencio</strong> de las seis de la
+      mañana."</div>
+  </section>
+
+  <!-- ══ S3 ESCUCHA ══ -->
+  <section class="sec" id="s3">
+    <div class="sec-label">🎧 Escucha</div>
+    <img src="images/valentina-bicicleta.png" alt="Valentina anda en bicicleta" class="foto"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🚲</span><span class="phl">valentina-bicicleta.png</span>
+    </div>
+    <h2>ESCUCHA A <em>VALENTINA</em></h2>
+    <div class="audio-wrap">
+      <div class="audio-lbl">🎧 Escucha el audio</div>
+      <audio controls>
+        <source src="audio/audio-valentina.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <div class="instr">📝 Anota dos cosas que entendiste.</div>
+  </section>
+
+  <!-- ══ S3T TRANSCRIPT ══ -->
+  <section class="sec" id="s3t">
+    <div class="sec-label">📄 Texto del audio</div>
+    <h2>LO QUE <em>DIJO</em> VALENTINA</h2>
+    <div class="tx-block">
+      <p>Buenos días. Soy Valentina, y hoy les voy a contar un poco de mi vida.</p>
+      <p>Los miércoles son mi día favorito de la semana. Bueno… casi. Porque el despertador suena a las siete, y a
+        mí levantarme temprano no me <span class="vb">gusta</span> nada. Nadita.</p>
+      <p>Pero mi gata Frida no entiende de eso. Se sienta en mi pecho, me mira, y espera. Entonces me levanto.</p>
+      <p>Preparo café. El café sí me <span class="vb">encanta</span>, ¿eh? Con eso ya soy otra persona.</p>
+      <p>Trabajo en casa: dibujo libros para niños, soy ilustradora. Los miércoles dibujo poco, porque los
+        miércoles voy al mercado.</p>
+      <p>Y el mercado, ay, el mercado me <span class="vb">fascina</span>. Los colores, la gente que grita, las
+        frutas que no conozco… Voy en bicicleta, siempre. El metro por la mañana me <span class="vb">molesta</span>
+        muchísimo: mucha gente, mucho calor, no, gracias.</p>
+      <p>Compro tomate, cebolla, chile… poquito chile. Porque en México todo pica, pero a mí la comida muy picante
+        no me <span class="vb">gusta</span>.</p>
+      <p>Por la tarde, si hay tiempo, voy a la alberca. Nadar me <span class="vb">relaja</span>. El fútbol no, el
+        fútbol de verdad no me <span class="vb">interesa</span> nada, y en mi familia todos me preguntan por qué.</p>
+      <p>Y en la noche, leo. Siempre leo. El año pasado ilustré un libro sobre una niña que tenía miedo del agua. En
+        una página escribí, con letras muy grandes: «Nadie aprende a nadar mirando el agua».</p>
+      <p>Y ustedes, que están aprendiendo español… es lo mismo, ¿no? Nadie aprende a hablar escuchando. Hay que
+        hablar. ¡Nos vemos, chicos!</p>
+    </div>
+  </section>
+
+  <!-- ══ S4 DIAGNÓSTICO GUSTA/GUSTAN ══ -->
+  <section class="sec" id="s4">
+    <div class="sec-label">🔍 Observa</div>
+    <h2>¿<em>GUSTA</em> O <em>GUSTAN</em>?</h2>
+    <p class="diag-sub">Completa con gusta o gustan.</p>
+    <div class="diag-lista">
+      <div class="diag-frase"><span class="n">1</span>A Valentina <span class="blank">&nbsp;</span> el mercado de
+        su barrio.</div>
+      <div class="diag-frase"><span class="n">2</span>A Valentina <span class="blank">&nbsp;</span> los gatos.</div>
+      <div class="diag-frase"><span class="n">3</span>A Valentina <span class="blank">&nbsp;</span> la Ciudad de
+        México.</div>
+      <div class="diag-frase"><span class="n">4</span>A Valentina <span class="blank">&nbsp;</span> los libros
+        para niños.</div>
+    </div>
+  </section>
+
+  <!-- ══ S5 FASCINAR ══ -->
+  <section class="sec" id="s5">
+    <div class="sec-label">🔍 Observa</div>
+    <img src="images/valentina-mercado.png" alt="Valentina en el mercado" class="foto"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🛒</span><span class="phl">valentina-mercado.png</span>
+    </div>
+    <div class="diag-full">
+      <h2>FASCINAR</h2>
+      <div class="frase">"El mercado me <em>fascina</em>."</div>
+      <div class="nota">😍 fascinar = gustar muchísimo</div>
+    </div>
+  </section>
+
+  <!-- ══ S5B MOLESTAR ══ -->
+  <section class="sec" id="s5b">
+    <div class="sec-label">🔍 Observa</div>
+    <img src="images/valentina-metro.png" alt="Valentina en el metro" class="foto"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🚇</span><span class="phl">valentina-metro.png</span>
+    </div>
+    <div class="diag-full">
+      <h2>MOLESTAR</h2>
+      <div class="frase">"El metro por la mañana me <em>molesta</em> muchísimo."</div>
+      <div class="nota">😖 molestar = no gustar / fastidiar</div>
+    </div>
+  </section>
+
+  <!-- ══ S6 CUATRO REACCIONES ══ -->
+  <section class="sec" id="s6">
+    <div class="titulo">LAS CUATRO <em>REACCIONES</em></div>
+    <div class="grid">
+      <div class="reac">
+        <div class="frase">A MÍ TAMBIÉN</div>
+        <div class="ej">— Me gusta el chocolate.<br>— ¡A mí también!</div>
+      </div>
+      <div class="reac rosa">
+        <div class="frase">A MÍ TAMPOCO</div>
+        <div class="ej">— No me gusta el metro.<br>— ¡A mí tampoco!</div>
+      </div>
+      <div class="reac rosa">
+        <div class="frase">A MÍ SÍ</div>
+        <div class="ej">— No me gusta cocinar.<br>— Pues a mí sí.</div>
+      </div>
+      <div class="reac">
+        <div class="frase">A MÍ NO</div>
+        <div class="ej">— Me gusta madrugar.<br>— Pues a mí no.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ S7 CAMPO COMIDAS ══ -->
+  <section class="sec" id="s7">
+    <div class="sec-label">💬 Tu turno</div>
+    <div class="campo-label">🍽️ COMIDAS</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta la comida picante?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- ══ S8 CAMPO LUGARES Y TRANSPORTES ══ -->
+  <section class="sec" id="s8">
+    <div class="sec-label">💬 Tu turno</div>
+    <div class="campo-label">🚇 LUGARES Y TRANSPORTES</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta viajar en metro?</div>
+      <div class="campo-pregunta">¿Te gusta ir al supermercado?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- ══ S9 CAMPO DEPORTES ══ -->
+  <section class="sec" id="s9">
+    <div class="sec-label">💬 Tu turno</div>
+    <div class="campo-label">⚽ DEPORTES</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta el fútbol?</div>
+      <div class="campo-pregunta">¿Te gusta la natación?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- ══ S10 CAMPO FAMILIA ══ -->
+  <section class="sec" id="s10">
+    <div class="sec-label">💬 Tu turno</div>
+    <div class="campo-label">👨‍👩‍👧 FAMILIA</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gustan las fiestas familiares?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- ══ S11 CAMPO RUTINA ══ -->
+  <section class="sec" id="s11">
+    <div class="sec-label">💬 Tu turno</div>
+    <div class="campo-label">🌅 RUTINA</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta levantarte temprano?</div>
+      <div class="campo-pregunta">¿Te gusta cocinar?</div>
+      <div class="campo-pregunta">¿Te gusta dormir hasta tarde?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- ══ S12 CAMPO DÍAS, ESTACIONES Y HORAS ══ -->
+  <section class="sec" id="s12">
+    <div class="sec-label">💬 Tu turno</div>
+    <div class="campo-label">📅 DÍAS, ESTACIONES Y HORAS</div>
+    <div class="campo-preguntas">
+      <div class="campo-pregunta">¿Te gusta el invierno?</div>
+      <div class="campo-pregunta">¿Te gustan los lunes?</div>
+      <div class="campo-pregunta">¿Te gusta estudiar de noche?</div>
+    </div>
+    <div class="campo-recordatorio">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- ══ S13 RECORDATORIO ¿COINCIDIMOS? ══ -->
+  <section class="sec" id="s13">
+    <div class="sec-label">🎯 ¿Coincidimos?</div>
+    <div class="meta">Encuentra <em>3 coincidencias</em><br>y <em>2 diferencias</em>.</div>
+    <div class="reacciones-grande">
+      <span>A MÍ TAMBIÉN</span><span>A MÍ TAMPOCO</span><span>A MÍ SÍ</span><span>A MÍ NO</span>
+    </div>
+  </section>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn" id="btnPrev" onclick="navPrev()">←</button>
+    <div class="section-info">
+      <span class="section-title" id="navTitle">Portada</span>
+      <span class="section-num" id="navNum">1 / 15</span>
+    </div>
+    <button class="nav-btn" id="btnNext" onclick="navNext()">→</button>
+  </nav>
+
+  <!-- SIDE DOTS -->
+  <div class="side-dots" id="sideDots"></div>
+
+  <script>
+    const sections = [
+      { id: 's1', label: 'Portada' },
+      { id: 's2', label: 'Valentina Ríos' },
+      { id: 's3', label: 'Escucha' },
+      { id: 's3t', label: 'Transcripto' },
+      { id: 's4', label: 'Gusta/Gustan' },
+      { id: 's5', label: 'Fascinar' },
+      { id: 's5b', label: 'Molestar' },
+      { id: 's6', label: 'Reacciones' },
+      { id: 's7', label: 'Comidas' },
+      { id: 's8', label: 'Lugares y Transportes' },
+      { id: 's9', label: 'Deportes' },
+      { id: 's10', label: 'Familia' },
+      { id: 's11', label: 'Rutina' },
+      { id: 's12', label: 'Días, Estaciones' },
+      { id: 's13', label: '¿Coincidimos?' },
+    ];
+
+    const total = sections.length;
+    let activeSec = 0;
+
+    const dotsEl = document.getElementById('sideDots');
+    sections.forEach((s, i) => {
+      const d = document.createElement('div');
+      d.className = 'sdot' + (i === 0 ? ' on' : '');
+      d.title = s.label;
+      d.onclick = () => scrollToSection(i);
+      dotsEl.appendChild(d);
+    });
+
+    function updateNav(idx) {
+      activeSec = idx;
+      document.getElementById('navTitle').textContent = sections[idx].label;
+      document.getElementById('navNum').textContent = (idx + 1) + ' / ' + total;
+      document.querySelectorAll('.sdot').forEach((d, i) => {
+        d.classList.toggle('on', i === idx);
+      });
+      const pct = ((idx + 1) / total) * 100;
+      document.getElementById('progressBar').style.width = pct + '%';
+    }
+
+    function scrollToSection(idx) {
+      const el = document.getElementById(sections[idx].id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateNav(idx);
+    }
+
+    function navPrev() {
+      if (activeSec > 0) scrollToSection(activeSec - 1);
+    }
+
+    function navNext() {
+      if (activeSec < total - 1) scrollToSection(activeSec + 1);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = sections.findIndex(s => s.id === entry.target.id);
+          if (idx !== -1) updateNav(idx);
+        }
+      });
+    }, {
+      threshold: 0.4,
+      rootMargin: '-60px 0px -50% 0px'
+    });
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') navNext();
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navPrev();
+    });
+  </script>
+
+</body>
+
+</html>
