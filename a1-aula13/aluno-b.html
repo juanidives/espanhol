@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 13 · Alumno B · ¿Es tuyo?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&family=Oswald:wght@400;600;700&display=swap');
+
+    :root {
+      --vermelho: #D62828;
+      --indigo: #2B2D6E;
+      --areia: #EDE0CE;
+      --indigo-esc: #1A1B45;
+      --card: #F8EFDC;
+      --cinza: #6F675C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--areia);
+      color: var(--indigo-esc);
+      font-size: 19px;
+      line-height: 1.5;
+      padding: 28px 20px 60px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 18px;
+      border-radius: 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--indigo);
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 11vw, 56px);
+      line-height: 1;
+      color: var(--indigo-esc);
+      letter-spacing: 1px;
+    }
+
+    h1 em {
+      color: var(--vermelho);
+      font-style: normal;
+    }
+
+    .aviso {
+      width: 100%;
+      max-width: 480px;
+      background: var(--indigo-esc);
+      color: var(--areia);
+      border-radius: 16px;
+      padding: 18px 22px;
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    section {
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    .eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--vermelho);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    /* ── LISTA DE OBJETOS ── */
+    .lista {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .item {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px 18px;
+      border-left: 6px solid var(--indigo);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .item.compartido {
+      border-left-color: var(--vermelho);
+    }
+
+    .item .n {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      background: var(--indigo);
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .item.compartido .n {
+      background: var(--vermelho);
+    }
+
+    .item .ic {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .item .txt {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .item .obj {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .item .det {
+      font-size: 15px;
+      color: var(--cinza);
+      font-weight: 500;
+    }
+
+    /* ── MODELOS / REACCIONES ── */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 10px 18px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--indigo-esc);
+      border: 2px solid var(--indigo);
+    }
+
+    .chip.v {
+      border-color: var(--vermelho);
+      color: var(--vermelho);
+    }
+
+    /* ── AVISO NO MOSTRAR (dentro de sección) ── */
+    .instr-box {
+      background: var(--vermelho);
+      color: #fff;
+      border-radius: 16px;
+      padding: 16px 20px;
+      font-size: 17px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    /* ── REGISTRO ── */
+    .registro-bloque {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      border-left: 6px solid var(--indigo);
+    }
+
+    .registro-titulo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: var(--indigo-esc);
+      margin-bottom: 14px;
+    }
+
+    .linea {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .linea:last-child {
+      margin-bottom: 0;
+    }
+
+    .linea .n {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--indigo);
+      flex-shrink: 0;
+    }
+
+    .linea input {
+      flex: 1;
+      border: none;
+      border-bottom: 3px solid var(--indigo);
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 19px;
+      color: var(--indigo-esc);
+      padding: 6px 4px;
+    }
+
+    .linea input:focus {
+      outline: none;
+      border-color: var(--vermelho);
+    }
+
+    /* ── DICTADO — frases de estímulo (leo en voz alta) ── */
+    .frase-dictado {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px 18px;
+      border-left: 6px solid var(--indigo);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .frase-dictado .n {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      background: var(--indigo);
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .frase-dictado .blank {
+      display: inline-block;
+      min-width: 60px;
+      border-bottom: 3px dotted var(--vermelho);
+    }
+
+    /* ── DICTADO — campos para responder ── */
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .check-row .n {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      background: var(--vermelho);
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .check-row input[type="text"] {
+      flex: 1;
+      border: none;
+      border-bottom: 3px solid var(--indigo);
+      background: var(--card);
+      border-radius: 10px 10px 0 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 21px;
+      color: var(--indigo-esc);
+      padding: 10px 12px;
+    }
+
+    .check-row input[type="text"]:focus {
+      outline: none;
+    }
+
+    .check-row .resultado {
+      font-size: 24px;
+      width: 26px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .check-row .correcta {
+      display: none;
+      font-size: 13px;
+      color: var(--vermelho);
+      font-weight: 700;
+    }
+
+    .check-row.ok input[type="text"] {
+      border-color: #2e7d32;
+    }
+
+    .check-row.ok .resultado::after {
+      content: "✓";
+      color: #2e7d32;
+    }
+
+    .check-row.bad input[type="text"] {
+      border-color: var(--vermelho);
+    }
+
+    .check-row.bad .resultado::after {
+      content: "✗";
+      color: var(--vermelho);
+    }
+
+    .check-row.bad .correcta {
+      display: block;
+    }
+
+    .comprobar-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: var(--indigo);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .comprobar-btn:disabled {
+      background: #cabfab;
+      color: #8a8171;
+      cursor: not-allowed;
+    }
+
+    .score-box {
+      margin-top: 16px;
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--vermelho);
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <span class="badge">Alumno B</span>
+    <h1>¿ES <em>TUYO</em>?</h1>
+    <div class="aviso">🙈 No muestres tu pantalla</div>
+  </header>
+
+  <!-- RONDA 1 -->
+  <section>
+    <div class="eyebrow">📋 Ronda 1 · Estas cosas son tuyas</div>
+    <div class="lista">
+      <div class="item">
+        <span class="n">1</span>
+        <span class="ic">🧥</span>
+        <span class="txt"><span class="obj">la casaca</span><span class="det">es azul, talla M</span></span>
+      </div>
+      <div class="item">
+        <span class="n">2</span>
+        <span class="ic">🕶️</span>
+        <span class="txt"><span class="obj">los lentes de sol</span><span class="det">son negros, el estuche es
+            marrón</span></span>
+      </div>
+      <div class="item">
+        <span class="n">3</span>
+        <span class="ic">☂️</span>
+        <span class="txt"><span class="obj">el paraguas</span><span class="det">es verde</span></span>
+      </div>
+      <div class="item compartido">
+        <span class="n">4</span>
+        <span class="ic">🔑</span>
+        <span class="txt"><span class="obj">las llaves</span><span class="det">son tres, son de la habitación →
+            son de los dos</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">💬 Pregunta así</div>
+    <div class="chips">
+      <span class="chip">¿Es tuya / tuyo?</span>
+      <span class="chip">¿De qué color es?</span>
+      <span class="chip">¿Cuántos hay?</span>
+      <span class="chip">¿Qué hay dentro?</span>
+      <span class="chip">¿Cómo es?</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">↩️ Responde así</div>
+    <div class="chips">
+      <span class="chip v">Sí, es mía / es mío.</span>
+      <span class="chip v">No, no es mía. Es tuya.</span>
+      <span class="chip v">Son nuestras.</span>
+      <span class="chip v">No es mío ni tuyo — es suyo.</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="instr-box">🙊 No se lo digas. Tenés que preguntar.</div>
+    <div class="registro-bloque">
+      <div class="registro-titulo">📝 Anotá las cosas de tu compañero/a</div>
+      <div class="linea"><span class="n">1</span><input type="text" placeholder="objeto"><input type="text"
+          placeholder="detalle"></div>
+      <div class="linea"><span class="n">2</span><input type="text" placeholder="objeto"><input type="text"
+          placeholder="detalle"></div>
+      <div class="linea"><span class="n">3</span><input type="text" placeholder="objeto"><input type="text"
+          placeholder="detalle"></div>
+    </div>
+  </section>
+
+  <!-- RONDA 2 -->
+  <section>
+    <div class="eyebrow">🎙️ Ronda 2 · Leé estas 6 frases en voz alta</div>
+    <div class="frase-dictado"><span class="n">1</span>Es <strong>tu</strong> cargador. El cargador es…
+      <span class="blank">&nbsp;</span>
+    </div>
+    <div class="frase-dictado"><span class="n">2</span>Las llaves son <strong>mías</strong>. Son…
+      <span class="blank">&nbsp;</span> llaves.
+    </div>
+    <div class="frase-dictado"><span class="n">3</span>Es <strong>nuestra</strong> habitación. La habitación es…
+      <span class="blank">&nbsp;</span>
+    </div>
+    <div class="frase-dictado"><span class="n">4</span>Los dibujos son <strong>suyos</strong>. Son…
+      <span class="blank">&nbsp;</span> dibujos.
+    </div>
+    <div class="frase-dictado"><span class="n">5</span>Son <strong>mis</strong> fotos. Las fotos son…
+      <span class="blank">&nbsp;</span>
+    </div>
+    <div class="frase-dictado"><span class="n">6</span>El paraguas es <strong>suyo</strong>. Es…
+      <span class="blank">&nbsp;</span> paraguas.
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">✍️ Ahora escuchá a tu compañero/a y completá</div>
+    <div id="respuestas">
+      <div class="check-row" data-correcta="mía">
+        <span class="n">1</span>
+        <input type="text" autocomplete="off">
+        <span class="resultado"></span>
+      </div>
+      <div class="check-row" data-correcta="nuestros">
+        <span class="n">2</span>
+        <input type="text" autocomplete="off">
+        <span class="resultado"></span>
+      </div>
+      <div class="check-row" data-correcta="tuyas">
+        <span class="n">3</span>
+        <input type="text" autocomplete="off">
+        <span class="resultado"></span>
+      </div>
+      <div class="check-row" data-correcta="su">
+        <span class="n">4</span>
+        <input type="text" autocomplete="off">
+        <span class="resultado"></span>
+      </div>
+      <div class="check-row" data-correcta="míos">
+        <span class="n">5</span>
+        <input type="text" autocomplete="off">
+        <span class="resultado"></span>
+      </div>
+      <div class="check-row" data-correcta="tu">
+        <span class="n">6</span>
+        <input type="text" autocomplete="off">
+        <span class="resultado"></span>
+      </div>
+    </div>
+    <button class="comprobar-btn" id="btnComprobar" disabled>COMPROBAR</button>
+    <div class="score-box" id="scoreBox"></div>
+  </section>
+
+  <script>
+    const filas = Array.from(document.querySelectorAll('#respuestas .check-row'));
+    const inputs = filas.map(f => f.querySelector('input'));
+    const btn = document.getElementById('btnComprobar');
+    const scoreBox = document.getElementById('scoreBox');
+
+    function normalizar(s) {
+      return s.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function actualizarBoton() {
+      btn.disabled = inputs.some(i => i.value.trim() === '');
+    }
+
+    inputs.forEach(i => i.addEventListener('input', actualizarBoton));
+
+    btn.addEventListener('click', () => {
+      let acertos = 0;
+      filas.forEach(fila => {
+        const input = fila.querySelector('input');
+        const correcta = fila.dataset.correcta;
+        const acerto = normalizar(input.value) === normalizar(correcta);
+        fila.classList.remove('ok', 'bad');
+        fila.classList.add(acerto ? 'ok' : 'bad');
+        let msg = fila.querySelector('.correcta');
+        if (!msg) {
+          msg = document.createElement('div');
+          msg.className = 'correcta';
+          fila.appendChild(msg);
+        }
+        msg.textContent = 'Correcta: ' + correcta;
+        if (acerto) acertos++;
+      });
+      scoreBox.style.display = 'block';
+      scoreBox.textContent = 'Acertaste ' + acertos + ' de 6';
+    });
+  </script>
+
+</body>
+
+</html>
