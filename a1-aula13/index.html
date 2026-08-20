@@ -40,6 +40,7 @@
       inset: 0;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       overflow: hidden;
       background: var(--areia);
     }
@@ -49,22 +50,23 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      padding: 2.2vh 3vw;
     }
 
     .slide.active.layout-two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 50px 70px;
-      gap: 50px;
+      padding: 2.2vh 3vw;
+      gap: 3vw;
     }
 
     .slide.active.layout-col-wide {
       display: grid;
       grid-template-columns: 0.8fr 1.2fr;
       align-items: center;
-      padding: 50px 70px;
-      gap: 50px;
+      padding: 2.2vh 3vw;
+      gap: 3vw;
     }
 
     .slide.active.layout-flex-col {
@@ -72,16 +74,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 36px 70px;
-      gap: 20px;
+      padding: 2.2vh 3vw;
+      gap: 1.6vh;
     }
 
-    .slide.active.layout-two-col-top {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      align-items: start;
-      padding: 44px 70px;
-      gap: 44px;
+    .slide.active.layout-gram {
+      display: flex;
+      flex-direction: column;
+      padding: 2.2vh 3vw 78px 3vw;
+      gap: 1.4vh;
     }
 
     /* ── NAV ── */
@@ -272,7 +273,15 @@
       letter-spacing: 2px;
     }
 
-    /* ── GRAMÁTICA (sistema compartilhado S7–S18) ── */
+    /* ── GRAMÁTICA · SISTEMA COMPARTILHADO (S7–S18) ── */
+    .gram-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9vh;
+      flex-shrink: 0;
+    }
+
     .gram-wrap {
       display: flex;
       flex-direction: column;
@@ -285,11 +294,11 @@
       background: rgba(214, 40, 40, .08);
       border: 1px solid rgba(214, 40, 40, .3);
       border-radius: 14px;
-      padding: 14px 22px;
-      font-size: 19px;
+      padding: 1vh 22px;
+      font-size: clamp(15px, 2.2vh, 22px);
       font-style: italic;
       color: var(--indigo-esc);
-      line-height: 1.5;
+      line-height: 1.4;
       text-align: center;
     }
 
@@ -300,7 +309,7 @@
     }
 
     .gram-sub {
-      font-size: 14px;
+      font-size: clamp(11px, 1.5vh, 14px);
       color: var(--cinza);
       text-align: center;
       font-style: italic;
@@ -308,7 +317,7 @@
 
     h2.gram-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(32px, 3.6vw, 48px);
+      font-size: clamp(30px, 4.6vh, 58px);
       color: var(--indigo);
       text-align: center;
       letter-spacing: 1px;
@@ -355,7 +364,7 @@
     table.gram-table td {
       padding: 9px 12px;
       text-align: center;
-      font-size: 16px;
+      font-size: clamp(17px, 2.5vh, 30px);
       font-weight: 600;
       color: var(--indigo-esc);
       background: var(--card);
@@ -384,11 +393,39 @@
       text-decoration: line-through;
     }
 
+    /* tabela de 6 linhas pessoa > forma, igual nos 7 slides de pronombres */
+    table.tabla-pronombres td.persona {
+      text-align: left;
+      font-size: clamp(15px, 2.1vh, 24px);
+    }
+
+    table.tabla-pronombres td.sep {
+      color: var(--vermelho);
+      font-weight: 900;
+      text-align: center;
+      width: 10%;
+      font-size: clamp(15px, 2.1vh, 22px);
+    }
+
+    table.tabla-pronombres td.forma {
+      text-align: left;
+      font-weight: 800;
+      font-size: clamp(15px, 2.1vh, 24px);
+    }
+
+    table.tabla-pronombres .sub {
+      display: block;
+      font-size: clamp(9px, 1.1vh, 11px);
+      color: var(--cinza);
+      font-weight: 400;
+      letter-spacing: .5px;
+    }
+
     .gram-notes {
       display: flex;
       flex-direction: column;
       gap: 7px;
-      font-size: 15px;
+      font-size: clamp(14px, 2vh, 22px);
       color: var(--indigo-esc);
     }
 
@@ -413,12 +450,22 @@
       border-left: 6px solid var(--vermelho);
       border-radius: 12px;
       padding: 14px 20px;
-      font-size: 15px;
+      font-size: clamp(14px, 2vh, 22px);
       color: var(--indigo-esc);
       line-height: 1.5;
     }
 
     .gram-callout strong {
+      color: var(--vermelho);
+    }
+
+    .explicacion {
+      font-size: clamp(14px, 2vh, 22px);
+      color: var(--indigo-esc);
+      line-height: 1.4;
+    }
+
+    .explicacion strong {
       color: var(--vermelho);
     }
 
@@ -442,6 +489,98 @@
 
     .chip-row span.v {
       background: var(--vermelho);
+    }
+
+    /* ── colunas dos 7 slides de pronombres ── */
+    .gram-cols {
+      display: grid;
+      grid-template-columns: 56% 44%;
+      gap: 2.4vw;
+      flex: 1;
+      min-height: 0;
+      max-width: 1600px;
+      width: 92vw;
+      margin: 0 auto;
+    }
+
+    .gram-left,
+    .gram-right {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      gap: 1vh;
+    }
+
+    .ejemplos {
+      display: flex;
+      flex-direction: column;
+      gap: 1vh;
+      min-height: 0;
+    }
+
+    .ejemplo {
+      background: var(--card);
+      border-left: 6px solid var(--indigo);
+      border-radius: 12px;
+      padding: 1.1vh 1.4vw;
+    }
+
+    .ejemplo .frase {
+      font-size: clamp(17px, 2.6vh, 28px);
+      font-weight: 700;
+      color: var(--indigo-esc);
+      line-height: 1.3;
+    }
+
+    .ejemplo .frase .foco {
+      color: var(--vermelho);
+      font-weight: 900;
+    }
+
+    .ejemplo .frase .arrow {
+      color: var(--vermelho);
+      font-weight: 900;
+      margin: 0 .3vw;
+    }
+
+    .ejemplo .nota {
+      font-size: clamp(12px, 1.5vh, 15px);
+      color: var(--cinza);
+      font-style: italic;
+      margin-top: .2vh;
+    }
+
+    .dica {
+      background: var(--card);
+      border-left: 6px solid var(--vermelho);
+      border-radius: 12px;
+      padding: 1.2vh 1.5vw;
+      margin-top: auto;
+      flex-shrink: 0;
+    }
+
+    .dica .lbl {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(11px, 1.3vh, 14px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--vermelho);
+      font-weight: 700;
+      margin-bottom: .3vh;
+    }
+
+    .dica p {
+      font-size: clamp(13px, 1.8vh, 18px);
+      color: var(--indigo-esc);
+      line-height: 1.4;
+    }
+
+    .dica strong,
+    .dica em {
+      color: var(--vermelho);
+      font-style: normal;
+      font-weight: 700;
     }
 
     /* ── PORTADA S1 ── */
@@ -718,122 +857,13 @@
       font-weight: 700;
     }
 
-    /* ── S8/S9 colunas de exemplos ── */
-    .ex-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      overflow-y: auto;
-      max-height: 76vh;
-      padding-right: 6px;
-    }
-
-    .ex-stack .ex-lbl {
-      font-family: 'Oswald', sans-serif;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--vermelho);
-      font-weight: 700;
-    }
-
-    /* ── S16 diálogo ── */
-    #s16 .dialogo {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    #s16 .linea-d {
-      display: flex;
-      gap: 10px;
-      align-items: baseline;
-      font-size: 17px;
-      color: var(--indigo-esc);
-      line-height: 1.4;
-    }
-
-    #s16 .linea-d .who {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      color: #fff;
-      background: var(--indigo);
-      border-radius: 6px;
-      padding: 2px 8px;
-      flex-shrink: 0;
-    }
-
-    #s16 .linea-d.b .who {
-      background: var(--vermelho);
-    }
-
-    #s16 .linea-d strong {
-      color: var(--vermelho);
-    }
-
-    #s16 .motor {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    #s16 .motor .m-item {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 10px 16px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--indigo-esc);
-      border-left: 5px solid var(--indigo);
-    }
-
-    #s16 .motor .m-item.v {
-      border-left-color: var(--vermelho);
-    }
-
-    #s16 .qr-row {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      margin-top: 6px;
-    }
-
-    #s16 .qr-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    #s16 .qr-box {
-      background: #fff;
-      padding: 10px;
-      border-radius: 14px;
-      border: 3px solid var(--indigo);
-      line-height: 0;
-    }
-
-    #s16 .qr-box img {
-      display: block;
-      width: 130px;
-      height: 130px;
-    }
-
-    #s16 .qr-letter {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 30px;
-      color: var(--vermelho);
-      letter-spacing: 1px;
-    }
-
-    /* ── S17 pasos ── */
+    /* ── S17 bloque A/B: pasos + QR ── */
     #s17 .pasos {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 1vh;
       width: 100%;
-      max-width: 820px;
+      max-width: 900px;
     }
 
     #s17 .paso {
@@ -842,8 +872,8 @@
       gap: 16px;
       background: var(--card);
       border-radius: 14px;
-      padding: 14px 22px;
-      font-size: 18px;
+      padding: 1vh 22px;
+      font-size: clamp(13px, 1.9vh, 19px);
       font-weight: 600;
       color: var(--indigo-esc);
     }
@@ -851,11 +881,13 @@
     #s17 .paso .n {
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
-      font-size: 15px;
+      font-size: clamp(12px, 1.5vh, 15px);
       color: #fff;
       background: var(--vermelho);
-      width: 28px;
-      height: 28px;
+      width: 2.6vh;
+      height: 2.6vh;
+      min-width: 22px;
+      min-height: 22px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -863,20 +895,40 @@
       flex-shrink: 0;
     }
 
-    #s17 .quadro-mini {
+    #s17 .qr-row {
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 4vw;
       justify-content: center;
+      align-items: flex-end;
+      margin-top: .4vh;
     }
 
-    #s17 .quadro-mini span {
-      background: var(--indigo);
-      color: #fff;
-      font-size: 17px;
-      font-weight: 700;
-      padding: 12px 22px;
-      border-radius: 12px;
+    #s17 .qr-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6vh;
+    }
+
+    #s17 .qr-box {
+      background: #fff;
+      padding: .8vh;
+      border-radius: 14px;
+      border: 3px solid var(--indigo);
+      line-height: 0;
+    }
+
+    #s17 .qr-box img {
+      display: block;
+      width: clamp(80px, 12vh, 150px);
+      height: clamp(80px, 12vh, 150px);
+    }
+
+    #s17 .qr-letter {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(20px, 3vh, 30px);
+      color: var(--vermelho);
+      letter-spacing: 1px;
     }
 
     /* ── S18 repaso final ── */
@@ -1046,333 +1098,512 @@
   </section>
 
   <!-- S7 PRONOMBRES PERSONALES -->
-  <section class="slide layout-flex-col" id="s7">
-    <div class="eyebrow">🔁 Repaso</div>
-    <div class="gram-wrap">
-      <div class="gram-anchor"><span class="foco">Yo</span> siempre les pregunto lo mismo.</div>
-      <div class="gram-sub">Si en español no hace falta decir «yo», ¿por qué lo dice?</div>
+  <section class="slide layout-gram" id="s7">
+    <div class="gram-top">
+      <div class="eyebrow">🔁 Repaso</div>
       <h2 class="gram-title">PRONOMBRES PERSONALES</h2>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>yo</td>
-            <td>nosotros / nosotras</td>
-          </tr>
-          <tr>
-            <td>tú</td>
-            <td>vosotros / vosotras <span class="muted">(solo España)</span></td>
-          </tr>
-          <tr>
-            <td>él / ella / usted</td>
-            <td>ellos / ellas / ustedes</td>
-          </tr>
-        </table>
+      <div class="gram-anchor"><span class="foco">YO</span> siempre les pregunto lo mismo.</div>
+    </div>
+    <div class="gram-cols">
+      <div class="gram-left">
+        <div class="ejemplos">
+          <div class="ejemplo">
+            <div class="frase">(Yo) trabajo en Cusco.</div>
+            <div class="nota">normalmente se omite</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase"><span class="foco">YO</span> trabajo, ella descansa.</div>
+            <div class="nota">aparece por contraste</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">¿<span class="foco">Tú</span> eres de Bogotá?</div>
+            <div class="nota">aparece por énfasis</div>
+          </div>
+        </div>
+        <div class="dica">
+          <span class="lbl">💡 Ojo · El voseo</span>
+          <p>En Argentina, Uruguay y Paraguay no se usa <strong>tú</strong>, se usa <strong>vos</strong>. Y el
+            verbo cambia: <em>tú tienes</em> → <em>vos tenés</em> · <em>tú hablas</em> → <em>vos hablás</em>. En
+            Perú, como Nicolás, se usa <strong>tú</strong>.</p>
+        </div>
       </div>
-      <ul class="gram-notes">
-        <li>Función: <strong>sujeto</strong> — quien hace la acción.</li>
-        <li>En español normalmente <strong>se omite</strong>: <em>(Yo) trabajo en Cusco</em>.</li>
-        <li>Aparece cuando hay <strong>contraste o énfasis</strong> — el caso de la frase de arriba.</li>
-        <li><em>vos</em> en el Río de la Plata (repaso de la Aula 11).</li>
-      </ul>
+      <div class="gram-right">
+        <div class="tablewrap">
+          <table class="gram-table tabla-pronombres">
+            <tr>
+              <td class="persona">YO</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">YO</td>
+            </tr>
+            <tr>
+              <td class="persona">TÚ</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">TÚ</td>
+            </tr>
+            <tr>
+              <td class="persona">ÉL / ELLA / USTED</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">ÉL / ELLA / USTED</td>
+            </tr>
+            <tr>
+              <td class="persona">NOSOTROS / NOSOTRAS</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">NOSOTROS / NOSOTRAS</td>
+            </tr>
+            <tr>
+              <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+              <td class="sep">&gt;</td>
+              <td class="forma">VOSOTROS / VOSOTRAS</td>
+            </tr>
+            <tr>
+              <td class="persona">ELLOS / ELLAS / USTEDES</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">ELLOS / ELLAS / USTEDES</td>
+            </tr>
+          </table>
+        </div>
+        <p class="explicacion">Función: <strong>sujeto</strong> — quien hace la acción. En español normalmente se
+          omite: el verbo ya dice quién.</p>
+      </div>
     </div>
   </section>
 
   <!-- S8 ÁTONOS OBJETO DIRECTO -->
-  <section class="slide layout-two-col-top" id="s8">
-    <div class="gram-wrap">
+  <section class="slide layout-gram" id="s8">
+    <div class="gram-top">
       <div class="eyebrow">🔁 Repaso</div>
-      <div class="gram-anchor">Y yo <span class="foco">la</span> busco. <span class="muted"
-          style="font-size:13px;display:block;margin-top:6px">la = la casaca</span></div>
-      <h2 class="gram-title">OBJETO DIRECTO</h2>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>me</td>
-            <td>nos</td>
-          </tr>
-          <tr>
-            <td>te</td>
-            <td>os <span class="muted">(solo España)</span></td>
-          </tr>
-          <tr>
-            <td>lo / la</td>
-            <td>los / las</td>
-          </tr>
-        </table>
-      </div>
-      <div class="gram-callout"><strong>Lo que hay que ver:</strong> el pronombre cambia en <strong>género y número
-          de la cosa</strong>.</div>
+      <h2 class="gram-title">PRONOMBRES COMPLEMENTOS ÁTONOS: OBJETO DIRECTO</h2>
+      <div class="gram-anchor">Y yo <span class="foco">LA</span> busco.</div>
+      <div class="gram-sub">la = la casaca</div>
     </div>
-    <div class="ex-stack">
-      <span class="ex-lbl">Un verbo, cambia el objeto</span>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>Busco <strong>la casaca</strong>.</td>
-            <td class="arrow">→</td>
-            <td><span class="foco">La</span> busco.</td>
-          </tr>
-          <tr>
-            <td>Busco <strong>el cargador</strong>.</td>
-            <td class="arrow">→</td>
-            <td><span class="foco">Lo</span> busco.</td>
-          </tr>
-          <tr>
-            <td>Busco <strong>los lentes</strong>.</td>
-            <td class="arrow">→</td>
-            <td><span class="foco">Los</span> busco.</td>
-          </tr>
-          <tr>
-            <td>Busco <strong>las llaves</strong>.</td>
-            <td class="arrow">→</td>
-            <td><span class="foco">Las</span> busco.</td>
-          </tr>
-        </table>
+    <div class="gram-cols">
+      <div class="gram-left">
+        <div class="ejemplos">
+          <div class="ejemplo">
+            <div class="frase">Busco la casaca. <span class="arrow">→</span> <span class="foco">LA</span> busco.
+            </div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Busco el cargador. <span class="arrow">→</span> <span class="foco">LO</span> busco.
+            </div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Busco los lentes. <span class="arrow">→</span> <span class="foco">LOS</span> busco.
+            </div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Busco las llaves. <span class="arrow">→</span> <span class="foco">LAS</span> busco.
+            </div>
+          </div>
+        </div>
+        <div class="dica">
+          <span class="lbl">💡 Ojo · Dónde va</span>
+          <p>Antes del verbo conjugado: <strong>LA</strong> busco. O pegado al infinitivo: voy a buscar<strong>LA</strong>.
+            Las dos son correctas.</p>
+        </div>
       </div>
-      <span class="ex-lbl">Con una persona como objeto</span>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>Nicolás llama <strong>a mí</strong>.</td>
-            <td class="arrow">→</td>
-            <td>Nicolás <span class="foco">me</span> llama.</td>
-          </tr>
-          <tr>
-            <td>Nicolás llama <strong>a ti</strong>.</td>
-            <td class="arrow">→</td>
-            <td>Nicolás <span class="foco">te</span> llama.</td>
-          </tr>
-          <tr>
-            <td>Nicolás llama <strong>a nosotros</strong>.</td>
-            <td class="arrow">→</td>
-            <td>Nicolás <span class="foco">nos</span> llama.</td>
-          </tr>
-        </table>
+      <div class="gram-right">
+        <div class="tablewrap">
+          <table class="gram-table tabla-pronombres">
+            <tr>
+              <td class="persona">YO</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">ME</td>
+            </tr>
+            <tr>
+              <td class="persona">TÚ</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">TE</td>
+            </tr>
+            <tr>
+              <td class="persona">ÉL / ELLA / USTED</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">LO / LA</td>
+            </tr>
+            <tr>
+              <td class="persona">NOSOTROS / NOSOTRAS</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">NOS</td>
+            </tr>
+            <tr>
+              <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+              <td class="sep">&gt;</td>
+              <td class="forma">OS</td>
+            </tr>
+            <tr>
+              <td class="persona">ELLOS / ELLAS / USTEDES</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">LOS / LAS</td>
+            </tr>
+          </table>
+        </div>
+        <p class="explicacion">Sustituye <strong>QUÉ</strong> recibe la acción, sin preposición. Cambia según el
+          género y el número <strong>DE LA COSA</strong>.</p>
       </div>
-      <div class="gram-callout" style="font-size:13px">Posición: antes del verbo (<em>la busco</em>) o pegado al
-        infinitivo (<em>buscarla</em>). Las dos formas son correctas.</div>
     </div>
   </section>
 
   <!-- S9 ÁTONOS OBJETO INDIRECTO -->
-  <section class="slide layout-two-col-top" id="s9">
-    <div class="gram-wrap">
+  <section class="slide layout-gram" id="s9">
+    <div class="gram-top">
       <div class="eyebrow">🔁 Repaso</div>
-      <div class="gram-anchor">Yo siempre <span class="foco">les</span> pregunto lo mismo. <span class="muted"
-          style="font-size:13px;display:block;margin-top:6px">Me escriben, <span class="foco">me</span>
-          dicen…</span></div>
-      <h2 class="gram-title">OBJETO INDIRECTO</h2>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>me</td>
-            <td>nos</td>
-          </tr>
-          <tr>
-            <td>te</td>
-            <td>os <span class="muted">(solo España)</span></td>
-          </tr>
-          <tr>
-            <td>le</td>
-            <td>les</td>
-          </tr>
-        </table>
-      </div>
-      <div class="gram-callout"><strong>El contraste único:</strong> el indirecto <strong>no cambia con el
-          género</strong>. <em>a Camila</em> y <em>a Lucas</em> son los dos <em>le</em>. El directo cambia
-        (<em>lo/la</em>); el indirecto, no.</div>
+      <h2 class="gram-title">PRONOMBRES COMPLEMENTOS ÁTONOS: OBJETO INDIRECTO</h2>
+      <div class="gram-anchor">Yo siempre <span class="foco">LES</span> pregunto lo mismo.</div>
     </div>
-    <div class="ex-stack">
-      <span class="ex-lbl">Un verbo, cambia la persona</span>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>Doy el libro <strong>a Camila</strong>.</td>
-            <td class="arrow">→</td>
-            <td><span class="foco">Le</span> doy el libro.</td>
-          </tr>
-          <tr>
-            <td>Doy el libro <strong>a Lucas</strong>.</td>
-            <td class="arrow">→</td>
-            <td><span class="foco">Le</span> doy el libro.</td>
-          </tr>
-          <tr>
-            <td>Doy el libro <strong>a mis amigos</strong>.</td>
-            <td class="arrow">→</td>
-            <td><span class="foco">Les</span> doy el libro.</td>
-          </tr>
-          <tr>
-            <td>Nicolás escribe <strong>a mí</strong>.</td>
-            <td class="arrow">→</td>
-            <td>Nicolás <span class="foco">me</span> escribe.</td>
-          </tr>
-          <tr>
-            <td>Nicolás escribe <strong>a ti</strong>.</td>
-            <td class="arrow">→</td>
-            <td>Nicolás <span class="foco">te</span> escribe.</td>
-          </tr>
-        </table>
+    <div class="gram-cols">
+      <div class="gram-left">
+        <div class="ejemplos">
+          <div class="ejemplo">
+            <div class="frase">Doy el libro a Camila. <span class="arrow">→</span> <span class="foco">LE</span> doy
+              el libro.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Doy el libro a Lucas. <span class="arrow">→</span> <span class="foco">LE</span> doy
+              el libro.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Doy el libro a mis amigos. <span class="arrow">→</span> <span class="foco">LES</span>
+              doy el libro.</div>
+          </div>
+        </div>
+        <div class="dica">
+          <span class="lbl">💡 Ojo · No cambia con el género</span>
+          <p>«A Camila» y «a Lucas» son los dos <strong>LE</strong>. El directo cambia (lo/la). El indirecto, no.
+          </p>
+        </div>
       </div>
-      <div class="gram-callout" style="font-size:13px">Verbos que piden indirecto: <strong>dar, decir, escribir,
-          mandar, preguntar, gustar</strong>. Duplicación normal: <em>Le doy el libro <strong>a María</strong></em> —
-        no es error.</div>
+      <div class="gram-right">
+        <div class="tablewrap">
+          <table class="gram-table tabla-pronombres">
+            <tr>
+              <td class="persona">YO</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">ME</td>
+            </tr>
+            <tr>
+              <td class="persona">TÚ</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">TE</td>
+            </tr>
+            <tr>
+              <td class="persona">ÉL / ELLA / USTED</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">LE</td>
+            </tr>
+            <tr>
+              <td class="persona">NOSOTROS / NOSOTRAS</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">NOS</td>
+            </tr>
+            <tr>
+              <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+              <td class="sep">&gt;</td>
+              <td class="forma">OS</td>
+            </tr>
+            <tr>
+              <td class="persona">ELLOS / ELLAS / USTEDES</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">LES</td>
+            </tr>
+          </table>
+        </div>
+        <p class="explicacion">Sustituye <strong>A QUIÉN</strong> se dirige la acción. Verbos típicos: dar, decir,
+          escribir, mandar, preguntar, gustar.</p>
+      </div>
     </div>
   </section>
 
-  <!-- S10 TÓNICOS -->
-  <section class="slide layout-two-col-top" id="s10">
-    <div class="gram-wrap">
+  <!-- S10 COMPLEMENTOS TÓNICOS -->
+  <section class="slide layout-gram" id="s10">
+    <div class="gram-top">
       <div class="eyebrow">🔁 Repaso</div>
-      <div class="gram-anchor">¿<span class="foco">De quién</span> es? → Es <span class="foco">de él</span>.</div>
-      <h2 class="gram-title">COMPLEMENTOS TÓNICOS</h2>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>mí</td>
-            <td>nosotros / nosotras</td>
-          </tr>
-          <tr>
-            <td>ti</td>
-            <td>vosotros / vosotras <span class="muted">(solo España)</span></td>
-          </tr>
-          <tr>
-            <td>él / ella / usted</td>
-            <td>ellos / ellas / ustedes</td>
-          </tr>
-        </table>
-      </div>
+      <h2 class="gram-title">PRONOMBRES COMPLEMENTOS TÓNICOS</h2>
+      <div class="gram-anchor">¿De quién es? — Es <span class="foco">DE ÉL</span>.</div>
     </div>
-    <div class="ex-stack">
-      <span class="ex-lbl">Correcto / incorrecto</span>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>Este regalo es <span class="foco">para mí</span>.</td>
-            <td class="err">para yo</td>
-          </tr>
-          <tr>
-            <td>¿Vienes <span class="foco">conmigo</span>?</td>
-            <td class="err">con mí</td>
-          </tr>
-          <tr>
-            <td>No quiero ir <span class="foco">sin ti</span>.</td>
-            <td class="err">sin tú</td>
-          </tr>
-          <tr>
-            <td>La mochila es <span class="foco">de él</span>.</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Hablan <span class="foco">de nosotros</span>.</td>
-            <td></td>
-          </tr>
-        </table>
+    <div class="gram-cols">
+      <div class="gram-left">
+        <div class="ejemplos">
+          <div class="ejemplo">
+            <div class="frase">Este regalo es para <span class="foco">MÍ</span>.</div>
+            <div class="nota">nunca «para yo»</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">No quiero ir sin <span class="foco">TI</span>.</div>
+            <div class="nota">nunca «sin tú»</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">La mochila es de <span class="foco">ÉL</span>.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">¿Vienes <span class="foco">CONMIGO</span>?</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Voy <span class="foco">CONTIGO</span>.</div>
+          </div>
+        </div>
+        <div class="dica">
+          <span class="lbl">💡 Ojo · Acento y voseo</span>
+          <p><strong>MÍ</strong> lleva acento. <strong>TI</strong> no lleva nunca. Con vos: «para vos», «sin vos»
+            — y no existe «convos», se dice «con vos».</p>
+        </div>
       </div>
-      <div class="gram-callout"><strong>Regla única:</strong> después de preposición <strong>nunca</strong> se usa
-        <em>yo</em> ni <em>tú</em> — se usa <em>mí</em> y <em>ti</em>. Excepciones: <em>conmigo</em>,
-        <em>contigo</em>. <em>mí</em> lleva acento, <em>ti</em> no.</div>
+      <div class="gram-right">
+        <div class="tablewrap">
+          <table class="gram-table tabla-pronombres">
+            <tr>
+              <td class="persona">YO</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">MÍ</td>
+            </tr>
+            <tr>
+              <td class="persona">TÚ</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">TI</td>
+            </tr>
+            <tr>
+              <td class="persona">ÉL / ELLA / USTED</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">ÉL / ELLA / USTED</td>
+            </tr>
+            <tr>
+              <td class="persona">NOSOTROS / NOSOTRAS</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">NOSOTROS / NOSOTRAS</td>
+            </tr>
+            <tr>
+              <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+              <td class="sep">&gt;</td>
+              <td class="forma">VOSOTROS / VOSOTRAS</td>
+            </tr>
+            <tr>
+              <td class="persona">ELLOS / ELLAS / USTEDES</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">ELLOS / ELLAS / USTEDES</td>
+            </tr>
+          </table>
+        </div>
+        <p class="explicacion">Nunca aparecen solos: siempre después de preposición (<em>a, para, de, sin,
+            con…</em>).</p>
+      </div>
     </div>
   </section>
 
   <!-- S11 REFLEXIVOS -->
-  <section class="slide layout-flex-col" id="s11">
-    <div class="eyebrow">🔁 Repaso</div>
-    <div class="gram-wrap">
-      <div class="gram-anchor">…después <span class="foco">se</span> van y <span class="foco">se</span> olvidan de
-        sus cosas.</div>
+  <section class="slide layout-gram" id="s11">
+    <div class="gram-top">
+      <div class="eyebrow">🔁 Repaso</div>
       <h2 class="gram-title">PRONOMBRES REFLEXIVOS</h2>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>me</td>
-            <td>nos</td>
-          </tr>
-          <tr>
-            <td>te</td>
-            <td>os <span class="muted">(solo España)</span></td>
-          </tr>
-          <tr>
-            <td>se</td>
-            <td>se</td>
-          </tr>
-        </table>
+      <div class="gram-anchor">Se van y <span class="foco">SE</span> olvidan de sus cosas.</div>
+    </div>
+    <div class="gram-cols">
+      <div class="gram-left">
+        <div class="ejemplos">
+          <div class="ejemplo">
+            <div class="frase">Llamo a mi madre. <span class="arrow">≠</span> <span class="foco">ME</span> llamo
+              Nicolás.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Olvido las llaves. <span class="arrow">≠</span> <span class="foco">ME</span> olvido
+              de las llaves.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Voy. <span class="arrow">≠</span> <span class="foco">ME</span> voy.</div>
+          </div>
+        </div>
+        <div class="dica">
+          <span class="lbl">💡 Ojo · Cambia el sentido</span>
+          <p>No es un adorno: «llamo a Ana» y «<strong>me</strong> llamo Ana» son dos cosas distintas.</p>
+        </div>
       </div>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <th>Sin reflexivo</th>
-            <th>Con reflexivo</th>
-          </tr>
-          <tr>
-            <td>llamo a mi madre</td>
-            <td><span class="foco">me</span> llamo Nicolás</td>
-          </tr>
-          <tr>
-            <td>olvido las llaves</td>
-            <td><span class="foco">me</span> olvido de las llaves</td>
-          </tr>
-          <tr>
-            <td>voy</td>
-            <td><span class="foco">me</span> voy</td>
-          </tr>
-        </table>
+      <div class="gram-right">
+        <div class="tablewrap">
+          <table class="gram-table tabla-pronombres">
+            <tr>
+              <td class="persona">YO</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">ME</td>
+            </tr>
+            <tr>
+              <td class="persona">TÚ</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">TE</td>
+            </tr>
+            <tr>
+              <td class="persona">ÉL / ELLA / USTED</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">SE</td>
+            </tr>
+            <tr>
+              <td class="persona">NOSOTROS / NOSOTRAS</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">NOS</td>
+            </tr>
+            <tr>
+              <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+              <td class="sep">&gt;</td>
+              <td class="forma">OS</td>
+            </tr>
+            <tr>
+              <td class="persona">ELLOS / ELLAS / USTEDES</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">SE</td>
+            </tr>
+          </table>
+        </div>
+        <p class="explicacion">La acción vuelve al mismo sujeto que la hace.</p>
       </div>
-      <p class="gram-sub" style="font-style:normal;font-size:15px">La acción vuelve al propio sujeto.</p>
     </div>
   </section>
 
-  <!-- S12 POSESIVOS TABLAS -->
-  <section class="slide layout-two-col" id="s12">
-    <div class="gram-wrap" style="max-width:none">
-      <div class="eyebrow">✏️ Tema nuevo</div>
-      <div class="gram-anchor">No es <span class="foco">mío</span>, es <span class="foco">suyo</span>.</div>
-      <h2 class="gram-title">PRONOMBRES POSESIVOS <span class="badge-nuevo">NUEVO</span></h2>
-      <span class="ex-lbl" style="display:block;text-align:center;margin-bottom:6px">Antes del sustantivo</span>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>mi / mis</td>
-            <td>nuestro/a/os/as</td>
-          </tr>
-          <tr>
-            <td>tu / tus</td>
-            <td>vuestro/a/os/as <span class="muted" style="display:block">(solo España)</span></td>
-          </tr>
-          <tr>
-            <td>su / sus</td>
-            <td>su / sus</td>
-          </tr>
-        </table>
-      </div>
+  <!-- S12 POSESIVOS: ANTES DEL SUSTANTIVO -->
+  <section class="slide layout-gram" id="s12">
+    <div class="gram-top">
+      <div class="eyebrow">✏️ Posesivos</div>
+      <h2 class="gram-title">PRONOMBRES POSESIVOS: antes del sustantivo</h2>
+      <div class="gram-anchor">¿Tienes <span class="foco">MI</span> casaca?</div>
     </div>
-    <div class="gram-wrap" style="max-width:none">
-      <span class="ex-lbl" style="display:block;text-align:center;margin-bottom:6px;margin-top:2px">Después del
-        verbo</span>
-      <div class="tablewrap">
-        <table class="gram-table">
-          <tr>
-            <td>mío/a/os/as</td>
-            <td>nuestro/a/os/as</td>
-          </tr>
-          <tr>
-            <td>tuyo/a/os/as</td>
-            <td>vuestro/a/os/as <span class="muted" style="display:block">(solo España)</span></td>
-          </tr>
-          <tr>
-            <td>suyo/a/os/as</td>
-            <td>suyo/a/os/as</td>
-          </tr>
-        </table>
+    <div class="gram-cols">
+      <div class="gram-left">
+        <div class="ejemplos">
+          <div class="ejemplo">
+            <div class="frase">Es <span class="foco">MI</span> mochila.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Son <span class="foco">MIS</span> lentes.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Es <span class="foco">TU</span> cargador.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Son <span class="foco">NUESTRAS</span> llaves.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Es <span class="foco">SU</span> cuaderno.</div>
+          </div>
+        </div>
+        <div class="dica">
+          <span class="lbl">💡 Ojo · Su es ambiguo</span>
+          <p>«Su casaca» ¿de él? ¿de ella? ¿de usted? ¿de ellos? Si hace falta aclarar: la casaca <strong>DE
+              ÉL</strong>, la casaca <strong>DE ELLA</strong>.</p>
+        </div>
       </div>
-      <div class="gram-callout"><strong>Concuerdan con la cosa</strong>, no con el dueño — mismo principio de
-        siempre.</div>
+      <div class="gram-right">
+        <div class="tablewrap">
+          <table class="gram-table tabla-pronombres">
+            <tr>
+              <td class="persona">YO</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">MI / MIS</td>
+            </tr>
+            <tr>
+              <td class="persona">TÚ</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">TU / TUS</td>
+            </tr>
+            <tr>
+              <td class="persona">ÉL / ELLA / USTED</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">SU / SUS</td>
+            </tr>
+            <tr>
+              <td class="persona">NOSOTROS / NOSOTRAS</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">NUESTRO / A / OS / AS</td>
+            </tr>
+            <tr>
+              <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+              <td class="sep">&gt;</td>
+              <td class="forma">VUESTRO / A / OS / AS</td>
+            </tr>
+            <tr>
+              <td class="persona">ELLOS / ELLAS / USTEDES</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">SU / SUS</td>
+            </tr>
+          </table>
+        </div>
+        <p class="explicacion">Van <strong>SIEMPRE</strong> delante del sustantivo, nunca solos. Concuerdan con la
+          cosa: mi/mis según sea una o varias.</p>
+      </div>
     </div>
   </section>
 
-  <!-- S13 POSESIVOS FRASES-MODELO -->
-  <section class="slide layout-flex-col" id="s13">
+  <!-- S13 POSESIVOS: DESPUÉS DEL VERBO -->
+  <section class="slide layout-gram" id="s13">
+    <div class="gram-top">
+      <div class="eyebrow">✏️ Posesivos</div>
+      <h2 class="gram-title">PRONOMBRES POSESIVOS: después del verbo</h2>
+      <div class="gram-anchor">No es <span class="foco">MÍO</span>, es <span class="foco">SUYO</span>.</div>
+    </div>
+    <div class="gram-cols">
+      <div class="gram-left">
+        <div class="ejemplos">
+          <div class="ejemplo">
+            <div class="frase">La mochila es <span class="foco">MÍA</span>.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Los libros son <span class="foco">MÍOS</span>.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">El cargador es <span class="foco">TUYO</span>.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">Las llaves son <span class="foco">NUESTRAS</span>.</div>
+          </div>
+          <div class="ejemplo">
+            <div class="frase">El cuaderno es <span class="foco">SUYO</span>.</div>
+          </div>
+        </div>
+        <div class="dica">
+          <span class="lbl">💡 Ojo · Concuerda con la cosa, no con el dueño</span>
+          <p>«La mochila es <strong>MÍA</strong>» aunque el dueño sea Pedro. «Los libros son <strong>SUYOS</strong>»
+            aunque la dueña sea Ana. Con vos no cambia nada: es <strong>TUYO</strong> igual.</p>
+        </div>
+      </div>
+      <div class="gram-right">
+        <div class="tablewrap">
+          <table class="gram-table tabla-pronombres">
+            <tr>
+              <td class="persona">YO</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">MÍO / A / OS / AS</td>
+            </tr>
+            <tr>
+              <td class="persona">TÚ</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">TUYO / A / OS / AS</td>
+            </tr>
+            <tr>
+              <td class="persona">ÉL / ELLA / USTED</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">SUYO / A / OS / AS</td>
+            </tr>
+            <tr>
+              <td class="persona">NOSOTROS / NOSOTRAS</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">NUESTRO / A / OS / AS</td>
+            </tr>
+            <tr>
+              <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+              <td class="sep">&gt;</td>
+              <td class="forma">VUESTRO / A / OS / AS</td>
+            </tr>
+            <tr>
+              <td class="persona">ELLOS / ELLAS / USTEDES</td>
+              <td class="sep">&gt;</td>
+              <td class="forma">SUYO / A / OS / AS</td>
+            </tr>
+          </table>
+        </div>
+        <p class="explicacion">Van después del verbo o del sustantivo, y pueden ir solos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- S14 PRACTICANDO -->
+  <section class="slide layout-flex-col" id="s14">
     <div class="eyebrow">✏️ Posesivos</div>
-    <h2 class="gram-title">LAS DOS FRASES QUE QUEDAN EN LA PIZARRA</h2>
+    <h2 class="gram-title">PRACTICANDO</h2>
     <div class="tablewrap" style="max-width:820px;width:100%">
       <table class="gram-table">
         <tr>
@@ -1407,8 +1638,8 @@
     </div>
   </section>
 
-  <!-- S14 INTERROGATIVOS RECONSTRUCCIÓN -->
-  <section class="slide layout-flex-col" id="s14">
+  <!-- S15 INTERROGATIVOS RECONSTRUCCIÓN -->
+  <section class="slide layout-flex-col" id="s15">
     <div class="eyebrow">✏️ Tema nuevo</div>
     <h2 class="gram-title">DESCUBRE LA <em>PREGUNTA</em> <span class="badge-nuevo">NUEVO</span></h2>
     <div class="tablewrap" style="max-width:900px;width:100%">
@@ -1453,8 +1684,8 @@
     </div>
   </section>
 
-  <!-- S15 INTERROGATIVOS TABLA -->
-  <section class="slide layout-flex-col" id="s15">
+  <!-- S16 INTERROGATIVOS TABLA -->
+  <section class="slide layout-flex-col" id="s16">
     <div class="eyebrow">✏️ Interrogativos</div>
     <h2 class="gram-title">LAS 8 PALABRAS</h2>
     <div class="chip-row">
@@ -1475,73 +1706,26 @@
     </ul>
   </section>
 
-  <!-- S16 BLOQUE A/B RONDA 1 -->
-  <section class="slide layout-two-col-top" id="s16">
-    <div class="imgcol" style="height:52vh">
-      <img src="images/nicolas-cuaderno.png" alt="Nicolás con el cuaderno"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="ph-wrap" style="display:none">
-        <span class="ph">📓</span><span class="phl">nicolas-cuaderno.png</span>
-      </div>
-    </div>
-    <div class="gram-wrap" style="max-width:none">
-      <div class="eyebrow">💬 Bloque A/B · Ronda 1</div>
-      <h2 class="gram-title">¿QUÉ COSAS SON TUYAS?</h2>
-      <p class="gram-sub" style="font-style:normal;font-size:15px">Son huéspedes que volvieron. Hay 8 objetos en la
-        caja.</p>
-      <div class="motor">
-        <div class="m-item">🎒 3 objetos son de A</div>
-        <div class="m-item">🧥 3 objetos son de B</div>
-        <div class="m-item v">🔑 1 objeto es de los dos → <strong>nuestras</strong></div>
-        <div class="m-item v">📓 1 objeto no es de nadie → <strong>suyo</strong></div>
-      </div>
-      <span class="ex-lbl">Modelo, palabra por palabra</span>
-      <div class="dialogo">
-        <div class="linea-d"><span class="who">A</span>¿La casaca es tuya?</div>
-        <div class="linea-d b"><span class="who">B</span>Sí, es <strong>mía</strong>. Es azul.</div>
-        <div class="linea-d"><span class="who">A</span>¿Y la mochila? ¿También es <strong>tuya</strong>?</div>
-        <div class="linea-d b"><span class="who">B</span>No, no es <strong>mía</strong>. Es <strong>tuya</strong>.
-        </div>
-        <div class="linea-d"><span class="who">A</span>Sí, es <strong>mía</strong>. Es roja.</div>
-        <div class="linea-d b"><span class="who">B</span>¿Qué hay dentro?</div>
-        <div class="linea-d"><span class="who">A</span>Tres libros.</div>
-        <div class="linea-d b"><span class="who">B</span>¿Y las llaves?</div>
-        <div class="linea-d"><span class="who">A</span>Son <strong>nuestras</strong>.</div>
-      </div>
-      <div class="qr-row">
-        <div class="qr-item">
-          <div class="qr-box"><img
-              src="data:image/png;base64,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"
-              alt="QR para aluno-a.html"></div>
-          <span class="qr-letter">A</span>
-        </div>
-        <div class="qr-item">
-          <div class="qr-box"><img
-              src="data:image/png;base64,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"
-              alt="QR para aluno-b.html"></div>
-          <span class="qr-letter">B</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- S17 BLOQUE A/B RONDA 2 -->
+  <!-- S17 BLOQUE A/B: NO PODÉS REPETIR -->
   <section class="slide layout-flex-col" id="s17">
-    <div class="eyebrow">💬 Bloque A/B · Ronda 2</div>
+    <div class="eyebrow">💬 Bloque A/B</div>
     <h2 class="gram-title">«NO PODÉS REPETIR»</h2>
     <div class="pasos">
-      <div class="paso"><span class="n">1</span>A lee sus 6 frases en voz alta. B dice la frase completa y
-        <strong>escribe solo la palabra</strong> que falta en el celular.</div>
-      <div class="paso"><span class="n">2</span>B aprieta <strong>«Comprobar»</strong>. El celular corrige y da la
-        nota.</div>
-      <div class="paso"><span class="n">3</span>Cambian: B lee las suyas, A completa.</div>
-      <div class="paso"><span class="n">4</span>Cada uno dice su nota en voz alta: <em>«Yo saqué 5. ¿Y vos?»</em>
-      </div>
+      <div class="paso"><span class="n">1</span>A lee sus 10 frases en voz alta, una por una.</div>
+      <div class="paso"><span class="n">2</span>B responde <strong>HABLANDO</strong>: dice la frase completa.</div>
+      <div class="paso"><span class="n">3</span>A escribe en su celular lo que dice B.</div>
+      <div class="paso"><span class="n">4</span>A aprieta <strong>«Comprobar»</strong> y le dice la nota a B.</div>
+      <div class="paso"><span class="n">5</span>Cambian: ahora B lee las suyas y corrige a A.</div>
     </div>
-    <span class="ex-lbl">Recuerda</span>
-    <div class="quadro-mini">
-      <span>Es <strong>mi</strong> mochila.</span>
-      <span>La mochila es <strong>mía</strong>.</span>
+    <div class="qr-row">
+      <div class="qr-item">
+        <div class="qr-box"><img src="data:image/png;base64,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" alt="QR para aluno-a.html"></div>
+        <span class="qr-letter">A</span>
+      </div>
+      <div class="qr-item">
+        <div class="qr-box"><img src="data:image/png;base64,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" alt="QR para aluno-b.html"></div>
+        <span class="qr-letter">B</span>
+      </div>
     </div>
   </section>
 
