@@ -996,36 +996,48 @@
     }
 
     /* ── S25 bloque A/B: pasos + QR ── */
+    .slide.active.layout-two-col#s25 {
+      padding-bottom: 90px;
+    }
+
+    #s25 .s25-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8vh;
+      width: 100%;
+    }
+
     #s25 .pasos {
       display: flex;
       flex-direction: column;
-      gap: 1vh;
+      gap: 1.4vh;
       width: 100%;
-      max-width: 900px;
     }
 
     #s25 .paso {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       background: var(--card);
       border-radius: 14px;
-      padding: 1vh 22px;
-      font-size: clamp(13px, 1.9vh, 19px);
+      padding: 1.6vh 24px;
+      font-size: clamp(18px, 2.6vh, 26px);
       font-weight: 600;
       color: var(--indigo-esc);
+      line-height: 1.3;
     }
 
     #s25 .paso .n {
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
-      font-size: clamp(12px, 1.5vh, 15px);
+      font-size: clamp(15px, 2vh, 19px);
       color: #fff;
       background: var(--vermelho);
-      width: 2.6vh;
-      height: 2.6vh;
-      min-width: 22px;
-      min-height: 22px;
+      width: 3.4vh;
+      height: 3.4vh;
+      min-width: 28px;
+      min-height: 28px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -1033,38 +1045,38 @@
       flex-shrink: 0;
     }
 
-    #s25 .qr-row {
+    #s25 .qr-col {
       display: flex;
-      gap: 4vw;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      align-items: flex-end;
-      margin-top: .4vh;
+      gap: 4.5vh;
     }
 
     #s25 .qr-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .6vh;
+      gap: 1.2vh;
     }
 
     #s25 .qr-box {
       background: #fff;
-      padding: .8vh;
-      border-radius: 14px;
-      border: 3px solid var(--indigo);
+      padding: 1.6vh;
+      border-radius: 20px;
+      border: 4px solid var(--indigo);
       line-height: 0;
     }
 
     #s25 .qr-box img {
       display: block;
-      width: clamp(80px, 12vh, 150px);
-      height: clamp(80px, 12vh, 150px);
+      width: clamp(160px, 26vh, 280px);
+      height: clamp(160px, 26vh, 280px);
     }
 
     #s25 .qr-letter {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(20px, 3vh, 30px);
+      font-size: clamp(26px, 4.2vh, 42px);
       color: var(--vermelho);
       letter-spacing: 1px;
     }
@@ -2237,19 +2249,21 @@
   </section>
 
   <!-- S25 BLOQUE A/B: NO PODÉS REPETIR -->
-  <section class="slide layout-flex-col" id="s25">
-    <div class="eyebrow">💬 Bloque A/B</div>
-    <h2 class="gram-title">«NO PODÉS REPETIR»</h2>
-    <div class="pasos">
-      <div class="paso"><span class="n">1</span>A lee sus 10 frases en voz alta, una por una.</div>
-      <div class="paso"><span class="n">2</span>B responde <strong>HABLANDO</strong>: dice la frase completa.</div>
-      <div class="paso"><span class="n">3</span>A escribe en su celular lo que dice B.</div>
-      <div class="paso"><span class="n">4</span>A aprieta <strong>«Comprobar»</strong> y le dice la nota a B.</div>
-      <div class="paso"><span class="n">5</span>Cambian: ahora B lee las suyas y corrige a A.</div>
+  <section class="slide layout-two-col" id="s25">
+    <div class="s25-left">
+      <div class="eyebrow">💬 Bloque A/B</div>
+      <h2 class="gram-title">«NO PODÉS REPETIR»</h2>
+      <div class="pasos">
+        <div class="paso"><span class="n">1</span>A lee sus 10 frases en voz alta, una por una.</div>
+        <div class="paso"><span class="n">2</span>B responde <strong>HABLANDO</strong>: dice la frase completa.</div>
+        <div class="paso"><span class="n">3</span>A escribe en su celular lo que dice B.</div>
+        <div class="paso"><span class="n">4</span>A aprieta <strong>«Comprobar»</strong> y le dice la nota a B.</div>
+        <div class="paso"><span class="n">5</span>Cambian: ahora B lee las suyas y corrige a A.</div>
+      </div>
     </div>
-    <div class="qr-row">
+    <div class="qr-col">
       <div class="qr-item">
-        <div class="qr-box"><img src="data:image/png;base64,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" alt="QR para aluno-a.html"></div>
+        <div class="qr-box"><img src="data:image/png;base64,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" alt="QR para aluno-a.html"></div>
         <span class="qr-letter">A</span>
       </div>
       <div class="qr-item">
