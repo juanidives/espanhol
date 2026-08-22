@@ -463,8 +463,8 @@
       background: var(--card);
       border-left: 6px solid var(--vermelho);
       border-radius: 12px;
-      padding: 1.4vh 20px;
-      font-size: clamp(15px, 2.3vh, 24px);
+      padding: 1.6vh 20px;
+      font-size: clamp(18px, 2.9vh, 28px);
       color: var(--indigo-esc);
       line-height: 1.5;
     }
@@ -625,7 +625,7 @@
     }
 
     .teoria-block p {
-      font-size: clamp(17px, 2.5vh, 25px);
+      font-size: clamp(19px, 3.2vh, 30px);
       line-height: 1.4;
       color: var(--indigo-esc);
     }
@@ -951,19 +951,10 @@
     }
 
     /* ── S7 TRANSCRIPT (duas colunas para caber sem rolagem) ── */
-    .slide.active.layout-two-col#s7 {
-      align-items: start;
-      padding-bottom: 80px;
-    }
-
-    #s7 .tx-col:last-child {
-      padding-top: 34px;
-    }
-
-    #s7 .tx-col {
-      display: flex;
-      flex-direction: column;
-      gap: 2vh;
+    .slide.active.layout-flex-col#s7 {
+      align-items: stretch;
+      justify-content: flex-start;
+      padding-bottom: 96px;
     }
 
     #s7 h2 {
@@ -971,6 +962,7 @@
       font-size: clamp(32px, 4.4vh, 50px);
       color: var(--indigo-esc);
       line-height: 1;
+      text-align: center;
     }
 
     #s7 h2 em {
@@ -981,13 +973,21 @@
     #s7 .tx-block {
       display: flex;
       flex-direction: column;
-      gap: 2.2vh;
+      gap: 1.6vh;
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding-right: 12px;
     }
 
     #s7 .tx-block p {
-      font-size: clamp(17px, 3.65vh, 39px);
-      line-height: 1.55;
+      font-size: clamp(16px, 2.3vh, 22px);
+      line-height: 1.5;
       color: var(--indigo-esc);
+      text-align: left;
     }
 
     #s7 .tx-block p .vb {
@@ -1207,7 +1207,7 @@
       <div class="audio-wrap">
         <div class="audio-lbl">🎧 Escucha el audio</div>
         <audio controls>
-          <source src="audio/nicolas-audio-albergue.mp3" type="audio/mpeg">
+          <source src="audio/audio-nicolas.mp3" type="audio/mpeg">
         </audio>
       </div>
       <div class="instr">📝 Escucha: ¿qué guarda Nicolás en la caja?</div>
@@ -1226,31 +1226,30 @@
   </section>
 
   <!-- S7 TRANSCRIPT -->
-  <section class="slide layout-two-col" id="s7">
-    <div class="tx-col">
-      <div class="eyebrow">📄 Texto del audio</div>
-      <h2>LO QUE DIJO <em>NICOLÁS</em></h2>
-      <div class="tx-block">
-        <p>Hola, ¿qué tal? Me llamo Nicolás, tengo veintiséis años y trabajo en la recepción de un albergue en
-          Cusco. Bueno… trabajo en la recepción, en la cocina, en la puerta, en todos lados, la verdad.</p>
-        <p><span class="vb">Yo</span> siempre <span class="vb">les</span> pregunto lo mismo: ¿cómo te llamas?, ¿de
-          dónde eres?, ¿cuántas noches te quedas? Y ellos <span class="vb">me</span> lo cuentan todo. Y después
-          <span class="vb">se</span> van… y <span class="vb">se</span> olvidan de sus cosas.</p>
-        <p>Por eso tengo una caja. La llamo «la caja de los olvidados». Está debajo del mostrador y está llena: una
-          casaca azul, un cargador, tres libros, unos lentes de sol, un peluche.</p>
-      </div>
-    </div>
-    <div class="tx-col">
-      <div class="tx-block">
-        <p>Casi siempre vuelven. <span class="vb">Me</span> escriben, <span class="vb">me</span> dicen «Nicolás,
-          ¿tienes mi casaca?», y yo <span class="vb">la</span> busco y se la mando. Casi siempre… bueno, casi.</p>
-        <p>Porque hay una cosa que nadie reclama. Es un cuaderno. Un cuaderno chiquito, café, con dibujos del
-          valle. Está acá desde el año pasado. No tiene nombre, no tiene teléfono, no tiene nada.</p>
-        <p>Y yo me pregunto todos los días: ¿de <span class="vb">quién</span> es? ¿<span class="vb">Quién</span> lo
-          dibujó? ¿<span class="vb">Adónde</span> se fue?</p>
-        <p>No sé. Pero no lo boto. No es <span class="vb">mío</span>, es <span class="vb">suyo</span>. Algún día
-          alguien va a entrar y me va a decir: «ese cuaderno es mío». Y ese día va a estar bacán.</p>
-      </div>
+  <section class="slide layout-flex-col" id="s7">
+    <div class="eyebrow">📄 Texto del audio</div>
+    <h2>LO QUE DIJO <em>NICOLÁS</em></h2>
+    <div class="tx-block">
+      <p>Hola, ¿qué tal? Me llamo Nicolás, tengo veintiséis años y trabajo en la recepción de un albergue en
+        Cusco. Bueno… trabajo en la recepción, en la cocina, en la puerta, en todos lados, la verdad.</p>
+      <p>Cuando alguien llega siempre <span class="vb">les</span> pregunto lo mismo: ¿cómo te llamas?, ¿de
+        dónde eres?, ¿cuántas noches te quedas?</p>
+      <p><span class="vb">Me</span> encanta recibir huéspedes, pero quiero contarles algo... ellos siempre
+        <span class="vb">se</span> olvidan de cosas.</p>
+      <p>Por eso tengo una caja. <span class="vb">La</span> llamo «la caja de los olvidados». Está debajo del
+        mostrador y está llena de cosas: tengo por ejemplo, una casaca azul, un cargador, tres libros, unos
+        lentes de sol y un peluche, entre otras cosas.</p>
+      <p>Muchos vuelven a buscar sus cosas. <span class="vb">Me</span> escriben y <span class="vb">me</span>
+        dicen: «Nicolás, ¿tienes <span class="vb">mi</span> casaca? o ¿tienes <span class="vb">mis</span>
+        audífonos?», y yo tengo que buscarlos... si esas cosas están <span class="vb">conmigo</span>
+        <span class="vb">se las</span> mando o <span class="vb">les</span> pido que pasen a buscarlas.</p>
+      <p>Pero hay una cosa que nadie reclama. Es un cuaderno. Un cuaderno chiquito, color café, con dibujos del
+        valle. Está acá desde el año pasado. No tiene nombre, no tiene teléfono, no tiene nada.</p>
+      <p>Y yo <span class="vb">me</span> pregunto todos los días: ¿de <span class="vb">quién</span> es?, ¿por
+        qué nadie <span class="vb">lo</span> reclama?, ¿<span class="vb">adónde</span> se fue el dueño o dueña?</p>
+      <p>No sé. Pero yo no <span class="vb">lo</span> boto. Algún día una persona va a entrar en el albergue y
+        <span class="vb">me</span> va a decir: «ese cuaderno es <span class="vb">mío</span>». Y ese día va a
+        estar super bacán.</p>
     </div>
   </section>
 
