@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Aula 13 · ¿Es tuyo? · Nicolás Quispe</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&family=Oswald:wght@400;600;700&display=swap');
+
+    :root {
+      --vermelho: #D62828;
+      --indigo: #2B2D6E;
+      --areia: #EDE0CE;
+      --indigo-esc: #1A1B45;
+      --card: #F8EFDC;
+      --cinza: #6F675C;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--areia);
+      color: var(--indigo-esc);
+      overflow-x: hidden;
+      min-height: 100vh;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(26, 27, 69, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .topbar .tb-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--areia);
+      text-transform: uppercase;
+      flex: 1;
+    }
+
+    .topbar .tb-badge {
+      background: var(--vermelho);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--vermelho);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+
+    /* ── SECTIONS ── */
+    .sec {
+      padding: 28px 18px;
+      border-bottom: 1px solid rgba(26, 27, 69, 0.08);
+    }
+
+    .sec:last-child {
+      border-bottom: none;
+      padding-bottom: 90px;
+    }
+
+    .sec-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--vermelho);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(32px, 9vw, 46px);
+      color: var(--indigo-esc);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    h2 em {
+      color: var(--vermelho);
+      font-style: normal;
+    }
+
+    /* ── IMÁGENES (sempre contain, sem crop) ── */
+    .foto {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 18px;
+      border: 2px solid rgba(43, 45, 110, .25);
+      background: var(--card);
+      margin-bottom: 18px;
+      object-fit: contain;
+    }
+
+    .ph-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--card);
+      border-radius: 18px;
+      border: 2px solid rgba(43, 45, 110, .25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--cinza);
+    }
+
+    .ph-placeholder .ph {
+      font-size: 48px;
+    }
+
+    .ph-placeholder .phl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    /* ── TAGS ── */
+    .tag {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .tag-indigo {
+      background: var(--indigo);
+    }
+
+    .tag-vermelho {
+      background: var(--vermelho);
+    }
+
+    /* ── FOCO / VB (mesma convenção do index.html) ── */
+    .foco {
+      color: var(--vermelho);
+      font-weight: 800;
+    }
+
+    /* ── PORTADA S1 ── */
+    #s1 {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 22px 80px;
+      position: relative;
+    }
+
+    #s1 .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #s1 .lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--vermelho);
+      font-weight: 600;
+    }
+
+    #s1 h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 18vw, 92px);
+      line-height: 0.95;
+      color: var(--indigo-esc);
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    #s1 h1 em {
+      color: var(--vermelho);
+      font-style: normal;
+    }
+
+    #s1 .sub {
+      font-size: 16px;
+      color: var(--indigo);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    #s1 .duracao {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--cinza);
+    }
+
+    #s1 .row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--cinza);
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-family: 'Oswald', sans-serif;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(6px);
+      }
+    }
+
+    /* ── REPASO S2 ── */
+    .objetivos {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .obj-item {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px 16px;
+      border-left: 6px solid var(--vermelho);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .obj-item .ic {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .obj-item .txt {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .obj-item strong {
+      font-size: 16px;
+      color: var(--indigo-esc);
+    }
+
+    .obj-item .ej {
+      font-size: 14px;
+      color: var(--cinza);
+      font-style: italic;
+    }
+
+    /* ── APRENDER S3 ── */
+    .tema-nuevo-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tema-nuevo-block {
+      background: var(--indigo-esc);
+      color: var(--areia);
+      border-radius: 16px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-left: 8px solid var(--vermelho);
+    }
+
+    .tema-nuevo-block h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      color: var(--vermelho);
+      letter-spacing: 1px;
+    }
+
+    .tema-nuevo-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tema-nuevo-block li {
+      font-size: 15px;
+      line-height: 1.5;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .tema-nuevo-block li::before {
+      content: '●';
+      color: var(--vermelho);
+      position: absolute;
+      left: 0;
+      font-size: 9px;
+      top: 7px;
+    }
+
+    .tema-nuevo-block strong {
+      color: #fff;
+    }
+
+    .cando {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--vermelho);
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    /* ── PERSONAJE S4 ── */
+    .persona-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      line-height: 1;
+      color: var(--indigo-esc);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .persona-role {
+      font-size: 14px;
+      color: var(--indigo);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px 18px;
+      border-left: 5px solid var(--indigo);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+
+    .card.vermelho {
+      border-left-color: var(--vermelho);
+    }
+
+    .card .lbl {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--indigo);
+    }
+
+    .card .val {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--indigo-esc);
+    }
+
+    .quote {
+      background: rgba(214, 40, 40, .08);
+      border: 1px solid rgba(214, 40, 40, .3);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--indigo-esc);
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    .quote strong {
+      color: var(--vermelho);
+      font-style: normal;
+    }
+
+    /* ── ESCUCHA S5 ── */
+    .audio-wrap {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px;
+      border: 2px solid var(--indigo);
+      margin-bottom: 16px;
+    }
+
+    .audio-lbl {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 10px;
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    .instr {
+      background: var(--vermelho);
+      border-radius: 16px;
+      padding: 20px 22px;
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+    }
+
+    /* ── PREGUNTAS S6 ── */
+    .preg-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .preg-item {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--indigo-esc);
+      border-left: 6px solid var(--indigo);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .preg-item .n {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--vermelho);
+      flex-shrink: 0;
+    }
+
+    /* ── TRANSCRIPT S7 ── */
+    .tx-block {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .tx-block p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--indigo-esc);
+    }
+
+    .tx-block p .vb {
+      color: var(--vermelho);
+      font-weight: 700;
+    }
+
+    /* ── GRAMÁTICA (S8–S14) ── */
+    .group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 22px 18px 8px;
+    }
+
+    .gh-icon {
+      font-size: 18px;
+    }
+
+    .gh-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--vermelho);
+      font-weight: 700;
+    }
+
+    .gh-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(43, 45, 110, .2);
+    }
+
+    .gram-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(26px, 8vw, 36px);
+      color: var(--indigo-esc);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .gram-anchor {
+      background: rgba(214, 40, 40, .08);
+      border: 1px solid rgba(214, 40, 40, .3);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--indigo-esc);
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .gram-anchor .foco {
+      font-style: normal;
+    }
+
+    .teoria-block {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px 16px;
+      border-left: 6px solid var(--indigo);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .teoria-block.vermelho {
+      border-left-color: var(--vermelho);
+    }
+
+    .teoria-block .lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--vermelho);
+      font-weight: 700;
+    }
+
+    .teoria-block p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--indigo-esc);
+    }
+
+    .teoria-block strong {
+      color: var(--vermelho);
+    }
+
+    .gram-callout {
+      background: var(--card);
+      border-left: 6px solid var(--vermelho);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 15px;
+      color: var(--indigo-esc);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .gram-callout strong {
+      color: var(--vermelho);
+    }
+
+    .tablewrap {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid rgba(43, 45, 110, .25);
+      margin-bottom: 14px;
+    }
+
+    table.gram-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.gram-table th {
+      background: var(--vermelho);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 8px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    table.gram-table td {
+      padding: 10px 8px;
+      text-align: center;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--indigo-esc);
+      background: var(--card);
+      border-top: 1px solid rgba(43, 45, 110, .12);
+    }
+
+    table.gram-table td.muted {
+      color: var(--cinza);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    table.gram-table td.err {
+      color: var(--cinza);
+      text-decoration: line-through;
+    }
+
+    table.gram-table .foco {
+      color: var(--vermelho);
+      font-weight: 800;
+    }
+
+    table.tabla-pronombres td.persona {
+      text-align: left;
+      font-size: 14px;
+    }
+
+    table.tabla-pronombres td.sep {
+      color: var(--vermelho);
+      font-weight: 900;
+      width: 26px;
+      text-align: center;
+    }
+
+    table.tabla-pronombres td.forma {
+      text-align: left;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    table.tabla-pronombres .sub {
+      display: block;
+      font-size: 9px;
+      color: var(--cinza);
+      font-weight: 400;
+    }
+
+    .explicacion {
+      font-size: 15px;
+      color: var(--indigo-esc);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .explicacion strong {
+      color: var(--vermelho);
+    }
+
+    .ejemplos {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .ejemplo {
+      background: var(--card);
+      border-left: 6px solid var(--indigo);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .ejemplo .frase {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--indigo-esc);
+      line-height: 1.35;
+    }
+
+    .ejemplo .frase .foco {
+      font-weight: 900;
+    }
+
+    .ejemplo .frase .arrow {
+      color: var(--vermelho);
+      font-weight: 900;
+      margin: 0 4px;
+    }
+
+    .ejemplo .nota {
+      font-size: 12px;
+      color: var(--cinza);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    .dica {
+      background: var(--card);
+      border-left: 6px solid var(--vermelho);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 4px;
+    }
+
+    .dica .lbl {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--vermelho);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .dica p {
+      font-size: 14.5px;
+      color: var(--indigo-esc);
+      line-height: 1.5;
+    }
+
+    .dica strong,
+    .dica em {
+      color: var(--vermelho);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    /* ── CHIPS (interrogativos) ── */
+    .chip-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .chip-row span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #fff;
+      background: var(--indigo);
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .chip-row span.v {
+      background: var(--vermelho);
+    }
+
+    .gram-notes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 15px;
+      color: var(--indigo-esc);
+      margin-top: 4px;
+    }
+
+    .gram-notes li {
+      list-style: none;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .gram-notes li::before {
+      content: '●';
+      color: var(--vermelho);
+      position: absolute;
+      left: 0;
+      font-size: 8px;
+      top: 6px;
+    }
+
+    .badge-nuevo {
+      display: inline-block;
+      background: var(--vermelho);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ── BLOQUE A/B S17 ── */
+    .pasos {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .paso {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--indigo-esc);
+      line-height: 1.35;
+    }
+
+    .paso .n {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      background: var(--vermelho);
+      width: 26px;
+      height: 26px;
+      min-width: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── REPASO FINAL S18 ── */
+    .repaso-table {
+      margin-bottom: 20px;
+    }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(26, 27, 69, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 20px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .bottom-nav .section-info {
+      flex: 1;
+      text-align: center;
+    }
+
+    .bottom-nav .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--vermelho);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .bottom-nav .section-num {
+      font-size: 10px;
+      color: rgba(237, 224, 206, .6);
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--areia);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: 10px;
+      transition: background .2s;
+      line-height: 1;
+    }
+
+    .nav-btn:active {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* ── SIDE DOTS ── */
+    .side-dots {
+      position: fixed;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 998;
+    }
+
+    .sdot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(43, 45, 110, 0.25);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .sdot.on {
+      background: var(--vermelho);
+      height: 14px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span class="tb-title">🇵🇪 Aula 13 · ¿Es tuyo?</span>
+    <span class="tb-badge">A1</span>
+  </div>
+
+  <!-- ══ S1 PORTADA ══ -->
+  <section class="sec" id="s1">
+    <div class="box">
+      <span class="lbl">A U L A 13 · E S P A Ñ O L · A 1</span>
+      <h1>¿ES <em>TUYO</em>?</h1>
+      <p class="sub">Posesivos e interrogativos · con Nicolás Quispe, Cusco</p>
+      <p class="duracao">⏱ 60 minutos</p>
+      <div class="row">
+        <span class="tag tag-indigo">🎧 Escucha</span>
+        <span class="tag tag-vermelho">💬 Habla</span>
+        <span class="tag tag-indigo">✏️ Gramática</span>
+        <span class="tag tag-vermelho">🔁 Repaso</span>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>▼</span>
+      <span>DESLIZÁ</span>
+    </div>
+  </section>
+
+  <!-- ══ S2 REPASO ══ -->
+  <section class="sec" id="s2">
+    <div class="sec-label">📋 Repaso</div>
+    <h2>HOY VAMOS A REPASAR <em>LO SIGUIENTE</em></h2>
+    <div class="objetivos">
+      <div class="obj-item"><span class="ic">👤</span>
+        <div class="txt"><strong>Pronombres Personales</strong><span class="ej"><span class="foco">Yo</span>
+            trabajo, ella descansa.</span></div>
+      </div>
+      <div class="obj-item"><span class="ic">📦</span>
+        <div class="txt"><strong>Complementos átonos: objeto directo</strong><span class="ej">¿Tienes mi casaca? —
+            Sí, <span class="foco">la</span> tengo.</span></div>
+      </div>
+      <div class="obj-item"><span class="ic">✉️</span>
+        <div class="txt"><strong>Complementos átonos: objeto indirecto</strong><span class="ej">Nicolás <span
+              class="foco">le</span> manda la casaca a Camila.</span></div>
+      </div>
+      <div class="obj-item"><span class="ic">🎁</span>
+        <div class="txt"><strong>Complementos tónicos</strong><span class="ej">Este regalo es para <span
+              class="foco">mí</span>.</span></div>
+      </div>
+      <div class="obj-item"><span class="ic">🪞</span>
+        <div class="txt"><strong>Pronombres Reflexivos</strong><span class="ej"><span class="foco">Me</span> llamo
+            Nicolás.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ S3 APRENDER ══ -->
+  <section class="sec" id="s3">
+    <div class="sec-label">⭐ Tema nuevo</div>
+    <h2>HOY VAMOS A APRENDER <em>LO SIGUIENTE</em></h2>
+    <div class="tema-nuevo-row">
+      <div class="tema-nuevo-block">
+        <h3>Pronombres Posesivos</h3>
+        <ul>
+          <li>Decir que algo es <strong>mío</strong>, <strong>tuyo</strong>, <strong>suyo</strong> o
+            <strong>nuestro</strong>.</li>
+          <li>Usar las dos formas: <em>es <strong>mi</strong> mochila</em> / <em>la mochila es
+              <strong>mía</strong></em>.</li>
+        </ul>
+      </div>
+      <div class="tema-nuevo-block">
+        <h3>Pronombres Interrogativos</h3>
+        <ul>
+          <li>Hacer preguntas con las 8 palabras: <strong>qué</strong> · <strong>cómo</strong> · <strong>cuál</strong>
+            · <strong>quién</strong> · <strong>dónde</strong> · <strong>adónde</strong> · <strong>de dónde</strong>
+            · <strong>cuántos</strong>.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="cando">Al final de la clase vas a poder decir de quién es cada cosa del albergue.</p>
+  </section>
+
+  <!-- ══ S4 PERSONAJE ══ -->
+  <section class="sec" id="s4">
+    <div class="sec-label">👋 Conoce a Nicolás</div>
+    <img src="images/nicolas-quispe.png" alt="Nicolás Quispe" class="foto"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">🛎️</span><span class="phl">nicolas-quispe.png</span>
+    </div>
+    <div class="persona-name">NICOLÁS QUISPE</div>
+    <p class="persona-role">Recepcionista de un albergue · 26 años · Cusco, Perú</p>
+    <div class="card"><span class="lbl">Ciudad</span><span class="val">🇵🇪 Cusco, Perú</span></div>
+    <div class="card vermelho"><span class="lbl">Trabajo</span><span class="val">🏨 Recepción del albergue (y de
+        todo lo demás)</span></div>
+    <div class="card"><span class="lbl">Objeto especial</span><span class="val">📓 «la caja de los
+        olvidados»</span></div>
+    <div class="quote">«No lo boto. No es <strong>mío</strong>, es <strong>suyo</strong>.»</div>
+  </section>
+
+  <!-- ══ S5 ESCUCHA ══ -->
+  <section class="sec" id="s5">
+    <div class="sec-label">🎧 Escucha</div>
+    <img src="images/nicolas-caja.png" alt="Nicolás con la caja de los olvidados" class="foto"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none">
+      <span class="ph">📦</span><span class="phl">nicolas-caja.png</span>
+    </div>
+    <h2>ESCUCHA A <em>NICOLÁS</em></h2>
+    <div class="audio-wrap">
+      <div class="audio-lbl">🎧 Escucha el audio</div>
+      <audio controls>
+        <source src="audio/audio-nicolas.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <div class="instr">📝 Escucha: ¿qué guarda Nicolás en la caja?</div>
+  </section>
+
+  <!-- ══ S6 PREGUNTAS ══ -->
+  <section class="sec" id="s6">
+    <div class="sec-label">🔍 Comprensión</div>
+    <h2>¿QUÉ ENTENDISTE?</h2>
+    <div class="preg-lista">
+      <div class="preg-item"><span class="n">1</span>¿Dónde trabaja Nicolás?</div>
+      <div class="preg-item"><span class="n">2</span>¿Qué hay en la caja de los olvidados?</div>
+      <div class="preg-item"><span class="n">3</span>¿Por qué guarda el cuaderno?</div>
+    </div>
+  </section>
+
+  <!-- ══ S7 TRANSCRIPT ══ -->
+  <section class="sec" id="s7">
+    <div class="sec-label">📄 Texto del audio</div>
+    <h2>LO QUE DIJO <em>NICOLÁS</em></h2>
+    <div class="tx-block">
+      <p>Hola, ¿qué tal? Me llamo Nicolás, tengo veintiséis años y trabajo en la recepción de un albergue en
+        Cusco. Bueno… trabajo en la recepción, en la cocina, en la puerta, en todos lados, la verdad.</p>
+      <p>Cuando alguien llega siempre <span class="vb">les</span> pregunto lo mismo: ¿cómo te llamas?, ¿de
+        dónde eres?, ¿cuántas noches te quedas?</p>
+      <p><span class="vb">Me</span> encanta recibir huéspedes, pero quiero contarles algo... ellos siempre
+        <span class="vb">se</span> olvidan de cosas.</p>
+      <p>Por eso tengo una caja. <span class="vb">La</span> llamo «la caja de los olvidados». Está debajo del
+        mostrador y está llena de cosas: tengo por ejemplo, una casaca azul, un cargador, tres libros, unos
+        lentes de sol y un peluche, entre otras cosas.</p>
+      <p>Muchos vuelven a buscar sus cosas. <span class="vb">Me</span> escriben y <span class="vb">me</span>
+        dicen: «Nicolás, ¿tienes <span class="vb">mi</span> casaca? o ¿tienes <span class="vb">mis</span>
+        audífonos?», y yo tengo que buscarlos... si esas cosas están <span class="vb">conmigo</span>
+        <span class="vb">se las</span> mando o <span class="vb">les</span> pido que pasen a buscarlas.</p>
+      <p>Pero hay una cosa que nadie reclama. Es un cuaderno. Un cuaderno chiquito, color café, con dibujos del
+        valle. Está acá desde el año pasado. No tiene nombre, no tiene teléfono, no tiene nada.</p>
+      <p>Y yo <span class="vb">me</span> pregunto todos los días: ¿de <span class="vb">quién</span> es?, ¿por
+        qué nadie <span class="vb">lo</span> reclama?, ¿<span class="vb">adónde</span> se fue el dueño o dueña?</p>
+      <p>No sé. Pero yo no <span class="vb">lo</span> boto. Algún día una persona va a entrar en el albergue y
+        <span class="vb">me</span> va a decir: «ese cuaderno es <span class="vb">mío</span>». Y ese día va a
+        estar super bacán.</p>
+    </div>
+  </section>
+
+  <!-- ══ GRAMÁTICA HEADER ══ -->
+  <div class="group-header">
+    <span class="gh-icon">✏️</span>
+    <span class="gh-title">Gramática</span>
+    <div class="gh-line"></div>
+  </div>
+
+  <!-- ══ S8 PRONOMBRES PERSONALES ══ -->
+  <section class="sec" id="s8">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">PRONOMBRES PERSONALES</div>
+
+    <div class="teoria-block">
+      <span class="lbl">Definición</span>
+      <p>Son las palabras que dicen <strong>quién hace la acción</strong>. En español son seis: <em>yo, tú,
+          él/ella/usted, nosotros/as, vosotros/as, ellos/ellas/ustedes</em>.</p>
+    </div>
+    <div class="teoria-block vermelho">
+      <span class="lbl">Lo importante</span>
+      <p>En español <strong>casi nunca se dicen</strong>. El verbo ya lleva la información: <em>trabajo</em>
+        solo puede ser <strong>yo</strong> · <em>trabajas</em> solo puede ser <strong>tú</strong>. Por eso
+        decimos <em>«Trabajo en Cusco»</em> y no <em>«Yo trabajo en Cusco»</em>.</p>
+    </div>
+    <div class="gram-callout">En portugués e inglés no es así: <em>I work</em> · <em>Eu trabalho</em> siempre
+      llevan el pronombre. <strong>Es el error nº 1 del alumno brasileño.</strong></div>
+
+    <p class="explicacion">¿Cuándo sí se dice? Solo por tres razones:</p>
+    <div class="tablewrap">
+      <table class="gram-table">
+        <tr>
+          <th>Razón</th>
+          <th>Ejemplo</th>
+        </tr>
+        <tr>
+          <td>Contraste</td>
+          <td><span class="foco">Yo</span> trabajo, ella descansa.</td>
+        </tr>
+        <tr>
+          <td>Cambio de turno</td>
+          <td><span class="foco">Yo</span> soy de Cusco. ¿Y tú?</td>
+        </tr>
+        <tr>
+          <td>Énfasis</td>
+          <td><span class="foco">Yo</span> no fui, ¡fue él!</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Fuera de estos tres casos, el pronombre <strong>sobra</strong>.</p>
+
+    <div class="gram-anchor"><span class="foco">Yo</span> siempre les pregunto lo mismo.</div>
+
+    <div class="ejemplos">
+      <div class="ejemplo">
+        <div class="frase">Nicolás trabaja en Cusco. <span class="arrow">→</span> <span class="foco">Él</span>
+          trabaja en Cusco.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Camila y Lucas llegaron el martes. <span class="arrow">→</span> <span
+            class="foco">Ellos</span> llegaron el martes.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Tú y yo trabajamos juntos. <span class="arrow">→</span> <span
+            class="foco">Nosotros</span> trabajamos juntos.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Camila pregunta cómo te llamas. <span class="arrow">→</span> <span
+            class="foco">Ella</span> pregunta cómo te llamas.</div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="gram-table tabla-pronombres">
+        <tr>
+          <td class="persona">YO</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">YO</td>
+        </tr>
+        <tr>
+          <td class="persona">TÚ</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">TÚ</td>
+        </tr>
+        <tr>
+          <td class="persona">ÉL / ELLA / USTED</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">ÉL / ELLA / USTED</td>
+        </tr>
+        <tr>
+          <td class="persona">NOSOTROS / NOSOTRAS</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">NOSOTROS / NOSOTRAS</td>
+        </tr>
+        <tr>
+          <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+          <td class="sep">&gt;</td>
+          <td class="forma">VOSOTROS / VOSOTRAS</td>
+        </tr>
+        <tr>
+          <td class="persona">ELLOS / ELLAS / USTEDES</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">ELLOS / ELLAS / USTEDES</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Función: <strong>sujeto</strong> — quien hace la acción.</p>
+
+    <div class="dica">
+      <span class="lbl">💡 Ojo · El voseo</span>
+      <p>En Argentina, Uruguay y Paraguay no se usa <strong>tú</strong>, se usa <strong>vos</strong>. Y el
+        verbo cambia: <em>tú tienes → vos tenés</em> · <em>tú hablas → vos hablás</em> · <em>tú eres → vos
+          sos</em>. Nicolás es peruano: él usa <strong>tú</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ══ S9 OBJETO DIRECTO ══ -->
+  <section class="sec" id="s9">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">PRONOMBRES COMPLEMENTOS ÁTONOS: OBJETO DIRECTO</div>
+
+    <div class="teoria-block">
+      <span class="lbl">Definición</span>
+      <p>Es la palabra que <strong>recibe la acción directamente</strong>, sin preposición. En <em>«Nicolás
+          guarda el cuaderno»</em>, lo que Nicolás guarda es <em>el cuaderno</em> — ese es el objeto directo.</p>
+    </div>
+    <div class="teoria-block vermelho">
+      <span class="lbl">Para qué sirve el pronombre</span>
+      <p>Para <strong>no repetir</strong> lo que ya se dijo. Nadie contesta <em>«Sí, tengo tu casaca, mando tu
+          casaca mañana»</em>. Se dice: <em>«Sí, <strong>la</strong> tengo. <strong>La</strong> mando
+          mañana.»</em></p>
+    </div>
+    <div class="gram-callout"><strong>Cómo encontrarlo:</strong> pregunta <em>¿qué?</em> al verbo. <em>Nicolás
+        guarda <strong>¿qué?</strong></em> → <em>el cuaderno</em> → objeto directo.</div>
+
+    <div class="tablewrap">
+      <table class="gram-table">
+        <tr>
+          <th>Sin pronombre</th>
+          <th>Con pronombre</th>
+        </tr>
+        <tr>
+          <td>— ¿Tienes <strong>mi casaca</strong>?</td>
+          <td>— Sí, <span class="foco">la</span> tengo.</td>
+        </tr>
+        <tr>
+          <td>— ¿Encontraste <strong>los lentes</strong>?</td>
+          <td>— No, no <span class="foco">los</span> encontré.</td>
+        </tr>
+        <tr>
+          <td>— ¿Y <strong>las llaves</strong>?</td>
+          <td>— <span class="foco">Las</span> dejé en la cocina.</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">El pronombre va justo antes del verbo conjugado — reemplaza a <strong>la
+        cosa</strong> nombrada antes.</p>
+
+    <div class="gram-anchor">Y yo <span class="foco">LA</span> busco. <span
+        style="font-size:12px;color:var(--cinza);font-style:normal;display:block">(la = la casaca)</span></div>
+
+    <div class="ejemplos">
+      <div class="ejemplo">
+        <div class="frase">Busco la casaca. <span class="arrow">→</span> <span class="foco">LA</span> busco.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Busco el cargador. <span class="arrow">→</span> <span class="foco">LO</span> busco.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Busco los lentes. <span class="arrow">→</span> <span class="foco">LOS</span> busco.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Busco las llaves. <span class="arrow">→</span> <span class="foco">LAS</span> busco.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Encuentro el cuaderno. <span class="arrow">→</span> <span class="foco">LO</span>
+          encuentro.</div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="gram-table tabla-pronombres">
+        <tr>
+          <td class="persona">YO</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">ME</td>
+        </tr>
+        <tr>
+          <td class="persona">TÚ</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">TE</td>
+        </tr>
+        <tr>
+          <td class="persona">ÉL / ELLA / USTED</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">LO / LA</td>
+        </tr>
+        <tr>
+          <td class="persona">NOSOTROS / NOSOTRAS</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">NOS</td>
+        </tr>
+        <tr>
+          <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+          <td class="sep">&gt;</td>
+          <td class="forma">OS</td>
+        </tr>
+        <tr>
+          <td class="persona">ELLOS / ELLAS / USTEDES</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">LOS / LAS</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Sustituye <strong>QUÉ</strong> recibe la acción, sin preposición. Cambia según el
+      género y el número <strong>DE LA COSA</strong>.</p>
+
+    <div class="dica">
+      <span class="lbl">💡 Ojo · Dónde va</span>
+      <p>Antes del verbo conjugado: <strong>LA</strong> busco. O pegado al infinitivo: voy a
+        buscar<strong>LA</strong>. Las dos son correctas.</p>
+    </div>
+  </section>
+
+  <!-- ══ S10 OBJETO INDIRECTO ══ -->
+  <section class="sec" id="s10">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">PRONOMBRES COMPLEMENTOS ÁTONOS: OBJETO INDIRECTO</div>
+
+    <div class="teoria-block">
+      <span class="lbl">Definición</span>
+      <p>Es <strong>a quién</strong> llega la acción. En <em>«Nicolás manda la casaca a Camila»</em>, la
+        casaca es el objeto directo, y <em>a Camila</em> es el objeto indirecto: es quien la recibe.</p>
+    </div>
+    <div class="teoria-block vermelho">
+      <span class="lbl">Para qué sirve el pronombre</span>
+      <p>Igual que el directo: para no repetir. <em>«<strong>Le</strong> mando la casaca.»</em></p>
+    </div>
+    <div class="gram-callout"><strong>Cómo encontrarlo:</strong> pregunta <em>¿a quién?</em> al verbo.
+      <em>Nicolás manda la casaca <strong>¿a quién?</strong></em> → <em>a Camila</em> → objeto indirecto.
+    </div>
+
+    <div class="tablewrap">
+      <table class="gram-table">
+        <tr>
+          <th>Sin pronombre</th>
+          <th>Con pronombre</th>
+        </tr>
+        <tr>
+          <td>Nicolás manda la casaca <strong>a Camila</strong>.</td>
+          <td>Nicolás <span class="foco">le</span> manda la casaca.</td>
+        </tr>
+        <tr>
+          <td>Escribo <strong>a mis padres</strong> cada semana.</td>
+          <td><span class="foco">Les</span> escribo cada semana.</td>
+        </tr>
+        <tr>
+          <td>— ¿<span class="foco">Me</span> dices tu nombre?</td>
+          <td class="muted">me = a mí</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Verbos que casi siempre lo llevan: <strong>dar, decir, escribir, mandar, preguntar,
+        gustar, contar</strong>.</p>
+
+    <div class="gram-anchor">Yo siempre <span class="foco">LES</span> pregunto lo mismo.</div>
+
+    <div class="ejemplos">
+      <div class="ejemplo">
+        <div class="frase">Doy el libro a Camila. <span class="arrow">→</span> <span class="foco">LE</span> doy
+          el libro.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Doy el libro a Lucas. <span class="arrow">→</span> <span class="foco">LE</span> doy
+          el libro.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Doy el libro a mis amigos. <span class="arrow">→</span> <span class="foco">LES</span>
+          doy el libro.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Escribo un mensaje a mi jefe. <span class="arrow">→</span> <span
+            class="foco">Le</span> escribo un mensaje.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Cuento la historia a los huéspedes. <span class="arrow">→</span> <span
+            class="foco">Les</span> cuento la historia.</div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="gram-table tabla-pronombres">
+        <tr>
+          <td class="persona">YO</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">ME</td>
+        </tr>
+        <tr>
+          <td class="persona">TÚ</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">TE</td>
+        </tr>
+        <tr>
+          <td class="persona">ÉL / ELLA / USTED</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">LE</td>
+        </tr>
+        <tr>
+          <td class="persona">NOSOTROS / NOSOTRAS</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">NOS</td>
+        </tr>
+        <tr>
+          <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+          <td class="sep">&gt;</td>
+          <td class="forma">OS</td>
+        </tr>
+        <tr>
+          <td class="persona">ELLOS / ELLAS / USTEDES</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">LES</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Sustituye <strong>A QUIÉN</strong> se dirige la acción. Verbos típicos: dar, decir,
+      escribir, mandar, preguntar, gustar.</p>
+
+    <div class="dica">
+      <span class="lbl">💡 Ojo · No cambia con el género</span>
+      <p>«A Camila» y «a Lucas» son los dos <strong>LE</strong>. El directo cambia (lo/la). El indirecto, no.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ S11 COMPLEMENTOS TÓNICOS ══ -->
+  <section class="sec" id="s11">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">PRONOMBRES COMPLEMENTOS TÓNICOS</div>
+
+    <div class="teoria-block">
+      <span class="lbl">Definición</span>
+      <p>Son los pronombres que se usan <strong>después de una preposición</strong>: <em>a, de, para, sin,
+          con, por…</em></p>
+    </div>
+    <div class="teoria-block vermelho">
+      <span class="lbl">Para qué sirven</span>
+      <p>Dos cosas. Primero, <strong>son los únicos posibles</strong> después de preposición: no existe
+        <em>para yo</em>. Segundo, sirven para <strong>deshacer una ambigüedad</strong>: si <em>le</em> o
+        <em>su</em> no dejan claro de quién hablamos, se aclara con <em>de él</em>, <em>de ella</em>.</p>
+    </div>
+    <div class="gram-callout">Con voseo cambian dos: <strong>con vos</strong> (nunca «convos») y <strong>para
+        vos</strong>. El resto de la tabla no cambia.</div>
+
+    <div class="tablewrap">
+      <table class="gram-table">
+        <tr>
+          <th>Correcto</th>
+          <th>Incorrecto</th>
+        </tr>
+        <tr>
+          <td>Este regalo es <span class="foco">para mí</span>.</td>
+          <td class="err">para yo</td>
+        </tr>
+        <tr>
+          <td>No quiero ir <span class="foco">sin ti</span>.</td>
+          <td class="err">sin tú</td>
+        </tr>
+        <tr>
+          <td>— ¿De quién es? — Es <span class="foco">de ella</span>.</td>
+          <td class="muted">—</td>
+        </tr>
+        <tr>
+          <td>¿Vienes <span class="foco">conmigo</span>?</td>
+          <td class="muted">con + mí</td>
+        </tr>
+        <tr>
+          <td>Voy <span class="foco">contigo</span>.</td>
+          <td class="muted">con + ti</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Nunca <strong>yo</strong> o <strong>tú</strong> después de preposición — siempre
+      <strong>mí</strong> o <strong>ti</strong>.</p>
+
+    <div class="gram-anchor">¿De quién es? — Es <span class="foco">DE ÉL</span>.</div>
+
+    <div class="ejemplos">
+      <div class="ejemplo">
+        <div class="frase">Este regalo es para <span class="foco">MÍ</span>.</div>
+        <div class="nota">nunca «para yo»</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">No quiero ir sin <span class="foco">TI</span>.</div>
+        <div class="nota">nunca «sin tú»</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">La mochila es de <span class="foco">ÉL</span>.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">¿Vienes <span class="foco">CONMIGO</span>?</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Voy <span class="foco">CONTIGO</span>.</div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="gram-table tabla-pronombres">
+        <tr>
+          <td class="persona">YO</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">MÍ</td>
+        </tr>
+        <tr>
+          <td class="persona">TÚ</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">TI</td>
+        </tr>
+        <tr>
+          <td class="persona">ÉL / ELLA / USTED</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">ÉL / ELLA / USTED</td>
+        </tr>
+        <tr>
+          <td class="persona">NOSOTROS / NOSOTRAS</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">NOSOTROS / NOSOTRAS</td>
+        </tr>
+        <tr>
+          <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+          <td class="sep">&gt;</td>
+          <td class="forma">VOSOTROS / VOSOTRAS</td>
+        </tr>
+        <tr>
+          <td class="persona">ELLOS / ELLAS / USTEDES</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">ELLOS / ELLAS / USTEDES</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Nunca aparecen solos: siempre después de preposición (<em>a, para, de, sin,
+        con…</em>).</p>
+
+    <div class="dica">
+      <span class="lbl">💡 Ojo · Acento y voseo</span>
+      <p><strong>MÍ</strong> lleva acento. <strong>TI</strong> no lleva nunca. Con vos: «para vos», «sin vos»
+        — y no existe «convos», se dice «con vos».</p>
+    </div>
+  </section>
+
+  <!-- ══ S12 REFLEXIVOS ══ -->
+  <section class="sec" id="s12">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">PRONOMBRES REFLEXIVOS</div>
+
+    <div class="teoria-block">
+      <span class="lbl">Definición</span>
+      <p>Se usan cuando <strong>la acción vuelve a la misma persona que la hace</strong>. <em>Nicolás
+          <strong>se</strong> levanta</em> = Nicolás levanta a Nicolás.</p>
+    </div>
+    <div class="teoria-block vermelho">
+      <span class="lbl">Para qué sirven</span>
+      <p>No son un adorno: <strong>cambian el significado del verbo</strong>. Muchos verbos son dos verbos
+        distintos según lleven o no el pronombre.</p>
+    </div>
+    <div class="gram-callout">Casi todos los verbos de rutina lo llevan: <strong>levantarse, ducharse,
+        vestirse, acostarse, llamarse</strong>.</div>
+
+    <div class="tablewrap">
+      <table class="gram-table">
+        <tr>
+          <th>Sin pronombre</th>
+          <th>Con pronombre</th>
+        </tr>
+        <tr>
+          <td><strong>Llamo</strong> a mi madre.</td>
+          <td><span class="foco">Me llamo</span> Nicolás.</td>
+        </tr>
+        <tr>
+          <td><strong>Olvido</strong> las llaves.</td>
+          <td><span class="foco">Me olvido</span> de las llaves.</td>
+        </tr>
+        <tr>
+          <td><strong>Voy</strong> al mercado.</td>
+          <td><span class="foco">Me voy.</span></td>
+        </tr>
+        <tr>
+          <td><strong>Duermo</strong> ocho horas.</td>
+          <td><span class="foco">Me duermo</span> a las once.</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Mismo verbo, <strong>significado distinto</strong> — según lleve o no el
+      pronombre.</p>
+
+    <div class="gram-anchor">Se van y <span class="foco">SE</span> olvidan de sus cosas.</div>
+
+    <div class="ejemplos">
+      <div class="ejemplo">
+        <div class="frase">Llamo a mi madre. <span class="arrow">≠</span> <span class="foco">ME</span> llamo
+          Nicolás.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Olvido las llaves. <span class="arrow">≠</span> <span class="foco">ME</span> olvido
+          de las llaves.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Voy. <span class="arrow">≠</span> <span class="foco">ME</span> voy.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Visto a mi hijo. <span class="arrow">≠</span> <span class="foco">ME</span> visto
+          rápido.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Levanto la caja. <span class="arrow">≠</span> <span class="foco">ME</span> levanto
+          a las seis.</div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="gram-table tabla-pronombres">
+        <tr>
+          <td class="persona">YO</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">ME</td>
+        </tr>
+        <tr>
+          <td class="persona">TÚ</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">TE</td>
+        </tr>
+        <tr>
+          <td class="persona">ÉL / ELLA / USTED</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">SE</td>
+        </tr>
+        <tr>
+          <td class="persona">NOSOTROS / NOSOTRAS</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">NOS</td>
+        </tr>
+        <tr>
+          <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+          <td class="sep">&gt;</td>
+          <td class="forma">OS</td>
+        </tr>
+        <tr>
+          <td class="persona">ELLOS / ELLAS / USTEDES</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">SE</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">La acción vuelve al mismo sujeto que la hace.</p>
+
+    <div class="dica">
+      <span class="lbl">💡 Ojo · Cambia el sentido</span>
+      <p>No es un adorno: «llamo a Ana» y «<strong>me</strong> llamo Ana» son dos cosas distintas.</p>
+    </div>
+  </section>
+
+  <!-- ══ S13 POSESIVOS: ANTES DEL SUSTANTIVO ══ -->
+  <section class="sec" id="s13">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">PRONOMBRES POSESIVOS: ANTES DEL SUSTANTIVO</div>
+
+    <div class="teoria-block">
+      <span class="lbl">Definición</span>
+      <p>Dicen <strong>de quién es</strong> algo. Hay dos grupos, y la diferencia es <strong>dónde se
+          ponen</strong>. Este grupo va siempre delante del sustantivo — nunca solo: <em>mi mochila · tu
+          cargador · nuestras llaves</em>.</p>
+    </div>
+    <div class="gram-callout"><strong>Concuerdan con la cosa, no con el dueño.</strong> <em>mi libro</em> /
+      <em>mis libros</em> — aunque el dueño sea siempre yo.
+    </div>
+    <div class="teoria-block vermelho">
+      <span class="lbl">Cómo reconocerlo</span>
+      <p>Si tiene un sustantivo <strong>pegado justo después</strong> — mochila, cargador, llaves — es este
+        grupo.</p>
+    </div>
+
+    <div class="ejemplos">
+      <div class="ejemplo">
+        <div class="frase">— ¿Tienes <span class="foco">mi</span> casaca? — Sí, aquí está.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase"><span class="foco">Mis</span> lentes están en la recepción.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">— ¿De quién son estas llaves? — Son <span class="foco">nuestras</span> llaves.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase"><span class="foco">Su</span> cuaderno está en la caja desde el año pasado.</div>
+      </div>
+    </div>
+    <p class="explicacion">Todos van <strong>pegados al sustantivo</strong>, siempre antes de él.</p>
+
+    <div class="gram-anchor">¿Tienes <span class="foco">MI</span> casaca?</div>
+
+    <div class="ejemplos">
+      <div class="ejemplo">
+        <div class="frase">Es <span class="foco">MI</span> mochila y son <span class="foco">MIS</span> libros.
+        </div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">¿Dónde está <span class="foco">TU</span> cargador?</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Son <span class="foco">NUESTRAS</span> llaves, de la habitación.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Es <span class="foco">SU</span> cuaderno, el del año pasado.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase"><span class="foco">Mis</span> lentes están en la recepción.</div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="gram-table tabla-pronombres">
+        <tr>
+          <td class="persona">YO</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">MI / MIS</td>
+        </tr>
+        <tr>
+          <td class="persona">TÚ</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">TU / TUS</td>
+        </tr>
+        <tr>
+          <td class="persona">ÉL / ELLA / USTED</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">SU / SUS</td>
+        </tr>
+        <tr>
+          <td class="persona">NOSOTROS / NOSOTRAS</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">NUESTRO / A / OS / AS</td>
+        </tr>
+        <tr>
+          <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+          <td class="sep">&gt;</td>
+          <td class="forma">VUESTRO / A / OS / AS</td>
+        </tr>
+        <tr>
+          <td class="persona">ELLOS / ELLAS / USTEDES</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">SU / SUS</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Van siempre delante del sustantivo, nunca solos.</p>
+
+    <div class="dica">
+      <span class="lbl">💡 Ojo · «Su» es ambiguo</span>
+      <p>«Su casaca» ¿de él? ¿de ella? ¿de usted? ¿de ellos? Si hace falta aclarar: la casaca <strong>DE
+          ÉL</strong>, la casaca <strong>DE ELLA</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ══ S14 POSESIVOS: DESPUÉS DEL VERBO ══ -->
+  <section class="sec" id="s14">
+    <div class="sec-label">✏️ Gramática</div>
+    <div class="gram-title">PRONOMBRES POSESIVOS: DESPUÉS DEL VERBO</div>
+
+    <div class="teoria-block">
+      <span class="lbl">Definición</span>
+      <p>Es el mismo posesivo, pero <strong>va después del verbo</strong> — y puede ir <strong>solo</strong>,
+        sin sustantivo detrás. Por eso sirve para <strong>contestar</strong>.</p>
+    </div>
+    <div class="teoria-block vermelho">
+      <span class="lbl">Cada uno tiene su pareja</span>
+      <p><em>mi → mío</em> · <em>tu → tuyo</em> · <em>su → suyo</em> · <em>nuestro → nuestro</em>.</p>
+    </div>
+    <div class="gram-callout"><strong>¿Cuándo se usa?</strong> Cuando alguien pregunta de quién es algo. — ¿De
+      quién es esta mochila? — Es <strong>mía</strong>. — ¿Es <strong>tuya</strong> la casaca? — No, creo que
+      es <strong>suya</strong>.</div>
+
+    <div class="tablewrap">
+      <table class="gram-table">
+        <tr>
+          <th>Antes del sustantivo</th>
+          <th>Después del verbo</th>
+        </tr>
+        <tr>
+          <td>Es <span class="foco">mi</span> mochila.</td>
+          <td>La mochila es <span class="foco">mía</span>.</td>
+        </tr>
+        <tr>
+          <td>Es <span class="foco">tu</span> cargador.</td>
+          <td>El cargador es <span class="foco">tuyo</span>.</td>
+        </tr>
+        <tr>
+          <td>Son <span class="foco">nuestras</span> llaves.</td>
+          <td>Las llaves son <span class="foco">nuestras</span>.</td>
+        </tr>
+        <tr>
+          <td>Es <span class="foco">su</span> cuaderno.</td>
+          <td>El cuaderno es <span class="foco">suyo</span>.</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Fíjate: el posesivo queda <strong>solo</strong>, sin sustantivo al lado.</p>
+
+    <div class="gram-anchor">No es <span class="foco">MÍO</span>, es <span class="foco">SUYO</span>.</div>
+
+    <div class="ejemplos">
+      <div class="ejemplo">
+        <div class="frase">La mochila es <span class="foco">MÍA</span> y los libros son <span
+            class="foco">MÍOS</span>.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">El cargador es <span class="foco">TUYO</span>.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">El cuaderno es <span class="foco">SUYO</span>.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Las llaves son <span class="foco">NUESTRAS</span>, de los dos.</div>
+      </div>
+      <div class="ejemplo">
+        <div class="frase">Los lentes son <span class="foco">MÍOS</span>, no de Nicolás.</div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table class="gram-table tabla-pronombres">
+        <tr>
+          <td class="persona">YO</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">MÍO / A / OS / AS</td>
+        </tr>
+        <tr>
+          <td class="persona">TÚ</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">TUYO / A / OS / AS</td>
+        </tr>
+        <tr>
+          <td class="persona">ÉL / ELLA / USTED</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">SUYO / A / OS / AS</td>
+        </tr>
+        <tr>
+          <td class="persona">NOSOTROS / NOSOTRAS</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">NUESTRO / A / OS / AS</td>
+        </tr>
+        <tr>
+          <td class="persona">VOSOTROS / VOSOTRAS<span class="sub">(solo España)</span></td>
+          <td class="sep">&gt;</td>
+          <td class="forma">VUESTRO / A / OS / AS</td>
+        </tr>
+        <tr>
+          <td class="persona">ELLOS / ELLAS / USTEDES</td>
+          <td class="sep">&gt;</td>
+          <td class="forma">SUYO / A / OS / AS</td>
+        </tr>
+      </table>
+    </div>
+    <p class="explicacion">Van después del verbo o del sustantivo, y pueden ir solos.</p>
+
+    <div class="dica">
+      <span class="lbl">💡 Ojo · Concuerda con la cosa, no con el dueño</span>
+      <p>«La mochila es <strong>MÍA</strong>» aunque el dueño sea Pedro. «Los libros son <strong>SUYOS</strong>»
+        aunque la dueña sea Ana. Con vos no cambia nada: es <strong>TUYO</strong> igual.</p>
+    </div>
+  </section>
+
+  <!-- ══ S15 PRACTICANDO ══ -->
+  <section class="sec" id="s15">
+    <div class="sec-label">✏️ Posesivos</div>
+    <div class="gram-title">PRACTICANDO</div>
+    <div class="tablewrap">
+      <table class="gram-table">
+        <tr>
+          <th>Antes del sustantivo</th>
+          <th>Después del verbo</th>
+        </tr>
+        <tr>
+          <td>Es <span class="foco">mi</span> mochila.</td>
+          <td>La mochila es <span class="foco">mía</span>.</td>
+        </tr>
+        <tr>
+          <td>Es <span class="foco">tu</span> chaqueta.</td>
+          <td>La chaqueta es <span class="foco">tuya</span>.</td>
+        </tr>
+        <tr>
+          <td>Es <span class="foco">su</span> libro.</td>
+          <td>El libro es <span class="foco">suyo</span>.</td>
+        </tr>
+        <tr>
+          <td>Son <span class="foco">nuestras</span> llaves.</td>
+          <td>Las llaves son <span class="foco">nuestras</span>.</td>
+        </tr>
+      </table>
+    </div>
+    <div class="gram-callout">
+      <strong>1.</strong> Concuerdan con la cosa, no con el dueño: <em>la mochila es <strong>mía</strong></em> —
+      aunque el dueño sea Pedro.
+    </div>
+    <div class="gram-callout">
+      <strong>2.</strong> <em>su</em> es ambiguo — ¿de él? ¿de ella? ¿de usted? ¿de ellos? La salida: volver a los
+      tónicos — <em>es <strong>de él</strong></em>, <em>es <strong>de ella</strong></em>.
+    </div>
+  </section>
+
+  <!-- ══ S16 INTERROGATIVOS ══ -->
+  <section class="sec" id="s16">
+    <div class="sec-label">✏️ Tema nuevo</div>
+    <div class="gram-title">DESCUBRE LA <em>PREGUNTA</em> <span class="badge-nuevo">NUEVO</span></div>
+    <div class="tablewrap">
+      <table class="gram-table">
+        <tr>
+          <th>Respuesta</th>
+          <th>Pregunta</th>
+        </tr>
+        <tr>
+          <td>Me llamo Nicolás.</td>
+          <td>¿<span class="foco">Cómo</span> te llamas?</td>
+        </tr>
+        <tr>
+          <td>Soy de Cusco.</td>
+          <td>¿<span class="foco">De dónde</span> eres?</td>
+        </tr>
+        <tr>
+          <td>Trabajo en un albergue.</td>
+          <td>¿<span class="foco">Dónde</span> trabajas?</td>
+        </tr>
+        <tr>
+          <td>Voy al mercado.</td>
+          <td>¿<span class="foco">Adónde</span> vas?</td>
+        </tr>
+        <tr>
+          <td>Hay seis objetos.</td>
+          <td>¿<span class="foco">Cuántos</span> objetos hay?</td>
+        </tr>
+        <tr>
+          <td>Es un cuaderno.</td>
+          <td>¿<span class="foco">Qué</span> es?</td>
+        </tr>
+        <tr>
+          <td>La roja, la grande.</td>
+          <td>¿<span class="foco">Cuál</span> es tu mochila?</td>
+        </tr>
+        <tr>
+          <td>Es de Camila.</td>
+          <td>¿<span class="foco">De quién</span> es?</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="gram-title" style="margin-top:22px;font-size:clamp(24px,7vw,32px)">LAS 8 PALABRAS</div>
+    <div class="chip-row">
+      <span class="v">CÓMO</span><span>DE DÓNDE</span><span class="v">DÓNDE</span><span>ADÓNDE</span>
+      <span class="v">CUÁNTOS</span><span>QUÉ</span><span class="v">CUÁL</span><span>DE QUIÉN</span>
+    </div>
+    <div class="gram-callout">
+      <em>qué</em> pide <strong>definición</strong> (¿qué es?) · <em>cuál</em> pide <strong>elección dentro de un
+        conjunto</strong> (¿cuál es la tuya?)
+    </div>
+    <div class="gram-callout">
+      <em>dónde</em> es <strong>lugar</strong> (¿dónde estás?) · <em>adónde</em> exige <strong>movimiento</strong>
+      (¿adónde vas?)
+    </div>
+    <ul class="gram-notes">
+      <li>Todos llevan acento cuando son pregunta.</li>
+      <li><em>de quién</em> = <em>quién</em> + preposición — misma lógica de los tónicos.</li>
+    </ul>
+  </section>
+
+  <!-- ══ S17 BLOQUE A/B ══ -->
+  <section class="sec" id="s17">
+    <div class="sec-label">💬 Bloque A/B</div>
+    <div class="gram-title">«NO PODÉS REPETIR»</div>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span>A lee sus 10 frases en voz alta, una por una.</div>
+      <div class="paso"><span class="n">2</span>B responde <strong>HABLANDO</strong>: dice la frase completa.</div>
+      <div class="paso"><span class="n">3</span>A escribe en su celular lo que dice B.</div>
+      <div class="paso"><span class="n">4</span>A aprieta <strong>«Comprobar»</strong> y le dice la nota a B.</div>
+      <div class="paso"><span class="n">5</span>Cambian: ahora B lee las suyas y corrige a A.</div>
+    </div>
+    <div class="quote">Es <strong>mi</strong> mochila. / La mochila es <strong>mía</strong>.</div>
+  </section>
+
+  <!-- ══ S18 REPASO FINAL ══ -->
+  <section class="sec" id="s18">
+    <div class="sec-label">🏁 Repaso final</div>
+    <h2>TODO LO QUE VIMOS HOY</h2>
+    <div class="repaso-table">
+      <div class="tablewrap">
+        <table class="gram-table">
+          <tr>
+            <th>Sistema</th>
+            <th>Ejemplo</th>
+          </tr>
+          <tr>
+            <td>Personales</td>
+            <td><span class="foco">Yo</span> siempre les pregunto lo mismo.</td>
+          </tr>
+          <tr>
+            <td>Átonos · directo</td>
+            <td>¿Tienes mi casaca? — Sí, <span class="foco">la</span> tengo.</td>
+          </tr>
+          <tr>
+            <td>Átonos · indirecto</td>
+            <td>Nicolás <span class="foco">le</span> manda la casaca a Camila.</td>
+          </tr>
+          <tr>
+            <td>Tónicos</td>
+            <td>¿De quién es? — Es <span class="foco">de él</span>.</td>
+          </tr>
+          <tr>
+            <td>Reflexivos</td>
+            <td><span class="foco">Me</span> llamo Nicolás.</td>
+          </tr>
+          <tr>
+            <td><strong>Posesivos · antes</strong></td>
+            <td>Es <span class="foco">mi</span> mochila.</td>
+          </tr>
+          <tr>
+            <td><strong>Posesivos · después</strong></td>
+            <td>La mochila es <span class="foco">mía</span>.</td>
+          </tr>
+          <tr>
+            <td><strong>Interrogativos</strong></td>
+            <td>¿<span class="foco">De quién</span> es el cuaderno?</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <p class="cando">¿Podés decir que algo es tuyo?<br>¿Y que es de otra persona?</p>
+  </section>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn" id="btnPrev" onclick="navPrev()">←</button>
+    <div class="section-info">
+      <span class="section-title" id="navTitle">Portada</span>
+      <span class="section-num" id="navNum">1 / 18</span>
+    </div>
+    <button class="nav-btn" id="btnNext" onclick="navNext()">→</button>
+  </nav>
+
+  <!-- SIDE DOTS -->
+  <div class="side-dots" id="sideDots"></div>
+
+  <script>
+    const sections = [
+      { id: 's1', label: 'Portada' },
+      { id: 's2', label: 'Repaso' },
+      { id: 's3', label: 'Aprender' },
+      { id: 's4', label: 'Nicolás Quispe' },
+      { id: 's5', label: 'Escucha' },
+      { id: 's6', label: 'Comprensión' },
+      { id: 's7', label: 'Transcripción' },
+      { id: 's8', label: 'Personales' },
+      { id: 's9', label: 'Objeto Directo' },
+      { id: 's10', label: 'Objeto Indirecto' },
+      { id: 's11', label: 'Tónicos' },
+      { id: 's12', label: 'Reflexivos' },
+      { id: 's13', label: 'Posesivos · antes' },
+      { id: 's14', label: 'Posesivos · después' },
+      { id: 's15', label: 'Practicando' },
+      { id: 's16', label: 'Interrogativos' },
+      { id: 's17', label: 'Bloque A/B' },
+      { id: 's18', label: 'Repaso Final' },
+    ];
+
+    const total = sections.length;
+    let activeSec = 0;
+
+    const dotsEl = document.getElementById('sideDots');
+    sections.forEach((s, i) => {
+      const d = document.createElement('div');
+      d.className = 'sdot' + (i === 0 ? ' on' : '');
+      d.title = s.label;
+      d.onclick = () => scrollToSection(i);
+      dotsEl.appendChild(d);
+    });
+
+    function updateNav(idx) {
+      activeSec = idx;
+      document.getElementById('navTitle').textContent = sections[idx].label;
+      document.getElementById('navNum').textContent = (idx + 1) + ' / ' + total;
+      document.querySelectorAll('.sdot').forEach((d, i) => {
+        d.classList.toggle('on', i === idx);
+      });
+      const pct = ((idx + 1) / total) * 100;
+      document.getElementById('progressBar').style.width = pct + '%';
+    }
+
+    function scrollToSection(idx) {
+      const el = document.getElementById(sections[idx].id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateNav(idx);
+    }
+
+    function navPrev() {
+      if (activeSec > 0) scrollToSection(activeSec - 1);
+    }
+
+    function navNext() {
+      if (activeSec < total - 1) scrollToSection(activeSec + 1);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = sections.findIndex(s => s.id === entry.target.id);
+          if (idx !== -1) updateNav(idx);
+        }
+      });
+    }, {
+      threshold: 0,
+      rootMargin: '-100px 0px -80% 0px'
+    });
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') navNext();
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navPrev();
+    });
+  </script>
+
+</body>
+
+</html>
