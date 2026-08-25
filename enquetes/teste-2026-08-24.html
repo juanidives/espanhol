@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enquete teste-2026-08-24</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#2b2b2b;--muted:#6b6b6b;--line:#e5ddd0;--ok:#1f8a4c;--okbg:#e8f5ec;--no:#b3261e;--nobg:#fbe9e7}
+*{box-sizing:border-box}
+body{margin:0 auto;padding:24px 16px 64px;max-width:640px;background:var(--bg);color:var(--ink);line-height:1.5;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--muted);font-size:15px;margin:0 0 24px}
+.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}
+.qt{font-size:18px;font-weight:600;margin:0 0 12px}
+.opt{display:block;width:100%;text-align:left;padding:14px 16px;margin:8px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:17px;font-family:inherit;color:inherit;cursor:pointer}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok);font-weight:600}
+.opt.no{background:var(--nobg);border-color:var(--no);color:var(--no)}
+.exp{display:none;margin-top:12px;padding:12px 14px;border-radius:10px;background:#f3efe7;font-size:15px;color:var(--muted)}
+#score{margin-top:24px;text-align:center;font-size:18px;font-weight:600}
+</style></head><body>
+<h1>Enquete de la semana</h1>
+<p class="sub">Toca una opcion. Vas a ver enseguida si acertaste y por que.</p>
+<div id="app"></div><div id="score"></div>
+<script id="datos" type="application/json">[{"p":"Nicolás siempre ..... pregunta lo mismo a los huéspedes.","o":["les","los","le","se"],"g":"les","e":"La opción correcta es 'les' porque se refiere a preguntar a varias personas."},{"p":"El cuaderno de Camila está en la caja. Ese cuaderno es .....","o":["mío","tuyo","suyo","nuestro"],"g":"suyo","e":"Usamos 'suyo' porque el cuaderno pertenece a Camila, otra persona."},{"p":"Nicolás dice: \"La caja está llena de cosas. Es ..... caja especial.\"","o":["mi","mío","su","sus"],"g":"mi","e":"Mi' se usa antes del sustantivo 'caja' para indicar posesión."},{"p":"Cuando alguien llega, Nicolás pregunta: \"¿..... te llamas?\"","o":["Qué","Cómo","Cuál","Quién"],"g":"Cómo","e":"Cómo' es correcto para preguntar por el nombre de alguien."},{"p":"Nicolás nunca se ..... de preguntar los nombres.","o":["olvido","olvidamos","olvidas","olvida"],"g":"olvida","e":"Usamos 'olvida' porque el sujeto es Nicolás, tercera persona del singular."}]</script>
+<script>
+var D=JSON.parse(document.getElementById("datos").textContent);
+var app=document.getElementById("app"),hechas=0,bien=0;
+function norm(s){return String(s).trim().toLowerCase();}
+D.forEach(function(q,i){
+var d=document.createElement("div");d.className="q";
+var t=document.createElement("p");t.className="qt";t.textContent=(i+1)+". "+q.p;d.appendChild(t);
+var ex=document.createElement("div");ex.className="exp";
+q.o.forEach(function(op){
+var b=document.createElement("button");b.className="opt";b.textContent=op;
+b.onclick=function(){
+var todos=d.querySelectorAll(".opt");
+for(var k=0;k<todos.length;k++){todos[k].disabled=true;}
+var acerto=norm(op)===norm(q.g);
+b.className=acerto?"opt ok":"opt no";
+if(!acerto){for(var k=0;k<todos.length;k++){if(norm(todos[k].textContent)===norm(q.g)){todos[k].className="opt ok";}}}
+ex.style.display="block";
+ex.textContent=(acerto?"Correcto. ":"La respuesta era: "+q.g+". ")+(q.e||"");
+hechas++;if(acerto){bien++;}
+if(hechas===D.length){document.getElementById("score").textContent="Terminaste: "+bien+" de "+D.length+".";}
+};d.appendChild(b);});
+d.appendChild(ex);app.appendChild(d);});
+</script></body></html>
