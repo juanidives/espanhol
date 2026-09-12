@@ -16,19 +16,23 @@ Projeto voluntário do Juani. Objetivo de longo prazo: montar um livro didático
 
 ```
 espanhol/
-├── a1-aulaNN/
-│   ├── index.html        ← projeção em sala (fontes grandes, 100vw/100vh)
-│   ├── mobile.html       ← scroll vertical, touch, swipe
-│   ├── aluno-a.html      ← lacuna de informação em pares (quando houver)
-│   ├── aluno-b.html
-│   ├── images/
-│   └── audio/            ← gerado no ElevenLabs, voz compatível com o sotaque
+├── aulas/
+│   └── aula-AAAA-MM-DD/
+│       ├── index.html    ← projeção em sala (fontes grandes, 100vw/100vh)
+│       ├── mobile.html   ← scroll vertical, touch, swipe
+│       ├── aluno-a.html  ← lacuna de informação em pares (quando houver)
+│       ├── aluno-b.html
+│       ├── aula-AAAA-MM-DD.md  ← base de conhecimento (Obsidian)
+│       ├── images/
+│       └── audio/        ← gerado no ElevenLabs, voz compatível com o sotaque
 ├── tarefas/              ← tarefas de casa centralizadas, fora das pastas de aula
 ├── CLAUDE.md
 └── README.md
 ```
 
-Deploy: `https://juanidives.github.io/espanhol/a1-aulaNN/`
+Deploy: `https://juanidives.github.io/espanhol/aulas/aula-AAAA-MM-DD/`
+
+**A pasta é a data em que a aula foi dada — não existe número de aula no caminho.** A numeração corrida antiga (`a1-aula08`…`a1-aula13`) foi abandonada em setembro/2026 porque competia com duas outras contagens que continuam em uso: as tarefas do 1º semestre (`tarefas/9.1`) e os PPTs do 2º (`ppt-aula2.2.pptx`). As aulas são identificadas por **data + personagem**. Os links antigos não foram preservados.
 
 **Nomes de arquivo:** minúsculo, sem espaço, sem acento (`panaderia.png`, não `Panadería.png`). As aulas antigas violam isso em alguns arquivos — não renomear retroativamente, só seguir a convenção daqui para frente.
 
@@ -50,6 +54,8 @@ HTML5 · CSS3 · JavaScript vanilla. Sem framework, sem build step, zero depend�
 Cada slide recebe a própria classe de layout e o `display` vem dela, nunca de uma regra global. **Isso precisa estar certo já no primeiro rascunho** — corrigir depois custa uma reescrita inteira.
 
 **Imagens:** `object-fit: contain`, nunca `cover` — `cover` corta a imagem. No mobile, imagem em `65dvh` para caber inteira sem corte.
+
+**QR codes.** Os QRs são PNG em base64 embutidos no `index.html` e codificam a **URL absoluta** do GitHub Pages (`https://juanidives.github.io/espanhol/aulas/aula-AAAA-MM-DD/mobile.html`). Não há como um `grep` encontrá-los: renomear a pasta quebra o QR silenciosamente e só se descobre na sala, com o aluno apontando o celular. Ao mover ou renomear qualquer aula, **regerar todos os QRs** e conferir decodificando a imagem gerada.
 
 **Sem esfumados.** Nada de gradiente sobreposto em slide, salvo pedido explícito do Juani.
 
@@ -80,7 +86,7 @@ O plano pedagógico não se inventa aqui — vem pronto da etapa de desenho (ski
 2. Aprovação
 3. `.pptx` → PDF (texto em tamanho normal, para distribuir aos alunos)
 4. `mobile.html`
-5. `.md` do Obsidian (base de conhecimento)
+5. `.md` do Obsidian (base de conhecimento), nomeado `aula-AAAA-MM-DD.md` dentro da própria pasta da aula
 
 Arquivos `aluno-a.html` / `aluno-b.html` entram no passo 1, junto com o `index.html`, quando a aula tiver lacuna de informação.
 
@@ -90,13 +96,18 @@ Arquivos `aluno-a.html` / `aluno-b.html` entram no passo 1, junto com o `index.h
 
 ## Aulas
 
-| # | Personagem | Tema | Status |
+Aulas aos sábados.
+
+| Data | Personagem | Tema | Duração |
 |---|---|---|---|
-| 08 | Martina García (Madrid) | Lugares · transportes · rotina semanal | publicada |
-| 09 | Sebastián Mora (Medellín) | Alimentos e comidas típicas | publicada |
-| 10 | — | Família · gerúndio | não ministrada |
-| 11 | Mateo González (Buenos Aires) | Horas e esportes | publicada |
-| 12 | a definir (feminina) | Revisão de gustar e semelhantes | em desenho |
+| 2026-05-16 | Martina García (Madrid) | Lugares · transportes · rotina semanal | 40 min |
+| 2026-05-23 | Sebastián Mora (Medellín) | Alimentos e comidas típicas | 40 min |
+| 2026-06-13 | Mateo González (Buenos Aires) | Horas e esportes | 40 min |
+| 2026-08-15 | Valentina Ríos (Cidade do México) | Gustar e semelhantes · gostos e opiniões | 40 min |
+| 2026-08-22 | Nicolás Quispe (Cusco) | Possessivos e interrogativos · repasso dos pronomes | 60 min |
+| 2026-09-12 | Lucía Paredes (San José) | Pretérito perfecto simple · pretérito imperfecto | 90 min |
+
+Uma aula sobre família e gerúndio foi desenhada mas nunca ministrada — não tem pasta.
 
 ## Conteúdo já ensinado (1º semestre)
 
@@ -106,7 +117,7 @@ Consultar antes de propor qualquer coisa, para não reintroduzir o que já foi d
 
 **Vocabulário:** saudações e apresentações · descrever-se · rotina · dias, meses e estações · expressões de frequência · lugares e transportes · números cardinais e ordinais · comidas e alimentos · família · horas · esportes
 
-**Ainda não visto:** qualquer tempo do passado · futuro e `ir a + infinitivo` · comparativos · imperativo. O primeiro semestre inteiro vive no presente, o que limita muito o que os alunos conseguem contar.
+**Ainda não visto:** futuro e `ir a + infinitivo` · comparativos · imperativo. O passado entrou em 12/09/2026 (pretérito perfecto simple e pretérito imperfecto); até ali o curso inteiro vivia no presente.
 
 ## Git
 

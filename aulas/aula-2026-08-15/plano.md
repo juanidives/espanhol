@@ -1,4 +1,4 @@
-# Aula 12 — ¿Coincidimos?
+# Aula de 15/08/2026 — ¿Coincidimos?
 
 Revisão ampliada de *gustar* e verbos semelhantes, usada como veículo para percorrer todo o vocabulário do primeiro semestre.
 
@@ -117,11 +117,11 @@ Com 5 a 8 pares simultâneos não dá para ouvir todos. Amostrar 3 pares durante
 
 ## Arquivos a produzir
 
-- `a1-aula12/index.html` — projeção
-- `a1-aula12/aluno-a.html` e `aluno-b.html`
-- `a1-aula12/mobile.html`
-- `a1-aula12/audio/audio-valentina.mp3`
-- `a1-aula12/images/` — valentina-rios.png, valentina-mercado.png, valentina-bicicleta.png, valentina-metro.png
+- `aulas/aula-2026-08-15/index.html` — projeção
+- `aulas/aula-2026-08-15/aluno-a.html` e `aluno-b.html`
+- `aulas/aula-2026-08-15/mobile.html`
+- `aulas/aula-2026-08-15/audio/audio-valentina.mp3`
+- `aulas/aula-2026-08-15/images/` — valentina-rios.png, valentina-mercado.png, valentina-bicicleta.png, valentina-metro.png
 - `.pptx` → PDF
 - `.md` do Obsidian
 

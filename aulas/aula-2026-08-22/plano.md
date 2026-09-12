@@ -1,4 +1,4 @@
-# Aula 13 — ¿Es tuyo?
+# Aula de 22/08/2026 — ¿Es tuyo?
 
 Repasso dos pronomes já dados + apresentação de **posesivos** e **interrogativos**.
 Duração: **60 minutos** (não 40 — esta aula é mais longa que o padrão).
