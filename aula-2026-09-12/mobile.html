@@ -212,6 +212,49 @@
     .leyenda-marca .pps { color: var(--pps); }
 
     /* ── FOOTER ── */
+
+    /* ── TABLAS ANCHAS: scroll lateral con la columna de persona fija ── */
+    .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table.tabla-verbos { min-width: 100%; }
+    table.tabla-verbos.ancha { width: max-content; min-width: 100%; }
+    table.tabla-verbos.ancha td.forma, table.tabla-verbos.ancha th { min-width: 104px; }
+    table.tabla-verbos td.persona {
+      position: sticky; left: 0; z-index: 2; background: var(--blanco);
+      box-shadow: 2px 0 0 var(--linha);
+    }
+    table.tabla-verbos th:first-child { position: sticky; left: 0; z-index: 3; background: var(--pps); }
+    table.tabla-verbos.imp th:first-child { background: var(--imp); }
+    .tabla-hint {
+      font-size: 13px; font-weight: 700; color: var(--pps);
+      margin: -4px 0 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .tabla-hint.imp { color: var(--imp); }
+
+    /* ── PASOS: numero fuera del flujo, texto corrido ── */
+    .paso { display: block; position: relative; padding-left: 36px; min-height: 26px; }
+    .paso .n { position: absolute; left: 0; top: 1px; }
+
+    /* ── S28: escena -> accion ── */
+    .par-row {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 12px 0; border-bottom: 1px solid var(--linha);
+    }
+    .par-row:last-of-type { border-bottom: none; }
+    .par-row .mitad-imp { color: var(--imp); font-style: italic; font-weight: 700; font-size: 16.5px; }
+    .par-row .mitad-pps { color: var(--pps); font-weight: 900; font-size: 16.5px; }
+    .par-row .flecha { color: var(--texto); font-weight: 900; font-size: 15px; opacity: .6; }
+
+    /* ── Respuestas que el alumno escribe en el celular ── */
+    .resp-input {
+      width: 100%; border: none; border-bottom: 2px solid var(--lavanda);
+      background: transparent; font-family: 'Nunito', sans-serif; font-size: 16px;
+      font-weight: 700; color: var(--pps); padding: 6px 2px; margin: 6px 0 2px;
+    }
+    .resp-input::placeholder { color: var(--texto); opacity: .4; font-weight: 600; }
+    .resp-input:focus { outline: none; border-bottom-color: var(--imp); }
+    .preg-item.con-resp { flex-direction: column; align-items: stretch; }
+    .preg-item.con-resp .pregunta { display: flex; gap: 10px; align-items: flex-start; }
+
     .footer-nota { text-align: center; font-size: 13px; color: var(--texto); opacity: .6; padding: 24px 18px 40px; font-weight: 700; }
   </style>
 </head>
@@ -222,11 +265,14 @@
   <div class="topbar">
     <div class="tb-title">Ese cuaderno es mío · Lucía Paredes</div>
     <div class="tb-nav">
+      <a href="#cuaderno">📓 El cuaderno</a>
+      <a href="#objetivos">🎯 Objetivos</a>
       <a href="#lucia">👋 Lucía</a>
       <a href="#teoria-pps">📌 P. Simple</a>
-      <a href="#teoria-imp">🎨 Imperfecto</a>
       <a href="#busca">🗣️ Busca a alguien</a>
+      <a href="#teoria-imp">🎨 Imperfecto</a>
       <a href="#nino">🎨 De niño/a</a>
+      <a href="#juntos">🔗 Los dos juntos</a>
       <a href="#marcado">📄 Texto marcado</a>
       <a href="#tarea">🏁 Tarea</a>
     </div>
@@ -238,6 +284,39 @@
     <h1>ESE CUADERNO ES <em>MÍO</em></h1>
     <p class="sub">Pretérito Perfecto Simple · Pretérito Imperfecto</p>
     <p class="duracao">📅 12 de septiembre de 2026 · seguí la clase acá mientras el profesor explica en el pizarrón</p>
+  </section>
+
+
+  <!-- S2 · EL CUADERNO -->
+  <section class="sec" id="cuaderno">
+    <div class="eyebrow">🔙 ¿Te acordás de la Aula con Nicolás?</div>
+    <h2 class="tit">EL CUADERNO DE «LA CAJA DE LOS <em>OLVIDADOS</em>»</h2>
+    <img class="foto" src="images/lucia-retrato.png" alt="Lucía Paredes con su cuaderno"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none"><span class="ph">📓</span><span class="phl">lucia-retrato.png</span></div>
+    <div class="quote">Nicolás guardaba en su albergue un cuaderno chiquito, color café, que nadie reclamaba: <strong>«¿De quién es el cuaderno?»</strong></div>
+    <div class="ficha-line durazno"><span class="lbl">Hoy conocemos a la dueña</span><span class="val">«¡Este cuaderno es mío!»</span></div>
+  </section>
+
+  <!-- S3 · OBJETIVOS -->
+  <section class="sec" id="objetivos">
+    <div class="eyebrow">🎯 Objetivos de hoy</div>
+    <h2 class="tit">HOY VAMOS A...</h2>
+    <div class="lista-num">
+      <div class="lista-item"><span class="ic">📌</span>Contar <strong>qué pasó</strong> → <span class="foco-pps">Pretérito Perfecto Simple</span></div>
+      <div class="lista-item imp"><span class="ic">🎨</span>Describir <strong>cómo era</strong> → <span class="foco-imp">Pretérito Imperfecto</span></div>
+      <div class="lista-item"><span class="ic">🧭</span>Saber <strong>cuándo</strong> usar cada uno</div>
+    </div>
+  </section>
+
+  <!-- S4 · CALENTAMIENTO -->
+  <section class="sec" id="calentamiento">
+    <div class="eyebrow">🔥 Calentamiento · en parejas · 3 min</div>
+    <h2 class="tit">CONTÁ EN VOZ ALTA</h2>
+    <div class="preg-lista">
+      <div class="preg-item"><span class="n">1</span>¿Qué hiciste el sábado pasado?</div>
+      <div class="preg-item"><span class="n">2</span>¿Dónde vivías cuando tenías 10 años?</div>
+    </div>
   </section>
 
   <!-- LUCÍA: ficha + historia + audio -->
@@ -281,8 +360,12 @@
 
   <!-- TEORÍA · PRETÉRITO PERFECTO SIMPLE -->
   <section class="sec" id="teoria-pps">
-    <div class="eyebrow">📌 Teoría</div>
+    <div class="eyebrow">📌 Parte 1</div>
     <h2 class="tit">PRETÉRITO PERFECTO <em>SIMPLE</em></h2>
+    <p class="sub-parte" style="font-size:17px;font-weight:700;margin:-8px 0 14px;">Lo que pasó, paso a paso.</p>
+    <img class="foto" src="images/lucia-montana-valle.png" alt="Lucía dibujando el valle"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none"><span class="ph">🏔️</span><span class="phl">lucia-montana-valle.png</span></div>
 
     <h2 class="tit" style="font-size:22px;margin-top:4px;">¿Cuándo se usa?</h2>
     <div class="lista-num">
@@ -350,8 +433,9 @@
     </div>
 
     <h2 class="tit" style="font-size:20px;margin-top:20px;">Irregulares en <em>-ER</em></h2>
+    <p class="tabla-hint">👉 Deslizá la tabla para ver todos los verbos</p>
     <div class="tablewrap">
-      <table class="tabla-verbos">
+      <table class="tabla-verbos ancha">
         <tr><th></th><th>TENER</th><th>HACER</th><th>SER</th><th>VER</th></tr>
         <tr><td class="persona">yo</td><td class="forma">tuv<span class="des-pps">e</span></td><td class="forma">hic<span class="des-pps">e</span></td><td class="forma">fu<span class="des-pps">i</span></td><td class="forma">v<span class="des-pps">i</span></td></tr>
         <tr><td class="persona">tú</td><td class="forma">tuv<span class="des-pps">iste</span></td><td class="forma">hic<span class="des-pps">iste</span></td><td class="forma">fu<span class="des-pps">iste</span></td><td class="forma">v<span class="des-pps">iste</span></td></tr>
@@ -383,8 +467,9 @@
     </div>
 
     <h2 class="tit" style="font-size:20px;margin-top:20px;">Irregulares en <em>-IR</em></h2>
+    <p class="tabla-hint">👉 Deslizá la tabla para ver todos los verbos</p>
     <div class="tablewrap">
-      <table class="tabla-verbos">
+      <table class="tabla-verbos ancha">
         <tr><th></th><th>IR</th><th>DECIR</th><th>VENIR</th><th>DORMIR</th></tr>
         <tr><td class="persona">yo</td><td class="forma">fu<span class="des-pps">i</span></td><td class="forma">dij<span class="des-pps">e</span></td><td class="forma">vin<span class="des-pps">e</span></td><td class="forma">dorm<span class="des-pps">í</span></td></tr>
         <tr><td class="persona">tú</td><td class="forma">fu<span class="des-pps">iste</span></td><td class="forma">dij<span class="des-pps">iste</span></td><td class="forma">vin<span class="des-pps">iste</span></td><td class="forma">dorm<span class="des-pps">iste</span></td></tr>
@@ -398,8 +483,9 @@
     <div class="gram-callout"><strong>ir</strong> y <strong>ser</strong> tienen las mismas formas. El contexto dice cuál es: <em>fui a Perú</em> / <em>fui feliz</em>.</div>
 
     <h2 class="tit" style="font-size:22px;margin-top:26px;">Cuadro comparativo</h2>
+    <p class="tabla-hint">👉 Deslizá la tabla para ver todos los verbos</p>
     <div class="tablewrap">
-      <table class="tabla-verbos">
+      <table class="tabla-verbos ancha">
         <tr><th></th><th>CANTAR</th><th>COMER</th><th>VIVIR</th></tr>
         <tr><td class="persona">yo</td><td class="forma">cant<span class="des-pps">é</span></td><td class="forma">com<span class="des-pps">í</span></td><td class="forma">viv<span class="des-pps">í</span></td></tr>
         <tr><td class="persona">tú</td><td class="forma">cant<span class="des-pps">aste</span></td><td class="forma">com<span class="des-pps">iste</span></td><td class="forma">viv<span class="des-pps">iste</span></td></tr>
@@ -413,10 +499,37 @@
     <p class="frase-clave"><span class="pps-w">-ER</span> y <span class="pps-w">-IR</span> tienen exactamente las mismas desinencias.</p>
   </section>
 
+  <!-- BUSCA A ALGUIEN QUE... -->
+  <section class="sec" id="busca">
+    <div class="eyebrow">🗣️ Producción oral · 10 min</div>
+    <h2 class="tit">BUSCA A ALGUIEN QUE...</h2>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span>Levántate y camina por el aula.</div>
+      <div class="paso"><span class="n">2</span>Pregunta con <strong>tú</strong>: «¿Ayer comiste arroz con frijoles?»</div>
+      <div class="paso"><span class="n">3</span>Responde con la frase completa: «Sí, comí…» / «No, no comí…»</div>
+      <div class="paso"><span class="n">4</span>Si te dice que sí, escribí su nombre y hacé <strong>una pregunta más</strong>: ¿Dónde? ¿Con quién? ¿Qué película viste?</div>
+      <div class="paso"><span class="n">5</span><strong>Un solo nombre por persona.</strong></div>
+    </div>
+    <div style="margin-top:20px;">
+      <div class="busca-item"><span class="busca-txt">…ayer comió arroz con frijoles.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…el fin de semana pasado fue al cine.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…anoche durmió más de ocho horas.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…el año pasado viajó a otra ciudad.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…ayer habló por teléfono con su mamá.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…la semana pasada hizo ejercicio.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…esta mañana tomó café.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…una vez vio a una persona famosa.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+    </div>
+  </section>
+
   <!-- TEORÍA · PRETÉRITO IMPERFECTO -->
   <section class="sec" id="teoria-imp">
-    <div class="eyebrow imp">🎨 Teoría</div>
+    <div class="eyebrow imp">🎨 Parte 2</div>
     <h2 class="tit">PRETÉRITO <em class="imp">IMPERFECTO</em></h2>
+    <p class="sub-parte" style="font-size:17px;font-weight:700;margin:-8px 0 14px;">Cómo era la escena.</p>
+    <img class="foto" src="images/lucia-nina-dibujando.png" alt="Lucía de niña dibujando"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none"><span class="ph">🖍️</span><span class="phl">lucia-nina-dibujando.png</span></div>
 
     <h2 class="tit" style="font-size:22px;margin-top:4px;">¿Cuándo se usa?</h2>
     <div class="lista-num">
@@ -518,8 +631,9 @@
     <p class="vos-nota"><em>vos i<span class="des-imp">bas</span> (igual que tú)</em></p>
 
     <h2 class="tit" style="font-size:22px;margin-top:26px;">Cuadro comparativo</h2>
+    <p class="tabla-hint imp">👉 Deslizá la tabla para ver todos los verbos</p>
     <div class="tablewrap">
-      <table class="tabla-verbos imp">
+      <table class="tabla-verbos imp ancha">
         <tr><th></th><th>CANTAR</th><th>COMER</th><th>VIVIR</th></tr>
         <tr><td class="persona">yo</td><td class="forma">cant<span class="des-imp">aba</span></td><td class="forma">com<span class="des-imp">ía</span></td><td class="forma">viv<span class="des-imp">ía</span></td></tr>
         <tr><td class="persona">tú</td><td class="forma">cant<span class="des-imp">abas</span></td><td class="forma">com<span class="des-imp">ías</span></td><td class="forma">viv<span class="des-imp">ías</span></td></tr>
@@ -537,28 +651,6 @@
     <div class="gram-callout">Los verbos que en el Pretérito Perfecto Simple te complican (<em>tener, hacer, decir, venir, estar</em>) en el Imperfecto son todos regulares.</div>
   </section>
 
-  <!-- BUSCA A ALGUIEN QUE... -->
-  <section class="sec" id="busca">
-    <div class="eyebrow">🗣️ Producción oral · 10 min</div>
-    <h2 class="tit">BUSCA A ALGUIEN QUE...</h2>
-    <div class="pasos">
-      <div class="paso"><span class="n">1</span>Levántate y camina por el aula.</div>
-      <div class="paso"><span class="n">2</span>Pregunta con <strong>tú</strong>: «¿Ayer comiste arroz con frijoles?»</div>
-      <div class="paso"><span class="n">3</span>Responde con la frase completa: «Sí, comí…» / «No, no comí…»</div>
-      <div class="paso"><span class="n">4</span>Si te dice que sí, escribí su nombre y hacé <strong>una pregunta más</strong>: ¿Dónde? ¿Con quién? ¿Qué película viste?</div>
-      <div class="paso"><span class="n">5</span><strong>Un solo nombre por persona.</strong></div>
-    </div>
-    <div style="margin-top:20px;">
-      <div class="busca-item"><span class="busca-txt">…ayer comió arroz con frijoles.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
-      <div class="busca-item"><span class="busca-txt">…el fin de semana pasado fue al cine.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
-      <div class="busca-item"><span class="busca-txt">…anoche durmió más de ocho horas.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
-      <div class="busca-item"><span class="busca-txt">…el año pasado viajó a otra ciudad.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
-      <div class="busca-item"><span class="busca-txt">…ayer habló por teléfono con su mamá.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
-      <div class="busca-item"><span class="busca-txt">…la semana pasada hizo ejercicio.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
-      <div class="busca-item"><span class="busca-txt">…esta mañana tomó café.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
-      <div class="busca-item"><span class="busca-txt">…una vez vio a una persona famosa.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
-    </div>
-  </section>
 
   <!-- CUANDO ERAS NIÑO/A -->
   <section class="sec" id="nino">
@@ -568,14 +660,40 @@
       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="ph-placeholder" style="display:none"><span class="ph">🖍️</span><span class="phl">lucia-nina-dibujando.png</span></div>
     <div class="preg-lista">
-      <div class="preg-item"><span class="n">1</span>¿Dónde vivías?</div>
-      <div class="preg-item"><span class="n">2</span>¿Cómo era tu casa o tu barrio?</div>
-      <div class="preg-item"><span class="n">3</span>¿A qué jugabas?</div>
-      <div class="preg-item"><span class="n">4</span>¿Qué comida te gustaba?</div>
-      <div class="preg-item"><span class="n">5</span>¿Cómo se llamaba tu mejor amigo o amiga?</div>
-      <div class="preg-item"><span class="n">6</span>¿Qué programa veías en la tele?</div>
+      <div class="preg-item con-resp"><div class="pregunta"><span class="n">1</span><span>¿Dónde vivías?</span></div><input class="resp-input" type="text" placeholder="Anotá la respuesta de tu compañero/a"></div>
+      <div class="preg-item con-resp"><div class="pregunta"><span class="n">2</span><span>¿Cómo era tu casa o tu barrio?</span></div><input class="resp-input" type="text" placeholder="Anotá la respuesta de tu compañero/a"></div>
+      <div class="preg-item con-resp"><div class="pregunta"><span class="n">3</span><span>¿A qué jugabas?</span></div><input class="resp-input" type="text" placeholder="Anotá la respuesta de tu compañero/a"></div>
+      <div class="preg-item con-resp"><div class="pregunta"><span class="n">4</span><span>¿Qué comida te gustaba?</span></div><input class="resp-input" type="text" placeholder="Anotá la respuesta de tu compañero/a"></div>
+      <div class="preg-item con-resp"><div class="pregunta"><span class="n">5</span><span>¿Cómo se llamaba tu mejor amigo o amiga?</span></div><input class="resp-input" type="text" placeholder="Anotá la respuesta de tu compañero/a"></div>
+      <div class="preg-item con-resp"><div class="pregunta"><span class="n">6</span><span>¿Qué programa veías en la tele?</span></div><input class="resp-input" type="text" placeholder="Anotá la respuesta de tu compañero/a"></div>
     </div>
     <div class="instr-box" style="margin-top:16px;">1. En parejas, se entrevistan (5 min). Respondé con la frase completa y agregá un detalle.<br>2. Cambiá de pareja y contá cómo era tu compañero anterior (3 min): «Cuando era niño, Pedro vivía en Recife y jugaba al fútbol.»</div>
+  </section>
+
+  <!-- LOS DOS JUNTOS -->
+  <section class="sec" id="juntos">
+    <div class="eyebrow">🔗 Los dos tiempos, juntos</div>
+    <h2 class="tit">LOS DOS JUNTOS</h2>
+    <div class="leyenda-marca">
+      <span class="imp">🖼 La escena · Pretérito Imperfecto</span>
+      <span class="pps">⚡ La acción · Pretérito Perfecto Simple</span>
+    </div>
+    <div class="par-row">
+      <span class="mitad-imp">🖼 Mientras caminaba por los puestos</span>
+      <span class="flecha">→</span>
+      <span class="mitad-pps">vi un cuaderno ⚡</span>
+    </div>
+    <div class="par-row">
+      <span class="mitad-imp">🖼 Hacía frío y había mucha niebla</span>
+      <span class="flecha">→</span>
+      <span class="mitad-pps">subí a la montaña y dibujé el valle ⚡</span>
+    </div>
+    <div class="par-row">
+      <span class="mitad-imp">🖼 Mi bus salía muy temprano</span>
+      <span class="flecha">→</span>
+      <span class="mitad-pps">cerré la mochila y salí corriendo ⚡</span>
+    </div>
+    <p class="frase-clave">El <span class="imp-w">Imperfecto</span> describe la escena. El <span class="pps-w">Perfecto Simple</span> cuenta lo que pasó.</p>
   </section>
 
   <!-- TEXTO MARCADO -->
