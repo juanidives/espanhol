@@ -6,16 +6,16 @@
 
 ## 📚 Aulas
 
-| # | Personagem | Origem | Tema | Projeção | Celular |
+| Data | Personagem | Origem | Tema | Projeção | Celular |
 |---|---|---|---|---|---|
-| 08 | Martina García | 🇪🇸 Madrid | Lugares da cidade · transportes · rotina semanal | [abrir](https://juanidives.github.io/espanhol/aulas/aula-08/) | — |
-| 09 | Sebastián Mora | 🇨🇴 Medellín | Alimentos e comidas típicas da América Latina | [abrir](https://juanidives.github.io/espanhol/aulas/aula-09/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-09/mobile.html) |
-| 11 | Mateo González | 🇦🇷 Buenos Aires | Horas · esportes · a Copa do Mundo | [abrir](https://juanidives.github.io/espanhol/aulas/aula-11/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-11/mobile.html) |
-| 12 | Valentina Ríos | 🇲🇽 Cidade do México | Gostos e opiniões · *gustar* e semelhantes | [abrir](https://juanidives.github.io/espanhol/aulas/aula-12/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-12/mobile.html) |
-| 13 | Nicolás Quispe | 🇵🇪 Cusco | Possessivos e interrogativos · pronomes complemento | [abrir](https://juanidives.github.io/espanhol/aulas/aula-13/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-13/mobile.html) |
-| 14 | Lucía Paredes | 🇨🇷 San José | Pretérito perfecto simple · pretérito imperfecto | [abrir](https://juanidives.github.io/espanhol/aulas/aula-14/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-14/mobile.html) |
+| 16/05/2026 | Martina García | 🇪🇸 Madrid | Lugares da cidade · transportes · rotina semanal | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-05-16/) | — |
+| 23/05/2026 | Sebastián Mora | 🇨🇴 Medellín | Alimentos e comidas típicas da América Latina | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-05-23/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-05-23/mobile.html) |
+| 13/06/2026 | Mateo González | 🇦🇷 Buenos Aires | Horas · esportes · a Copa do Mundo | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-06-13/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-06-13/mobile.html) |
+| 15/08/2026 | Valentina Ríos | 🇲🇽 Cidade do México | Gostos e opiniões · *gustar* e semelhantes | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-08-15/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-08-15/mobile.html) |
+| 22/08/2026 | Nicolás Quispe | 🇵🇪 Cusco | Possessivos e interrogativos · pronomes complemento | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-08-22/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-08-22/mobile.html) |
+| 12/09/2026 | Lucía Paredes | 🇨🇷 San José | Pretérito perfecto simple · pretérito imperfecto | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-09-12/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-09-12/mobile.html) |
 
-As aulas 12, 13 e 14 têm ainda uma lacuna de informação em pares — `aluno-a.html` e `aluno-b.html`, um para cada metade da dupla.
+Cada aula é identificada pela data em que foi dada. As aulas de 15/08 e 22/08 têm ainda uma lacuna de informação em pares — `aluno-a.html` e `aluno-b.html`, um para cada metade da dupla.
 
 ---
 
@@ -23,18 +23,18 @@ As aulas 12, 13 e 14 têm ainda uma lacuna de informação em pares — `aluno-a
 
 <table>
   <tr>
-    <td align="center"><img src="aulas/aula-08/images/Martina%20en%20la%20carniceria.png" width="150" alt="Martina García"/><br><sub><b>Martina</b> · Madrid</sub></td>
-    <td align="center"><img src="aulas/aula-09/images/sebastian-mora.png" width="150" alt="Sebastián Mora"/><br><sub><b>Sebastián</b> · Medellín</sub></td>
-    <td align="center"><img src="aulas/aula-11/images/mateo-gonzalez.png" width="150" alt="Mateo González"/><br><sub><b>Mateo</b> · Buenos Aires</sub></td>
+    <td align="center"><img src="aulas/aula-2026-05-16/images/Martina%20en%20la%20carniceria.png" width="150" alt="Martina García"/><br><sub><b>Martina</b><br>Madrid</sub></td>
+    <td align="center"><img src="aulas/aula-2026-05-23/images/sebastian-mora.png" width="150" alt="Sebastián Mora"/><br><sub><b>Sebastián</b><br>Medellín</sub></td>
+    <td align="center"><img src="aulas/aula-2026-06-13/images/mateo-gonzalez.png" width="150" alt="Mateo González"/><br><sub><b>Mateo</b><br>Buenos Aires</sub></td>
   </tr>
   <tr>
-    <td align="center"><img src="aulas/aula-12/images/valentina-rios.png" width="150" alt="Valentina Ríos"/><br><sub><b>Valentina</b> · CDMX</sub></td>
-    <td align="center"><img src="aulas/aula-13/images/nicolas-quispe.png" width="150" alt="Nicolás Quispe"/><br><sub><b>Nicolás</b> · Cusco</sub></td>
-    <td align="center"><img src="aulas/aula-14/images/lucia-retrato.png" width="150" alt="Lucía Paredes"/><br><sub><b>Lucía</b> · San José</sub></td>
+    <td align="center"><img src="aulas/aula-2026-08-15/images/valentina-rios.png" width="150" alt="Valentina Ríos"/><br><sub><b>Valentina</b><br>Cidade do México</sub></td>
+    <td align="center"><img src="aulas/aula-2026-08-22/images/nicolas-quispe.png" width="150" alt="Nicolás Quispe"/><br><sub><b>Nicolás</b><br>Cusco</sub></td>
+    <td align="center"><img src="aulas/aula-2026-09-12/images/lucia-retrato.png" width="150" alt="Lucía Paredes"/><br><sub><b>Lucía</b><br>San José</sub></td>
   </tr>
 </table>
 
-Cada aula gira em torno de um personagem, com alternância de gênero entre aulas consecutivas e sotaque coerente com a origem — personagem argentino traz `vos` nas tabelas de conjugação, personagem peruana traz o vocabulário andino. As histórias se cruzam: o caderno que Nicolás guardava em Cusco é o que Lucía procura na aula seguinte.
+Cada aula gira em torno de um personagem, com alternância de gênero entre aulas consecutivas e sotaque coerente com a origem — personagem argentino traz `vos` nas tabelas de conjugação, personagem peruano traz o vocabulário andino. As histórias se cruzam: o caderno que Nicolás guardava no albergue em Cusco é o que Lucía vem buscar na aula seguinte.
 
 ---
 
@@ -43,7 +43,7 @@ Cada aula gira em torno de um personagem, com alternância de gênero entre aula
 ```
 espanhol/
 └── aulas/
-    └── aula-NN/
+    └── aula-AAAA-MM-DD/
         ├── index.html      # projeção em sala — 100vw/100vh, fontes grandes
         ├── mobile.html     # celular do aluno — scroll vertical, swipe
         ├── aluno-a.html    # lacuna de informação em pares
@@ -58,15 +58,15 @@ Cada aula é autocontida: um `.html` é a apresentação inteira e continua func
 
 ## 🚀 Como usar
 
-**Na sala** — abra o link de projeção no navegador, tela cheia. Navegação por `→` / `←` ou pelos botões.
+**Na sala** — abra o link de projeção no navegador, em tela cheia. Navegação por `→` / `←` ou pelos botões.
 
-**No celular do aluno** — o link *mobile* é pensado para toque e scroll vertical; funciona em qualquer aparelho, sem app.
+**No celular do aluno** — o link *mobile* é pensado para toque e scroll vertical, e a própria aula projeta o QR code que leva até ele. Funciona em qualquer aparelho, sem app.
 
 **Localmente**
 
 ```bash
 git clone https://github.com/juanidives/espanhol
-cd espanhol/aulas/aula-14
+cd espanhol/aulas/aula-2026-09-12
 # abrir index.html no navegador — sem servidor, sem build
 ```
 
@@ -80,7 +80,7 @@ HTML5 · CSS3 · JavaScript (vanilla) · GitHub Pages
 
 Zero dependências, zero build step. A escolha é deliberada: qualquer professor consegue abrir o arquivo, entender e adaptar; a aula carrega rápido no 4G da sala e sobrevive a uma internet que cai no meio da explicação.
 
-Layout pensado para o contexto real: fontes grandes e alto contraste para alunos com dificuldade visual, imagens em `object-fit: contain` para nunca cortar, e cada slide com a própria classe de layout.
+O layout responde ao contexto real de sala — fontes grandes e alto contraste para alunos com dificuldade visual, imagens em `object-fit: contain` para nunca cortar, e cada slide com a própria classe de layout.
 
 ---
 
