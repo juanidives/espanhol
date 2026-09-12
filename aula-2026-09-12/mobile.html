@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ese cuaderno es mío · Lucía Paredes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+    :root {
+      --crema: #FFF6EC;
+      --texto: #3A2E4F;
+      --negro: #1C1526;
+      --lavanda: #B8A9D9;
+      --durazno: #F4B393;
+      --pps: #6D4FA8;
+      --imp: #C25A2B;
+      --blanco: #FFFFFF;
+      --borda: rgba(28, 21, 38, .16);
+      --linha: rgba(28, 21, 38, .12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+      overflow-x: hidden;
+      min-height: 100vh;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    h1, h2 { font-family: 'Bebas Neue', sans-serif; color: var(--negro); }
+    em { font-style: normal; }
+    strong { color: var(--negro); }
+
+    /* ── TOPBAR + PROGRESO ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(28, 21, 38, .95);
+      padding: 12px 16px 10px;
+    }
+    .topbar .tb-title {
+      font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--crema); font-weight: 800; margin-bottom: 8px;
+    }
+    .tb-nav { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+    .tb-nav::-webkit-scrollbar { display: none; }
+    .tb-nav a {
+      flex-shrink: 0; text-decoration: none; font-size: 12.5px; font-weight: 700;
+      color: var(--crema); background: rgba(255,255,255,.14); padding: 7px 13px;
+      border-radius: 20px; white-space: nowrap;
+    }
+    .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--durazno); z-index: 9999; width: 0%; }
+
+    /* ── HERO ── */
+    #top {
+      padding: 40px 20px 32px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    #top .lbl { font-size: 12px; letter-spacing: 3px; color: var(--imp); font-weight: 800; }
+    #top h1 { font-size: clamp(44px, 14vw, 68px); line-height: .95; }
+    #top h1 em { color: var(--pps); }
+    #top .sub { font-size: 17px; color: var(--texto); font-weight: 700; }
+    #top .duracao { font-size: 13px; letter-spacing: 1px; color: var(--texto); opacity: .75; font-weight: 700; }
+
+    /* ── SECCIONES ── */
+    .sec { padding: 30px 18px; border-bottom: 1px solid var(--linha); scroll-margin-top: 74px; }
+    .sec:last-child { border-bottom: none; padding-bottom: 70px; }
+    .eyebrow { font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--pps); font-weight: 800; margin-bottom: 8px; }
+    .eyebrow.imp { color: var(--imp); }
+    h2.tit { font-size: clamp(28px, 9vw, 40px); line-height: 1.05; margin-bottom: 16px; }
+    h2.tit em { color: var(--pps); }
+    h2.tit em.imp { color: var(--imp); }
+
+    /* ── IMÁGENES: sempre contain, nunca cover ── */
+    .foto {
+      width: 100%; max-height: 65dvh; height: auto; display: block;
+      object-fit: contain; border-radius: 18px; background: var(--blanco);
+      border: 2px solid var(--borda); margin-bottom: 16px;
+    }
+    .ph-placeholder {
+      width: 100%; height: 40dvh; background: var(--blanco);
+      border-radius: 18px; border: 3px dashed var(--borda);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; margin-bottom: 16px; color: var(--texto); opacity: .5;
+    }
+    .ph-placeholder .ph { font-size: 44px; }
+    .ph-placeholder .phl { font-size: 12px; letter-spacing: 1px; font-weight: 700; }
+
+    /* ── FICHA (linhas, sem cartão) ── */
+    .ficha-line {
+      display: flex; flex-direction: column; gap: 2px;
+      border-left: 5px solid var(--lavanda); padding: 4px 0 4px 16px; margin-bottom: 10px;
+    }
+    .ficha-line.durazno { border-left-color: var(--durazno); }
+    .ficha-line .lbl { font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--pps); }
+    .ficha-line .val { font-size: 18px; font-weight: 700; color: var(--negro); }
+
+    .quote {
+      border-left: 5px solid var(--pps); padding: 6px 0 6px 16px; margin-bottom: 14px;
+      font-size: 17px; font-weight: 600; color: var(--negro); line-height: 1.5;
+    }
+
+    /* ── AUDIO ── */
+    .audio-wrap { background: var(--blanco); border-radius: 14px; padding: 14px 16px; border: 2px solid var(--pps); margin-bottom: 16px; }
+    .audio-lbl { font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--pps); margin-bottom: 8px; }
+    audio { width: 100%; }
+
+    /* ── LISTAS / PREGUNTAS ── */
+    .lista-num, .preg-lista, .pasos { display: flex; flex-direction: column; gap: 12px; margin-bottom: 4px; }
+    .lista-item {
+      position: relative; padding-left: 34px; font-size: 16.5px; font-weight: 600; color: var(--negro); line-height: 1.45;
+      border-left: 5px solid var(--pps); padding-top: 2px; padding-bottom: 2px; padding-left: 16px;
+    }
+    .lista-item.imp { border-left-color: var(--imp); }
+    .lista-item .ic { margin-right: 6px; }
+
+    .preg-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px 0; border-bottom: 1px solid var(--linha);
+      font-size: 17px; font-weight: 700; color: var(--negro);
+    }
+    .preg-item:last-child { border-bottom: none; }
+    .preg-item .n { font-weight: 900; font-size: 15px; color: var(--pps); flex-shrink: 0; margin-top: 3px; }
+
+    .paso {
+      display: flex; align-items: flex-start; gap: 12px; font-size: 16px; font-weight: 600; color: var(--negro); line-height: 1.4;
+    }
+    .paso .n {
+      font-weight: 900; font-size: 13px; color: #fff; background: var(--pps);
+      width: 24px; height: 24px; min-width: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .paso strong { color: var(--pps); }
+
+    /* ── BUSCA A ALGUIEN ── */
+    .busca-item {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      padding: 12px 0; border-bottom: 1px solid var(--linha);
+    }
+    .busca-item:last-child { border-bottom: none; }
+    .busca-txt { font-size: 15.5px; font-weight: 600; color: var(--negro); flex: 1 1 180px; }
+    .busca-input {
+      flex: 1 1 120px; min-width: 100px; border: none; border-bottom: 2px solid var(--lavanda);
+      background: transparent; font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 700;
+      color: var(--pps); padding: 4px 2px;
+    }
+    .busca-input::placeholder { color: var(--texto); opacity: .45; font-weight: 600; }
+    .busca-input:focus { outline: none; border-bottom-color: var(--pps); }
+
+    /* ── CALLOUTS ── */
+    .gram-callout {
+      border-left: 5px solid var(--pps); padding: 8px 0 8px 16px; margin: 8px 0 16px;
+      font-size: 16.5px; color: var(--negro); font-weight: 600; line-height: 1.45;
+    }
+    .gram-callout.imp { border-left-color: var(--imp); }
+    .instr-box { background: var(--pps); border-radius: 16px; padding: 16px 18px; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.45; margin-bottom: 12px; }
+
+    .chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 6px; }
+    .chip-row span { font-size: 14px; font-weight: 700; color: var(--negro); background: var(--lavanda); padding: 6px 14px; border-radius: 16px; }
+    .chip-row span.imp-bg { background: var(--durazno); }
+
+    .frase-clave {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(24px, 7vw, 32px); color: var(--negro);
+      line-height: 1.15; margin: 14px 0 6px;
+    }
+    .frase-clave .pps-w { color: var(--pps); }
+    .frase-clave .imp-w { color: var(--imp); }
+
+    /* ── TABLAS DE VERBOS ── */
+    .tablewrap { border-radius: 14px; overflow: hidden; border: 2px solid var(--borda); margin-bottom: 10px; }
+    table.tabla-verbos { width: 100%; border-collapse: collapse; }
+    table.tabla-verbos th {
+      background: var(--pps); color: #fff; font-size: 12px; letter-spacing: 1px;
+      text-transform: uppercase; padding: 9px 6px; text-align: center; font-weight: 800;
+    }
+    table.tabla-verbos.imp th { background: var(--imp); }
+    table.tabla-verbos td { padding: 10px 8px; background: var(--blanco); border-top: 1px solid var(--linha); }
+    table.tabla-verbos td.persona { text-align: left; font-size: 13.5px; font-weight: 700; color: var(--texto); white-space: nowrap; }
+    table.tabla-verbos td.forma { text-align: center; font-size: 19px; font-weight: 800; color: var(--negro); line-height: 1.2; }
+
+    .des-pps { color: var(--pps); font-weight: 900; }
+    .des-imp { color: var(--imp); font-weight: 900; }
+    .foco-pps { color: var(--pps); font-weight: 900; }
+    .foco-imp { color: var(--imp); font-weight: 900; }
+    .mark-pps { color: var(--pps); font-weight: 900; }
+    .mark-imp { color: var(--imp); font-weight: 800; font-style: italic; }
+
+    .vos-nota { font-style: italic; font-size: 14.5px; color: var(--texto); font-weight: 600; margin-bottom: 14px; }
+
+    .ejemplos-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .ejemplo-chip { font-size: 16px; font-weight: 700; color: var(--negro); }
+
+    /* ── TEXTO CORRIDO ── */
+    .tx-block { display: flex; flex-direction: column; gap: 14px; margin-bottom: 6px; }
+    .tx-block p { font-size: 16.5px; line-height: 1.6; color: var(--negro); font-weight: 500; }
+
+    .leyenda-marca { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 16px; }
+    .leyenda-marca span { font-weight: 800; font-size: 14px; }
+    .leyenda-marca .imp { color: var(--imp); font-style: italic; }
+    .leyenda-marca .pps { color: var(--pps); }
+
+    /* ── FOOTER ── */
+    .footer-nota { text-align: center; font-size: 13px; color: var(--texto); opacity: .6; padding: 24px 18px 40px; font-weight: 700; }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress-bar" id="progress"></div>
+  <div class="topbar">
+    <div class="tb-title">Ese cuaderno es mío · Lucía Paredes</div>
+    <div class="tb-nav">
+      <a href="#lucia">👋 Lucía</a>
+      <a href="#teoria-pps">📌 P. Simple</a>
+      <a href="#teoria-imp">🎨 Imperfecto</a>
+      <a href="#busca">🗣️ Busca a alguien</a>
+      <a href="#nino">🎨 De niño/a</a>
+      <a href="#marcado">📄 Texto marcado</a>
+      <a href="#tarea">🏁 Tarea</a>
+    </div>
+  </div>
+
+  <!-- TOP -->
+  <section id="top">
+    <span class="lbl">A U L A · E S P A Ñ O L · A 1</span>
+    <h1>ESE CUADERNO ES <em>MÍO</em></h1>
+    <p class="sub">Pretérito Perfecto Simple · Pretérito Imperfecto</p>
+    <p class="duracao">📅 12 de septiembre de 2026 · seguí la clase acá mientras el profesor explica en el pizarrón</p>
+  </section>
+
+  <!-- LUCÍA: ficha + historia + audio -->
+  <section class="sec" id="lucia">
+    <div class="eyebrow">👋 Conocé a Lucía</div>
+    <h2 class="tit">LUCÍA PAREDES</h2>
+    <img class="foto" src="images/lucia-retrato.png" alt="Lucía Paredes"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none"><span class="ph">👩</span><span class="phl">lucia-retrato.png</span></div>
+    <div class="ficha-line"><span class="lbl">Ciudad</span><span class="val">🇨🇷 San José, Costa Rica · 32 años</span></div>
+    <div class="ficha-line durazno"><span class="lbl">Le encanta</span><span class="val">🎨 dibujar y viajar</span></div>
+    <div class="audio-wrap">
+      <div class="audio-lbl">🎧 Escuchá su historia</div>
+      <audio controls>
+        <source src="audio/lucia-historia.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+    <div class="preg-lista">
+      <div class="preg-item"><span class="n">1</span>¿Qué le gustaba hacer desde niña?</div>
+      <div class="preg-item"><span class="n">2</span>¿Qué compró en el mercado de San Pedro?</div>
+      <div class="preg-item"><span class="n">3</span>¿Por qué volvió a Cusco este año?</div>
+    </div>
+    <div class="eyebrow" style="margin-top:22px;">📖 La historia de Lucía</div>
+    <div class="tx-block">
+      <p>¡Hola! Me llamo Lucía Paredes, tengo treinta y dos años y soy de San José, Costa Rica.</p>
+      <p>Desde niña me gustaba mucho dibujar. Siempre llevaba un cuaderno conmigo y dibujaba las montañas, las casas, la gente… todo lo que veía.</p>
+      <p>También me encantaba viajar y conocer otras culturas. El año pasado decidí hacer mi primer viaje sola y elegí Perú.</p>
+      <p>Cuando llegué a Cusco, hacía frío, había mucha gente en las calles y los turistas caminaban por todas partes. Me quedé en un albergue pequeño cerca del centro. En la recepción trabajaba un muchacho muy simpático que se llamaba Nicolás. Cuando llegué, me preguntó: «¿Cómo te llamas?, ¿de dónde eres?, ¿cuántas noches te quedas?». ¡Preguntaba todo!</p>
+      <p>El primer día fui al mercado de San Pedro. Mientras caminaba por los puestos, vi un cuaderno chiquito de color café y lo compré.</p>
+      <p>Desde ese momento lo llevaba conmigo a todas partes. Por las mañanas caminaba por Cusco y buscaba lugares para dibujar. Un día subí a la montaña y dibujé el valle. Hacía frío y había mucha niebla, pero el paisaje era increíble.</p>
+      <p>El último día, mi bus salía muy temprano. Mientras preparaba la mochila y hablaba con otros viajeros, cerré la mochila, me despedí de Nicolás y salí corriendo.</p>
+      <p>Unas horas después busqué mi cuaderno… No estaba.</p>
+      <p>«¡Diay! ¡Lo dejé en el albergue!»</p>
+      <p>Pasaron varios meses y este año volví a Cusco. Elegí el mismo albergue porque quería recuperar mi cuaderno.</p>
+      <p>Entré y Nicolás estaba en la recepción con su gran sonrisa. Miré debajo del mostrador y reconocí la caja de los olvidados.</p>
+      <p>Me acerqué, miré dentro y… ¡ahí estaba mi cuaderno!</p>
+      <p>Lo agarré y le dije: «¡Nicolás! ¡Este cuaderno es mío!»</p>
+      <p>Él me miró sorprendido y respondió: «¡¿Es tuyo?! ¡Qué bacán!»</p>
+    </div>
+  </section>
+
+  <!-- TEORÍA · PRETÉRITO PERFECTO SIMPLE -->
+  <section class="sec" id="teoria-pps">
+    <div class="eyebrow">📌 Teoría</div>
+    <h2 class="tit">PRETÉRITO PERFECTO <em>SIMPLE</em></h2>
+
+    <h2 class="tit" style="font-size:22px;margin-top:4px;">¿Cuándo se usa?</h2>
+    <div class="lista-num">
+      <div class="lista-item"><span class="ic">1️⃣</span><strong>Acciones terminadas en un momento concreto del pasado.</strong><br>El año pasado <span class="foco-pps">decidí</span> hacer mi primer viaje sola.</div>
+      <div class="lista-item"><span class="ic">2️⃣</span><strong>Una secuencia de acciones: lo que pasó, paso a paso.</strong><br><span class="foco-pps">Cerré</span> la mochila, <span class="foco-pps">me despedí</span> de Nicolás y <span class="foco-pps">salí</span> corriendo.</div>
+      <div class="lista-item"><span class="ic">3️⃣</span><strong>Acciones con principio y fin claros.</strong><br><span class="foco-pps">Pasaron</span> varios meses.</div>
+      <div class="lista-item"><span class="ic">4️⃣</span><strong>Marcadores:</strong></div>
+    </div>
+    <div class="chip-row">
+      <span>ayer</span><span>anoche</span><span>el sábado pasado</span><span>la semana pasada</span>
+      <span>el año pasado</span><span>en 2020</span><span>hace dos años</span><span>un día</span>
+      <span>el primer día</span><span>el último día</span>
+    </div>
+
+    <h2 class="tit" style="font-size:22px;margin-top:26px;">Verbos en <em>-AR</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos">
+        <tr><th></th><th>CANTAR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">cant<span class="des-pps">é</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">cant<span class="des-pps">aste</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">cant<span class="des-pps">ó</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">cant<span class="des-pps">amos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">cant<span class="des-pps">asteis</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">cant<span class="des-pps">aron</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos cant<span class="des-pps">aste</span> (igual que tú)</em></p>
+    <div class="ejemplos-row">
+      <div class="ejemplo-chip">compr<span class="des-pps">é</span> el cuaderno</div>
+      <div class="ejemplo-chip">dibuj<span class="des-pps">é</span> el valle</div>
+      <div class="ejemplo-chip">Nicolás me pregunt<span class="des-pps">ó</span> todo</div>
+    </div>
+
+    <h2 class="tit" style="font-size:20px;margin-top:20px;">Irregulares en <em>-AR</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos">
+        <tr><th></th><th>ESTAR</th><th>DAR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">estuv<span class="des-pps">e</span></td><td class="forma">d<span class="des-pps">i</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">estuv<span class="des-pps">iste</span></td><td class="forma">d<span class="des-pps">iste</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">estuv<span class="des-pps">o</span></td><td class="forma">d<span class="des-pps">io</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">estuv<span class="des-pps">imos</span></td><td class="forma">d<span class="des-pps">imos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">estuv<span class="des-pps">isteis</span></td><td class="forma">d<span class="des-pps">isteis</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">estuv<span class="des-pps">ieron</span></td><td class="forma">d<span class="des-pps">ieron</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos estuv<span class="des-pps">iste</span> · vos d<span class="des-pps">iste</span> (igual que tú)</em></p>
+    <div class="gram-callout">Solo cambia la ortografía, y solo en <strong>yo</strong>: lleg<span class="des-pps">ué</span> · bus<span class="des-pps">qué</span> · empe<span class="des-pps">cé</span> · jug<span class="des-pps">ué</span></div>
+
+    <h2 class="tit" style="font-size:22px;margin-top:20px;">Verbos en <em>-ER</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos">
+        <tr><th></th><th>COMER</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">com<span class="des-pps">í</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">com<span class="des-pps">iste</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">com<span class="des-pps">ió</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">com<span class="des-pps">imos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">com<span class="des-pps">isteis</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">com<span class="des-pps">ieron</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos com<span class="des-pps">iste</span> (igual que tú)</em></p>
+    <div class="ejemplos-row">
+      <div class="ejemplo-chip">volv<span class="des-pps">í</span> a Cusco</div>
+      <div class="ejemplo-chip">Nicolás me respond<span class="des-pps">ió</span></div>
+    </div>
+
+    <h2 class="tit" style="font-size:20px;margin-top:20px;">Irregulares en <em>-ER</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos">
+        <tr><th></th><th>TENER</th><th>HACER</th><th>SER</th><th>VER</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">tuv<span class="des-pps">e</span></td><td class="forma">hic<span class="des-pps">e</span></td><td class="forma">fu<span class="des-pps">i</span></td><td class="forma">v<span class="des-pps">i</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">tuv<span class="des-pps">iste</span></td><td class="forma">hic<span class="des-pps">iste</span></td><td class="forma">fu<span class="des-pps">iste</span></td><td class="forma">v<span class="des-pps">iste</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">tuv<span class="des-pps">o</span></td><td class="forma">hiz<span class="des-pps">o</span></td><td class="forma">fu<span class="des-pps">e</span></td><td class="forma">v<span class="des-pps">io</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">tuv<span class="des-pps">imos</span></td><td class="forma">hic<span class="des-pps">imos</span></td><td class="forma">fu<span class="des-pps">imos</span></td><td class="forma">v<span class="des-pps">imos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">tuv<span class="des-pps">isteis</span></td><td class="forma">hic<span class="des-pps">isteis</span></td><td class="forma">fu<span class="des-pps">isteis</span></td><td class="forma">v<span class="des-pps">isteis</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">tuv<span class="des-pps">ieron</span></td><td class="forma">hic<span class="des-pps">ieron</span></td><td class="forma">fu<span class="des-pps">eron</span></td><td class="forma">v<span class="des-pps">ieron</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos tuv<span class="des-pps">iste</span> · vos hic<span class="des-pps">iste</span> · vos fu<span class="des-pps">iste</span> · vos v<span class="des-pps">iste</span> (igual que tú)</em></p>
+    <div class="gram-callout"><strong>ver</strong> no lleva tilde: <em>vi, vio</em>.</div>
+
+    <h2 class="tit" style="font-size:22px;margin-top:20px;">Verbos en <em>-IR</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos">
+        <tr><th></th><th>VIVIR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">viv<span class="des-pps">í</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">viv<span class="des-pps">iste</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">viv<span class="des-pps">ió</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">viv<span class="des-pps">imos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">viv<span class="des-pps">isteis</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">viv<span class="des-pps">ieron</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos viv<span class="des-pps">iste</span> (igual que tú)</em></p>
+    <div class="ejemplos-row">
+      <div class="ejemplo-chip">sal<span class="des-pps">í</span> corriendo</div>
+      <div class="ejemplo-chip">sub<span class="des-pps">í</span> a la montaña</div>
+    </div>
+
+    <h2 class="tit" style="font-size:20px;margin-top:20px;">Irregulares en <em>-IR</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos">
+        <tr><th></th><th>IR</th><th>DECIR</th><th>VENIR</th><th>DORMIR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">fu<span class="des-pps">i</span></td><td class="forma">dij<span class="des-pps">e</span></td><td class="forma">vin<span class="des-pps">e</span></td><td class="forma">dorm<span class="des-pps">í</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">fu<span class="des-pps">iste</span></td><td class="forma">dij<span class="des-pps">iste</span></td><td class="forma">vin<span class="des-pps">iste</span></td><td class="forma">dorm<span class="des-pps">iste</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">fu<span class="des-pps">e</span></td><td class="forma">dij<span class="des-pps">o</span></td><td class="forma">vin<span class="des-pps">o</span></td><td class="forma">durm<span class="des-pps">ió</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">fu<span class="des-pps">imos</span></td><td class="forma">dij<span class="des-pps">imos</span></td><td class="forma">vin<span class="des-pps">imos</span></td><td class="forma">dorm<span class="des-pps">imos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">fu<span class="des-pps">isteis</span></td><td class="forma">dij<span class="des-pps">isteis</span></td><td class="forma">vin<span class="des-pps">isteis</span></td><td class="forma">dorm<span class="des-pps">isteis</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">fu<span class="des-pps">eron</span></td><td class="forma">dij<span class="des-pps">eron</span></td><td class="forma">vin<span class="des-pps">ieron</span></td><td class="forma">durm<span class="des-pps">ieron</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos fu<span class="des-pps">iste</span> · vos dij<span class="des-pps">iste</span> · vos vin<span class="des-pps">iste</span> · vos dorm<span class="des-pps">iste</span> (igual que tú)</em></p>
+    <div class="gram-callout"><strong>ir</strong> y <strong>ser</strong> tienen las mismas formas. El contexto dice cuál es: <em>fui a Perú</em> / <em>fui feliz</em>.</div>
+
+    <h2 class="tit" style="font-size:22px;margin-top:26px;">Cuadro comparativo</h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos">
+        <tr><th></th><th>CANTAR</th><th>COMER</th><th>VIVIR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">cant<span class="des-pps">é</span></td><td class="forma">com<span class="des-pps">í</span></td><td class="forma">viv<span class="des-pps">í</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">cant<span class="des-pps">aste</span></td><td class="forma">com<span class="des-pps">iste</span></td><td class="forma">viv<span class="des-pps">iste</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">cant<span class="des-pps">ó</span></td><td class="forma">com<span class="des-pps">ió</span></td><td class="forma">viv<span class="des-pps">ió</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">cant<span class="des-pps">amos</span></td><td class="forma">com<span class="des-pps">imos</span></td><td class="forma">viv<span class="des-pps">imos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">cant<span class="des-pps">asteis</span></td><td class="forma">com<span class="des-pps">isteis</span></td><td class="forma">viv<span class="des-pps">isteis</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">cant<span class="des-pps">aron</span></td><td class="forma">com<span class="des-pps">ieron</span></td><td class="forma">viv<span class="des-pps">ieron</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos cant<span class="des-pps">aste</span> · com<span class="des-pps">iste</span> · viv<span class="des-pps">iste</span> (igual que tú)</em></p>
+    <p class="frase-clave"><span class="pps-w">-ER</span> y <span class="pps-w">-IR</span> tienen exactamente las mismas desinencias.</p>
+  </section>
+
+  <!-- TEORÍA · PRETÉRITO IMPERFECTO -->
+  <section class="sec" id="teoria-imp">
+    <div class="eyebrow imp">🎨 Teoría</div>
+    <h2 class="tit">PRETÉRITO <em class="imp">IMPERFECTO</em></h2>
+
+    <h2 class="tit" style="font-size:22px;margin-top:4px;">¿Cuándo se usa?</h2>
+    <div class="lista-num">
+      <div class="lista-item imp"><span class="ic">1️⃣</span><strong>Describir en el pasado:</strong> personas, lugares, clima, hora, edad.<br><span class="foco-imp">Hacía</span> frío y <span class="foco-imp">había</span> mucha niebla. El paisaje <span class="foco-imp">era</span> increíble.</div>
+      <div class="lista-item imp"><span class="ic">2️⃣</span><strong>Hábitos y costumbres del pasado.</strong><br>Siempre <span class="foco-imp">llevaba</span> un cuaderno conmigo y <span class="foco-imp">dibujaba</span> las montañas.</div>
+      <div class="lista-item imp"><span class="ic">3️⃣</span><strong>Una acción en curso cuando pasa otra cosa.</strong><br>Mientras <span class="foco-imp">caminaba</span> por los puestos, vi un cuaderno.</div>
+      <div class="lista-item imp"><span class="ic">4️⃣</span><strong>Marcadores:</strong></div>
+    </div>
+    <div class="chip-row">
+      <span class="imp-bg">antes</span><span class="imp-bg">siempre</span><span class="imp-bg">todos los días</span>
+      <span class="imp-bg">normalmente</span><span class="imp-bg">a menudo</span><span class="imp-bg">mientras</span>
+      <span class="imp-bg">cuando era niño/a</span><span class="imp-bg">desde niño/a</span>
+    </div>
+    <img class="foto" style="margin-top:14px;" src="images/lucia-llegada-cusco.png" alt="Lucía llegando a Cusco"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none"><span class="ph">🌫️</span><span class="phl">lucia-llegada-cusco.png</span></div>
+
+    <h2 class="tit" style="font-size:22px;margin-top:20px;">Verbos en <em class="imp">-AR</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos imp">
+        <tr><th></th><th>CANTAR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">cant<span class="des-imp">aba</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">cant<span class="des-imp">abas</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">cant<span class="des-imp">aba</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">cant<span class="des-imp">ábamos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">cant<span class="des-imp">abais</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">cant<span class="des-imp">aban</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos cant<span class="des-imp">abas</span> (igual que tú)</em></p>
+    <div class="ejemplos-row">
+      <div class="ejemplo-chip">dibuj<span class="des-imp">aba</span> las montañas</div>
+      <div class="ejemplo-chip">los turistas camin<span class="des-imp">aban</span> por todas partes</div>
+    </div>
+    <div class="gram-callout imp">Los mismos verbos, ahora en Imperfecto: est<span class="des-imp">aba</span> · d<span class="des-imp">aba</span> · lleg<span class="des-imp">aba</span> · jug<span class="des-imp">aba</span> — <strong>todos regulares.</strong></div>
+
+    <h2 class="tit" style="font-size:22px;margin-top:20px;">Verbos en <em class="imp">-ER</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos imp">
+        <tr><th></th><th>COMER</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">com<span class="des-imp">ía</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">com<span class="des-imp">ías</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">com<span class="des-imp">ía</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">com<span class="des-imp">íamos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">com<span class="des-imp">íais</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">com<span class="des-imp">ían</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos com<span class="des-imp">ías</span> (igual que tú)</em></p>
+    <div class="ejemplos-row">
+      <div class="ejemplo-chip">ten<span class="des-imp">ía</span> un cuaderno</div>
+    </div>
+
+    <h2 class="tit" style="font-size:20px;margin-top:20px;">Los mismos verbos <em class="imp">-ER</em></h2>
+    <div class="gram-callout imp"><strong>Regulares:</strong> ten<span class="des-imp">ía</span> · hac<span class="des-imp">ía</span></div>
+    <div class="tablewrap">
+      <table class="tabla-verbos imp">
+        <tr><th></th><th>SER</th><th>VER</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">er<span class="des-imp">a</span></td><td class="forma">ve<span class="des-imp">ía</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">er<span class="des-imp">as</span></td><td class="forma">ve<span class="des-imp">ías</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">er<span class="des-imp">a</span></td><td class="forma">ve<span class="des-imp">ía</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">ér<span class="des-imp">amos</span></td><td class="forma">ve<span class="des-imp">íamos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">er<span class="des-imp">ais</span></td><td class="forma">ve<span class="des-imp">íais</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">er<span class="des-imp">an</span></td><td class="forma">ve<span class="des-imp">ían</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos er<span class="des-imp">as</span> · vos ve<span class="des-imp">ías</span> (igual que tú)</em></p>
+
+    <h2 class="tit" style="font-size:22px;margin-top:20px;">Verbos en <em class="imp">-IR</em></h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos imp">
+        <tr><th></th><th>VIVIR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">viv<span class="des-imp">ía</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">viv<span class="des-imp">ías</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">viv<span class="des-imp">ía</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">viv<span class="des-imp">íamos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">viv<span class="des-imp">íais</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">viv<span class="des-imp">ían</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos viv<span class="des-imp">ías</span> (igual que tú)</em></p>
+    <div class="ejemplos-row">
+      <div class="ejemplo-chip">mi bus sal<span class="des-imp">ía</span> muy temprano</div>
+    </div>
+
+    <h2 class="tit" style="font-size:20px;margin-top:20px;">Los mismos verbos <em class="imp">-IR</em></h2>
+    <div class="gram-callout imp"><strong>Regulares:</strong> dec<span class="des-imp">ía</span> · ven<span class="des-imp">ía</span> · dorm<span class="des-imp">ía</span></div>
+    <div class="tablewrap">
+      <table class="tabla-verbos imp">
+        <tr><th></th><th>IR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">i<span class="des-imp">ba</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">i<span class="des-imp">bas</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">i<span class="des-imp">ba</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">í<span class="des-imp">bamos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">i<span class="des-imp">bais</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">i<span class="des-imp">ban</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos i<span class="des-imp">bas</span> (igual que tú)</em></p>
+
+    <h2 class="tit" style="font-size:22px;margin-top:26px;">Cuadro comparativo</h2>
+    <div class="tablewrap">
+      <table class="tabla-verbos imp">
+        <tr><th></th><th>CANTAR</th><th>COMER</th><th>VIVIR</th></tr>
+        <tr><td class="persona">yo</td><td class="forma">cant<span class="des-imp">aba</span></td><td class="forma">com<span class="des-imp">ía</span></td><td class="forma">viv<span class="des-imp">ía</span></td></tr>
+        <tr><td class="persona">tú</td><td class="forma">cant<span class="des-imp">abas</span></td><td class="forma">com<span class="des-imp">ías</span></td><td class="forma">viv<span class="des-imp">ías</span></td></tr>
+        <tr><td class="persona">él / ella / usted</td><td class="forma">cant<span class="des-imp">aba</span></td><td class="forma">com<span class="des-imp">ía</span></td><td class="forma">viv<span class="des-imp">ía</span></td></tr>
+        <tr><td class="persona">nosotros/as</td><td class="forma">cant<span class="des-imp">ábamos</span></td><td class="forma">com<span class="des-imp">íamos</span></td><td class="forma">viv<span class="des-imp">íamos</span></td></tr>
+        <tr><td class="persona">vosotros/as</td><td class="forma">cant<span class="des-imp">abais</span></td><td class="forma">com<span class="des-imp">íais</span></td><td class="forma">viv<span class="des-imp">íais</span></td></tr>
+        <tr><td class="persona">ellos / ellas / ustedes</td><td class="forma">cant<span class="des-imp">aban</span></td><td class="forma">com<span class="des-imp">ían</span></td><td class="forma">viv<span class="des-imp">ían</span></td></tr>
+      </table>
+    </div>
+    <p class="vos-nota"><em>vos cant<span class="des-imp">abas</span> · com<span class="des-imp">ías</span> · viv<span class="des-imp">ías</span> (igual que tú)</em></p>
+    <p class="frase-clave"><span class="imp-w">-ER</span> y <span class="imp-w">-IR</span> son idénticos: <span class="imp-w">-ía</span>.</p>
+
+    <h2 class="tit" style="font-size:22px;margin-top:26px;">Resumen</h2>
+    <div class="gram-callout imp">En el Pretérito Imperfecto hay solo tres irregulares en todo el español: <strong>SER, IR, VER</strong>.</div>
+    <div class="gram-callout">Los verbos que en el Pretérito Perfecto Simple te complican (<em>tener, hacer, decir, venir, estar</em>) en el Imperfecto son todos regulares.</div>
+  </section>
+
+  <!-- BUSCA A ALGUIEN QUE... -->
+  <section class="sec" id="busca">
+    <div class="eyebrow">🗣️ Producción oral · 10 min</div>
+    <h2 class="tit">BUSCA A ALGUIEN QUE...</h2>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span>Levántate y camina por el aula.</div>
+      <div class="paso"><span class="n">2</span>Pregunta con <strong>tú</strong>: «¿Ayer comiste arroz con frijoles?»</div>
+      <div class="paso"><span class="n">3</span>Responde con la frase completa: «Sí, comí…» / «No, no comí…»</div>
+      <div class="paso"><span class="n">4</span>Si te dice que sí, escribí su nombre y hacé <strong>una pregunta más</strong>: ¿Dónde? ¿Con quién? ¿Qué película viste?</div>
+      <div class="paso"><span class="n">5</span><strong>Un solo nombre por persona.</strong></div>
+    </div>
+    <div style="margin-top:20px;">
+      <div class="busca-item"><span class="busca-txt">…ayer comió arroz con frijoles.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…el fin de semana pasado fue al cine.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…anoche durmió más de ocho horas.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…el año pasado viajó a otra ciudad.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…ayer habló por teléfono con su mamá.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…la semana pasada hizo ejercicio.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…esta mañana tomó café.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+      <div class="busca-item"><span class="busca-txt">…una vez vio a una persona famosa.</span><input class="busca-input" type="text" placeholder="Nombre"></div>
+    </div>
+  </section>
+
+  <!-- CUANDO ERAS NIÑO/A -->
+  <section class="sec" id="nino">
+    <div class="eyebrow imp">🗣️ Producción oral · 10 min</div>
+    <h2 class="tit">CUANDO ERAS <em class="imp">NIÑO/A...</em></h2>
+    <img class="foto" src="images/lucia-nina-dibujando.png" alt="Lucía de niña dibujando"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none"><span class="ph">🖍️</span><span class="phl">lucia-nina-dibujando.png</span></div>
+    <div class="preg-lista">
+      <div class="preg-item"><span class="n">1</span>¿Dónde vivías?</div>
+      <div class="preg-item"><span class="n">2</span>¿Cómo era tu casa o tu barrio?</div>
+      <div class="preg-item"><span class="n">3</span>¿A qué jugabas?</div>
+      <div class="preg-item"><span class="n">4</span>¿Qué comida te gustaba?</div>
+      <div class="preg-item"><span class="n">5</span>¿Cómo se llamaba tu mejor amigo o amiga?</div>
+      <div class="preg-item"><span class="n">6</span>¿Qué programa veías en la tele?</div>
+    </div>
+    <div class="instr-box" style="margin-top:16px;">1. En parejas, se entrevistan (5 min). Respondé con la frase completa y agregá un detalle.<br>2. Cambiá de pareja y contá cómo era tu compañero anterior (3 min): «Cuando era niño, Pedro vivía en Recife y jugaba al fútbol.»</div>
+  </section>
+
+  <!-- TEXTO MARCADO -->
+  <section class="sec" id="marcado">
+    <div class="eyebrow">📄 El texto marcado</div>
+    <h2 class="tit">LO QUE CONTÓ LUCÍA</h2>
+    <div class="leyenda-marca">
+      <span class="imp">🖼 Imperfecto · la escena</span>
+      <span class="pps">⚡ Perfecto Simple · lo que pasó</span>
+    </div>
+    <div class="tx-block">
+      <p>¡Hola! Me llamo Lucía Paredes, tengo treinta y dos años y soy de San José, Costa Rica.</p>
+      <p>Desde niña me <span class="mark-imp">gustaba</span> mucho dibujar. Siempre <span class="mark-imp">llevaba</span> un cuaderno conmigo y <span class="mark-imp">dibujaba</span> las montañas, las casas, la gente… todo lo que <span class="mark-imp">veía</span>.</p>
+      <p>También me <span class="mark-imp">encantaba</span> viajar y conocer otras culturas. El año pasado <span class="mark-pps">decidí</span> hacer mi primer viaje sola y <span class="mark-pps">elegí</span> Perú.</p>
+      <p>Cuando <span class="mark-pps">llegué</span> a Cusco, <span class="mark-imp">hacía</span> frío, <span class="mark-imp">había</span> mucha gente en las calles y los turistas <span class="mark-imp">caminaban</span> por todas partes. Me <span class="mark-pps">quedé</span> en un albergue pequeño cerca del centro. En la recepción <span class="mark-imp">trabajaba</span> un muchacho muy simpático que se <span class="mark-imp">llamaba</span> Nicolás. Cuando <span class="mark-pps">llegué</span>, me <span class="mark-pps">preguntó</span>: «¿Cómo te llamas?, ¿de dónde eres?, ¿cuántas noches te quedas?». ¡<span class="mark-imp">Preguntaba</span> todo!</p>
+      <p>El primer día <span class="mark-pps">fui</span> al mercado de San Pedro. Mientras <span class="mark-imp">caminaba</span> por los puestos, <span class="mark-pps">vi</span> un cuaderno chiquito de color café y lo <span class="mark-pps">compré</span>.</p>
+      <p>Desde ese momento lo <span class="mark-imp">llevaba</span> conmigo a todas partes. Por las mañanas <span class="mark-imp">caminaba</span> por Cusco y <span class="mark-imp">buscaba</span> lugares para dibujar. Un día <span class="mark-pps">subí</span> a la montaña y <span class="mark-pps">dibujé</span> el valle. <span class="mark-imp">Hacía</span> frío y <span class="mark-imp">había</span> mucha niebla, pero el paisaje <span class="mark-imp">era</span> increíble.</p>
+      <p>El último día, mi bus <span class="mark-imp">salía</span> muy temprano. Mientras <span class="mark-imp">preparaba</span> la mochila y <span class="mark-imp">hablaba</span> con otros viajeros, <span class="mark-pps">cerré</span> la mochila, me <span class="mark-pps">despedí</span> de Nicolás y <span class="mark-pps">salí</span> corriendo.</p>
+      <p>Unas horas después <span class="mark-pps">busqué</span> mi cuaderno… No <span class="mark-imp">estaba</span>.</p>
+      <p>«¡Diay! ¡Lo <span class="mark-pps">dejé</span> en el albergue!»</p>
+      <p><span class="mark-pps">Pasaron</span> varios meses y este año <span class="mark-pps">volví</span> a Cusco. <span class="mark-pps">Elegí</span> el mismo albergue porque <span class="mark-imp">quería</span> recuperar mi cuaderno.</p>
+      <p><span class="mark-pps">Entré</span> y Nicolás <span class="mark-imp">estaba</span> en la recepción con su gran sonrisa. <span class="mark-pps">Miré</span> debajo del mostrador y <span class="mark-pps">reconocí</span> la caja de los olvidados.</p>
+      <p>Me <span class="mark-pps">acerqué</span>, <span class="mark-pps">miré</span> dentro y… ¡ahí <span class="mark-imp">estaba</span> mi cuaderno!</p>
+      <p>Lo <span class="mark-pps">agarré</span> y le <span class="mark-pps">dije</span>: «¡Nicolás! ¡Este cuaderno es mío!»</p>
+      <p>Él me <span class="mark-pps">miró</span> sorprendido y <span class="mark-pps">respondió</span>: «¡¿Es tuyo?! ¡Qué bacán!»</p>
+    </div>
+    <div class="instr-box" style="margin-top:16px;">En parejas: busquen un ejemplo de cada uso (2 min).</div>
+  </section>
+
+  <!-- TAREA -->
+  <section class="sec" id="tarea">
+    <div class="eyebrow">🏁 Tarea</div>
+    <h2 class="tit">TU HISTORIA</h2>
+    <img class="foto" src="images/reencuentro-nicolas.png" alt="Lucía y Nicolás con el cuaderno reencontrado"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph-placeholder" style="display:none"><span class="ph">🤝</span><span class="phl">reencuentro-nicolas.png</span></div>
+    <div class="instr-box">Un audio de WhatsApp de un minuto contando un viaje o un día especial.</div>
+    <div class="lista-item imp"><span class="ic">🎨</span><strong>Cómo era</strong> → Pretérito Imperfecto</div>
+    <div class="lista-item" style="margin-top:8px;"><span class="ic">📌</span><strong>Qué pasó</strong> → Pretérito Perfecto Simple</div>
+    <p class="frase-clave">¡Hasta la próxima clase!</p>
+  </section>
+
+  <div class="footer-nota">Aula · Español A1 · 12 de septiembre de 2026</div>
+
+  <script>
+    const bar = document.getElementById('progress');
+    addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+      bar.style.width = pct + '%';
+    });
+  </script>
+</body>
+
+</html>
