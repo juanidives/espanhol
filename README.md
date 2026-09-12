@@ -8,14 +8,14 @@
 
 | Data | Personagem | Origem | Tema | Projeção | Celular |
 |---|---|---|---|---|---|
-| 16/05/2026 | Martina García | 🇪🇸 Madrid | Lugares da cidade · transportes · rotina semanal | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-05-16/) | — |
+| 16/05/2026 | Martina García | 🇪🇸 Madrid | Lugares da cidade · transportes · rotina semanal | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-05-16/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-05-16/mobile.html) |
 | 23/05/2026 | Sebastián Mora | 🇨🇴 Medellín | Alimentos e comidas típicas da América Latina | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-05-23/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-05-23/mobile.html) |
 | 13/06/2026 | Mateo González | 🇦🇷 Buenos Aires | Horas · esportes · a Copa do Mundo | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-06-13/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-06-13/mobile.html) |
 | 15/08/2026 | Valentina Ríos | 🇲🇽 Cidade do México | Gostos e opiniões · *gustar* e semelhantes | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-08-15/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-08-15/mobile.html) |
 | 22/08/2026 | Nicolás Quispe | 🇵🇪 Cusco | Possessivos e interrogativos · pronomes complemento | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-08-22/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-08-22/mobile.html) |
 | 12/09/2026 | Lucía Paredes | 🇨🇷 San José | Pretérito perfecto simple · pretérito imperfecto | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-09-12/) | [abrir](https://juanidives.github.io/espanhol/aulas/aula-2026-09-12/mobile.html) |
 
-Cada aula é identificada pela data em que foi dada. As aulas de 15/08 e 22/08 têm ainda uma lacuna de informação em pares — `aluno-a.html` e `aluno-b.html`, um para cada metade da dupla.
+Cada aula é identificada pela data em que foi dada. Todas têm versão de projeção e versão de celular. As aulas de 15/08 e 22/08 têm ainda uma lacuna de informação em pares — `aluno-a.html` e `aluno-b.html`, um para cada metade da dupla.
 
 ---
 
@@ -23,7 +23,7 @@ Cada aula é identificada pela data em que foi dada. As aulas de 15/08 e 22/08 t
 
 <table>
   <tr>
-    <td align="center"><img src="aulas/aula-2026-05-16/images/Martina%20en%20la%20carniceria.png" width="150" alt="Martina García"/><br><sub><b>Martina</b><br>Madrid</sub></td>
+    <td align="center"><img src="aulas/aula-2026-05-16/images/martina-garcia.png" width="150" alt="Martina García"/><br><sub><b>Martina</b><br>Madrid</sub></td>
     <td align="center"><img src="aulas/aula-2026-05-23/images/sebastian-mora.png" width="150" alt="Sebastián Mora"/><br><sub><b>Sebastián</b><br>Medellín</sub></td>
     <td align="center"><img src="aulas/aula-2026-06-13/images/mateo-gonzalez.png" width="150" alt="Mateo González"/><br><sub><b>Mateo</b><br>Buenos Aires</sub></td>
   </tr>

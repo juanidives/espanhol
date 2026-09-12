@@ -109,15 +109,19 @@ Aulas aos sábados.
 
 Uma aula sobre família e gerúndio foi desenhada mas nunca ministrada — não tem pasta.
 
-## Conteúdo já ensinado (1º semestre)
+## Conteúdo já ensinado
 
 Consultar antes de propor qualquer coisa, para não reintroduzir o que já foi dado nem exigir o que ainda não foi.
 
-**Gramática:** pronomes e formas de tratamento · ser e estar · querer · voseo · presente do indicativo regular e irregular · pronomes complemento (átonos e tônicos, OD e OI) · pronomes reflexivos · gustar e semelhantes (encantar, interesar, fascinar, molestar, importar, parecer, preocupar) · gerúndio
+**Gramática — 1º semestre:** pronomes e formas de tratamento · ser e estar · querer · voseo · presente do indicativo regular e irregular · pronomes complemento (átonos e tônicos, OD e OI) · pronomes reflexivos · gustar e semelhantes (encantar, interesar, fascinar, molestar, importar, parecer, preocupar) · gerúndio
 
-**Vocabulário:** saudações e apresentações · descrever-se · rotina · dias, meses e estações · expressões de frequência · lugares e transportes · números cardinais e ordinais · comidas e alimentos · família · horas · esportes
+**Gramática — 2º semestre:** repasso dos sete sistemas de pronomes · posesivos antes do substantivo e depois do verbo (mi/mío, tu/tuyo…) · interrogativos (as oito palavras) · **pretérito perfecto simple** e **pretérito imperfecto**, com o contraste entre os dois
 
-**Ainda não visto:** futuro e `ir a + infinitivo` · comparativos · imperativo. O passado entrou em 12/09/2026 (pretérito perfecto simple e pretérito imperfecto); até ali o curso inteiro vivia no presente.
+**Vocabulário:** saudações e apresentações · descrever-se · rotina · dias, meses e estações · expressões de frequência · lugares e transportes · números cardinais e ordinais · comidas e alimentos · família · horas · esportes · objetos pessoais · viagem e paisagem · marcadores temporais de passado
+
+**Ainda não visto:** futuro e `ir a + infinitivo` · comparativos · imperativo · pretérito perfecto compuesto (he comido). O passado entrou em 12/09/2026; até ali o curso inteiro vivia no presente.
+
+O inventário completo, palavra por palavra e por aula, está em `vocabulario-acumulado.md`.
 
 ## Git
 
