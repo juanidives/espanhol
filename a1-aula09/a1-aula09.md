@@ -1,0 +1,546 @@
+# Aula 09 — Alimentos y Comidas Típicas · Sebastián Mora
+
+**Fonte:** `a1-aula09/index.html` · 25 slides
+**Tema:** Alimentos e comidas típicas da América Latina · verbos tipo *gustar*
+**Duração:** 40 min
+**Status:** publicada
+
+---
+
+## Sequência de slides
+
+### Slide 1 (s0) — Portada
+AULA 09 · ESPAÑOL A1
+**ALIMENTOS & COMIDAS TÍPICAS**
+Un viaje por Latinoamérica con **Sebastián Mora**
+
+Chips: 🎧 Escucha · 🗣️ Habla · 📚 Vocabulario · 🧠 Gramática
+
+### Slide 2 (s1) — Calentamiento
+Imagem em tela cheia: `pratos-latinoamericanos.png`
+
+**¿Qué ves en la foto?**
+Di en voz alta todo lo que conoces
+
+### Slide 3 (s2) — Sebastián Mora
+Imagem: `sebastian-mora.png`
+
+**SEBASTIÁN MORA** — Bloguero gastronómico · 27 años · Medellín, Colombia
+
+- 📍 Ciudad: Medellín, Colombia
+- 💼 Trabajo: Bloguero gastronómico
+- ✈️ Viaja por: Toda Latinoamérica
+- 📱 Blog: @saboreslatinos
+
+Frase: "La cocina latinoamericana me fascina — cada plato cuenta una historia."
+
+### Slide 4 (s3a) — 🥩 VOCABULARIO · CARNES
+Imagem: `sebastian-carnes.png`
+
+- 🥩 carne
+- 🍗 pollo
+- 🐷 cerdo
+- 🐟 pescado
+- 🦐 mariscos
+
+### Slide 5 (s3b) — 🥦 VOCABULARIO · VERDURAS
+Imagem: `sebastian-verduras.png`
+
+- 🌽 maíz
+- 🍠 yuca
+- 🥔 papa
+- 🥑 aguacate
+- 🌶️ ají
+- 🍅 tomate
+- 🧅 cebolla
+
+### Slide 6 (s3c) — 🍌 VOCABULARIO · FRUTAS TROPICALES
+Imagem: `sebastian-frutas.png`
+
+- 🥭 mango
+- 🍈 papaya
+- 🟡 maracuyá
+- 🍐 guayaba
+- 🍌 plátano
+- 🍍 ananá
+
+### Slide 7 (s3d) — 🍚 VOCABULARIO · CEREALES Y LEGUMBRES
+Imagem: `sebastian-cereales.png`
+
+- 🍚 arroz
+- 🫘 frijoles
+- 🌾 quinua
+- 🫘 lentejas
+- 🌽 maíz
+
+### Slide 8 (s3e) — 🧀 VOCABULARIO · LÁCTEOS
+Imagem: `sebastian-lacteos.png`
+
+- 🧀 queso
+- 🥛 leche
+- 🧈 mantequilla
+- 🥄 crema
+- 🥚 huevos
+
+### Slide 9 (s3f) — 🌶️ VOCABULARIO · CONDIMENTOS
+Imagem: `sebastian-condimentos.png`
+
+- 🌿 cilantro
+- 🌶️ ají
+- 🟤 comino
+- 🟠 achiote
+- 🍋 limón
+
+### Slide 10 (s4a) — Mapa mental (estrutura de *gustar*)
+Três colunas ligadas: pronome → verbo → tipo de complemento.
+
+Coluna esquerda (forma tônica + pronome átono):
+
+- A mí — me
+- A ti — te
+- A él / ella — le
+- A nosotros — nos
+- A vosotros — os
+- A ellos — les
+
+Coluna central: **gusta / gustan**
+
+Coluna direita (o que vem depois):
+
+- Infinitivo → comer · cocinar · probar
+- Sustantivo singular → el ceviche · la arepa
+- Sustantivo plural → los tacos · las frutas
+
+### Slide 11 (s4b) — ⚠️ Singular vs Plural
+- Me **gusta** el aguacate. → singular
+- Me **gustan** los frijoles. → plural
+- Nos **encanta** la quinua. → singular
+- Nos **encantan** los tacos. → plural
+
+### Slide 12 (s4c) — Los 10 verbos tipo gustar
+Cada verbo com o matiz que o slide atribui:
+
+- **gustar** — preferencia general
+- **encantar** — amor intenso
+- **fascinar** — fascinación
+- **interesar** — interés intelectual
+- **apetecer** — deseo en el momento
+- **importar** — dar importancia
+- **molestar** — incomodar, disgustar
+- **parecer** — opinión / impresión
+- **caer bien/mal** — impresión de algo
+- **quedar bien/mal** — combinación
+
+### Slide 13 (s4d) — 🇨🇴 COLOMBIA · BANDEJA PAISA
+Imagem: `sebastian-bandeja-paisa.png`
+
+"A mí **me encanta** la bandeja paisa.
+**Me parece** el desayuno más completo del mundo."
+
+### Slide 14 (s4e) — 🇵🇪 PERÚ · CEVICHE
+Imagem: `sebastian-ceviche.png`
+
+"El ceviche **me fascina**.
+El limón y el ají **le quedan muy bien** al pescado fresco."
+
+### Slide 15 (s4f) — 🇦🇷 ARGENTINA · MATE
+Imagem: `sebastian-mate.png`
+
+"El mate al principio **me caía** un poco raro.
+Pero ahora **me gusta** tomarlo todas las tardes."
+
+### Slide 16 (s4g) — 🇲🇽 MÉXICO · TACOS
+Imagem: `sebastian-tacos.png`
+
+"**Me molesta** un poco el picante extremo.
+Pero igualmente **me gusta** mucho probar de todo."
+
+### Slide 17 (s5a) — 🎧 Escucha a Sebastián
+Imagem: `sebastian-blog.png`
+Player de áudio: `audio/sebastian-audio-blog.mp3` (rótulo: 📻 Audio del blog)
+
+Perguntas de compreensão:
+
+1. ¿De dónde es Sebastián?
+2. ¿Qué lleva el ceviche peruano?
+3. ¿Por qué el mate le caía raro?
+4. ¿Cuántos países menciona Sebastián?
+
+### Slide 18 (s5b) — 📝 Texto del audio
+Transcrição projetada do áudio, com os verbos tipo *gustar* destacados. Texto completo na seção **Áudio** abaixo.
+
+### Slide 19 (s6a) — 🇨🇴 AREPA (Colombia)
+Imagem: `arepa-colombiana.png`
+Ingredientes: maíz · queso · mantequilla
+🗣️ Tu turno — Habla sobre esta comida usando los verbos tipo *gustar*
+
+1. ¿Qué te *parece* la arepa?
+2. ¿Te *gusta* con queso o con mantequilla?
+3. ¿Te *apetece* comerla ahora?
+4. ¿Cómo te *cae* la comida con queso?
+
+### Slide 20 (s6b) — 🇵🇪 CEVICHE (Perú)
+Imagem: `ceviche-peruano.png`
+Ingredientes: pescado · limón · ají · cebolla morada
+🗣️ Tu turno — Habla sobre esta comida usando los verbos tipo *gustar*
+
+1. ¿Qué te *parece* el ceviche?
+2. ¿Te *gusta* la comida con limón y ají?
+3. ¿Te *apetece* comerlo ahora?
+4. ¿Cómo te *cae* la comida ácida?
+
+### Slide 21 (s6c) — 🇦🇷 ASADO (Argentina)
+Imagem: `asado-argentino.png`
+Ingredientes: carne · parrilla · chimichurri
+🗣️ Tu turno — Habla sobre esta comida usando los verbos tipo *gustar*
+
+1. ¿Qué te *parece* el asado?
+2. ¿Te *gusta* la carne a la parrilla?
+3. ¿Te *apetece* un asado hoy?
+4. ¿Cómo te *cae* la carne bien pasada?
+
+### Slide 22 (s6d) — 🇲🇽 TACOS (México)
+Imagem: `tacos-mexicanos.png`
+Ingredientes: cerdo · piña · cilantro · ají
+🗣️ Tu turno — Habla sobre esta comida usando los verbos tipo *gustar*
+
+1. ¿Qué te *parece* el taco?
+2. ¿Te *molesta* el picante?
+3. ¿Te *apetece* comer tacos ahora?
+4. ¿Cómo te *cae* la comida bien casera?
+
+### Slide 23 (s6e) — 🇻🇪 EMPANADA (Venezuela)
+Imagem: `empanada-venezolana.png`
+Ingredientes: maíz · carne · queso
+🗣️ Tu turno — Habla sobre esta comida usando los verbos tipo *gustar*
+
+1. ¿Qué te *parece* la empanada?
+2. ¿Te *gusta* el maíz?
+3. ¿Te *apetece* comerla ahora?
+4. ¿Cómo te *cae* la comida frita?
+
+### Slide 24 (s6f) — 🇧🇷 FEIJOADA (Brasil)
+Imagem: `feijoada-brasileira.png`
+Ingredientes: frijoles negros · cerdo · arroz
+🗣️ Tu turno — Habla sobre esta comida usando los verbos tipo *gustar*
+
+1. ¿Qué te *parece* la feijoada?
+2. ¿Te *gustan* los frijoles negros?
+3. ¿Te *apetece* probarla?
+4. ¿Cómo te *cae* la comida muy contundente?
+
+### Slide 25 (s_fin) — ¡HASTA LA PRÓXIMA!
+Imagem: `sebastian-chau.png`
+
+"¡Me encantó compartir este viaje gastronómico con ustedes! Viajar me fascina porque puedo conocer nuevas culturas y nuevos sabores. ¡Nos vemos en la próxima aula!"
+
+---
+
+## Áudio
+
+Arquivo: `audio/sebastian-audio-blog.mp3`
+Texto projetado no slide 18 (s5b), transcrito literalmente:
+
+> ¡Hola a todos! Soy Sebastián.
+>
+> Esta semana viajé por varios países de Latinoamérica y probé comidas increíbles.
+>
+> En Colombia, **me encanta** el sancocho. Tiene pollo, yuca, papa y maíz. A mi mamá **le parece** el plato más reconfortante del mundo.
+>
+> En Perú, **me fascina** toda la gastronomía. El ceviche **me gusta** mucho: pescado fresco, limón, ají y cebolla morada. **Me parece** un plato súper fresco y diferente.
+>
+> En Argentina, siempre **me apetece** un buen asado. Y el mate… al principio no **me gustaba** mucho porque **me parecía** muy amargo. Ahora **me encanta** tomar mate con amigos.
+>
+> En México, **me encantan** los tacos con limón y cilantro. El picante no **me fascina**, pero **me gusta** probar sabores nuevos. A mis amigos **les parece** raro que evite las salsas más picantes.
+>
+> ¡Viajar **me encanta** porque puedo conocer nuevas culturas y nuevos sabores!
+
+Fecho do slide: "¿Y a ti? ¿Qué plato latinoamericano te gusta más? ¡Cuéntame! 🌮"
+
+---
+
+## Vocabulario
+
+### Sustantivos
+
+Carnes:
+
+- la carne
+- el pollo
+- el cerdo
+- el pescado
+- los mariscos
+
+Verduras:
+
+- el maíz
+- la yuca [REGIONAL] (América Latina)
+- la papa [REGIONAL] (América Latina)
+- el aguacate [REGIONAL] (Colombia / México)
+- el ají [REGIONAL] (região andina / Colombia / Perú)
+- el tomate
+- la cebolla
+- la cebolla morada
+
+Frutas tropicais:
+
+- el mango
+- la papaya
+- el maracuyá [REGIONAL] (Colombia)
+- la guayaba
+- el plátano [REGIONAL] (Colombia)
+- el ananá [REGIONAL] (Argentina / Uruguay)
+
+Cereais e leguminosas:
+
+- el arroz
+- los frijoles [REGIONAL] (Colombia / México / América Central)
+- los frijoles negros
+- la quinua [REGIONAL] (Perú / Bolivia)
+- las lentejas
+
+Lácteos:
+
+- el queso
+- la leche
+- la mantequilla [REGIONAL] (Colombia / México / España)
+- la crema
+- los huevos
+
+Condimentos:
+
+- el cilantro
+- el comino
+- el achiote [REGIONAL] (Colombia / México / América Central)
+- el limón
+
+Pratos típicos:
+
+- la bandeja paisa [REGIONAL] (Colombia)
+- el sancocho [REGIONAL] (Colombia)
+- la arepa [REGIONAL] (Colombia)
+- el ceviche [REGIONAL] (Perú)
+- el mate [REGIONAL] (Argentina)
+- el asado [REGIONAL] (Argentina)
+- la parrilla [REGIONAL] (Argentina)
+- el chimichurri [REGIONAL] (Argentina)
+- los tacos [REGIONAL] (México)
+- las salsas [REGIONAL] (México)
+- la empanada [REGIONAL] (Venezuela)
+- la feijoada [REGIONAL] (Brasil)
+
+Comida em geral:
+
+- la comida
+- la cocina
+- la gastronomía
+- el plato
+- el desayuno
+- el picante
+- el sabor / los sabores
+- la piña
+
+Outros:
+
+- el viaje
+- el país / los países
+- la cultura / las culturas
+- el blog
+- el bloguero gastronómico
+- la historia
+- la foto
+- la semana
+- la tarde / las tardes
+- el mundo
+- el turno
+- la ciudad
+- el trabajo
+- la mamá
+- los amigos
+- Latinoamérica
+- Medellín · Colombia · Perú · Argentina · México · Venezuela · Brasil
+- @saboreslatinos
+
+### Verbos
+
+Verbos tipo *gustar* (o núcleo da aula):
+
+- gustar — me gusta, me gustan, te gusta, te gustan, no me gustaba
+- encantar — me encanta, me encantan, nos encanta, nos encantan, me encantó
+- fascinar — me fascina, no me fascina
+- interesar
+- apetecer — me apetece, te apetece
+- importar
+- molestar — me molesta, te molesta
+- parecer — me parece, le parece, les parece, te parece, me parecía
+- caer bien / caer mal — me caía, ¿cómo te cae?
+- quedar bien / quedar mal — le quedan muy bien
+
+Outros verbos:
+
+- ser (soy, es) — "Soy Sebastián", "¿De dónde es Sebastián?"
+- tener (tiene) — "Tiene pollo, yuca, papa y maíz"
+- llevar (lleva) — "¿Qué lleva el ceviche peruano?"
+- ver (ves) — "¿Qué ves en la foto?"
+- decir (di) — "Di en voz alta"
+- conocer (conoces, conocer)
+- comer (comer, comerla, comerlo)
+- cocinar
+- probar (probar, probarla, probé)
+- tomar (tomarlo, tomar mate)
+- viajar (viajar, viajé)
+- mencionar (menciona)
+- hablar (habla) — "Habla sobre esta comida"
+- contar (cuéntame)
+- poder (puedo)
+- compartir (compartir)
+- ver(se) (nos vemos)
+- evitar (evite) (?)
+
+### Adjetivos y adverbios
+
+- típicas
+- tropicales
+- latinoamericano / latinoamericana
+- gastronómico
+- increíbles
+- reconfortante
+- fresco / fresca
+- diferente
+- amargo
+- raro
+- nuevo / nuevos / nuevas
+- picante / extremo
+- morada
+- negros
+- ácida
+- casera
+- frita
+- contundente
+- completo
+- bien pasada
+- súper (súper fresco)
+- muy
+- mucho
+- un poco
+- más
+- siempre
+- ahora
+- hoy
+- igualmente
+- todo / toda / todos / todas
+- varios
+- próxima
+
+### Expresiones y chunks
+
+Estrutura de opinião (o coração da aula):
+
+- "A mí me gusta / A ti te gusta / A él le gusta / A nosotros nos gusta / A vosotros os gusta / A ellos les gusta"
+- "me gusta" / "me gustan"
+- "me encanta" / "me encantan"
+- "me fascina"
+- "me apetece"
+- "me molesta"
+- "me parece"
+- "le quedan muy bien"
+- "me caía un poco raro"
+- "¿Cómo te cae...?"
+- "Me parece el desayuno más completo del mundo"
+- "el plato más reconfortante del mundo"
+- "no me gustaba mucho"
+- "el picante no me fascina"
+
+Perguntas de aula:
+
+- "¿Qué ves en la foto?"
+- "Di en voz alta todo lo que conoces"
+- "¿De dónde es Sebastián?"
+- "¿Qué lleva el ceviche peruano?"
+- "¿Por qué el mate le caía raro?"
+- "¿Cuántos países menciona Sebastián?"
+- "¿Qué te parece la arepa?"
+- "¿Te gusta con queso o con mantequilla?"
+- "¿Te apetece comerla ahora?"
+- "¿Te molesta el picante?"
+- "¿Cómo te cae la comida frita?"
+- "¿Y a ti? ¿Qué plato latinoamericano te gusta más? ¡Cuéntame!"
+- "Tu turno"
+- "Habla sobre esta comida usando los verbos tipo gustar"
+
+Marcadores e fórmulas:
+
+- "al principio"
+- "pero ahora"
+- "pero igualmente"
+- "un poco"
+- "probar de todo"
+- "todas las tardes"
+- "en voz alta"
+- "la carne a la parrilla"
+- "bien pasada"
+- "¡Hola a todos!"
+- "cada plato cuenta una historia"
+- "La cocina latinoamericana me fascina"
+- "conocer nuevas culturas y nuevos sabores"
+- "¡Hasta la próxima!"
+- "¡Nos vemos en la próxima aula!"
+- "Me encantó compartir este viaje gastronómico con ustedes"
+
+### Conectores y palabras funcionales
+
+Pronomes de objeto indireto: me · te · le · nos · os [REGIONAL] (España) · les
+Formas tônicas: a mí · a ti · a él / ella · a nosotros · a vosotros [REGIONAL] (España) · a ellos
+
+Interrogativos: qué · cómo · cuántos · por qué · de dónde
+
+Outros:
+
+- y
+- o
+- pero
+- porque
+- que
+- con
+- por
+- a
+- de
+- en
+- al (a + el)
+- más
+- todo / toda / todos / todas
+- varios
+- no
+
+---
+
+## Estructuras gramaticales
+
+- Verbos tipo *gustar*: estrutura completa pronome de OI + verbo em 3ª pessoa + sujeito gramatical, apresentada em slide de mapa mental.
+- Concordância singular/plural do verbo com o que agrada: *gusta / gustan*, *encanta / encantan* — slide próprio dedicado ao contraste.
+- Os dez verbos do grupo com o matiz de cada um: gustar, encantar, fascinar, interesar, apetecer, importar, molestar, parecer, caer bien/mal, quedar bien/mal.
+- Pronomes de objeto indireto: me, te, le, nos, os, les.
+- Formas tônicas de reforço: a mí, a ti, a él/ella, a nosotros, a vosotros, a ellos.
+- O que vem depois do verbo: infinitivo (comer, cocinar, probar), substantivo singular (el ceviche, la arepa) ou substantivo plural (los tacos, las frutas).
+- Negação com verbos tipo gustar: "el picante no me fascina", "no me gustaba mucho".
+- Superlativo relativo: "el desayuno más completo del mundo", "el plato más reconfortante del mundo" (?) — aparece nas frases, sem quadro de apresentação.
+- Formas de passado no texto do áudio: *viajé*, *probé*, *me gustaba*, *me parecía*, *me caía*, *me encantó* (?) — não há slide de apresentação; aparecem só dentro do texto e em uma pergunta de compreensão.
+- Subjuntivo em "les parece raro que evite las salsas más picantes" (?) — uma ocorrência isolada no áudio.
+- Inclusão de *vosotros / os* no quadro de pronomes [REGIONAL] (España) (?) — o personagem é colombiano; o quadro traz as seis pessoas do paradigma peninsular.
+
+---
+
+## Personaje
+
+**Sebastián Mora** — 27 anos, Medellín, Colombia. Bloguero gastronómico.
+Blog: @saboreslatinos. Viaja por toda a América Latina.
+
+Traços que aparecem nos slides e no áudio:
+
+- Lema pessoal: "La cocina latinoamericana me fascina — cada plato cuenta una historia."
+- Curioso e aberto: gosta de provar de tudo e sabores novos, viaja para conhecer novas culturas.
+- Não aguenta bem o picante extremo — evita as salsas mais picantes, e os amigos dele acham isso estranho.
+- Mudou de opinião sobre o mate: no começo achava amargo e "le caía raro"; agora adora tomar com amigos todas as tardes.
+- Sempre lhe apetece um bom asado argentino.
+- Menciona a mãe: para ela o sancocho é o prato mais reconfortante do mundo.
+- Despede-se com entusiasmo: "¡Me encantó compartir este viaje gastronómico con ustedes!"

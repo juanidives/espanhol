@@ -1,0 +1,679 @@
+# Aula 08 — Un día con Martina · Martina García
+
+**Fonte:** `a1-aula08/index.html` · 15 slides
+**Tema:** Lugares · Transportes · Rutina semanal
+**Duração:** 40 min
+**Status:** publicada
+
+---
+
+## Sequência de slides
+
+### Slide 1 (s0) — Portada
+🇪🇸 Español · Nivel A1
+**UN DÍA CON MARTINA**
+Lugares · Transportes · Rutina semanal
+
+Pills: 🏙️ La ciudad · 🚌 Transportes · 📅 La semana · 🔄 Frecuencia
+
+### Slide 2 (s1) — Personaje principal
+**MARTINA GARCÍA** — Profesora de arte · 28 años · Madrid
+Tags: 🎨 Arte · 🚲 Bicicleta · ☕ Café · 🏙️ Madrid
+
+**HOLA, SOY MARTINA**
+
+- 🏠 Calle de Alcalá, 42 — Madrid
+- 🗺️ Vivo en **El Retiro**
+- 📚 ¡Tengo una semana muy ocupada!
+
+En esta clase vas a aprender: 📍 Lugares · 🚌 Transportes · 🔄 Frecuencia
+
+### Slide 3 (s2) — 🗺️ EL BARRIO DE MARTINA (mapa interativo)
+Ruas nomeadas no mapa: **Calle de Alcalá**, **Gran Vía**. Ponto de partida: 🏠 **Mi Casa**.
+Transportes animados atravessando o mapa: 🚌 🚕 🚲
+Instrução no rodapé: *"👆 Hacé clic en cualquier lugar para ver información"*
+
+19 lugares clicáveis. Cada um abre um modal com quatro campos: produtos · frecuencia · frase de rutina · frase en presente indicativo.
+
+Etiquetas de frequência do modal: ✅ Siempre · 🔁 A menudo · 🔷 A veces · ❌ Nunca / Casi nunca
+
+**🥖 Panadería** — ✅ Siempre
+Productos: Pan, galletas, medialunas
+Rutina: "Martina va todos los días a buscar medialunas por la mañana."
+Presente: "Martina ama el olor del pan recién hecho — dice que es el mejor despertador del mundo."
+
+**💊 Farmacia** — 🔷 A veces
+Productos: Medicinas, vitaminas
+Rutina: "Martina va a la farmacia cuando está enferma o necesita vitaminas."
+Presente: "Martina toma vitamina C todos los inviernos — ¡es muy cuidadosa con su salud!"
+
+**🐟 Pescadería** — 🔁 A menudo
+Productos: Pescado fresco, marisco
+Rutina: "Martina compra pescado fresco los viernes por la mañana."
+Presente: "Martina prepara salmón al horno los viernes — es su cena favorita de la semana."
+
+**🎬 Cine** — 🔷 A veces
+Productos: Películas, palomitas
+Rutina: "Martina va al cine los sábados con sus amigos."
+Presente: "Martina es fanática de las películas de terror — ¡cuanto más miedo, mejor!"
+
+**🍻 Bar** (ícone do card: ☕) — ✅ Siempre
+Productos: Tapas, cañas, vermú
+Rutina: "Martina toma café y tostadas aquí cada mañana antes del trabajo."
+Presente: "Martina pide siempre un café con leche y una tostada con tomate — es su ritual diario."
+
+**🎟️ Lotería** — ❌ Nunca
+Productos: Lotería nacional, primitiva
+Rutina: "Martina nunca juega a la lotería — no cree en la suerte."
+Presente: "Martina dice: Yo no compro lotería prefiero ahorrar ese dinero para viajar."
+
+**📰 Kiosco** — ✅ Siempre
+Productos: Periódicos, revistas, golosinas
+Rutina: "Martina compra el diario cada mañana en el kiosco de la esquina."
+Presente: "Martina lee el periódico cada mañana — le encanta estar informada sobre la actualidad."
+
+**🛒 Supermercado** — 🔁 A menudo
+Productos: Compras semanales, productos frescos
+Rutina: "Martina hace la compra grande los miércoles y sábados."
+Presente: "Martina siempre hace una lista antes de ir al supermercado — nunca olvida nada!"
+
+**🥩 Carnicería** — 🔁 A menudo
+Productos: Carne, pollo, cordero
+Rutina: "Martina compra carne los jueves por la mañana."
+Presente: "Martina prepara milanesas con mucho cariño — es su plato favorito de toda la semana!"
+
+**🐔 Pollería** — 🔷 A veces
+Productos: Pollo asado, gallinas
+Rutina: "Martina va a veces a la pollería cuando tiene visitas en casa."
+Presente: "Martina compra pollo asado cuando vienen sus padres a cenar — a todos les encanta!"
+
+**🍦 Heladería** — 🔁 A menudo
+Productos: Helados artesanos, granizados
+Rutina: "Martina toma helado los fines de semana con sus amigos."
+Presente: "Martina pide siempre dos bolas de pistacho — dice que es el mejor sabor del mundo."
+
+**💪 Gimnasio** — ✅ Siempre
+Productos: Musculación, cardio, clases
+Rutina: "Martina va al gimnasio los lunes, miércoles y viernes por la tarde."
+Presente: "Martina hace yoga los lunes y spinning los miércoles — es muy deportista!"
+
+**🚇 Estación Metro** — ✅ Siempre
+Productos: Metro, líneas, abono mensual
+Rutina: "Martina toma el metro todos los días para ir al trabajo."
+Presente: "Martina tiene el abono mensual del metro — es la forma más rápida de moverse por Madrid."
+
+**🥦 Verdulería** — ✅ Siempre
+Productos: Frutas, verduras frescas
+Rutina: "Martina compra frutas y verduras cada dos días para tener siempre frescas."
+Presente: "Martina come fruta de temporada todos los días — dice que es su secreto de salud."
+
+**💍 Joyería** — ❌ Nunca / Casi nunca
+Productos: Anillos, collares, relojes
+Rutina: "Martina casi nunca va a la joyería — es muy austera con el dinero."
+Presente: "Martina solo entra a la joyería cuando busca un regalo especial para alguien."
+
+**👗 Tienda de Ropa** — 🔷 A veces
+Productos: Ropa, moda, accesorios
+Rutina: "Martina va a comprar ropa a veces, sobre todo en rebajas."
+Presente: "Martina compra ropa en Zara — le encanta la moda pero no gasta demasiado."
+
+**⛪ Iglesia** — 🔷 A veces
+Productos: Misa, eventos culturales
+Rutina: "Martina va a la iglesia los domingos por la mañana."
+Presente: "Martina respeta mucho las tradiciones — los domingos siempre va a misa con su abuela."
+
+**🎭 Teatro** — 🔷 A veces
+Productos: Obras de teatro, musicales
+Rutina: "Martina va al teatro una vez al mes con sus amigas."
+Presente: "Martina adora el teatro clásico español — su obra favorita es La casa de Bernarda Alba."
+
+**🏥 Hospital** — ❌ Nunca / Casi nunca
+Productos: Urgencias, consultorios
+Rutina: "Martina casi nunca va al hospital — tiene muy buena salud."
+Presente: "Martina va al médico solo una vez al año para la revisión anual — es muy sana!"
+
+### Slide 4 (s3) — 🚌 LOS TRANSPORTES
+Seis cards, cada um com um uso associado:
+
+- 🚌 COLECTIVO / BUS → Al trabajo
+- 🚲 BICICLETA → Al mercado
+- 🚇 METRO / SUBTE → Al centro
+- 🚕 TAXI → De noche
+- 🚗 AUTO → Fin de semana
+- 🛵 MOTO → Por la ciudad
+
+💬 **Martina dice:** "Los lunes voy al trabajo **en metro**. Los sábados voy al mercado **en bicicleta**. Cuando llueve, voy **en colectivo**. De noche, prefiero ir **en taxi**."
+
+### Slide 5 (s4) — 🔄 ¿CON QUÉ FRECUENCIA?
+Escala completa, do mais ao menos frequente:
+
+- **SIEMPRE** — todos los días — 🥖 Va a la panadería todos los días
+- **A MENUDO** — muchos días — 🛒 Va al supermercado 2 veces por semana
+- **A VECES** — algunos días — 🎬 Va al cine los sábados
+- **CASI NUNCA** — muy poco — 💍 Va a la joyería una vez al año
+- **NUNCA** — jamás — 🎟️ No va a la lotería
+
+### Slide 6 (s5a) — 📅 LA SEMANA DE MARTINA — Parte 1
+Grade de quatro dias:
+
+- **LUNES:** 🥐 Cafetería · 🚇 Metro · 💪 Gimnasio · 🥦 Verdulería
+- **MARTES:** 🥐 Cafetería · 🥖 Panadería · 🚇 Metro · 📰 Kiosco
+- **MIÉRCOLES:** 🥐 Cafetería · 💪 Gimnasio · 🛒 Supermercado · 🚲 Bicicleta
+- **JUEVES:** 🥐 Cafetería · 🥩 Carnicería · 🚇 Metro · 🥦 Verdulería
+
+💬 **Practica:** *"Los lunes, Martina va a la **cafetería por la mañana**, luego toma el **metro** para ir al trabajo y **por la tarde** va al gimnasio."*
+
+### Slide 7 (s5b) — 📅 LA SEMANA DE MARTINA — Parte 2
+Grade de três dias:
+
+- **VIERNES:** 🐟 Pescadería · 💪 Gimnasio · 🎨 Arte · 🍻 Bar
+- **SÁBADO:** 🛒 Supermercado · 🍦 Heladería · 🎬 Cine · 🚕 Taxi
+- **DOMINGO:** ⛪ Iglesia · 🚶 A pie · 👨‍👩‍👧 Familia · 🌳 Parque
+
+💬 **Practica:** *"Los viernes, Martina va al **gimnasio por la tarde** y después va al **bar con amigos**. Los domingos descansa con la **familia**."*
+
+### Slide 8 (s-lunes) — LUNES EN LA CAFETERÍA
+Imagem: `Lunes. Martina en la cafeteria.png`
+
+- ☕ Por la mañana → Cafetería ⭐
+- 🚇 Transporte → Metro
+- 💪 Por la tarde → Gimnasio
+- 🥦 Al salir → Verdulería
+
+**Rutina:** "Los lunes, Martina empieza la semana con energía: desayuna en la cafetería, va al trabajo en metro y termina el día en el gimnasio."
+**Presente indicativo:** 💬 *"Martina pide siempre un café con leche y un croissant — dice que es el mejor comienzo del día."*
+Frecuencia: ✅ Siempre — todos los lunes
+
+### Slide 9 (s-martes) — MARTES EN EL KIOSCO
+Imagem: `Martes. Martina en el kiosco.png`
+
+- ☕ Por la mañana → Cafetería
+- 📰 De camino → Kiosco ⭐
+- 🚇 Transporte → Metro
+- 🥖 Al volver → Panadería
+
+**Rutina:** "Los martes, Martina va para el kiosco de la esquina antes de tomar el metro — siempre compra el periódico y alguna golosina."
+**Presente indicativo:** 💬 *"Martina compra El País todos los martes — le encanta leerlo en el metro camino al trabajo."*
+Frecuencia: ✅ Siempre — todos los martes
+
+### Slide 10 (s-miercoles) — MIÉRCOLES EN BICICLETA
+Imagem: `Miercoles. Martina andando en bicicleta.png`
+
+- ☕ Por la mañana → Cafetería
+- 🚲 Transporte → Bicicleta ⭐
+- 💪 Por la tarde → Gimnasio
+- 🛒 Al salir → Supermercado
+
+**Rutina:** "Los miércoles es el día favorito de Martina — va al trabajo en bicicleta por bicisenda de la Gran Vía."
+**Presente indicativo:** 💬 *"Martina ama pedalear por Madrid — dice que desde la bicicleta la ciudad se ve diferente."*
+Frecuencia: 🔁 Siempre — todos los miércoles
+
+### Slide 11 (s-jue) — JUEVES EN LA CARNICERÍA
+Imagem: `Martina en la carniceria.png`
+
+- 🥐 Por la mañana → Cafetería
+- 🥩 Al mediodía → Carnicería ⭐
+- 🚇 Transporte → Metro
+- 🥦 Por la tarde → Verdulería
+
+**Rutina:** "Los jueves, Martina **compra carne** en la carnicería por la mañana y va a la verdulería **por la tarde**."
+**Presente indicativo:** 💬 *"Martina prepara milanesas con mucho cariño — ¡es su plato favorito de toda la semana!"*
+Frecuencia: 🔁 A menudo — los jueves
+
+### Slide 12 (s-viernes) — VIERNES EN EL GIMNASIO
+Imagem: `Viernes. Martina en el gimnasio con amigas.png`
+
+- 🐟 Por la mañana → Pescadería ⭐
+- 💪 Por la tarde → Gimnasio ⭐
+- 🎨 Al salir → Clase de arte
+- 🍻 De noche → Bar con amigas
+
+**Rutina:** "Los viernes, Martina va al gimnasio con sus amigas después del trabajo — es el entrenamiento más divertido de la semana."
+**Presente indicativo:** 💬 *"Martina hace spinning con sus amigas los viernes — después van juntas al bar a celebrar el fin de semana."*
+Frecuencia: ✅ Siempre — todos los viernes
+
+### Slide 13 (s-sabado) — SÁBADO EN LA HELADERÍA
+Imagem: `Sabado. Martina comiendo helado.png`
+
+- 🛒 Por la mañana → Supermercado
+- 🍦 Al mediodía → Heladería ⭐
+- 🎬 Por la tarde → Cine
+- 🚕 De noche → Taxi a casa
+
+**Rutina:** "Los sábados, Martina disfruta del tiempo libre — hace las compras, toma helado y va al cine con sus amigos."
+**Presente indicativo:** 💬 *"Martina pide siempre pistacho y chocolate — dice que la vida es mejor con un buen helado."*
+Frecuencia: 🔁 A menudo — casi todos los sábados
+
+### Slide 14 (s-domingo) — DOMINGO EN EL PARQUE
+Imagem: `Domingo. Martina en el parque.png`
+
+- ⛪ Por la mañana → Iglesia
+- 🚶 A pie → Por el barrio
+- 🌳 Al mediodía → Parque del Retiro ⭐
+- 👨‍👩‍👧 Por la tarde → Familia
+
+**Rutina:** "Los domingos, Martina descansa en el Parque del Retiro — lee, pasea y juega con su perro. Es su día favorito."
+**Presente indicativo:** 💬 *"Martina va siempre al Parque del Retiro los domingos — dice que es el pulmón verde de Madrid y su lugar de paz."*
+Frecuencia: ✅ Siempre — todos los domingos
+
+### Slide 15 (s6) — 🎯 AHORA HABLEN DE USTEDES
+Atividade oral final, três passos:
+
+1. 📍 **Tu barrio:** ¿Qué lugares hay cerca de tu casa? Mencioná 5.
+2. 🚌 **¿Cómo vas?** Contá cómo te transportás: *"Voy al supermercado en bicicleta..."*
+3. 🔄 **¿Con qué frecuencia?** Usá: siempre / a menudo / a veces / casi nunca / nunca
+
+**Modelo projetado:**
+"Los *[día]*, yo voy a *[lugar]* **en** *[transporte]*.
+Voy *[siempre / a veces / nunca]* porque *[razón]*."
+
+---
+
+## Vocabulario
+
+### Sustantivos
+
+Lugares do bairro:
+
+- la panadería
+- la farmacia
+- la pescadería
+- el cine
+- el bar
+- la lotería
+- el kiosco
+- el supermercado
+- la carnicería
+- la pollería
+- la heladería
+- el gimnasio
+- la estación de metro
+- la verdulería
+- la joyería
+- la tienda de ropa
+- la iglesia
+- el teatro
+- el hospital
+- la cafetería
+- el parque / el Parque del Retiro
+- el mercado
+- el barrio
+- la casa / mi casa
+- el trabajo
+- la calle
+- la esquina
+- el centro
+- la ciudad
+
+Transportes:
+
+- el colectivo [REGIONAL] (Argentina) / el bus
+- la bicicleta
+- el metro / el subte [REGIONAL] (Argentina)
+- el taxi
+- el auto [REGIONAL] (Argentina / América)
+- la moto
+- la línea (líneas de metro)
+- el abono mensual
+- la bicisenda [REGIONAL] (Argentina)
+
+Produtos e comidas:
+
+- el pan
+- las galletas
+- las medialunas [REGIONAL] (Argentina)
+- el croissant
+- la tostada con tomate
+- el café con leche
+- las medicinas
+- las vitaminas / la vitamina C
+- el pescado
+- el marisco
+- el salmón al horno
+- la carne
+- el pollo
+- el pollo asado
+- el cordero
+- las gallinas
+- las milanesas [REGIONAL] (Argentina)
+- las frutas / la fruta de temporada
+- las verduras
+- el helado
+- los helados artesanos
+- los granizados
+- la bola (dos bolas de pistacho)
+- el pistacho
+- el chocolate
+- las tapas [REGIONAL] (España)
+- las cañas [REGIONAL] (España)
+- el vermú [REGIONAL] (España)
+- las palomitas [REGIONAL] (España)
+- las golosinas
+- la cena
+
+Objetos, mídia e outros:
+
+- el periódico / el diario
+- El País [REGIONAL] (España)
+- las revistas
+- las películas / las películas de terror
+- la lotería nacional
+- la primitiva [REGIONAL] (España)
+- los anillos
+- los collares
+- los relojes
+- la ropa
+- la moda
+- los accesorios
+- las rebajas
+- la misa
+- los eventos culturales
+- las obras de teatro
+- los musicales
+- las urgencias
+- los consultorios
+- la musculación
+- el cardio
+- las clases
+- el yoga
+- el spinning
+- el entrenamiento
+- la clase de arte / el arte
+- la lista
+- el regalo
+- el dinero
+- la suerte
+- la salud
+- la revisión anual
+- el médico
+- el olor
+- el despertador
+- el secreto
+- la actualidad
+- la energía
+- el tiempo libre
+- las compras / la compra grande
+- las visitas
+- el sabor
+- el plato favorito
+- el ritual diario
+- el pulmón verde
+- el lugar de paz
+- el comienzo del día
+- la rutina
+- la frecuencia
+- los medios de transporte
+- las tradiciones
+
+Pessoas e família:
+
+- la familia
+- los padres
+- la abuela
+- los amigos / las amigas
+- el perro
+- la profesora de arte
+
+Tempo:
+
+- el día
+- la mañana
+- la tarde
+- la noche
+- el mediodía
+- la semana
+- el fin de semana / los fines de semana
+- el año
+- el invierno
+- la vez / las veces
+- lunes, martes, miércoles, jueves, viernes, sábado, domingo
+
+Lugares próprios (Madrid):
+
+- Calle de Alcalá
+- Gran Vía
+- El Retiro
+- Madrid
+- Zara
+- La casa de Bernarda Alba
+
+### Verbos
+
+- ir (voy, vas, va) — "voy al trabajo", "va a la panadería", "¿Cómo vas?"
+- vivir (vivo) — "Vivo en El Retiro"
+- ser (soy, es) — "Hola, soy Martina", "es su cena favorita"
+- estar (está) — "cuando está enferma"
+- tener (tengo, tiene) — "¡Tengo una semana muy ocupada!", "tiene muy buena salud"
+- hay — "¿Qué lugares hay cerca de tu casa?"
+- comprar (compra, compro) — "Yo no compro lotería"
+- tomar (toma) — "toma el metro", "toma café", "toma helado"
+- pedir (pide) — "pide siempre un café con leche"
+- hacer (hace) — "hace la compra", "hace yoga", "hace una lista", "hace spinning"
+- preparar (prepara)
+- comer (come)
+- desayunar (desayuna)
+- cenar (a cenar)
+- leer (lee, leerlo)
+- decir (dice)
+- amar (ama) — "ama el olor del pan", "ama pedalear"
+- encantar (le encanta, les encanta) — "le encanta la moda", "a todos les encanta"
+- adorar (adora)
+- preferir (prefiero, prefiere)
+- creer (no cree en la suerte)
+- necesitar (necesita)
+- buscar (a buscar medialunas, cuando busca un regalo)
+- jugar (juega) — "juega a la lotería", "juega con su perro"
+- ahorrar (ahorrar)
+- gastar (no gasta demasiado)
+- viajar (viajar)
+- olvidar (nunca olvida)
+- entrar (solo entra)
+- venir (vienen)
+- salir (al salir)
+- volver (al volver)
+- llover (cuando llueve)
+- empezar (empieza)
+- terminar (termina)
+- descansar (descansa)
+- pasear (pasea)
+- disfrutar (disfruta del tiempo libre)
+- celebrar (a celebrar)
+- respetar (respeta)
+- pedalear (pedalear)
+- moverse (moverse por Madrid)
+- verse (se ve diferente)
+- transportarse (te transportás) [REGIONAL] (voseo)
+- mencionar (mencioná) [REGIONAL] (voseo)
+- contar (contá) [REGIONAL] (voseo)
+- usar (usá) [REGIONAL] (voseo)
+- hacer clic (hacé clic) [REGIONAL] (voseo)
+- hablar (hablen) — "Ahora hablen de ustedes"
+- aprender (vas a aprender) (?)
+
+### Adjetivos y adverbios
+
+- ocupada
+- enferma
+- fresco / frescos / frescas
+- recién hecho
+- artesanos
+- semanales
+- mensual
+- nacional
+- favorito / favorita
+- divertido / el más divertido
+- mejor / el mejor
+- austera
+- cuidadosa
+- fanática
+- deportista
+- sana
+- especial
+- clásico / español
+- verde
+- diferente
+- grande
+- buena (muy buena salud)
+- rápida (la forma más rápida)
+- libre (tiempo libre)
+- siempre
+- a menudo
+- a veces
+- casi nunca
+- nunca
+- jamás
+- muy
+- mucho / mucha
+- demasiado
+- más
+- solo
+- después
+- luego
+- antes
+- juntas
+- cerca (cerca de tu casa)
+- aquí
+- sobre todo
+
+### Expresiones y chunks
+
+Apresentação:
+
+- "Hola, soy Martina"
+- "Vivo en El Retiro"
+- "¡Tengo una semana muy ocupada!"
+- "En esta clase vas a aprender:" (?)
+
+Frequência:
+
+- "todos los días"
+- "muchos días"
+- "algunos días"
+- "muy poco"
+- "todos los lunes / martes / miércoles / viernes / domingos"
+- "casi todos los sábados"
+- "cada mañana"
+- "cada dos días"
+- "dos veces por semana"
+- "una vez al mes"
+- "una vez al año"
+- "todos los inviernos"
+- "los fines de semana"
+- "¿Con qué frecuencia?"
+
+Momentos do dia e da semana:
+
+- "por la mañana"
+- "por la tarde"
+- "de noche"
+- "al mediodía"
+- "de camino"
+- "al salir"
+- "al volver"
+- "antes del trabajo"
+- "después del trabajo"
+- "camino al trabajo"
+- "los lunes" (rotina semanal)
+- "fin de semana"
+
+Deslocamento:
+
+- "ir a + lugar" — "voy al trabajo", "va a la panadería", "va al cine"
+- "ir en + transporte" — "en metro", "en bicicleta", "en colectivo", "en taxi"
+- "a pie"
+- "por el barrio"
+- "por la ciudad"
+- "¿Cómo vas?"
+- "prefiero ir en taxi"
+
+Rotina e compras:
+
+- "hacer la compra" / "hacer la compra grande"
+- "hacer una lista"
+- "hacer yoga" / "hacer spinning"
+- "ir a buscar" — "va a buscar medialunas"
+- "tener visitas en casa"
+- "estar enferma"
+
+Opinião e reação:
+
+- "le encanta + infinitivo/sustantivo" — "le encanta leerlo", "le encanta la moda", "le encanta estar informada"
+- "a todos les encanta"
+- "es el mejor del mundo" — "el mejor despertador del mundo", "el mejor sabor del mundo"
+- "¡cuanto más miedo, mejor!"
+- "con mucho cariño"
+- "es su día favorito"
+- "es su ritual diario"
+- "Martina dice: ..."
+- "Yo no compro lotería, prefiero ahorrar ese dinero para viajar"
+- "no cree en la suerte"
+
+Instruções de aula:
+
+- "Hacé clic en cualquier lugar para ver información" [REGIONAL] (voseo)
+- "Ahora hablen de ustedes"
+- "¿Qué lugares hay cerca de tu casa? Mencioná 5." [REGIONAL] (voseo)
+- "Contá cómo te transportás" [REGIONAL] (voseo)
+- "Voy al supermercado en bicicleta..."
+- Modelo: "Los *[día]*, yo voy a *[lugar]* en *[transporte]*. Voy *[siempre / a veces / nunca]* porque *[razón]*."
+
+### Conectores y palabras funcionales
+
+- y
+- o
+- pero
+- porque
+- cuando
+- para (para ir al trabajo, para viajar)
+- antes de
+- después de
+- desde (desde la bicicleta)
+- con
+- sobre todo
+- luego
+- después
+- al (a + el)
+- del (de + el)
+- cada
+- todos / todas
+- algunos
+- alguna (alguna golosina)
+- muchos
+- cualquier (cualquier lugar)
+- alguien
+- nada (nunca olvida nada)
+- solo
+
+---
+
+## Estructuras gramaticales
+
+- Presente do indicativo, regular e irregular — rotulado explicitamente como "Presente indicativo" em cada um dos sete slides de dia da semana. Predominam 1ª e 3ª pessoa do singular.
+- Verbo *ir* + preposição *a* + lugar: "voy al trabajo", "va a la panadería", "va al cine".
+- Contração *al* (a + el) e *del* (de + el).
+- Preposição *en* para meio de transporte: "en metro", "en bicicleta", "en colectivo", "en taxi" — em oposição a *a pie*.
+- Advérbios e expressões de frequência apresentados em escala fechada, com slide próprio: siempre → a menudo → a veces → casi nunca → nunca.
+- Marcador de rotina "los + dia da semana" ("los lunes", "los sábados") para ação habitual.
+- Expressões de parte do dia: "por la mañana", "por la tarde", "de noche", "al mediodía".
+- *hay* para existência: "¿Qué lugares hay cerca de tu casa?"
+- Imperativo na forma *vos* nas instruções ao aluno: mencioná, contá, usá, hacé [REGIONAL] (voseo) (?)
+- *encantar* com pronome de objeto indireto: "le encanta", "a todos les encanta" (?) — aparece só em frases soltas dos modais, sem quadro de apresentação.
+
+---
+
+## Personaje
+
+**Martina García** — 28 anos, Madrid (Espanha). Profesora de arte.
+Mora na Calle de Alcalá, 42, no bairro de El Retiro.
+
+Traços que aparecem nos slides:
+
+- Anda de bicicleta e adora pedalear por Madrid — quarta-feira é o dia favorito dela por causa disso.
+- Toma café todos os dias no bar antes do trabalho; sempre o mesmo pedido (café con leche e tostada con tomate) — "es su ritual diario".
+- Austera com dinheiro: nunca joga na loteria, quase nunca entra na joalheria, compra roupa em promoção.
+- Muito cuidadosa com a saúde: vitamina C todo inverno, fruta da estação todos os dias, quase nunca vai ao hospital.
+- Esportista: academia segunda, quarta e sexta; yoga e spinning.
+- Fã de filmes de terror ("¡cuanto más miedo, mejor!") e do teatro clássico espanhol.
+- Lê o jornal (El País) toda manhã — gosta de estar informada.
+- Respeita as tradições: vai à missa aos domingos com a avó.
+- Tem um cachorro; domingo descansa no Parque del Retiro, lê, passeia e brinca com ele.
