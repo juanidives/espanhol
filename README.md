@@ -23,7 +23,7 @@ Cada aula é identificada pela data em que foi dada. As aulas de 15/08 e 22/08 t
 
 <table>
   <tr>
-    <td align="center"><img src="aulas/aula-2026-05-16/images/martina-garcia.png" width="150" alt="Martina García"/><br><sub><b>Martina</b><br>Madrid</sub></td>
+    <td align="center"><img src="aulas/aula-2026-05-16/images/Martina%20en%20la%20carniceria.png" width="150" alt="Martina García"/><br><sub><b>Martina</b><br>Madrid</sub></td>
     <td align="center"><img src="aulas/aula-2026-05-23/images/sebastian-mora.png" width="150" alt="Sebastián Mora"/><br><sub><b>Sebastián</b><br>Medellín</sub></td>
     <td align="center"><img src="aulas/aula-2026-06-13/images/mateo-gonzalez.png" width="150" alt="Mateo González"/><br><sub><b>Mateo</b><br>Buenos Aires</sub></td>
   </tr>

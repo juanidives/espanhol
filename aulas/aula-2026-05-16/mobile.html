@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7B5EA7">
+<title>Un día con Martina · Español A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fondo:#F7F3FF; --blanco:#FFFFFF; --oscuro:#2D2D2D;
+  --violeta:#7B5EA7; --lavanda:#C77DFF; --rosa:#FF6B9D; --coral:#FF6B6B;
+  --naranja:#FF9F1C; --amarillo:#FFD93D; --verde:#06D6A0; --azul:#4CC9F0;
+  --borde:#DEDEDE; --linha:rgba(45,45,45,.10);
+}
+*{box-sizing:border-box;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fondo);color:var(--oscuro);
+     font-family:'Nunito',system-ui,-apple-system,sans-serif;font-size:18px;line-height:1.55;
+     padding-bottom:56px}
+img{max-width:100%}
+
+.progress-bar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--rosa);z-index:60}
+.topbar{position:sticky;top:0;z-index:50;background:var(--violeta);color:#fff;
+        padding:10px 0 0;box-shadow:0 2px 10px rgba(45,45,45,.18)}
+.tb-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:1px;
+          padding:0 16px 8px;display:flex;align-items:center;gap:8px}
+.tb-nav{display:flex;gap:6px;overflow-x:auto;padding:0 12px 10px;scrollbar-width:none}
+.tb-nav::-webkit-scrollbar{display:none}
+.tb-nav a{flex:0 0 auto;color:#fff;text-decoration:none;font-weight:800;font-size:.92rem;
+          padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.18);white-space:nowrap}
+.tb-nav a:active{background:rgba(255,255,255,.34)}
+
+.wrap{padding:0 16px}
+#top{background:var(--violeta);color:#fff;padding:34px 20px 40px;text-align:center}
+#top .lbl{font-weight:800;letter-spacing:2px;font-size:.9rem;opacity:.9}
+#top h1{font-family:'Bebas Neue',sans-serif;font-size:3.3rem;line-height:.95;margin:12px 0 10px;
+        letter-spacing:1px}
+#top h1 em{display:block;font-style:normal;color:var(--amarillo)}
+#top .sub{font-weight:700;font-size:1.05rem;opacity:.95}
+#top .fecha{margin-top:16px;display:inline-block;background:rgba(255,255,255,.16);
+            border-radius:999px;padding:7px 16px;font-weight:800;font-size:.9rem}
+
+.sec{background:var(--blanco);border:2px solid var(--borde);border-radius:20px;
+     padding:20px 18px 24px;margin:18px 0;scroll-margin-top:104px}
+.eyebrow{font-weight:900;letter-spacing:2px;font-size:.82rem;color:var(--violeta);
+         text-transform:uppercase;margin-bottom:4px}
+.sec h2{font-family:'Bebas Neue',sans-serif;font-size:2.3rem;line-height:1;margin:0 0 16px;
+        letter-spacing:1px}
+.sec h3{font-family:'Bebas Neue',sans-serif;font-size:1.55rem;line-height:1.05;margin:0 0 10px;
+        letter-spacing:.5px}
+
+.foto{display:block;width:100%;height:auto;max-height:62dvh;object-fit:contain;
+      border-radius:16px;border:2px solid var(--borde);background:var(--fondo);margin-bottom:14px}
+
+.ficha{border:2px solid var(--borde);border-radius:16px;overflow:hidden;margin:14px 0}
+.ficha-line{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;
+            border-bottom:1px solid var(--linha);font-weight:700}
+.ficha-line:last-child{border-bottom:none}
+.ficha-line .ic{flex:0 0 auto;font-size:1.2rem}
+.ficha-line.destaque{background:#F9F4FF}
+
+.quote{background:#F9F4FF;border-left:6px solid var(--lavanda);border-radius:0 14px 14px 0;
+       padding:14px 16px;margin:14px 0;font-weight:700;font-size:1.05rem}
+.quote .lbl{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;
+            letter-spacing:1px;color:var(--violeta);margin-bottom:4px}
+
+.badge{display:inline-block;border-radius:999px;padding:6px 14px;font-weight:900;
+       font-size:.88rem;color:var(--oscuro)}
+
+.card{border:2px solid var(--borde);border-radius:18px;padding:14px;margin:14px 0;background:var(--blanco)}
+.card .cab{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.card .cab .em{font-size:1.7rem;line-height:1}
+.card .cab h3{margin:0}
+.dato{display:flex;gap:9px;align-items:flex-start;margin:8px 0;font-weight:700}
+.dato .ic{flex:0 0 auto}
+.dato .txt{flex:1 1 auto}
+
+.lugar{border:2px solid var(--borde);border-radius:16px;margin:10px 0;background:var(--blanco);overflow:hidden}
+.lugar summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;
+               padding:14px 14px;flex-wrap:wrap;font-weight:900}
+.lugar summary::-webkit-details-marker{display:none}
+.lugar summary::after{content:'▾';margin-left:auto;color:var(--violeta);font-size:1.3rem;line-height:1}
+.lugar[open] summary::after{content:'▴'}
+.lugar[open] summary{border-bottom:1px solid var(--linha);background:#F9F4FF}
+.lugar summary .em{font-size:1.7rem;line-height:1}
+.lugar summary .nm{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.5px}
+.lugar-cuerpo{padding:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tp{border:2px solid var(--borde);border-radius:16px;padding:14px 10px;text-align:center;background:var(--blanco)}
+.tp .em{font-size:2rem;display:block;line-height:1.1}
+.tp .nm{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.5px;margin-top:4px}
+.tp .us{font-size:.9rem;font-weight:700;color:#5F5F5F}
+
+.fr{border:2px solid var(--borde);border-radius:16px;padding:13px 14px;margin:10px 0}
+.fr .nm{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.5px}
+.fr .def{font-weight:800;font-size:.95rem;color:#5F5F5F;margin-bottom:6px}
+.fr .ej{font-weight:700}
+
+.dia{border:2px solid var(--borde);border-radius:16px;padding:13px 14px;margin:10px 0}
+.dia .nm{font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:.5px;
+         color:var(--violeta);margin-bottom:6px}
+.dia ul{margin:0;padding-left:20px}
+.dia li{font-weight:700;margin:3px 0}
+
+.tarea{display:flex;gap:12px;align-items:flex-start;border:2px solid var(--borde);
+       border-radius:16px;padding:14px;margin:12px 0}
+.tarea .n{flex:0 0 34px;height:34px;border-radius:50%;background:var(--rosa);color:#fff;
+          display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem}
+.tarea strong{display:block;font-size:1.05rem}
+.molde{background:var(--violeta);color:#fff;border-radius:16px;padding:16px;margin-top:14px;
+       font-weight:800;font-size:1.1rem;line-height:1.8}
+.molde span{background:rgba(255,255,255,.2);border-radius:8px;padding:2px 8px;display:inline-block}
+
+.footer-nota{text-align:center;padding:26px 16px 10px;font-weight:700;color:#6B6B6B;font-size:.95rem}
+@media(min-width:640px){ body{font-size:19px} .wrap{max-width:680px;margin:0 auto} }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="pb"></div>
+
+<div class="topbar">
+  <div class="tb-title">🇪🇸 Un día con Martina</div>
+  <nav class="tb-nav">
+    <a href="#martina">Martina</a>
+    <a href="#barrio">El barrio</a>
+    <a href="#transportes">Transportes</a>
+    <a href="#frecuencia">Frecuencia</a>
+    <a href="#semana">La semana</a>
+    <a href="#dias">Día por día</a>
+    <a href="#hablar">Hablar</a>
+  </nav>
+</div>
+
+<header id="top">
+  <div class="lbl">ESPAÑOL · NIVEL A1</div>
+  <h1>UN DÍA<em>CON MARTINA</em></h1>
+  <div class="sub">Lugares · Transportes · Rutina semanal</div>
+  <div class="fecha">📅 Clase del 16 de mayo de 2026</div>
+</header>
+
+<div class="wrap">
+
+<section class="sec" id="martina">
+  <div class="eyebrow">Personaje principal</div>
+  <h2>MARTINA GARCÍA</h2>
+  <img class="foto" src="images/mobile/martina.jpg" alt="Martina García" loading="lazy">
+  <div class="ficha">
+    <div class="ficha-line"><span class="ic">🎨</span><span>Profesora de arte · 28 años</span></div>
+    <div class="ficha-line"><span class="ic">🏠</span><span>Calle de Alcalá, 42 — Madrid</span></div>
+    <div class="ficha-line"><span class="ic">🗺️</span><span>Vive en El Retiro</span></div>
+    <div class="ficha-line destaque"><span class="ic">📚</span><span>¡Tengo una semana muy ocupada!</span></div>
+  </div>
+  <div class="quote"><span class="lbl">EN ESTA CLASE APRENDÉS</span>
+    📍 Lugares del barrio · 🚌 Transportes · 🔄 Expresiones de frecuencia</div>
+</section>
+
+<section class="sec" id="barrio">
+  <div class="eyebrow">Vocabulario</div>
+  <h2>🗺️ EL BARRIO DE MARTINA</h2>
+  <p style="font-weight:700;margin-top:-6px">Diecinueve lugares entre la Calle de Alcalá y la Gran Vía. <b>Leé el nombre, tratá de decir una frase</b> y después tocá para ver la foto y comparar.</p>
+  <details class="lugar">
+    <summary><span class="em">🥖</span><span class="nm">PANADERÍA</span>
+      <span class="badge" style="background:#C8F7D4">✅ Siempre</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/panaderia.jpg" alt="Panadería" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Pan, galletas, medialunas</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina va todos los días a buscar medialunas por la mañana.</span></div>
+      <div class="quote">Martina ama el olor del pan recién hecho — dice que es el mejor despertador del mundo.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">💊</span><span class="nm">FARMACIA</span>
+      <span class="badge" style="background:#BDE8FF">🔷 A veces</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/farmacia.jpg" alt="Farmacia" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Medicinas, vitaminas</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina va a la farmacia cuando está enferma o necesita vitaminas.</span></div>
+      <div class="quote">Martina toma vitamina C todos los inviernos — ¡es muy cuidadosa con su salud!</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🐟</span><span class="nm">PESCADERÍA</span>
+      <span class="badge" style="background:#FFE082">🔁 A menudo</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/pescaderia.jpg" alt="Pescadería" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Pescado fresco, marisco</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina compra pescado fresco los viernes por la mañana.</span></div>
+      <div class="quote">Martina prepara salmón al horno los viernes — es su cena favorita de la semana.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🎬</span><span class="nm">CINE</span>
+      <span class="badge" style="background:#BDE8FF">🔷 A veces</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/cine.jpg" alt="Cine" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Películas, palomitas</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina va al cine los sábados con sus amigos.</span></div>
+      <div class="quote">Martina es fanática de las películas de terror — ¡cuanto más miedo, mejor!</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🍻</span><span class="nm">BAR</span>
+      <span class="badge" style="background:#C8F7D4">✅ Siempre</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/bar.jpg" alt="Bar" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Tapas, cañas, vermú</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina toma café y tostadas aquí cada mañana antes del trabajo.</span></div>
+      <div class="quote">Martina pide siempre un café con leche y una tostada con tomate — es su ritual diario.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🎟️</span><span class="nm">LOTERÍA</span>
+      <span class="badge" style="background:#EEEEEE">❌ Nunca / Casi nunca</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/loteria.jpg" alt="Lotería" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Lotería nacional, primitiva</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina nunca juega a la lotería — no cree en la suerte.</span></div>
+      <div class="quote">Martina dice: Yo no compro lotería prefiero ahorrar ese dinero para viajar.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">📰</span><span class="nm">KIOSCO</span>
+      <span class="badge" style="background:#C8F7D4">✅ Siempre</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/kiosco.jpg" alt="Kiosco" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Periódicos, revistas, golosinas</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina compra el diario cada mañana en el kiosco de la esquina.</span></div>
+      <div class="quote">Martina lee el periódico cada mañana — le encanta estar informada sobre la actualidad.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🛒</span><span class="nm">SUPERMERCADO</span>
+      <span class="badge" style="background:#FFE082">🔁 A menudo</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/supermercado.jpg" alt="Supermercado" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Compras semanales, productos frescos</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina hace la compra grande los miércoles y sábados.</span></div>
+      <div class="quote">Martina siempre hace una lista antes de ir al supermercado — nunca olvida nada!</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🥩</span><span class="nm">CARNICERÍA</span>
+      <span class="badge" style="background:#FFE082">🔁 A menudo</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/carniceria.jpg" alt="Carnicería" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Carne, pollo, cordero</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina compra carne los jueves por la mañana.</span></div>
+      <div class="quote">Martina prepara milanesas con mucho cariño — es su plato favorito de toda la semana!</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🐔</span><span class="nm">POLLERÍA</span>
+      <span class="badge" style="background:#BDE8FF">🔷 A veces</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/polleria.jpg" alt="Pollería" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Pollo asado, gallinas</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina va a veces a la pollería cuando tiene visitas en casa.</span></div>
+      <div class="quote">Martina compra pollo asado cuando vienen sus padres a cenar — a todos les encanta!</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🍦</span><span class="nm">HELADERÍA</span>
+      <span class="badge" style="background:#FFE082">🔁 A menudo</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/heladeria.jpg" alt="Heladería" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Helados artesanos, granizados</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina toma helado los fines de semana con sus amigos.</span></div>
+      <div class="quote">Martina pide siempre dos bolas de pistacho — dice que es el mejor sabor del mundo.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">💪</span><span class="nm">GIMNASIO</span>
+      <span class="badge" style="background:#C8F7D4">✅ Siempre</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/gimnasio.jpg" alt="Gimnasio" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Musculación, cardio, clases</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina va al gimnasio los lunes, miércoles y viernes por la tarde.</span></div>
+      <div class="quote">Martina hace yoga los lunes y spinning los miércoles — es muy deportista!</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🚇</span><span class="nm">ESTACIÓN METRO</span>
+      <span class="badge" style="background:#C8F7D4">✅ Siempre</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/estacion-metro.jpg" alt="Estación Metro" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Metro, líneas, abono mensual</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina toma el metro todos los días para ir al trabajo.</span></div>
+      <div class="quote">Martina tiene el abono mensual del metro — es la forma más rápida de moverse por Madrid.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🥦</span><span class="nm">VERDULERÍA</span>
+      <span class="badge" style="background:#C8F7D4">✅ Siempre</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/verduleria.jpg" alt="Verdulería" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Frutas, verduras frescas</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina compra frutas y verduras cada dos días para tener siempre frescas.</span></div>
+      <div class="quote">Martina come fruta de temporada todos los días — dice que es su secreto de salud.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">💍</span><span class="nm">JOYERÍA</span>
+      <span class="badge" style="background:#EEEEEE">❌ Nunca / Casi nunca</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/joyeria.jpg" alt="Joyería" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Anillos, collares, relojes</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina casi nunca va a la joyería — es muy austera con el dinero.</span></div>
+      <div class="quote">Martina solo entra a la joyería cuando busca un regalo especial para alguien.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">👗</span><span class="nm">TIENDA DE ROPA</span>
+      <span class="badge" style="background:#BDE8FF">🔷 A veces</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/tienda-de-ropa.jpg" alt="Tienda de Ropa" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Ropa, moda, accesorios</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina va a comprar ropa a veces, sobre todo en rebajas.</span></div>
+      <div class="quote">Martina compra ropa en Zara — le encanta la moda pero no gasta demasiado.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">⛪</span><span class="nm">IGLESIA</span>
+      <span class="badge" style="background:#BDE8FF">🔷 A veces</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/iglesia.jpg" alt="Iglesia" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Misa, eventos culturales</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina va a la iglesia los domingos por la mañana.</span></div>
+      <div class="quote">Martina respeta mucho las tradiciones — los domingos siempre va a misa con su abuela.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🎭</span><span class="nm">TEATRO</span>
+      <span class="badge" style="background:#BDE8FF">🔷 A veces</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/teatro.jpg" alt="Teatro" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Obras de teatro, musicales</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina va al teatro una vez al mes con sus amigas.</span></div>
+      <div class="quote">Martina adora el teatro clásico español — su obra favorita es La casa de Bernarda Alba.</div>
+    </div>
+  </details>
+  <details class="lugar">
+    <summary><span class="em">🏥</span><span class="nm">HOSPITAL</span>
+      <span class="badge" style="background:#EEEEEE">❌ Nunca / Casi nunca</span></summary>
+    <div class="lugar-cuerpo">
+      <img class="foto" src="images/mobile/hospital.jpg" alt="Hospital" loading="lazy">
+      <div class="dato"><span class="ic">🛍️</span><span class="txt">Urgencias, consultorios</span></div>
+      <div class="dato"><span class="ic">📅</span><span class="txt">Martina casi nunca va al hospital — tiene muy buena salud.</span></div>
+      <div class="quote">Martina va al médico solo una vez al año para la revisión anual — es muy sana!</div>
+    </div>
+  </details>
+</section>
+
+<section class="sec" id="transportes">
+  <div class="eyebrow">Medios de transporte</div>
+  <h2>🚌 LOS TRANSPORTES</h2>
+  <div class="grid2">
+    <div class="tp"><span class="em">🚌</span><div class="nm">COLECTIVO / BUS</div><div class="us">Al trabajo</div></div>
+    <div class="tp"><span class="em">🚲</span><div class="nm">BICICLETA</div><div class="us">Al mercado</div></div>
+    <div class="tp"><span class="em">🚇</span><div class="nm">METRO / SUBTE</div><div class="us">Al centro</div></div>
+    <div class="tp"><span class="em">🚕</span><div class="nm">TAXI</div><div class="us">De noche</div></div>
+    <div class="tp"><span class="em">🚗</span><div class="nm">AUTO</div><div class="us">Fin de semana</div></div>
+    <div class="tp"><span class="em">🛵</span><div class="nm">MOTO</div><div class="us">Por la ciudad</div></div>
+  </div>
+  <div class="quote"><span class="lbl">💬 MARTINA DICE</span>
+  «Los lunes voy al trabajo <b>en metro</b>. Los sábados voy al mercado <b>en bicicleta</b>. Cuando llueve, voy <b>en colectivo</b>. De noche, prefiero ir <b>en taxi</b>.»</div>
+</section>
+
+<section class="sec" id="frecuencia">
+  <div class="eyebrow">Vocabulario de frecuencia</div>
+  <h2>🔄 ¿CON QUÉ FRECUENCIA?</h2>
+  <div class="fr" style="background:#C8F7D4">
+    <div class="nm">SIEMPRE</div><div class="def">todos los días</div><div class="ej">🥖 Va a la panadería todos los días</div>
+  </div>
+  <div class="fr" style="background:#FFE082">
+    <div class="nm">A MENUDO</div><div class="def">muchos días</div><div class="ej">🛒 Va al supermercado 2 veces por semana</div>
+  </div>
+  <div class="fr" style="background:#BDE8FF">
+    <div class="nm">A VECES</div><div class="def">algunos días</div><div class="ej">🎬 Va al cine los sábados</div>
+  </div>
+  <div class="fr" style="background:#F0F0F0">
+    <div class="nm">CASI NUNCA</div><div class="def">muy poco</div><div class="ej">💍 Va a la joyería una vez al año</div>
+  </div>
+  <div class="fr" style="background:#EEEEEE">
+    <div class="nm">NUNCA</div><div class="def">jamás</div><div class="ej">🎟️ No va a la lotería</div>
+  </div>
+</section>
+
+<section class="sec" id="semana">
+  <div class="eyebrow">Rutina</div>
+  <h2>📅 LA SEMANA DE MARTINA</h2>
+  <div class="dia"><div class="nm">LUNES</div><ul><li>🥐 Cafetería</li><li>🚇 Metro</li><li>💪 Gimnasio</li><li>🥦 Verdulería</li></ul></div>
+  <div class="dia"><div class="nm">MARTES</div><ul><li>🥐 Cafetería</li><li>🥖 Panadería</li><li>🚇 Metro</li><li>📰 Kiosco</li></ul></div>
+  <div class="dia"><div class="nm">MIÉRCOLES</div><ul><li>🥐 Cafetería</li><li>💪 Gimnasio</li><li>🛒 Supermercado</li><li>🚲 Bicicleta</li></ul></div>
+  <div class="dia"><div class="nm">JUEVES</div><ul><li>🥐 Cafetería</li><li>🥩 Carnicería</li><li>🚇 Metro</li><li>🥦 Verdulería</li></ul></div>
+  <div class="dia"><div class="nm">VIERNES</div><ul><li>🐟 Pescadería</li><li>💪 Gimnasio</li><li>🎨 Arte</li><li>🍻 Bar</li></ul></div>
+  <div class="dia"><div class="nm">SÁBADO</div><ul><li>🛒 Supermercado</li><li>🍦 Heladería</li><li>🎬 Cine</li><li>🚕 Taxi</li></ul></div>
+  <div class="dia"><div class="nm">DOMINGO</div><ul><li>⛪ Iglesia</li><li>🚶 A pie</li><li>👨‍👩‍👧 Familia</li><li>🌳 Parque</li></ul></div>
+  <div class="quote"><span class="lbl">💬 PRACTICÁ</span>
+  «Los lunes, Martina va a la <b>cafetería por la mañana</b>, luego toma el <b>metro</b> para ir al trabajo y <b>por la tarde</b> va al gimnasio.»</div>
+  <div class="quote"><span class="lbl">💬 PRACTICÁ</span>
+  «Los viernes, Martina va al <b>gimnasio por la tarde</b> y después va al <b>bar con amigos</b>. Los domingos descansa con la <b>familia</b>.»</div>
+</section>
+
+<section class="sec" id="dias">
+  <div class="eyebrow">Día por día</div>
+  <h2>☀️ LA SEMANA EN DETALLE</h2>
+  <article class="card">
+    <img class="foto" src="images/mobile/lunes.jpg" alt="Martina — lunes" loading="lazy">
+    <div class="cab"><h3>LUNES EN LA CAFETERÍA</h3><span class="badge" style="background:#C8F7D4">✅ Siempre — todos los lunes</span></div>
+    <div class="dato"><span class="ic">☕</span><span class="txt">Por la mañana → Cafetería ⭐</span></div>
+    <div class="dato"><span class="ic">🚇</span><span class="txt">Transporte → Metro</span></div>
+    <div class="dato"><span class="ic">💪</span><span class="txt">Por la tarde → Gimnasio</span></div>
+    <div class="dato"><span class="ic">🥦</span><span class="txt">Al salir → Verdulería</span></div>
+    <div class="quote"><span class="lbl">RUTINA</span>Los lunes, Martina empieza la semana con energía: desayuna en la cafetería, va al trabajo en metro y termina el día en el gimnasio.</div>
+    <div class="quote"><span class="lbl">💬 PRESENTE INDICATIVO</span>«Martina pide siempre un café con leche y un croissant — dice que es el mejor comienzo del día.»</div>
+  </article>
+  <article class="card">
+    <img class="foto" src="images/mobile/martes.jpg" alt="Martina — martes" loading="lazy">
+    <div class="cab"><h3>MARTES EN EL KIOSCO</h3><span class="badge" style="background:#C8F7D4">✅ Siempre — todos los martes</span></div>
+    <div class="dato"><span class="ic">☕</span><span class="txt">Por la mañana → Cafetería</span></div>
+    <div class="dato"><span class="ic">📰</span><span class="txt">De camino → Kiosco ⭐</span></div>
+    <div class="dato"><span class="ic">🚇</span><span class="txt">Transporte → Metro</span></div>
+    <div class="dato"><span class="ic">🥖</span><span class="txt">Al volver → Panadería</span></div>
+    <div class="quote"><span class="lbl">RUTINA</span>Los martes, Martina va para el kiosco de la esquina antes de tomar el metro — siempre compra el periódico y alguna golosina.</div>
+    <div class="quote"><span class="lbl">💬 PRESENTE INDICATIVO</span>«Martina compra El País todos los martes — le encanta leerlo en el metro camino al trabajo.»</div>
+  </article>
+  <article class="card">
+    <img class="foto" src="images/mobile/miercoles.jpg" alt="Martina — miércoles" loading="lazy">
+    <div class="cab"><h3>MIÉRCOLES EN BICICLETA</h3><span class="badge" style="background:#C8F7D4">🔁 Siempre — todos los miércoles</span></div>
+    <div class="dato"><span class="ic">☕</span><span class="txt">Por la mañana → Cafetería</span></div>
+    <div class="dato"><span class="ic">🚲</span><span class="txt">Transporte → Bicicleta ⭐</span></div>
+    <div class="dato"><span class="ic">💪</span><span class="txt">Por la tarde → Gimnasio</span></div>
+    <div class="dato"><span class="ic">🛒</span><span class="txt">Al salir → Supermercado</span></div>
+    <div class="quote"><span class="lbl">RUTINA</span>Los miércoles es el día favorito de Martina — va al trabajo en bicicleta por la bicisenda de la Gran Vía.</div>
+    <div class="quote"><span class="lbl">💬 PRESENTE INDICATIVO</span>«Martina ama pedalear por Madrid — dice que desde la bicicleta la ciudad se ve diferente.»</div>
+  </article>
+  <article class="card">
+    <img class="foto" src="images/mobile/jueves.jpg" alt="Martina — jueves" loading="lazy">
+    <div class="cab"><h3>JUEVES EN LA CARNICERÍA</h3><span class="badge" style="background:#FFE082">🔁 A menudo — los jueves</span></div>
+    <div class="dato"><span class="ic">🥐</span><span class="txt">Por la mañana → Cafetería</span></div>
+    <div class="dato"><span class="ic">🥩</span><span class="txt">Al mediodía → Carnicería ⭐</span></div>
+    <div class="dato"><span class="ic">🚇</span><span class="txt">Transporte → Metro</span></div>
+    <div class="dato"><span class="ic">🥦</span><span class="txt">Por la tarde → Verdulería</span></div>
+    <div class="quote"><span class="lbl">RUTINA</span>Los jueves, Martina compra carne en la carnicería por la mañana y va a la verdulería por la tarde.</div>
+    <div class="quote"><span class="lbl">💬 PRESENTE INDICATIVO</span>«Martina prepara milanesas con mucho cariño — ¡es su plato favorito de toda la semana!»</div>
+  </article>
+  <article class="card">
+    <img class="foto" src="images/mobile/viernes.jpg" alt="Martina — viernes" loading="lazy">
+    <div class="cab"><h3>VIERNES EN EL GIMNASIO</h3><span class="badge" style="background:#C8F7D4">✅ Siempre — todos los viernes</span></div>
+    <div class="dato"><span class="ic">🐟</span><span class="txt">Por la mañana → Pescadería ⭐</span></div>
+    <div class="dato"><span class="ic">💪</span><span class="txt">Por la tarde → Gimnasio ⭐</span></div>
+    <div class="dato"><span class="ic">🎨</span><span class="txt">Al salir → Clase de arte</span></div>
+    <div class="dato"><span class="ic">🍻</span><span class="txt">De noche → Bar con amigas</span></div>
+    <div class="quote"><span class="lbl">RUTINA</span>Los viernes, Martina va al gimnasio con sus amigas después del trabajo — es el entrenamiento más divertido de la semana.</div>
+    <div class="quote"><span class="lbl">💬 PRESENTE INDICATIVO</span>«Martina hace spinning con sus amigas los viernes — después van juntas al bar a celebrar el fin de semana.»</div>
+  </article>
+  <article class="card">
+    <img class="foto" src="images/mobile/sabado.jpg" alt="Martina — sábado" loading="lazy">
+    <div class="cab"><h3>SÁBADO EN LA HELADERÍA</h3><span class="badge" style="background:#FFE082">🔁 A menudo — casi todos los sábados</span></div>
+    <div class="dato"><span class="ic">🛒</span><span class="txt">Por la mañana → Supermercado</span></div>
+    <div class="dato"><span class="ic">🍦</span><span class="txt">Al mediodía → Heladería ⭐</span></div>
+    <div class="dato"><span class="ic">🎬</span><span class="txt">Por la tarde → Cine</span></div>
+    <div class="dato"><span class="ic">🚕</span><span class="txt">De noche → Taxi a casa</span></div>
+    <div class="quote"><span class="lbl">RUTINA</span>Los sábados, Martina disfruta del tiempo libre — hace las compras, toma helado y va al cine con sus amigos.</div>
+    <div class="quote"><span class="lbl">💬 PRESENTE INDICATIVO</span>«Martina pide siempre pistacho y chocolate — dice que la vida es mejor con un buen helado.»</div>
+  </article>
+  <article class="card">
+    <img class="foto" src="images/mobile/domingo.jpg" alt="Martina — domingo" loading="lazy">
+    <div class="cab"><h3>DOMINGO EN EL PARQUE</h3><span class="badge" style="background:#C8F7D4">✅ Siempre — todos los domingos</span></div>
+    <div class="dato"><span class="ic">⛪</span><span class="txt">Por la mañana → Iglesia</span></div>
+    <div class="dato"><span class="ic">🚶</span><span class="txt">A pie → Por el barrio</span></div>
+    <div class="dato"><span class="ic">🌳</span><span class="txt">Al mediodía → Parque del Retiro ⭐</span></div>
+    <div class="dato"><span class="ic">👨‍👩‍👧</span><span class="txt">Por la tarde → Familia</span></div>
+    <div class="quote"><span class="lbl">RUTINA</span>Los domingos, Martina descansa en el Parque del Retiro — lee, pasea y juega con su perro. Es su día favorito.</div>
+    <div class="quote"><span class="lbl">💬 PRESENTE INDICATIVO</span>«Martina va siempre al Parque del Retiro los domingos — dice que es el pulmón verde de Madrid y su lugar de paz.»</div>
+  </article>
+</section>
+
+<section class="sec" id="hablar">
+  <div class="eyebrow">Producción oral</div>
+  <h2>🎯 AHORA HABLÁ DE VOS</h2>
+  <p style="font-weight:700;margin-top:-6px">Respondé en voz alta, aunque estés solo en casa. Grabate con el celular y escuchate después.</p>
+  <div class="tarea"><div class="n">1</div><div>
+    <strong>📍 Tu barrio</strong>¿Qué lugares hay cerca de tu casa? Mencioná 5.</div></div>
+  <div class="tarea"><div class="n">2</div><div>
+    <strong>🚌 ¿Cómo vas?</strong>Contá cómo te transportás: «Voy al supermercado en bicicleta…»</div></div>
+  <div class="tarea"><div class="n">3</div><div>
+    <strong>🔄 ¿Con qué frecuencia?</strong>Usá: siempre / a menudo / a veces / casi nunca / nunca</div></div>
+  <div class="molde">
+    Los <span>[día]</span>, yo voy a <span>[lugar]</span> en <span>[transporte]</span>.<br>
+    Voy <span>[siempre / a veces / nunca]</span> porque <span>[razón]</span>.
+  </div>
+</section>
+
+<div class="footer-nota">Español · Nivel A1 · Clase del 16 de mayo de 2026<br>Un día con Martina</div>
+</div>
+
+<script>
+  var pb = document.getElementById('pb');
+  function upd(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    pb.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+  }
+  document.addEventListener('scroll', upd, {passive:true});
+  window.addEventListener('resize', upd);
+  upd();
+</script>
+</body>
+</html>
