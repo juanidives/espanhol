@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reto Guatemala: historias en pasado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --carmin:#A4133C; --maiz:#F2B705; --anil:#1F3A93; --verde:#0F7B5F;
+  --bg:#FFFFFF; --ink:#16182B; --muted:#4A4D63; --panel:#F4F2F8;
+  --ok-bg:#E3F4EE; --bad-bg:#FBE6EB; --line:#D9D6E4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12142A; --ink:#F3F2FA; --muted:#C3C4D8; --panel:#1E2140;
+    --ok-bg:#12382F; --bad-bg:#3E1422; --line:#34385E;
+    --anil:#8FA6F2; --carmin:#F0668A; --verde:#4CC9A2;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12142A; --ink:#F3F2FA; --muted:#C3C4D8; --panel:#1E2140;
+  --ok-bg:#12382F; --bad-bg:#3E1422; --line:#34385E;
+  --anil:#8FA6F2; --carmin:#F0668A; --verde:#4CC9A2;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Atkinson Hyperlegible",Arial,sans-serif;font-size:1.25rem;line-height:1.5;
+  padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);
+  padding-bottom:env(safe-area-inset-bottom);overscroll-behavior-y:contain}
+.tejido{height:22px;background:
+  linear-gradient(135deg,var(--carmin) 25%,transparent 25%) -11px 0/22px 22px,
+  linear-gradient(225deg,var(--maiz) 25%,transparent 25%) -11px 0/22px 22px,
+  linear-gradient(315deg,#1F3A93 25%,transparent 25%) 0 0/22px 22px,
+  linear-gradient(45deg,#0F7B5F 25%,transparent 25%) 0 0/22px 22px;}
+main{max-width:860px;margin:0 auto;padding:2rem 1.25rem 3rem}
+h1{font-family:"Bricolage Grotesque",Arial,sans-serif;font-weight:800;
+  font-size:clamp(2.4rem,6vw,4rem);line-height:1.05;margin:.5rem 0 1rem;color:var(--anil)}
+h2{font-family:"Bricolage Grotesque",Arial,sans-serif;font-weight:800;
+  font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.2;margin:.25rem 0 1.25rem}
+.lead{font-size:1.4rem;color:var(--muted);max-width:60ch}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem 0}
+.stage{background:var(--panel);border-radius:14px;padding:1rem 1.2rem}
+.stage b{display:block;font-size:1.3rem;color:var(--carmin)}
+button{font:inherit;cursor:pointer;border:none;touch-action:manipulation}
+.cta{background:var(--carmin);color:#fff;font-weight:700;font-size:1.4rem;
+  padding:.9rem 2rem;border-radius:999px;min-height:48px}
+.cta:active{filter:brightness(.92)}
+@media (hover:hover){.cta:hover{filter:brightness(1.08)}}
+:focus-visible{outline:4px solid var(--maiz);outline-offset:3px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.75rem;font-weight:700}
+.etapa{color:var(--verde)}
+.puntos{color:var(--anil)}
+.bar{height:16px;background:var(--panel);border-radius:999px;overflow:hidden;margin-bottom:2rem}
+.bar span{display:block;height:100%;width:0;background:var(--maiz);transition:width .4s}
+.contexto{display:inline-block;background:var(--anil);color:#fff;border-radius:8px;
+  padding:.15rem .7rem;font-weight:700;font-size:1.1rem;margin-bottom:.75rem}
+.opciones{display:grid;gap:1rem;margin:1.5rem 0}
+.op{background:var(--panel);color:var(--ink);text-align:left;padding:1.1rem 1.4rem;
+  border-radius:14px;font-size:1.5rem;font-weight:700;border:3px solid transparent;min-height:48px;touch-action:manipulation}
+.op:active:not(:disabled){border-color:var(--anil)}
+@media (hover:hover){.op:hover:not(:disabled){border-color:var(--anil)}}
+.op:disabled{cursor:default;opacity:.55}
+.op.bien{background:var(--ok-bg);border-color:var(--verde);opacity:1}
+.op.mal{background:var(--bad-bg);border-color:var(--carmin);opacity:1}
+.feedback{border-radius:14px;padding:1.1rem 1.4rem;margin-top:.5rem}
+.feedback.bien{background:var(--ok-bg)}
+.feedback.mal{background:var(--bad-bg)}
+.feedback strong{font-size:1.35rem;display:block;margin-bottom:.25rem}
+.acciones{margin-top:1.25rem;display:flex;gap:1rem;flex-wrap:wrap}
+.sec{background:transparent;color:var(--anil);font-weight:700;font-size:1.25rem;
+  padding:.8rem 1.4rem;border-radius:999px;border:3px solid var(--anil)}
+.final{font-family:"Bricolage Grotesque",Arial,sans-serif;font-size:clamp(4rem,14vw,7rem);
+  font-weight:800;color:var(--carmin);line-height:1;margin:1rem 0}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){.bar span{transition:none}}
+</style>
+</head>
+<body>
+<div class="tejido" aria-hidden="true"></div>
+<main>
+  <section id="inicio">
+    <h1>Reto Guatemala: historias en pasado</h1>
+    <p class="lead">Diez preguntas sobre la historia de Luis von Ahn y un viaje a Guatemala. Elegí la opción que corresponde al contexto. Si te equivocás, leés la explicación y volvés a intentar.</p>
+    <div class="stages">
+      <div class="stage"><b>1. Reconocer</b>¿Imperfecto o indefinido?</div>
+      <div class="stage"><b>2. Elegir según el contexto</b>¿Hábito, escena o hecho terminado?</div>
+      <div class="stage"><b>3. Completar una historia</b>Un viaje al lago Atitlán</div>
+    </div>
+    <button class="cta" id="empezar">Empezar el reto</button>
+  </section>
+
+  <section id="juego" hidden>
+    <div class="top"><span class="etapa" id="etapa"></span><span class="puntos" id="puntos">0 puntos</span></div>
+    <div class="bar" role="progressbar" aria-label="Progreso" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><span id="barra"></span></div>
+    <span class="contexto" id="contexto" hidden></span>
+    <h2 id="pregunta"></h2>
+    <div class="opciones" id="opciones"></div>
+    <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+    <div class="acciones" id="acciones"></div>
+  </section>
+
+  <section id="fin" hidden>
+    <h2>¡Terminaste el reto!</h2>
+    <div class="final" id="total"></div>
+    <p class="lead" id="mensaje"></p>
+    <div class="acciones"><button class="cta" id="otra">Jugar otra vez</button></div>
+  </section>
+</main>
+<div class="tejido" aria-hidden="true"></div>
+
+<script>
+const PREGUNTAS = [
+  {etapa:"1. Reconocer", texto:"«vivía»: ¿qué tiempo es?", op:["Pretérito imperfecto","Pretérito perfecto simple"], ok:0,
+   exp:"Vivía termina en -ía: es imperfecto. Lo usamos para describir cómo era la vida en el pasado."},
+  {etapa:"1. Reconocer", texto:"«creó»: ¿qué tiempo es?", op:["Pretérito imperfecto","Pretérito perfecto simple"], ok:1,
+   exp:"Creó es perfecto simple (también llamado indefinido). Presenta un hecho como terminado."},
+  {etapa:"1. Reconocer", texto:"«estudiaban»: ¿qué tiempo es?", op:["Pretérito imperfecto","Pretérito perfecto simple"], ok:0,
+   exp:"Estudiaban lleva -aba-: es imperfecto, en la forma de ellos/ellas/ustedes."},
+  {etapa:"2. Elegir según el contexto", ctx:"Hábito", texto:"De niño, Luis ___ con la computadora todas las tardes.", op:["jugaba","jugó"], ok:0,
+   exp:"«Todas las tardes» marca una costumbre del pasado. Para los hábitos usamos el imperfecto: jugaba."},
+  {etapa:"2. Elegir según el contexto", ctx:"Hecho terminado", texto:"En 2009, Luis ___ reCAPTCHA a Google.", op:["vendía","vendió"], ok:1,
+   exp:"Es un hecho concreto, con fecha, que presentamos como terminado: vendió."},
+  {etapa:"2. Elegir según el contexto", ctx:"Descripción", texto:"Cuando Luis era niño, su casa ___ en Ciudad de Guatemala.", op:["estaba","estuvo"], ok:0,
+   exp:"Describimos la situación de fondo de su infancia. Para describir usamos el imperfecto: estaba."},
+  {etapa:"2. Elegir según el contexto", ctx:"Hecho terminado", texto:"En 2011, Luis y Severin Hacker ___ Duolingo.", op:["empezaban","empezaron"], ok:1,
+   exp:"Es el momento en que nace el proyecto: un hecho que hace avanzar la historia. Empezaron."},
+  {etapa:"3. Completar una historia", ctx:"Relato ficticio", texto:"El año pasado, Ana ___ a Guatemala por primera vez.", op:["viajaba","viajó"], ok:1,
+   exp:"«Por primera vez» señala un hecho único que abre la historia: viajó."},
+  {etapa:"3. Completar una historia", ctx:"Relato ficticio", texto:"Cuando llegó al lago Atitlán, ___ sol y el agua estaba tranquila.", op:["hacía","hizo"], ok:0,
+   exp:"Describimos la escena en el momento en que Ana llega, igual que «el agua estaba tranquila». Por eso: hacía."},
+  {etapa:"3. Completar una historia", ctx:"Relato ficticio", texto:"Mientras caminaba por el mercado, de repente ___ a una amiga de Brasil.", op:["veía","vio"], ok:1,
+   exp:"«De repente» marca un acontecimiento que interrumpe la escena (mientras caminaba). Por eso: vio."}
+];
+
+let i=0, puntos=0, intentos=0;
+const $=id=>document.getElementById(id);
+
+function mostrar(sec){["inicio","juego","fin"].forEach(s=>$(s).hidden=(s!==sec));}
+
+function cargar(){
+  const p=PREGUNTAS[i]; intentos=0;
+  $("etapa").textContent=p.etapa;
+  $("puntos").textContent=puntos+" puntos";
+  $("barra").style.width=(i/PREGUNTAS.length*100)+"%";
+  document.querySelector(".bar").setAttribute("aria-valuenow",i);
+  $("contexto").hidden=!p.ctx; $("contexto").textContent=p.ctx||"";
+  $("pregunta").textContent=p.texto;
+  $("feedback").hidden=true; $("acciones").innerHTML="";
+  const box=$("opciones"); box.innerHTML="";
+  p.op.forEach((t,k)=>{
+    const b=document.createElement("button");
+    b.className="op"; b.textContent=t;
+    b.onclick=()=>responder(k,b);
+    box.appendChild(b);
+  });
+  box.querySelector("button").focus();
+}
+
+function responder(k,btn){
+  const p=PREGUNTAS[i]; intentos++;
+  const botones=[...$("opciones").children];
+  const fb=$("feedback"); fb.hidden=false;
+  if(k===p.ok){
+    const gana = intentos===1 ? 10 : 5;
+    puntos+=gana;
+    botones.forEach(b=>b.disabled=true);
+    btn.classList.add("bien");
+    fb.className="feedback bien";
+    fb.innerHTML="<strong>¡Muy bien! +"+gana+" puntos</strong>"+p.exp;
+    $("puntos").textContent=puntos+" puntos";
+    $("acciones").innerHTML="";
+    const sig=document.createElement("button");
+    sig.className="cta";
+    sig.textContent = i<PREGUNTAS.length-1 ? "Siguiente pregunta" : "Ver resultado";
+    sig.onclick=()=>{ i++; if(i<PREGUNTAS.length) cargar(); else terminar(); };
+    $("acciones").appendChild(sig); sig.focus();
+  } else {
+    btn.classList.add("mal"); btn.disabled=true;
+    fb.className="feedback mal";
+    fb.innerHTML="<strong>Casi. Mirá el contexto otra vez.</strong>"+p.exp+" Probá con la otra opción.";
+    botones.find(b=>!b.disabled).focus();
+  }
+}
+
+function terminar(){
+  $("barra").style.width="100%";
+  mostrar("fin");
+  $("total").textContent=puntos+" / 100";
+  $("mensaje").textContent = puntos>=80
+    ? "Ya distinguís muy bien el contexto de los hechos. ¡Luis estaría orgulloso!"
+    : "Cada error te mostró una pista del contexto. Jugá otra vez y fijate en las palabras clave: todas las tardes, de repente, por primera vez.";
+}
+
+$("empezar").onclick=()=>{ i=0; puntos=0; mostrar("juego"); cargar(); };
+$("otra").onclick=()=>{ i=0; puntos=0; mostrar("juego"); cargar(); };
+</script>
+</body>
+</html>
