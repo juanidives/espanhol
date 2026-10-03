@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --rojo:#C8102E; --rojo-osc:#8F0A1F; --rojo-claro:#FBE9EC;
-  --grafito:#1F2226; --gris:#555B63; --linea:#D5D8DD; --fondo:#F2F3F5; --blanco:#FFFFFF;
+  --rojo:#B23A2E; --rojo-osc:#8A2A21; --rojo-claro:#F6E2CF; --ambar:#E9A23B;
+  --grafito:#2B2523; --gris:#6A5F58; --linea:#DDCFB8; --fondo:#F1E6D3; --blanco:#FBF5EA;
   --display:"Archivo","Arial Black",Arial,sans-serif;
   --texto:"Atkinson Hyperlegible",Verdana,Arial,sans-serif;
   --mano:"Caveat","Comic Sans MS",cursive;
@@ -23,7 +23,7 @@ body{font-family:var(--texto);color:var(--grafito);background:var(--grafito);
 /* ---------- Estructura: cada layout define su propio display ---------- */
 #deck{position:fixed;inset:6px 0 64px 0}
 .slide{display:none;position:absolute;inset:0;overflow-y:auto;background:var(--blanco);
-  padding:clamp(18px,3.2vw,56px) clamp(18px,4vw,72px) clamp(18px,3vw,48px) clamp(34px,6vw,110px);
+  padding:clamp(14px,2.6vh,30px) clamp(18px,3.5vw,64px) clamp(14px,2.6vh,30px) clamp(34px,6vw,110px);
   background-image:linear-gradient(var(--rojo),var(--rojo));background-repeat:no-repeat;
   background-size:3px 100%;background-position:clamp(16px,3vw,56px) 0}
 .slide.active.layout-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.9em}
@@ -44,13 +44,13 @@ em{font-style:italic}
 
 /* ---------- Portada ---------- */
 .portada{background-color:var(--grafito);color:var(--blanco);
-  background-image:repeating-linear-gradient(transparent 0 2.35em,rgba(255,255,255,.07) 2.35em calc(2.35em + 1px)),linear-gradient(var(--rojo),var(--rojo));
+  background-image:repeating-linear-gradient(transparent 0 2.35em,rgba(251,245,234,.07) 2.35em calc(2.35em + 1px)),linear-gradient(var(--rojo),var(--rojo));
   background-size:100% 100%,3px 100%;background-position:0 0,clamp(16px,3vw,56px) 0;background-repeat:repeat,no-repeat}
 .portada h1{font-weight:900;font-size:2.9em}
 .n40{color:var(--rojo);font-size:1.25em}
-.portada .n40{color:#FF4D63}
-.clase{font-size:.62em;color:#C9CDD3}
-.tema{font-size:1em;color:#E7E9EC}
+.portada .n40{color:var(--ambar)}
+.clase{font-size:.62em;color:#D9CDBB}
+.tema{font-size:1em;color:#EFE6D6}
 .tema em{color:var(--blanco);font-weight:700}
 
 /* ---------- QR ---------- */
@@ -61,13 +61,16 @@ em{font-style:italic}
 .qrs .qr{width:min(40vh,20vw,340px);border:3px solid var(--grafito)}
 
 /* ---------- Imágenes con respaldo ---------- */
-.ph{display:grid;place-items:center;overflow:hidden;border-radius:10px;background:var(--fondo)}
-.ph img{display:block;width:100%;height:100%;object-fit:contain}
-.ph.big{width:100%;max-height:68vh;aspect-ratio:1/1}
+.ph{display:grid;place-items:center;overflow:hidden;border-radius:10px;background:var(--fondo);aspect-ratio:4/5}
+.ph img{display:block;width:100%;height:100%;object-fit:cover}
+.ph.big{height:calc(100vh - 70px - 2*clamp(14px,2.6vh,30px));width:auto;max-width:100%;box-shadow:0 6px 24px rgba(43,37,35,.25)}
+.slide.active.layout-two-col.foto-izq{grid-template-columns:auto 1fr}
+.slide.active.layout-two-col.foto-der{grid-template-columns:1fr auto}
+.colfoto{align-items:center}
 .ph.noimg img{display:none}
 .ph.noimg::before{content:attr(data-emoji);font-size:5em;line-height:1}
 .ph.big.noimg::before{font-size:9em}
-.portada .ph{background:rgba(255,255,255,.06)}
+.portada .ph{background:rgba(251,245,234,.06)}
 
 /* ---------- Texto grande y modelos ---------- */
 .grande{font-size:1.55em;line-height:1.25;text-wrap:balance}
@@ -132,7 +135,7 @@ audio{width:100%;max-width:900px;height:64px}
 .mal{text-decoration:line-through;text-decoration-color:var(--rojo);text-decoration-thickness:3px;color:var(--gris)}
 .mal::before{content:"✘";color:var(--rojo);display:inline-block;margin-right:.35em}
 .bien{font-weight:700}
-.bien::before{content:"✔ ";color:#1B7A3D}
+.bien::before{content:"✔ ";color:#2F7D4F}
 .por{font-size:.82em;color:var(--gris)}
 .contraste h3{font-size:1.6em}
 .contraste h3.rojo{color:var(--rojo)}
@@ -145,14 +148,14 @@ audio{width:100%;max-width:900px;height:64px}
 .yosi{font-size:1.35em;font-weight:700;color:var(--rojo-osc)}
 
 /* ---------- Carrete ---------- */
-.carrete{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.6vw,26px);flex:1;align-content:center}
-.pola{position:relative;background:var(--blanco);padding:.4em .4em .2em;box-shadow:0 3px 14px rgba(31,34,38,.28);display:grid;gap:.15em;transform:rotate(-1.2deg)}
+.carrete{display:grid;grid-template-columns:repeat(4,minmax(0,calc(52vh*.8)));justify-content:center;gap:clamp(12px,2vw,34px);flex:1;align-content:center}
+.pola{position:relative;background:#fff;padding:.4em .4em .2em;box-shadow:0 3px 14px rgba(31,34,38,.28);display:grid;gap:.15em;transform:rotate(-1.2deg)}
 .pola:nth-child(even){transform:rotate(1.4deg)}
-.pola .ph{border-radius:2px;height:19vh;width:100%}
+.pola .ph{border-radius:2px;width:100%}
 .pola.no .ph{filter:grayscale(1);opacity:.55}
-.cap{font-family:var(--mano);font-size:1.1em;line-height:1.05;text-align:center}
-.sello{position:absolute;top:.5em;right:.3em;font-family:var(--display);font-weight:900;font-size:.72em;color:var(--rojo);
-  border:3px solid var(--rojo);border-radius:6px;padding:.05em .4em;transform:rotate(12deg);background:rgba(255,255,255,.88)}
+.cap{font-family:var(--mano);font-size:1.3em;line-height:1.05;text-align:center}
+.sello{position:absolute;top:.5em;right:.3em;font-family:var(--display);font-weight:900;font-size:.95em;color:var(--rojo);
+  border:4px solid var(--rojo);border-radius:6px;padding:.05em .45em;transform:rotate(12deg);background:rgba(255,255,255,.9)}
 .modelos{display:flex;flex-wrap:wrap;gap:.4em 2.5em;font-size:1.25em;align-items:center}
 .modelos p{display:flex;align-items:center;gap:.5em}
 .modelos b{color:var(--rojo-osc)}
@@ -164,20 +167,20 @@ audio{width:100%;max-width:900px;height:64px}
 .resp-modelo span{color:var(--gris);font-weight:600}
 .fb{flex:1;align-content:start;font-size:1.05em}
 .fb>div{min-height:38vh;background:var(--fondo);padding:.7em;border-radius:0 0 10px 10px}
-.fb>div:nth-child(1){border-top-color:#1B7A3D}
+.fb>div:nth-child(1){border-top-color:#2F7D4F}
 .fb>div:nth-child(2){border-top-color:var(--rojo)}
 .fb p{color:var(--gris);font-size:.85em}
 
 /* ---------- Navegación ---------- */
-.progreso{position:fixed;top:0;left:0;right:0;height:6px;background:#3A3E44}
-#barra{display:block;height:100%;width:0;background:var(--rojo);transition:width .2s}
+.progreso{position:fixed;top:0;left:0;right:0;height:6px;background:#4A413D}
+#barra{display:block;height:100%;width:0;background:var(--ambar);transition:width .2s}
 .nav{position:fixed;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;justify-content:center;gap:1.2em;
   background:var(--grafito);color:var(--blanco);font-family:var(--display);font-weight:800;font-size:20px}
-.nav button{width:64px;height:48px;border:2px solid #6B7078;border-radius:8px;background:transparent;color:var(--blanco);
+.nav button{width:64px;height:48px;border:2px solid #8A7D73;border-radius:8px;background:transparent;color:var(--blanco);
   font-size:30px;line-height:1;cursor:pointer;font-family:inherit}
 .nav button:hover{background:var(--rojo);border-color:var(--rojo)}
 .nav button:focus-visible,audio:focus-visible{outline:3px solid #FFD23F;outline-offset:2px}
-.nav button:disabled{opacity:.3;cursor:default;background:transparent;border-color:#6B7078}
+.nav button:disabled{opacity:.3;cursor:default;background:transparent;border-color:#8A7D73}
 #cuenta{min-width:5em;text-align:center}
 @media (prefers-reduced-motion:reduce){#barra{transition:none}}
 
@@ -188,9 +191,10 @@ audio{width:100%;max-width:900px;height:64px}
   h2{font-size:1.7em}
   .portada h1{font-size:2.5em}
   .tres,.ejemplos{grid-template-columns:1fr}
-  .carrete{grid-template-columns:repeat(2,1fr)}
   .ojo li{grid-template-columns:1fr}
-  .ph.big{max-height:42vh}
+  .ph.big{height:auto;width:min(100%,56vh)}
+  .slide.active.layout-two-col.foto-izq,.slide.active.layout-two-col.foto-der{grid-template-columns:1fr}
+  .carrete{grid-template-columns:repeat(2,1fr)}
   .qrs .qr{width:min(40vw,220px)}
   .frase{font-size:1.8em}
   .versus{font-size:1.35em}
@@ -202,17 +206,17 @@ audio{width:100%;max-width:900px;height:64px}
 <body>
 <div class="progreso"><span id="barra"></span></div>
 <main id="deck">
-<section class="slide layout-two-col portada">
+<section class="slide layout-two-col portada foto-der">
 <div class="col">
 <p class="clase">Español A1 · sábado 3 de octubre de 2026</p>
 <h1><span class="n40">40</span> cosas antes de los <span class="n40">40</span></h1>
 <p class="tema">Pretérito perfecto compuesto: <em>he cantado, has visto, hemos hecho</em></p>
 <div class="qrbox"><img class="qr" src="data:image/png;base64,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" alt="Código QR para abrir la clase en el celular"><p>Abre la clase<br>en tu celular</p></div>
 </div>
-<div class="col"><figure class="ph big" data-emoji="📷"><img src="images/iker-personagem.png" alt="Íker, fotógrafo de viajes" onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col colfoto"><figure class="ph big" data-emoji="📷"><img src="images/iker-personagem.png" alt="Íker, fotógrafo de viajes" onerror="this.parentNode.classList.add('noimg')"></figure></div>
 </section>
 <section class="slide layout-flex-col">
-<header class="sh"><span class="sec">Hoy</span><span class="min">60 min</span></header><h2>Hoy vas a contar lo que has hecho en tu vida</h2>
+<h2>Hoy vas a contar lo que has hecho en tu vida</h2>
 <ol class="pasos">
 <li><strong>Escuchas</strong> a Íker y su lista de 40 cosas.</li>
 <li><strong>Descubres</strong> cómo funciona <em>he + participio</em>.</li>
@@ -221,21 +225,21 @@ audio{width:100%;max-width:900px;height:64px}
 <p class="meta-frase">Al final vas a poder preguntar: <strong>¿Alguna vez has…?</strong></p>
 </section>
 <section class="slide layout-center">
-<header class="sh"><span class="sec">Calentamiento</span><span class="min">0–5 min</span></header><h2>¿Qué hiciste ayer?</h2>
+<h2>¿Qué hiciste ayer?</h2>
 <p class="grande">En parejas, 3 minutos.<br>Cuenta tres cosas de ayer.</p>
 <p class="modelo">Ayer <strong>trabajé</strong>. Ayer <strong>comí</strong> pasta. Ayer <strong>fui</strong> al mercado.</p>
 </section>
 <section class="slide layout-center">
-<header class="sh"><span class="sec">Calentamiento</span><span class="min">0–5 min</span></header><h2>¿Qué cambió?</h2>
+<h2>¿Qué cambió?</h2>
 <div class="versus">
 <p><span class="marca">Ayer</span> desayuné café.</p>
 <p><span class="marca rojo">Hoy</span> <strong class="pc">he desayunado</strong> café.</p>
 </div>
 <p class="pista">Mira el verbo: ¿cuántas palabras tiene?</p>
 </section>
-<section class="slide layout-two-col">
-<div class="col"><figure class="ph big" data-emoji="📓"><img src="images/iker-quaderno.png" alt="Íker abre su cuaderno" onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><header class="sh"><span class="sec">Personaje</span><span class="min">5–13 min</span></header><h2>Íker Etxeberria</h2>
+<section class="slide layout-two-col foto-izq">
+<div class="col colfoto"><figure class="ph big" data-emoji="📓"><img src="images/iker-quaderno.png" alt="Íker abre su cuaderno" onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col"><h2>Íker Etxeberria</h2>
 <ul class="ficha">
 <li><strong>34 años.</strong> Hoy es su cumpleaños.</li>
 <li>Es de <strong>Bilbao</strong>, España.</li>
@@ -244,7 +248,7 @@ audio{width:100%;max-width:900px;height:64px}
 </ul></div>
 </section>
 <section class="slide layout-flex-col">
-<header class="sh"><span class="sec">Escucha</span><span class="min">5–13 min</span></header><h2>Escucha a Íker</h2>
+<h2>Escucha a Íker</h2>
 <audio controls preload="none" src="audio/iker-lista.mp3">Tu navegador no reproduce audio.</audio>
 <ol class="preguntas">
 <li>¿Cuántas cosas de la lista ha hecho ya?</li>
@@ -254,7 +258,7 @@ audio{width:100%;max-width:900px;height:64px}
 </ol>
 </section>
 <section class="slide layout-col-wide">
-<header class="sh"><span class="sec">Escucha</span><span class="min">5–13 min</span></header><h2>Lo que dice Íker</h2>
+<h2>Lo que dice Íker</h2>
 <div class="prosa"><p>Hola, soy Íker. Hoy cumplo treinta y cuatro y esta mañana <span class="pc">he abierto</span> mi cuaderno de las cuarenta cosas antes de los cuarenta. Lo empecé hace unos años, cuando tenía treinta. En aquella época pensaba que cuarenta estaba lejísimos.</p>
 <p>Pues no.</p>
 <p>Esta mañana <span class="pc">he mirado</span> la lista y <span class="pc">he contado</span> veintisiete cosas. Ya <span class="pc">he estado</span> en Perú, <span class="pc">he dormido</span> en un hostal de Cusco, <span class="pc">he comido</span> bandeja paisa en Medellín y <span class="pc">he visto</span> un partido en Buenos Aires. El año pasado aprendí a nadar… bueno, aprendí a no hundirme. Este año <span class="pc">he corrido</span> diez kilómetros.</p>
@@ -269,7 +273,7 @@ audio{width:100%;max-width:900px;height:64px}
 <p>¿Y vosotros? ¿Alguna vez <span class="pc">habéis hecho</span> algo que os daba mucha vergüenza?</p></div>
 </section>
 <section class="slide layout-flex-col como">
-<header class="sh"><span class="sec">Gramática</span><span class="min">13–23 min</span></header><h2>Cómo funciona</h2>
+<h2>Cómo funciona</h2>
 <div class="formula"><span class="caja aux">haber</span><span class="mas">+</span><span class="caja par">participio</span><span class="nota">Dos palabras, siempre juntas.</span></div>
 <div class="tres">
 <div><h3>Haber cambia</h3>
@@ -286,7 +290,7 @@ audio{width:100%;max-width:900px;height:64px}
 </div>
 </section>
 <section class="slide layout-two-col">
-<div class="col"><header class="sh"><span class="sec">Gramática</span><span class="min">13–23 min</span></header><h2>El verbo haber</h2>
+<div class="col"><h2>El verbo haber</h2>
 <table class="conj"><thead><tr><th>Pronombre</th><th>haber</th></tr></thead><tbody><tr><th scope="row">yo</th><td class="aux">he</td></tr><tr><th scope="row">tú</th><td class="aux">has</td></tr><tr><th scope="row">vos</th><td class="aux">has</td></tr><tr><th scope="row">él / ella / usted</th><td class="aux">ha</td></tr><tr><th scope="row">nosotros/as</th><td class="aux">hemos</td></tr><tr><th scope="row">vosotros/as</th><td class="aux">habéis</td></tr><tr><th scope="row">ellos / ellas / ustedes</th><td class="aux">han</td></tr></tbody></table></div>
 <div class="col side"><h3>Para qué sirve</h3>
 <p>Aquí <em>haber</em> es un ayudante: dice <strong>quién</strong> hizo la acción.</p>
@@ -295,27 +299,27 @@ audio{width:100%;max-width:900px;height:64px}
 <p class="ej">Me <b>he</b> levantado temprano.</p><p class="ej">Lo <b>he</b> visto.</p></div>
 </section>
 <section class="slide layout-two-col">
-<div class="col"><header class="sh"><span class="sec">Gramática</span><span class="min">13–23 min</span></header><h2>Verbos en -AR</h2>
+<div class="col"><h2>Verbos en -AR</h2>
 <p class="regla">-ar → <b>-ado</b></p><table class="conj"><thead><tr><th>Pronombre</th><th>haber</th><th>participio</th></tr></thead><tbody><tr><th scope="row">yo</th><td class="aux">he</td><td class="par">viaj<b>ado</b></td></tr><tr><th scope="row">tú</th><td class="aux">has</td><td class="par">viaj<b>ado</b></td></tr><tr><th scope="row">vos</th><td class="aux">has</td><td class="par">viaj<b>ado</b></td></tr><tr><th scope="row">él / ella / usted</th><td class="aux">ha</td><td class="par">viaj<b>ado</b></td></tr><tr><th scope="row">nosotros/as</th><td class="aux">hemos</td><td class="par">viaj<b>ado</b></td></tr><tr><th scope="row">vosotros/as</th><td class="aux">habéis</td><td class="par">viaj<b>ado</b></td></tr><tr><th scope="row">ellos / ellas / ustedes</th><td class="aux">han</td><td class="par">viaj<b>ado</b></td></tr></tbody></table></div>
 <div class="col side"><h3>Más verbos</h3><ul class="pares"><li>hablar → <strong>hablado</strong></li><li>cantar → <strong>cantado</strong></li><li>desayunar → <strong>desayunado</strong></li><li>estar → <strong>estado</strong></li><li>tachar → <strong>tachado</strong></li></ul><h3>Ejemplos</h3><p class='ej'>He <b>estado</b> en Perú.</p><p class='ej'>¿Has <b>cantado</b> en público?</p></div>
 </section>
 <section class="slide layout-two-col">
-<div class="col"><header class="sh"><span class="sec">Gramática</span><span class="min">13–23 min</span></header><h2>Verbos en -ER</h2>
+<div class="col"><h2>Verbos en -ER</h2>
 <p class="regla">-er → <b>-ido</b></p><table class="conj"><thead><tr><th>Pronombre</th><th>haber</th><th>participio</th></tr></thead><tbody><tr><th scope="row">yo</th><td class="aux">he</td><td class="par">com<b>ido</b></td></tr><tr><th scope="row">tú</th><td class="aux">has</td><td class="par">com<b>ido</b></td></tr><tr><th scope="row">vos</th><td class="aux">has</td><td class="par">com<b>ido</b></td></tr><tr><th scope="row">él / ella / usted</th><td class="aux">ha</td><td class="par">com<b>ido</b></td></tr><tr><th scope="row">nosotros/as</th><td class="aux">hemos</td><td class="par">com<b>ido</b></td></tr><tr><th scope="row">vosotros/as</th><td class="aux">habéis</td><td class="par">com<b>ido</b></td></tr><tr><th scope="row">ellos / ellas / ustedes</th><td class="aux">han</td><td class="par">com<b>ido</b></td></tr></tbody></table></div>
 <div class="col side"><h3>Más verbos</h3><ul class="pares"><li>beber → <strong>bebido</strong></li><li>correr → <strong>corrido</strong></li><li>perder → <strong>perdido</strong></li><li>tener → <strong>tenido</strong></li><li>ser → <strong>sido</strong></li></ul><h3>Ejemplos</h3><p class='ej'>He <b>comido</b> bandeja paisa.</p><p class='ej'>Este año he <b>corrido</b> diez kilómetros.</p></div>
 </section>
 <section class="slide layout-two-col">
-<div class="col"><header class="sh"><span class="sec">Gramática</span><span class="min">13–23 min</span></header><h2>Verbos en -IR</h2>
+<div class="col"><h2>Verbos en -IR</h2>
 <p class="regla">-ir → <b>-ido</b></p><table class="conj"><thead><tr><th>Pronombre</th><th>haber</th><th>participio</th></tr></thead><tbody><tr><th scope="row">yo</th><td class="aux">he</td><td class="par">viv<b>ido</b></td></tr><tr><th scope="row">tú</th><td class="aux">has</td><td class="par">viv<b>ido</b></td></tr><tr><th scope="row">vos</th><td class="aux">has</td><td class="par">viv<b>ido</b></td></tr><tr><th scope="row">él / ella / usted</th><td class="aux">ha</td><td class="par">viv<b>ido</b></td></tr><tr><th scope="row">nosotros/as</th><td class="aux">hemos</td><td class="par">viv<b>ido</b></td></tr><tr><th scope="row">vosotros/as</th><td class="aux">habéis</td><td class="par">viv<b>ido</b></td></tr><tr><th scope="row">ellos / ellas / ustedes</th><td class="aux">han</td><td class="par">viv<b>ido</b></td></tr></tbody></table></div>
 <div class="col side"><h3>Más verbos</h3><ul class="pares"><li>dormir → <strong>dormido</strong></li><li>salir → <strong>salido</strong></li><li>subir → <strong>subido</strong></li><li>venir → <strong>venido</strong></li><li>ir → <strong>ido</strong></li></ul><h3>Ejemplos</h3><p class='ej'>He <b>dormido</b> en un hostal.</p><p class='ej'>Mis amigos han <b>venido</b> a casa.</p></div>
 </section>
 <section class="slide layout-flex-col">
-<header class="sh"><span class="sec">Gramática</span><span class="min">13–23 min</span></header><h2>Participios irregulares</h2>
+<h2>Participios irregulares</h2>
 <p class="regla">Estos ocho no terminan en -ado ni en -ido. Se aprenden de memoria.</p>
 <table class="conj irr"><thead><tr><th>Verbo</th><th>Participio</th><th>Ejemplo</th></tr></thead><tbody><tr><th scope="row">hacer</th><td class="par"><b>hecho</b></td><td>¿Qué has hecho hoy?</td></tr><tr><th scope="row">decir</th><td class="par"><b>dicho</b></td><td>Me han dicho que sí.</td></tr><tr><th scope="row">ver</th><td class="par"><b>visto</b></td><td>He visto un partido.</td></tr><tr><th scope="row">escribir</th><td class="par"><b>escrito</b></td><td>He escrito una carta.</td></tr><tr><th scope="row">poner</th><td class="par"><b>puesto</b></td><td>He puesto la mesa.</td></tr><tr><th scope="row">volver</th><td class="par"><b>vuelto</b></td><td>Hemos vuelto tarde.</td></tr><tr><th scope="row">abrir</th><td class="par"><b>abierto</b></td><td>He abierto mi cuaderno.</td></tr><tr><th scope="row">romper</th><td class="par"><b>roto</b></td><td>He roto el celular.</td></tr></tbody></table>
 </section>
 <section class="slide layout-flex-col">
-<header class="sh"><span class="sec">Gramática</span><span class="min">13–23 min</span></header><h2>Ojo: no es igual que en portugués</h2>
+<h2>Ojo: no es igual que en portugués</h2>
 <ul class="ojo">
 <li><span class="mal">Tengo comido.</span><span class="bien">He comido.</span><span class="por">El ayudante es <em>haber</em>, nunca <em>tener</em>.</span></li>
 <li><span class="mal">He ya comido.</span><span class="bien">Ya he comido.</span><span class="por">Nada entra entre <em>haber</em> y el participio.</span></li>
@@ -324,7 +328,7 @@ audio{width:100%;max-width:900px;height:64px}
 </ul>
 </section>
 <section class="slide layout-two-col contraste">
-<div class="col"><header class="sh"><span class="sec">Gramática</span><span class="min">13–23 min</span></header><h2>He comido o comí</h2>
+<div class="col"><h2>He comido o comí</h2>
 <h3 class="rojo">He comido</h3><p class="marcas">hoy · esta mañana · esta semana · este año · alguna vez · nunca · ya · todavía no</p>
 <p class="ej">Este año <b>he corrido</b> diez kilómetros.</p></div>
 <div class="col side"><h3>Comí</h3><p class="marcas">ayer · la semana pasada · el año pasado · en 2019 · hace dos años</p>
@@ -332,50 +336,55 @@ audio{width:100%;max-width:900px;height:64px}
 <p class="aviso">En Argentina y en gran parte de América se dice más <em>comí</em>: «¿Alguna vez comiste sushi?». Las dos formas se entienden.</p></div>
 </section>
 <section class="slide layout-center">
-<header class="sh"><span class="sec">Práctica 1</span><span class="min">23–28 min</span></header><h2>Yo nunca, de pie</h2>
+<h2>Yo nunca, de pie</h2>
 <ol class="pasos centro">
 <li>Mira la imagen y escucha la frase.</li>
 <li>¿Tú sí lo has hecho? <strong>Ponte de pie.</strong></li>
 <li>De pie, dilo: <strong>«Yo sí: he…»</strong></li>
 </ol>
 </section>
-<section class="slide layout-two-col carta">
-<div class="col"><figure class="ph big" data-emoji="❄️"><img src="images/a2-neve.png" alt="Nunca he visto la nieve." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><header class="sh"><span class="sec">Práctica 1</span><span class="min">23–28 min</span></header><h2>Yo nunca, de pie</h2>
+<section class="slide layout-two-col carta foto-izq">
+<div class="col colfoto"><figure class="ph big" data-emoji="❄️"><img src="images/a2-neve.png" alt="Nunca he visto la nieve." onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col"><h2>Yo nunca, de pie</h2>
 <p class="frase">Nunca he visto la nieve.</p>
 <p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he visto la nieve.»</p></div>
 </section>
-<section class="slide layout-two-col carta">
-<div class="col"><figure class="ph big" data-emoji="🐴"><img src="images/a1-cavalo.png" alt="Nunca he montado a caballo." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><header class="sh"><span class="sec">Práctica 1</span><span class="min">23–28 min</span></header><h2>Yo nunca, de pie</h2>
+<section class="slide layout-two-col carta foto-izq">
+<div class="col colfoto"><figure class="ph big" data-emoji="🐴"><img src="images/a1-cavalo.png" alt="Nunca he montado a caballo." onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col"><h2>Yo nunca, de pie</h2>
 <p class="frase">Nunca he montado a caballo.</p>
 <p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he montado a caballo.»</p></div>
 </section>
-<section class="slide layout-two-col carta">
-<div class="col"><figure class="ph big" data-emoji="📱"><img src="images/a4-celular.png" alt="Nunca he roto un celular." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><header class="sh"><span class="sec">Práctica 1</span><span class="min">23–28 min</span></header><h2>Yo nunca, de pie</h2>
+<section class="slide layout-two-col carta foto-izq">
+<div class="col colfoto"><figure class="ph big" data-emoji="📱"><img src="images/a4-celular.png" alt="Nunca he roto un celular." onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col"><h2>Yo nunca, de pie</h2>
 <p class="frase">Nunca he roto un celular.</p>
 <p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he roto un celular.»</p></div>
 </section>
-<section class="slide layout-two-col carta">
-<div class="col"><figure class="ph big" data-emoji="🏆"><img src="images/b5-premio.png" alt="Nunca he ganado un premio." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><header class="sh"><span class="sec">Práctica 1</span><span class="min">23–28 min</span></header><h2>Yo nunca, de pie</h2>
+<section class="slide layout-two-col carta foto-izq">
+<div class="col colfoto"><figure class="ph big" data-emoji="🏆"><img src="images/b5-premio.png" alt="Nunca he ganado un premio." onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col"><h2>Yo nunca, de pie</h2>
 <p class="frase">Nunca he ganado un premio.</p>
 <p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he ganado un premio.»</p></div>
 </section>
-<section class="slide layout-two-col carta">
-<div class="col"><figure class="ph big" data-emoji="🎂"><img src="images/b3-bolo.png" alt="Nunca he hecho una torta." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><header class="sh"><span class="sec">Práctica 1</span><span class="min">23–28 min</span></header><h2>Yo nunca, de pie</h2>
+<section class="slide layout-two-col carta foto-izq">
+<div class="col colfoto"><figure class="ph big" data-emoji="🎂"><img src="images/b3-bolo.png" alt="Nunca he hecho una torta." onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col"><h2>Yo nunca, de pie</h2>
 <p class="frase">Nunca he hecho una torta.</p>
 <p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he hecho una torta.»</p></div>
 </section>
 <section class="slide layout-flex-col">
-<header class="sh"><span class="sec">Práctica 2</span><span class="min">28–35 min</span></header><h2>El carrete de Íker</h2>
-<div class="carrete"><div class="pola ok"><figure class="ph " data-emoji="🦙"><img src="images/iker-peru.png" alt="estar en Perú" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">estar en Perú</span></div><div class="pola ok"><figure class="ph " data-emoji="🏊"><img src="images/iker-nadar.png" alt="aprender a nadar" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">aprender a nadar</span></div><div class="pola ok"><figure class="ph " data-emoji="🍛"><img src="images/iker-colombia.png" alt="comer bandeja paisa" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">comer bandeja paisa</span></div><div class="pola ok"><figure class="ph " data-emoji="⚽"><img src="images/iker-argentina.png" alt="ver un partido" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">ver un partido</span></div><div class="pola ok"><figure class="ph " data-emoji="🏃"><img src="images/iker-corrida.png" alt="correr diez kilómetros" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">correr diez kilómetros</span></div><div class="pola ok"><figure class="ph " data-emoji="🎤"><img src="images/iker-karaoke.png" alt="cantar en público" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">cantar en público</span></div><div class="pola no"><figure class="ph " data-emoji="📖"><img src="images/iker-livro.png" alt="escribir un libro" onerror="this.parentNode.classList.add('noimg')"></figure><span class="cap">escribir un libro</span></div><div class="pola no"><figure class="ph " data-emoji="🏅"><img src="images/iker-maratona.png" alt="correr una maratón" onerror="this.parentNode.classList.add('noimg')"></figure><span class="cap">correr una maratón</span></div></div>
+<h2>El carrete de Íker</h2>
+<div class="carrete"><div class="pola ok"><figure class="ph " data-emoji="🦙"><img src="images/iker-peru.png" alt="estar en Perú" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">estar en Perú</span></div><div class="pola ok"><figure class="ph " data-emoji="🍛"><img src="images/iker-colombia.png" alt="comer bandeja paisa" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">comer bandeja paisa</span></div><div class="pola ok"><figure class="ph " data-emoji="⚽"><img src="images/iker-argentina.png" alt="ver un partido" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">ver un partido</span></div><div class="pola ok"><figure class="ph " data-emoji="🏊"><img src="images/iker-nadar.png" alt="aprender a nadar" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">aprender a nadar</span></div></div>
+<div class="modelos"><p><span class="sello mini">hecho</span> Ya <b>ha</b>…</p><p><span class="vacio"></span> Todavía no <b>ha</b>…</p></div>
+</section>
+<section class="slide layout-flex-col">
+<h2>El carrete de Íker</h2>
+<div class="carrete"><div class="pola ok"><figure class="ph " data-emoji="🏃"><img src="images/iker-corrida.png" alt="correr diez kilómetros" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">correr diez kilómetros</span></div><div class="pola ok"><figure class="ph " data-emoji="🎤"><img src="images/iker-karaoke.png" alt="cantar en público" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">cantar en público</span></div><div class="pola no"><figure class="ph " data-emoji="📖"><img src="images/iker-livro.png" alt="escribir un libro" onerror="this.parentNode.classList.add('noimg')"></figure><span class="cap">escribir un libro</span></div><div class="pola no"><figure class="ph " data-emoji="🏅"><img src="images/iker-maratona.png" alt="correr una maratón" onerror="this.parentNode.classList.add('noimg')"></figure><span class="cap">correr una maratón</span></div></div>
 <div class="modelos"><p><span class="sello mini">hecho</span> Ya <b>ha</b>…</p><p><span class="vacio"></span> Todavía no <b>ha</b>…</p></div>
 </section>
 <section class="slide layout-two-col juego">
-<div class="col"><header class="sh"><span class="sec">Juego en parejas</span><span class="min">35–52 min</span></header><h2>Apuesto que sí</h2>
+<div class="col"><h2>Apuesto que sí</h2>
 <ol class="pasos">
 <li><strong>Apuesta.</strong> Mira la imagen: ¿tu compañero lo ha hecho? 👍 o 👎</li>
 <li><strong>Pregunta.</strong> «¿Alguna vez has…?»</li>
@@ -388,27 +397,27 @@ audio{width:100%;max-width:900px;height:64px}
 </div>
 </section>
 <section class="slide layout-center">
-<header class="sh"><span class="sec">Juego en parejas</span><span class="min">35–52 min</span></header><h2>Ronda 2: cambia de pareja</h2>
+<h2>Ronda 2: cambia de pareja</h2>
 <p class="grande">Ahora la frase desaparece.<br>Solo ves la imagen: <strong>la pregunta la haces tú.</strong></p>
 <p class="modelo">¿Alguna vez has…?</p>
 </section>
 <section class="slide layout-flex-col">
-<header class="sh"><span class="sec">Cierre</span><span class="min">52–58 min</span></header><h2>Lo que hemos dicho hoy</h2>
+<h2>Lo que hemos dicho hoy</h2>
 <div class="tres fb">
 <div><h3>Bien dicho</h3><p>Una frase que ha salido muy bien.</p></div>
 <div><h3>A mejorar</h3><p>Una frase para decirla otra vez, mejor.</p></div>
 <div><h3>Un paso más</h3><p>Otra forma de decirlo, más precisa.</p></div>
 </div>
 </section>
-<section class="slide layout-two-col">
-<div class="col"><header class="sh"><span class="sec">Tarea</span><span class="min">58–60 min</span></header><h2>Mi carrete</h2>
+<section class="slide layout-two-col foto-der">
+<div class="col"><h2>Mi carrete</h2>
 <p class="grande izq">Escribe tu lista:</p>
 <ul class="ficha">
 <li>5 cosas que <strong>ya he hecho</strong>.</li>
 <li>5 cosas que <strong>todavía no he hecho</strong>.</li>
 </ul>
 <p class="mano fin">¿Y vosotros? ¿Qué habéis hecho ya?</p></div>
-<div class="col"><figure class="ph big" data-emoji="🎤"><img src="images/iker-karaoke.png" alt="Íker canta en un karaoke" onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col colfoto"><figure class="ph big" data-emoji="🎤"><img src="images/iker-karaoke.png" alt="Íker canta en un karaoke" onerror="this.parentNode.classList.add('noimg')"></figure></div>
 </section>
 </main>
 <nav class="nav" aria-label="Navegación de diapositivas">
