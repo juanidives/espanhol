@@ -26,8 +26,11 @@ body{font-family:var(--texto);color:var(--grafito);background:var(--blanco);font
 .puntos i.act{background:var(--grafito)}
 .pantalla{display:none;flex:1;min-height:0;flex-direction:column;gap:12px;padding-top:12px}
 .pantalla.on{display:flex}
-.foto{flex:1;min-height:0;display:grid;place-items:center;background:var(--fondo);border-radius:14px;overflow:hidden;border:3px solid var(--grafito)}
-.foto img{width:100%;height:100%;object-fit:contain;display:block}
+.marco{flex:1;min-height:0;display:grid;place-items:center;container-type:size}
+.foto{height:100%;max-width:100%;aspect-ratio:4/5;display:grid;place-items:center;background:var(--fondo);border-radius:14px;overflow:hidden;
+  box-shadow:0 4px 16px rgba(31,34,38,.3)}
+@supports (width:1cqw){.foto{height:auto;max-width:none;width:min(100cqw,calc(100cqh * .8))}}
+.foto img{width:100%;height:100%;object-fit:cover;display:block}
 .foto.noimg img{display:none}
 .foto.noimg::before{content:attr(data-emoji);font-size:min(46vw,210px);line-height:1}
 .frase{font-family:var(--display);font-weight:900;font-size:clamp(27px,8vw,40px);line-height:1.06;text-align:center;text-wrap:balance;min-height:2.2em;
@@ -66,7 +69,7 @@ button .ico{display:block;font-size:34px;line-height:1.1}
   </section>
 
   <section class="pantalla" id="p-apuesta">
-    <div class="foto" id="foto1"><img alt=""></div>
+    <div class="marco"><div class="foto" id="foto1"><img alt=""></div></div>
     <p class="guia">¿Tu compañero lo ha hecho? Apuesta.</p>
     <div class="botones">
       <button class="si" type="button" data-apuesta="1"><span class="ico">👍</span>Sí</button>
@@ -75,7 +78,7 @@ button .ico{display:block;font-size:34px;line-height:1.1}
   </section>
 
   <section class="pantalla" id="p-pregunta">
-    <div class="foto" id="foto2"><img alt=""></div>
+    <div class="marco"><div class="foto" id="foto2"><img alt=""></div></div>
     <p class="frase" id="frase"></p>
     <button class="ayuda" id="b-ayuda" type="button" hidden>Ver la frase</button>
     <p class="guia">Pregunta. ¿Qué responde?</p>

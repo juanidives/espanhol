@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Caveat:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --rojo:#B23A2E; --rojo-osc:#8A2A21; --rojo-claro:#F6E2CF; --ambar:#E9A23B;
+  --rojo:#B23A2E; --verbo:#B23A2E; --rojo-osc:#8A2A21; --rojo-claro:#F6E2CF; --ambar:#E9A23B;
   --grafito:#2B2523; --gris:#6A5F58; --linea:#DDCFB8; --fondo:#F1E6D3; --blanco:#FBF5EA;
   --display:"Archivo","Arial Black",Arial,sans-serif;
   --texto:"Atkinson Hyperlegible",Verdana,Arial,sans-serif;
@@ -79,7 +79,9 @@ em{font-style:italic}
 .pista{color:var(--gris)}
 .mano{font-family:var(--mano);font-size:1.7em;line-height:1;color:var(--rojo-osc)}
 .mano.fin{font-size:2em;margin-top:.3em}
-.pc{color:var(--rojo-osc);font-weight:700;border-bottom:3px solid var(--rojo)}
+.v{color:var(--verbo);font-weight:700}
+.pc{color:var(--verbo);font-weight:700;border-bottom:3px solid var(--verbo)}
+.enunciado{color:var(--rojo-osc)}
 .versus{display:grid;gap:.5em;font-size:1.9em;font-family:var(--display);font-weight:800;text-align:left}
 .versus .marca{display:inline-block;min-width:3.3em;color:var(--gris)}
 .versus .marca.rojo{color:var(--rojo)}
@@ -89,7 +91,7 @@ em{font-style:italic}
   width:1.75em;height:1.75em;border-radius:50%;display:grid;place-items:center;font-size:.85em;position:absolute;left:0;top:-.05em}
 .pasos.centro{text-align:left;font-size:1.4em}
 .meta-frase{font-size:1.35em;margin-top:.4em}
-.meta-frase strong{color:var(--rojo-osc)}
+.meta-frase .v{font-family:var(--display);font-weight:800}
 .ficha{list-style:none;display:grid;gap:.55em;font-size:1.2em}
 .ficha li{padding-left:1.1em;position:relative}
 .ficha li::before{content:"";position:absolute;left:0;top:.5em;width:.5em;height:.5em;background:var(--rojo);border-radius:50%}
@@ -112,23 +114,24 @@ audio{width:100%;max-width:900px;height:64px}
 .tres>div{border-top:5px solid var(--grafito);padding-top:.45em;display:grid;gap:.4em;align-content:start}
 .como .tres{font-size:.82em}
 .lista-h{line-height:1.5}
-.lista-h b{color:var(--rojo-osc)}
+.lista-h b{color:var(--verbo)}
 .lista-h s{color:var(--gris)}
 .ejemplos{display:grid;grid-template-columns:1fr 1fr;gap:.3em 1.5em;background:var(--rojo-claro);padding:.6em .9em;border-radius:10px;font-size:.95em}
-.ejemplos b,.ej b{color:var(--rojo-osc)}
+.ejemplos b,.ej b{color:var(--verbo)}
 .regla{font-size:1.15em}
-.regla b{color:var(--rojo-osc)}
+.regla b{color:var(--verbo)}
 .conj{border-collapse:collapse;width:100%;font-size:.95em}
 .conj th,.conj td{text-align:left;padding:.22em .6em;border-bottom:2px solid var(--linea)}
 .conj thead th{font-family:var(--display);font-weight:800;font-size:.7em;color:var(--blanco);background:var(--grafito);border:0}
 .conj tbody th{font-weight:400;color:var(--gris)}
 .conj .aux{font-weight:700}
-.conj .par b{color:var(--rojo-osc)}
+.conj .par b{color:var(--verbo)}
+.conj .aux{color:var(--verbo)}
 .conj.irr{font-size:.92em}
 .conj.irr .par b{font-size:1.1em}
 .side{background:var(--fondo);padding:clamp(14px,2vw,32px);border-radius:12px;align-self:stretch;justify-content:center}
 .pares{list-style:none;display:grid;gap:.25em}
-.pares strong{color:var(--rojo-osc)}
+.pares strong{color:var(--verbo)}
 .ej{font-size:1.05em}
 .ojo{list-style:none;display:grid;gap:.6em}
 .ojo li{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:.8em;align-items:center;border-bottom:2px solid var(--linea);padding-bottom:.55em}
@@ -145,7 +148,7 @@ audio{width:100%;max-width:900px;height:64px}
 /* ---------- Yo nunca ---------- */
 .frase{font-family:var(--display);font-weight:900;font-size:2.3em;line-height:1.05;text-wrap:balance}
 .resp{color:var(--gris)}
-.yosi{font-size:1.35em;font-weight:700;color:var(--rojo-osc)}
+.yosi{font-size:1.35em;font-weight:700}
 
 /* ---------- Carrete ---------- */
 .carrete{display:grid;grid-template-columns:repeat(4,minmax(0,calc(52vh*.8)));justify-content:center;gap:clamp(12px,2vw,34px);flex:1;align-content:center}
@@ -158,13 +161,16 @@ audio{width:100%;max-width:900px;height:64px}
   border:4px solid var(--rojo);border-radius:6px;padding:.05em .45em;transform:rotate(12deg);background:rgba(255,255,255,.9)}
 .modelos{display:flex;flex-wrap:wrap;gap:.4em 2.5em;font-size:1.25em;align-items:center}
 .modelos p{display:flex;align-items:center;gap:.5em}
-.modelos b{color:var(--rojo-osc)}
+.modelos .v{font-weight:700}
 .sello.mini{position:static;transform:rotate(-6deg);font-size:.6em}
 .vacio{display:inline-block;width:2.6em;height:1.3em;border:3px dashed var(--gris);border-radius:6px}
 
 /* ---------- Juego ---------- */
-.resp-modelo{font-family:var(--display);font-weight:800;font-size:1.3em;color:var(--rojo-osc)}
-.resp-modelo span{color:var(--gris);font-weight:600}
+.resp-modelo{font-family:var(--display);font-weight:800;font-size:1.2em}
+.resp-modelo .sep{color:var(--gris);font-weight:600}
+h3.ronda{font-size:1.15em;color:var(--rojo-osc);margin-top:.2em}
+.ronda2{font-size:1.1em}
+.juego .pasos{font-size:1.05em;gap:.45em}
 .fb{flex:1;align-content:start;font-size:1.05em}
 .fb>div{min-height:38vh;background:var(--fondo);padding:.7em;border-radius:0 0 10px 10px}
 .fb>div:nth-child(1){border-top-color:#2F7D4F}
@@ -216,23 +222,23 @@ audio{width:100%;max-width:900px;height:64px}
 <div class="col colfoto"><figure class="ph big" data-emoji="📷"><img src="images/iker-personagem.png" alt="Íker, fotógrafo de viajes" onerror="this.parentNode.classList.add('noimg')"></figure></div>
 </section>
 <section class="slide layout-flex-col">
-<h2>Hoy vas a contar lo que has hecho en tu vida</h2>
+<h2>Hoy vamos a…</h2>
 <ol class="pasos">
-<li><strong>Escuchas</strong> a Íker y su lista de 40 cosas.</li>
-<li><strong>Descubres</strong> cómo funciona <em>he + participio</em>.</li>
-<li><strong>Juegas</strong> con un compañero: ¿lo ha hecho o no?</li>
+<li><strong>Escuchar</strong> a Íker y conocer su lista de 40 cosas.</li>
+<li><strong>Descubrir</strong> un nuevo tiempo verbal: Pretérito Perfecto Compuesto.</li>
+<li><strong>Jugar</strong> con un compañero: ¿lo ha hecho o no?</li>
 </ol>
-<p class="meta-frase">Al final vas a poder preguntar: <strong>¿Alguna vez has…?</strong></p>
+<p class="meta-frase">Al final vas a poder preguntar: <span class="v">¿Alguna vez has…?</span></p>
 </section>
 <section class="slide layout-center">
 <h2>¿Qué hiciste ayer?</h2>
-<p class="grande">En parejas, 3 minutos.<br>Cuenta tres cosas de ayer.</p>
-<p class="modelo">Ayer <strong>trabajé</strong>. Ayer <strong>comí</strong> pasta. Ayer <strong>fui</strong> al mercado.</p>
+<p class="grande enunciado">En parejas, 3 minutos.<br>Cuenta tres cosas de ayer y anótalas en el cuaderno.</p>
+<p class="modelo">Ayer <span class="v">trabajé</span>. Ayer <span class="v">comí</span> pasta. Ayer <span class="v">fui</span> al mercado.</p>
 </section>
 <section class="slide layout-center">
 <h2>¿Qué cambió?</h2>
 <div class="versus">
-<p><span class="marca">Ayer</span> desayuné café.</p>
+<p><span class="marca">Ayer</span> <span class="v">desayuné</span> café.</p>
 <p><span class="marca rojo">Hoy</span> <strong class="pc">he desayunado</strong> café.</p>
 </div>
 <p class="pista">Mira el verbo: ¿cuántas palabras tiene?</p>
@@ -345,61 +351,59 @@ audio{width:100%;max-width:900px;height:64px}
 </section>
 <section class="slide layout-two-col carta foto-izq">
 <div class="col colfoto"><figure class="ph big" data-emoji="❄️"><img src="images/a2-neve.png" alt="Nunca he visto la nieve." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><h2>Yo nunca, de pie</h2>
-<p class="frase">Nunca he visto la nieve.</p>
-<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he visto la nieve.»</p></div>
+<div class="col">
+<p class="frase">Nunca <span class="v">he visto</span> la nieve.</p>
+<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: <span class="v">he visto</span> la nieve.»</p></div>
 </section>
 <section class="slide layout-two-col carta foto-izq">
 <div class="col colfoto"><figure class="ph big" data-emoji="🐴"><img src="images/a1-cavalo.png" alt="Nunca he montado a caballo." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><h2>Yo nunca, de pie</h2>
-<p class="frase">Nunca he montado a caballo.</p>
-<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he montado a caballo.»</p></div>
+<div class="col">
+<p class="frase">Nunca <span class="v">he montado</span> a caballo.</p>
+<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: <span class="v">he montado</span> a caballo.»</p></div>
 </section>
 <section class="slide layout-two-col carta foto-izq">
 <div class="col colfoto"><figure class="ph big" data-emoji="📱"><img src="images/a4-celular.png" alt="Nunca he roto un celular." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><h2>Yo nunca, de pie</h2>
-<p class="frase">Nunca he roto un celular.</p>
-<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he roto un celular.»</p></div>
+<div class="col">
+<p class="frase">Nunca <span class="v">he roto</span> un celular.</p>
+<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: <span class="v">he roto</span> un celular.»</p></div>
 </section>
 <section class="slide layout-two-col carta foto-izq">
 <div class="col colfoto"><figure class="ph big" data-emoji="🏆"><img src="images/b5-premio.png" alt="Nunca he ganado un premio." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><h2>Yo nunca, de pie</h2>
-<p class="frase">Nunca he ganado un premio.</p>
-<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he ganado un premio.»</p></div>
+<div class="col">
+<p class="frase">Nunca <span class="v">he ganado</span> un premio.</p>
+<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: <span class="v">he ganado</span> un premio.»</p></div>
 </section>
 <section class="slide layout-two-col carta foto-izq">
 <div class="col colfoto"><figure class="ph big" data-emoji="🎂"><img src="images/b3-bolo.png" alt="Nunca he hecho una torta." onerror="this.parentNode.classList.add('noimg')"></figure></div>
-<div class="col"><h2>Yo nunca, de pie</h2>
-<p class="frase">Nunca he hecho una torta.</p>
-<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: he hecho una torta.»</p></div>
+<div class="col">
+<p class="frase">Nunca <span class="v">he hecho</span> una torta.</p>
+<p class="resp">¿Tú sí? De pie y dilo:</p><p class="yosi">«Yo sí: <span class="v">he hecho</span> una torta.»</p></div>
 </section>
 <section class="slide layout-flex-col">
 <h2>El carrete de Íker</h2>
 <div class="carrete"><div class="pola ok"><figure class="ph " data-emoji="🦙"><img src="images/iker-peru.png" alt="estar en Perú" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">estar en Perú</span></div><div class="pola ok"><figure class="ph " data-emoji="🍛"><img src="images/iker-colombia.png" alt="comer bandeja paisa" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">comer bandeja paisa</span></div><div class="pola ok"><figure class="ph " data-emoji="⚽"><img src="images/iker-argentina.png" alt="ver un partido" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">ver un partido</span></div><div class="pola ok"><figure class="ph " data-emoji="🏊"><img src="images/iker-nadar.png" alt="aprender a nadar" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">aprender a nadar</span></div></div>
-<div class="modelos"><p><span class="sello mini">hecho</span> Ya <b>ha</b>…</p><p><span class="vacio"></span> Todavía no <b>ha</b>…</p></div>
+<div class="modelos"><p><span class="sello mini">hecho</span> Ya <span class="v">ha</span>…</p><p><span class="vacio"></span> Todavía no <span class="v">ha</span>…</p></div>
 </section>
 <section class="slide layout-flex-col">
 <h2>El carrete de Íker</h2>
 <div class="carrete"><div class="pola ok"><figure class="ph " data-emoji="🏃"><img src="images/iker-corrida.png" alt="correr diez kilómetros" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">correr diez kilómetros</span></div><div class="pola ok"><figure class="ph " data-emoji="🎤"><img src="images/iker-karaoke.png" alt="cantar en público" onerror="this.parentNode.classList.add('noimg')"></figure><span class="sello">hecho</span><span class="cap">cantar en público</span></div><div class="pola no"><figure class="ph " data-emoji="📖"><img src="images/iker-livro.png" alt="escribir un libro" onerror="this.parentNode.classList.add('noimg')"></figure><span class="cap">escribir un libro</span></div><div class="pola no"><figure class="ph " data-emoji="🏅"><img src="images/iker-maratona.png" alt="correr una maratón" onerror="this.parentNode.classList.add('noimg')"></figure><span class="cap">correr una maratón</span></div></div>
-<div class="modelos"><p><span class="sello mini">hecho</span> Ya <b>ha</b>…</p><p><span class="vacio"></span> Todavía no <b>ha</b>…</p></div>
+<div class="modelos"><p><span class="sello mini">hecho</span> Ya <span class="v">ha</span>…</p><p><span class="vacio"></span> Todavía no <span class="v">ha</span>…</p></div>
 </section>
 <section class="slide layout-two-col juego">
 <div class="col"><h2>Apuesto que sí</h2>
+<h3 class="ronda">Primera ronda</h3>
 <ol class="pasos">
 <li><strong>Apuesta.</strong> Mira la imagen: ¿tu compañero lo ha hecho? 👍 o 👎</li>
-<li><strong>Pregunta.</strong> «¿Alguna vez has…?»</li>
+<li><strong>Pregunta.</strong> «¿Alguna vez <span class="v">has</span>…?»</li>
 <li><strong>Marca</strong> su respuesta y mira si has acertado.</li>
 </ol>
-<p class="resp-modelo">Sí, he… <span>/</span> No, nunca.</p></div>
+<h3 class="ronda">Segunda ronda</h3>
+<p class="ronda2">Cambia de pareja. La frase desaparece: solo ves la imagen y <strong>la pregunta la haces tú</strong>.</p>
+<p class="resp-modelo">Sí, <span class="v">he</span>… <span class="sep">/</span> No, nunca.</p></div>
 <div class="col qrs">
 <div class="qrbox"><img class="qr" src="data:image/png;base64,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" alt="Código QR del alumno A"><p>Alumno A</p></div>
 <div class="qrbox"><img class="qr" src="data:image/png;base64,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" alt="Código QR del alumno B"><p>Alumno B</p></div>
 </div>
-</section>
-<section class="slide layout-center">
-<h2>Ronda 2: cambia de pareja</h2>
-<p class="grande">Ahora la frase desaparece.<br>Solo ves la imagen: <strong>la pregunta la haces tú.</strong></p>
-<p class="modelo">¿Alguna vez has…?</p>
 </section>
 <section class="slide layout-flex-col">
 <h2>Lo que hemos dicho hoy</h2>
@@ -413,11 +417,11 @@ audio{width:100%;max-width:900px;height:64px}
 <div class="col"><h2>Mi carrete</h2>
 <p class="grande izq">Escribe tu lista:</p>
 <ul class="ficha">
-<li>5 cosas que <strong>ya he hecho</strong>.</li>
-<li>5 cosas que <strong>todavía no he hecho</strong>.</li>
+<li>5 cosas que ya <span class="v">he hecho</span>.</li>
+<li>5 cosas que todavía no <span class="v">he hecho</span>.</li>
 </ul>
 <p class="mano fin">¿Y vosotros? ¿Qué habéis hecho ya?</p></div>
-<div class="col colfoto"><figure class="ph big" data-emoji="🎤"><img src="images/iker-karaoke.png" alt="Íker canta en un karaoke" onerror="this.parentNode.classList.add('noimg')"></figure></div>
+<div class="col colfoto"><figure class="ph big" data-emoji="⛺"><img src="images/iker-camping.png" alt="Íker duerme en una carpa" onerror="this.parentNode.classList.add('noimg')"></figure></div>
 </section>
 </main>
 <nav class="nav" aria-label="Navegación de diapositivas">
@@ -438,7 +442,6 @@ audio{width:100%;max-width:900px;height:64px}
     cuenta.textContent = (i + 1) + ' / ' + slides.length;
     barra.style.width = ((i + 1) / slides.length * 100) + '%';
     prev.disabled = i === 0; next.disabled = i === slides.length - 1;
-    document.querySelectorAll('audio').forEach(function(a){ if(!slides[i].contains(a)) a.pause(); });
     try { history.replaceState(null, '', '#' + (i + 1)); } catch(e) {}
   }
   prev.addEventListener('click', function(){ show(i - 1); });
