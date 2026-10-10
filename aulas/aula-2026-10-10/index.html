@@ -28,10 +28,21 @@
 
   /* ---------- sistema de diapositivas ---------- */
   .slide{display:none;position:absolute;inset:0;padding:6vh 6vw 11vh}
-  .slide.active.layout-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4vh}
+  .slide.active.layout-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3vh}
   .slide.active.layout-two-col{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:minmax(0,1fr);align-items:center;gap:5vw}
   .slide.active.layout-flex-col{display:flex;flex-direction:column;justify-content:center;gap:3.5vh}
   .slide.active.layout-three{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr;gap:3vh 2.4vw;align-content:center}
+
+  .slide.active.layout-trio{display:grid;grid-template-columns:1fr 1.5fr 1fr;grid-template-rows:minmax(0,1fr);align-items:center;gap:3vw;text-align:center}
+  .slide.active.layout-texto{display:block;overflow-y:auto;bottom:11vh;padding-bottom:2vh}
+  .retrato{height:100%;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6vh}
+  .retrato img{max-width:100%;max-height:calc(100% - 9vh);min-height:0;border-radius:22px;display:block}
+  .retrato span{font-family:Georgia,serif;font-weight:700;font-size:clamp(24px,2.8vw,52px)}
+  .layout-trio h1{font-size:clamp(36px,5vw,92px)}
+  .guion{max-width:80vw;margin:0 auto}
+  .guion h2{font-size:clamp(30px,3.6vw,64px);margin-bottom:3vh}
+  .guion p{font-size:clamp(23px,2.5vw,44px);line-height:1.4;margin-bottom:1.5vh}
+  .guion p b.q{font-weight:800}
 
   /* ---------- verbos por tiempo ---------- */
   .v{font-weight:800}
@@ -54,10 +65,10 @@
   .fila{display:flex;gap:1.6vw;flex-wrap:wrap;justify-content:center}
 
   /* ---------- calentamiento ---------- */
-  .marcador{font-family:Georgia,serif;font-size:clamp(50px,8vw,150px);font-weight:700;background:var(--tinta);color:var(--fondo);
+  .marcador{font-family:Georgia,serif;font-size:clamp(44px,6.5vw,120px);font-weight:700;background:var(--tinta);color:var(--fondo);
     padding:.12em .55em;border-radius:.28em}
   .accion{font-size:clamp(30px,4vw,74px);color:var(--suave);font-weight:600}
-  .respuesta{font-size:clamp(34px,4.8vw,88px);font-weight:600;min-height:1.3em}
+  .respuesta{font-size:clamp(28px,3.6vw,66px);font-weight:600;line-height:1.2;min-height:2.4em;max-width:92vw}
 
   /* ---------- ancla ---------- */
   .layout-three h2{grid-column:1/-1;text-align:center}
@@ -170,9 +181,13 @@
 </section>
 
 <!-- 4 · AUDIO -->
-<section class="slide layout-center" id="s-audio" data-audio>
-  <h1>Un encuentro inesperado</h1>
-  <p>Lucía e Íker se conocen en un café.</p>
+<section class="slide layout-trio" id="s-audio" data-audio>
+  <div class="retrato"><img src="../aula-2026-09-12/images/lucia-retrato.png" alt="Lucía"><span>Lucía</span></div>
+  <div>
+    <h1>Un encuentro inesperado</h1>
+    <p style="margin-top:3vh">Lucía e Íker se conocen en un café.</p>
+  </div>
+  <div class="retrato"><img src="../aula-2026-10-03/images/iker-personagem.png" alt="Íker"><span>Íker</span></div>
 </section>
 
 <!-- 5 · FRASES CLAVE (pasos internos) -->
@@ -180,6 +195,27 @@
   <div class="cuenta" id="fr-cuenta"></div>
   <div class="frase" id="fr-texto"></div>
   <div class="insignias" id="fr-insignias"></div>
+</section>
+
+<!-- TRANSCRIPCIÓN -->
+<section class="slide layout-texto" id="s-guion" data-audio>
+  <div class="guion">
+    <h2>Un encuentro inesperado</h2>
+    <p><b class="q">Íker:</b> Perdona, ¿ese dibujo es de Cusco? Soy Íker, de Bilbao. Soy fotógrafo de viajes.</p>
+    <p><b class="q">Lucía:</b> ¡Sí! Soy Lucía, de Costa Rica. El año pasado <span class="v s">viajé</span> sola a Cusco.</p>
+    <p><b class="q">Íker:</b> ¡Qué casualidad! En 2023 <span class="v s">compré</span> esta cámara azul. ¡Me encanta Perú!</p>
+    <p><b class="q">Lucía:</b> ¡A mí también! <span class="v i">Hacía</span> frío y <span class="v i">había</span> mucha gente en las calles.</p>
+    <p><b class="q">Íker:</b> ¿<span class="v c">Has dibujado</span> alguna vez a alguien con una cámara?</p>
+    <p><b class="q">Lucía:</b> ¡Claro! Ese día <span class="v s">dibujé</span> a un chico en la plaza. ¡Mirá!</p>
+    <p><b class="q">Íker:</b> Vale... ¡Un momento! Mi chaqueta <span class="v i">era</span> roja y yo <span class="v i">estaba</span> en esa plaza el año pasado.</p>
+    <p><b class="q">Lucía:</b> ¡Diay! Este año <span class="v c">he recuperado</span> mi cuaderno del albergue. Aquí está el dibujo.</p>
+    <p><b class="q">Íker:</b> ¡Anda, si soy yo! Nunca <span class="v c">he visto</span> un dibujo mío.</p>
+    <p><b class="q">Lucía:</b> ¿En serio? ¿Tienes fotos de aquel viaje?</p>
+    <p><b class="q">Íker:</b> Sí. El año pasado <span class="v s">saqué</span> una foto de una chica con un cuaderno. ¡Mira!</p>
+    <p><b class="q">Lucía:</b> ¡Soy yo! ¡Ya <span class="v c">he encontrado</span> al chico de mi dibujo!</p>
+    <p><b class="q">Íker:</b> ¡Qué bueno! Tengo una idea para mi lista de cuarenta cosas: hacer un libro con tus dibujos y mis fotos.</p>
+    <p><b class="q">Lucía:</b> ¡Pura vida! Bueno... primero tomamos un café. ¿Te parece?</p>
+  </div>
 </section>
 
 <!-- 6 · MITADES -->
@@ -349,7 +385,7 @@
 
   /* ---------- calentamiento ---------- */
   var MARCADORES = [
-    {m:'hoy', t:'c'}, {m:'ayer', t:'s'}, {m:'de niño / de niña', t:'i'}, {m:'esta semana', t:'c'},
+    {m:'hoy', t:'c'}, {m:'ayer', t:'s'}, {m:'de niño/a', t:'i'}, {m:'esta semana', t:'c'},
     {m:'el año pasado', t:'s'}, {m:'antes', t:'i'}, {m:'nunca', t:'c'}, {m:'en 2020', t:'s'}
   ];
   var ACCIONES = [
