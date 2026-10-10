@@ -55,7 +55,7 @@
   <section class="vista v-entrevista" id="entrevista">
     <div class="foto"><img id="e-img" src="" alt=""></div>
     <p class="q1" id="e-q"></p>
-    <div class="q23"><span>¿Cuándo <b class="v s">fue</b>?</span><span>¿Cómo <b class="v i">era</b>?</span></div>
+    <div class="q23"><span>¿Cuándo <b class="v s">fue</b>?</span><span id="e-q3"></span></div>
     <div class="pasar">
       <button type="button" id="e-prev" aria-label="Imagen anterior">←</button>
       <button type="button" id="e-next" aria-label="Otra imagen">→</button>
@@ -79,7 +79,7 @@
 </nav>
 <script>
 (function(){
-  var CARTAS = [{"img": "../aula-2026-10-03/images/a1-cavalo.png", "q": "¿Alguna vez <b class='v c'>has montado</b> a caballo?"}, {"img": "../aula-2026-10-03/images/b1-mar.png", "q": "¿Alguna vez <b class='v c'>has nadado</b> en el mar?"}, {"img": "../aula-2026-10-03/images/a2-neve.png", "q": "¿Alguna vez <b class='v c'>has visto</b> la nieve?"}, {"img": "../aula-2026-10-03/images/b2-chaves.png", "q": "¿Alguna vez <b class='v c'>has perdido</b> las llaves?"}, {"img": "../aula-2026-10-03/images/a3-aviao.png", "q": "¿Alguna vez <b class='v c'>has viajado</b> en avión?"}, {"img": "../aula-2026-10-03/images/b3-bolo.png", "q": "¿Alguna vez <b class='v c'>has hecho</b> una torta?"}, {"img": "../aula-2026-10-03/images/a4-celular.png", "q": "¿Alguna vez <b class='v c'>has roto</b> un celular?"}, {"img": "../aula-2026-10-03/images/b4-carta.png", "q": "¿Alguna vez <b class='v c'>has escrito</b> una carta de amor?"}, {"img": "../aula-2026-10-03/images/a5-sushi.png", "q": "¿Alguna vez <b class='v c'>has comido</b> sushi?"}, {"img": "../aula-2026-10-03/images/b5-premio.png", "q": "¿Alguna vez <b class='v c'>has ganado</b> un premio?"}];
+  var CARTAS = [{"img": "../aula-2026-10-03/images/a1-cavalo.png", "q": "¿Alguna vez <b class='v c'>has montado</b> a caballo?", "q3": "¿Cómo <b class='v i'>era</b> el caballo?"}, {"img": "../aula-2026-10-03/images/b1-mar.png", "q": "¿Alguna vez <b class='v c'>has nadado</b> en el mar?", "q3": "¿Cómo <b class='v i'>estaba</b> el agua?"}, {"img": "../aula-2026-10-03/images/a2-neve.png", "q": "¿Alguna vez <b class='v c'>has visto</b> la nieve?", "q3": "¿Cómo <b class='v i'>era</b> el lugar?"}, {"img": "../aula-2026-10-03/images/b2-chaves.png", "q": "¿Alguna vez <b class='v c'>has perdido</b> las llaves?", "q3": "¿Dónde <b class='v i'>estaban</b> las llaves?"}, {"img": "../aula-2026-10-03/images/a3-aviao.png", "q": "¿Alguna vez <b class='v c'>has viajado</b> en avión?", "q3": "¿Con quién <b class='v i'>estabas</b>?"}, {"img": "../aula-2026-10-03/images/b3-bolo.png", "q": "¿Alguna vez <b class='v c'>has hecho</b> una torta?", "q3": "¿Cómo <b class='v i'>estaba</b> la torta?"}, {"img": "../aula-2026-10-03/images/a4-celular.png", "q": "¿Alguna vez <b class='v c'>has roto</b> un celular?", "q3": "¿Cómo <b class='v i'>era</b> el celular?"}, {"img": "../aula-2026-10-03/images/b4-carta.png", "q": "¿Alguna vez <b class='v c'>has escrito</b> una carta de amor?", "q3": "¿Para quién <b class='v i'>era</b> la carta?"}, {"img": "../aula-2026-10-03/images/a5-sushi.png", "q": "¿Alguna vez <b class='v c'>has comido</b> sushi?", "q3": "¿Cómo <b class='v i'>era</b> el restaurante?"}, {"img": "../aula-2026-10-03/images/b5-premio.png", "q": "¿Alguna vez <b class='v c'>has ganado</b> un premio?", "q3": "¿Con quién <b class='v i'>estabas</b>?"}];
   var vistas = ['preguntas','entrevista','anecdota'];
   var tabs = Array.prototype.slice.call(document.querySelectorAll('nav.tabs button'));
   function ver(id){
@@ -95,7 +95,7 @@
   var img = document.getElementById('e-img'), q = document.getElementById('e-q');
   function carta(k){
     n = (k + CARTAS.length) % CARTAS.length;
-    img.src = CARTAS[n].img; q.innerHTML = CARTAS[n].q;
+    img.src = CARTAS[n].img; q.innerHTML = CARTAS[n].q; document.getElementById('e-q3').innerHTML = CARTAS[n].q3;
     img.alt = q.textContent;
   }
   document.getElementById('e-prev').addEventListener('click', function(){ carta(n-1); });
