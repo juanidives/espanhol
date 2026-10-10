@@ -14,6 +14,7 @@
   header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
   .letra{font-family:Georgia,serif;font-weight:700;font-size:26px;background:var(--acento);color:#fff;
     width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .num{font-family:Georgia,serif;font-weight:700;font-size:30px}
   .puntos{display:flex;gap:8px}
   .puntos i{width:12px;height:12px;border-radius:50%;background:#D9CFBB}
   .puntos i.on{background:var(--tinta)}
@@ -44,39 +45,39 @@
 <body>
 <header>
   <div class="letra">A</div>
+  <div class="num" id="num"></div>
   <div class="puntos" id="puntos"></div>
 </header>
 <main id="main">
   <section class="pantalla p-carta">
-    <div class="foto"><img src="images/a3-cansada.png" alt="Estaba muy cansada."></div>
-    <p class="frase"><span class="v i">Estaba</span> muy cansada.</p>
+    <div class="foto"><img src="images/a1-lluvia.png" alt="Llovía mucho, por eso…"></div>
+    <p class="frase"><span class="v i">Llovía</span> mucho, <span class="con">por eso</span>…</p>
   </section>
   <section class="pantalla p-carta">
-    <div class="foto"><img src="images/a5-escribia.png" alt="Escribía en su cuaderno."></div>
-    <p class="frase"><span class="v i">Escribía</span> en su cuaderno.</p>
+    <div class="foto"><img src="images/a2-hambre.png" alt="Tenía mucha hambre, por eso…"></div>
+    <p class="frase"><span class="v i">Tenía</span> mucha hambre, <span class="con">por eso</span>…</p>
   </section>
   <section class="pantalla p-carta">
-    <div class="foto"><img src="images/a1-lluvia.png" alt="Llovía mucho."></div>
-    <p class="frase"><span class="v i">Llovía</span> mucho.</p>
+    <div class="foto"><img src="images/a3-cansada.png" alt="Estaba muy cansada, por eso…"></div>
+    <p class="frase"><span class="v i">Estaba</span> muy cansada, <span class="con">por eso</span>…</p>
   </section>
   <section class="pantalla p-carta">
-    <div class="foto"><img src="images/a4-caminaba.png" alt="Caminaba por el mercado."></div>
-    <p class="frase"><span class="v i">Caminaba</span> por el mercado.</p>
+    <div class="foto"><img src="images/a4-caminaba.png" alt="Caminaba por el mercado cuando…"></div>
+    <p class="frase"><span class="v i">Caminaba</span> por el mercado <span class="con">cuando</span>…</p>
   </section>
   <section class="pantalla p-carta">
-    <div class="foto"><img src="images/a2-hambre.png" alt="Tenía mucha hambre."></div>
-    <p class="frase"><span class="v i">Tenía</span> mucha hambre.</p>
+    <div class="foto"><img src="images/a5-escribia.png" alt="Escribía en su cuaderno cuando…"></div>
+    <p class="frase"><span class="v i">Escribía</span> en su cuaderno <span class="con">cuando</span>…</p>
   </section>
   <section class="pantalla p-final">
-    <h1>¿Ya unieron las 5?</h1>
-    <p class="pista">… <span class="con">por eso</span> …<br>… <span class="con">cuando</span> …</p>
+    <h1>Las 5 frases</h1>
     <button type="button" id="ver">Ver soluciones</button>
     <ul class="sol" id="sol">
-      <li><span class="v i">Estaba</span> muy cansada, <span class="con">por eso</span> <span class="v s">se durmió</span> en el autobús.</li>
-      <li><span class="v i">Escribía</span> en su cuaderno <span class="con">cuando</span> <span class="v s">llegó</span> el taxi.</li>
       <li><span class="v i">Llovía</span> mucho, <span class="con">por eso</span> <span class="v s">compró</span> un paraguas.</li>
-      <li><span class="v i">Caminaba</span> por el mercado <span class="con">cuando</span> <span class="v s">vio</span> una llama.</li>
       <li><span class="v i">Tenía</span> mucha hambre, <span class="con">por eso</span> <span class="v s">comió</span> un ceviche.</li>
+      <li><span class="v i">Estaba</span> muy cansada, <span class="con">por eso</span> <span class="v s">se durmió</span> en el autobús.</li>
+      <li><span class="v i">Caminaba</span> por el mercado <span class="con">cuando</span> <span class="v s">vio</span> una llama.</li>
+      <li><span class="v i">Escribía</span> en su cuaderno <span class="con">cuando</span> <span class="v s">llegó</span> el taxi.</li>
     </ul>
   </section>
 </main>
@@ -94,6 +95,7 @@
     n = Math.max(0, Math.min(p.length-1, k));
     p.forEach(function(s,i){ s.classList.toggle('on', i===n); });
     Array.prototype.forEach.call(puntos.children, function(d,i){ d.classList.toggle('on', i===n); });
+    document.getElementById('num').textContent = n < p.length-1 ? (n+1)+' / '+(p.length-1) : '';
     prev.disabled = n===0; next.disabled = n===p.length-1;
   }
   prev.addEventListener('click', function(){ ir(n-1); });
