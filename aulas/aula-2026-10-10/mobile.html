@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Repaso · Los tres pasados</title>
+<style>
+  :root{--fondo:#FBF6EC;--papel:#fff;--tinta:#1F2A37;--suave:#5B6676;
+    --simple:#D2452A;--imperfecto:#12807F;--compuesto:#6A45B5}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--fondo);color:var(--tinta);
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+  body{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
+  .v{font-weight:800}
+  .v.s{color:var(--simple)} .v.i{color:var(--imperfecto)} .v.c{color:var(--compuesto)}
+  main{flex:1;min-height:0;display:flex;flex-direction:column}
+  .vista{display:none;flex:1;min-height:0}
+  .vista.on.v-entrevista{display:flex;flex-direction:column}
+  .vista.on.v-lista{display:flex;flex-direction:column;gap:14px;padding:16px;overflow-y:auto}
+  /* entrevista */
+  .foto{flex:1;min-height:0;padding:10px 12px 0}
+  .foto img{width:100%;height:100%;object-fit:contain;display:block;border-radius:18px}
+  .q1{font-family:Georgia,serif;font-size:clamp(25px,7.2vw,38px);line-height:1.18;text-align:center;padding:10px 14px 4px}
+  .q23{display:flex;justify-content:center;gap:10px;padding:4px 12px 6px;flex-wrap:wrap}
+  .q23 span{background:var(--papel);border-radius:999px;padding:6px 14px;font-size:clamp(19px,5.4vw,26px);font-weight:600}
+  .pasar{display:flex;gap:12px;padding:6px 16px 8px}
+  .pasar button{flex:1}
+  button{font:inherit;font-size:24px;font-weight:800;border:3px solid var(--tinta);background:var(--papel);color:var(--tinta);
+    border-radius:999px;min-height:54px;cursor:pointer}
+  button:focus-visible{outline:4px solid var(--compuesto);outline-offset:2px}
+  /* ancla + anécdota */
+  h1{font-family:Georgia,serif;font-size:30px}
+  .carta{background:var(--papel);border-radius:16px;padding:14px 16px;border-left:12px solid}
+  .carta.s{border-color:var(--simple)} .carta.i{border-color:var(--imperfecto)} .carta.c{border-color:var(--compuesto)}
+  .carta .preg{font-size:23px;font-weight:700;line-height:1.2}
+  .carta .forma{font-size:30px;margin:4px 0}
+  .carta .marcas{font-size:20px;color:var(--suave);line-height:1.35}
+  .andamio{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .andamio li{background:var(--papel);border-radius:16px;padding:16px;font-size:28px}
+  /* pestañas */
+  nav.tabs{display:flex;border-top:2px solid #E4DAC6;background:var(--papel);padding-bottom:env(safe-area-inset-bottom)}
+  nav.tabs button{flex:1;border:0;border-radius:0;background:none;font-size:18px;min-height:58px;color:var(--suave);border-top:5px solid transparent}
+  nav.tabs button.on{color:var(--tinta);border-top-color:var(--tinta)}
+</style>
+</head>
+<body>
+<main>
+  <section class="vista v-lista" id="preguntas">
+    <h1>Tres preguntas</h1>
+    <div class="carta s"><div class="preg">1 · ¿Tiene fecha y terminó?</div><div class="forma"><span class="v s">comí</span></div><div class="marcas">ayer · en 2019 · el año pasado · ese día</div></div>
+    <div class="carta i"><div class="preg">2 · ¿Es el escenario o una costumbre?</div><div class="forma"><span class="v i">comía</span></div><div class="marcas">de niño · antes · siempre · mientras</div></div>
+    <div class="carta c"><div class="preg">3 · ¿Toca el presente o no tiene fecha?</div><div class="forma"><span class="v c">he comido</span></div><div class="marcas">hoy · esta semana · alguna vez · nunca · ya</div></div>
+  </section>
+
+  <section class="vista v-entrevista" id="entrevista">
+    <div class="foto"><img id="e-img" src="" alt=""></div>
+    <p class="q1" id="e-q"></p>
+    <div class="q23"><span>¿Cuándo <b class="v s">fue</b>?</span><span>¿Cómo <b class="v i">era</b>?</span></div>
+    <div class="pasar">
+      <button type="button" id="e-prev" aria-label="Imagen anterior">←</button>
+      <button type="button" id="e-next" aria-label="Otra imagen">→</button>
+    </div>
+  </section>
+
+  <section class="vista v-lista" id="anecdota">
+    <h1>Mi anécdota</h1>
+    <ul class="andamio">
+      <li><span class="v c">He</span> …</li>
+      <li><span class="v s">Fue</span> en …</li>
+      <li><span class="v i">Era</span> …, <span class="v i">había</span> …, <span class="v i">estaba</span> …</li>
+      <li>De repente …</li>
+    </ul>
+  </section>
+</main>
+<nav class="tabs">
+  <button type="button" data-v="preguntas">1 · 2 · 3</button>
+  <button type="button" data-v="entrevista">Entrevista</button>
+  <button type="button" data-v="anecdota">Anécdota</button>
+</nav>
+<script>
+(function(){
+  var CARTAS = [{"img": "../aula-2026-10-03/images/a1-cavalo.png", "q": "¿Alguna vez <b class='v c'>has montado</b> a caballo?"}, {"img": "../aula-2026-10-03/images/b1-mar.png", "q": "¿Alguna vez <b class='v c'>has nadado</b> en el mar?"}, {"img": "../aula-2026-10-03/images/a2-neve.png", "q": "¿Alguna vez <b class='v c'>has visto</b> la nieve?"}, {"img": "../aula-2026-10-03/images/b2-chaves.png", "q": "¿Alguna vez <b class='v c'>has perdido</b> las llaves?"}, {"img": "../aula-2026-10-03/images/a3-aviao.png", "q": "¿Alguna vez <b class='v c'>has viajado</b> en avión?"}, {"img": "../aula-2026-10-03/images/b3-bolo.png", "q": "¿Alguna vez <b class='v c'>has hecho</b> una torta?"}, {"img": "../aula-2026-10-03/images/a4-celular.png", "q": "¿Alguna vez <b class='v c'>has roto</b> un celular?"}, {"img": "../aula-2026-10-03/images/b4-carta.png", "q": "¿Alguna vez <b class='v c'>has escrito</b> una carta de amor?"}, {"img": "../aula-2026-10-03/images/a5-sushi.png", "q": "¿Alguna vez <b class='v c'>has comido</b> sushi?"}, {"img": "../aula-2026-10-03/images/b5-premio.png", "q": "¿Alguna vez <b class='v c'>has ganado</b> un premio?"}];
+  var vistas = ['preguntas','entrevista','anecdota'];
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('nav.tabs button'));
+  function ver(id){
+    if(vistas.indexOf(id) < 0) id = 'preguntas';
+    vistas.forEach(function(v){ document.getElementById(v).classList.toggle('on', v===id); });
+    tabs.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-v')===id); });
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+  }
+  tabs.forEach(function(b){ b.addEventListener('click', function(){ ver(b.getAttribute('data-v')); }); });
+  window.addEventListener('hashchange', function(){ ver(location.hash.slice(1)); });
+
+  var n = Math.floor(Math.random()*CARTAS.length);
+  var img = document.getElementById('e-img'), q = document.getElementById('e-q');
+  function carta(k){
+    n = (k + CARTAS.length) % CARTAS.length;
+    img.src = CARTAS[n].img; q.innerHTML = CARTAS[n].q;
+    img.alt = q.textContent;
+  }
+  document.getElementById('e-prev').addEventListener('click', function(){ carta(n-1); });
+  document.getElementById('e-next').addEventListener('click', function(){ carta(n+1); });
+  var x0 = null, foto = document.querySelector('.foto');
+  foto.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  foto.addEventListener('touchend', function(e){
+    if(x0===null) return; var d = e.changedTouches[0].clientX - x0; x0 = null;
+    if(Math.abs(d) > 50) carta(n + (d<0 ? 1 : -1));
+  });
+  carta(n);
+  ver(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>

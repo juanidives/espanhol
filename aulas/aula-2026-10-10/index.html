@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repaso · Los tres pasados</title>
+<style>
+  :root{
+    --fondo:#FBF6EC;
+    --papel:#FFFFFF;
+    --tinta:#1F2A37;
+    --suave:#5B6676;
+    --linea:#E4DAC6;
+    --simple:#D2452A;      /* comí */
+    --imperfecto:#12807F;  /* comía */
+    --compuesto:#6A45B5;   /* he comido */
+    --simple-bg:#FCE6E0;
+    --imperfecto-bg:#DDF1F0;
+    --compuesto-bg:#EAE2F8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:var(--fondo);color:var(--tinta);
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+  h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;line-height:1.08;letter-spacing:-.01em}
+  h1{font-size:clamp(44px,7.2vw,128px)}
+  h2{font-size:clamp(34px,4.6vw,84px)}
+  p{font-size:clamp(22px,2.5vw,46px);line-height:1.35}
+
+  /* ---------- sistema de diapositivas ---------- */
+  .slide{display:none;position:absolute;inset:0;padding:6vh 6vw 11vh}
+  .slide.active.layout-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4vh}
+  .slide.active.layout-two-col{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:minmax(0,1fr);align-items:center;gap:5vw}
+  .slide.active.layout-flex-col{display:flex;flex-direction:column;justify-content:center;gap:3.5vh}
+  .slide.active.layout-three{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr;gap:3vh 2.4vw;align-content:center}
+
+  /* ---------- verbos por tiempo ---------- */
+  .v{font-weight:800}
+  .v.s{color:var(--simple)}
+  .v.i{color:var(--imperfecto)}
+  .v.c{color:var(--compuesto)}
+
+  /* ---------- QR ---------- */
+  .qr{background:var(--papel);border:3px solid var(--tinta);border-radius:22px;padding:1.6vw;display:flex;flex-direction:column;align-items:center;gap:1.4vh}
+  .qr img{width:min(48vh,30vw);height:min(48vh,30vw);image-rendering:pixelated;display:block}
+  .qr span{font-size:clamp(20px,2.2vw,40px);font-weight:800}
+  .qr-row{display:flex;gap:5vw;justify-content:center}
+  .qr-row .qr img{width:min(44vh,27vw);height:min(44vh,27vw)}
+
+  /* ---------- botones ---------- */
+  button{font:inherit;cursor:pointer;border:3px solid var(--tinta);background:var(--papel);color:var(--tinta);
+    font-size:clamp(18px,1.9vw,34px);font-weight:700;padding:.5em 1.1em;border-radius:999px}
+  button:hover{background:var(--tinta);color:var(--fondo)}
+  button:focus-visible{outline:4px solid var(--compuesto);outline-offset:3px}
+  .fila{display:flex;gap:1.6vw;flex-wrap:wrap;justify-content:center}
+
+  /* ---------- calentamiento ---------- */
+  .marcador{font-family:Georgia,serif;font-size:clamp(50px,8vw,150px);font-weight:700;background:var(--tinta);color:var(--fondo);
+    padding:.12em .55em;border-radius:.28em}
+  .accion{font-size:clamp(30px,4vw,74px);color:var(--suave);font-weight:600}
+  .respuesta{font-size:clamp(34px,4.8vw,88px);font-weight:600;min-height:1.3em}
+
+  /* ---------- ancla ---------- */
+  .layout-three h2{grid-column:1/-1;text-align:center}
+  .carta{background:var(--papel);border-radius:26px;padding:3.5vh 2vw;border-top:16px solid;display:flex;flex-direction:column;gap:2.2vh;align-self:stretch}
+  .carta.s{border-color:var(--simple)} .carta.i{border-color:var(--imperfecto)} .carta.c{border-color:var(--compuesto)}
+  .dedos{font-family:Georgia,serif;font-size:clamp(46px,6vw,110px);font-weight:700;line-height:1}
+  .carta.s .dedos{color:var(--simple)} .carta.i .dedos{color:var(--imperfecto)} .carta.c .dedos{color:var(--compuesto)}
+  .carta .preg{font-size:clamp(24px,2.7vw,50px);font-weight:700;line-height:1.2}
+  .carta .forma{font-size:clamp(30px,3.6vw,66px)}
+  .carta .marcas{font-size:clamp(19px,1.9vw,36px);color:var(--suave);line-height:1.4}
+
+  /* ---------- frases clave ---------- */
+  .frase{font-family:Georgia,serif;font-size:clamp(38px,5.4vw,100px);line-height:1.25;max-width:20ch}
+  .frase .v{border-bottom:.08em solid var(--tinta);color:var(--tinta)}
+  .frase.ver .v{border-bottom-color:transparent}
+  .frase.ver .v.s{color:var(--simple)} .frase.ver .v.i{color:var(--imperfecto)} .frase.ver .v.c{color:var(--compuesto)}
+  .insignias{display:flex;gap:1.5vw;min-height:11vh;align-items:center}
+  .insignia{font-size:clamp(22px,2.6vw,48px);font-weight:800;padding:.3em .9em;border-radius:999px;visibility:hidden}
+  .ver ~ .insignias .insignia, .insignias.ver .insignia{visibility:visible}
+  .insignia.s{background:var(--simple-bg);color:var(--simple)}
+  .insignia.i{background:var(--imperfecto-bg);color:var(--imperfecto)}
+  .insignia.c{background:var(--compuesto-bg);color:var(--compuesto)}
+  .cuenta{font-size:clamp(18px,1.8vw,32px);color:var(--suave);font-weight:700}
+
+  /* ---------- listas grandes ---------- */
+  .lista{list-style:none;display:flex;flex-direction:column;gap:2.2vh}
+  .lista li{font-size:clamp(26px,3.2vw,60px);line-height:1.25}
+  .modelo{background:var(--papel);border-left:12px solid var(--tinta);padding:.5em .8em;border-radius:0 18px 18px 0;
+    font-size:clamp(26px,3.1vw,58px)}
+  .conector{font-weight:800;text-decoration:underline;text-decoration-thickness:.08em;text-underline-offset:.15em}
+
+  /* ---------- entrevista ---------- */
+  .pasos{display:flex;flex-direction:column;gap:2.6vh}
+  .paso{font-family:Georgia,serif;font-size:clamp(38px,5vw,94px);line-height:1.15}
+  .flecha{font-size:clamp(26px,3vw,54px);color:var(--suave);line-height:.6}
+
+  /* ---------- anécdota ---------- */
+  .reloj{font-family:Georgia,serif;font-size:clamp(90px,17vw,320px);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+  .reloj.fin{color:var(--simple)}
+  .andamio{display:flex;flex-direction:column;gap:1.8vh}
+  .andamio li{font-size:clamp(28px,3.4vw,64px)}
+  .sin-andamio .andamio{visibility:hidden}
+  .aviso{font-size:clamp(22px,2.6vw,48px);font-weight:800;min-height:1.4em}
+
+  /* ---------- audio y navegación ---------- */
+  #audio-dock{position:fixed;left:3vw;bottom:2.4vh;z-index:5;visibility:hidden}
+  body.con-audio #audio-dock{visibility:visible}
+  #audio-dock audio{width:min(46vw,620px);height:54px}
+  #nav{position:fixed;right:3vw;bottom:2.4vh;z-index:5;display:flex;align-items:center;gap:1vw}
+  #nav button{padding:.3em .8em}
+  #contador{font-weight:700;color:var(--suave);font-size:clamp(16px,1.5vw,26px);min-width:4.5em;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- 1 · PORTADA -->
+<section class="slide layout-two-col active" id="s-portada">
+  <div>
+    <h1>Los tres pasados</h1>
+    <p style="margin-top:3vh">
+      <span class="v s">comí</span> &nbsp;·&nbsp;
+      <span class="v i">comía</span> &nbsp;·&nbsp;
+      <span class="v c">he comido</span>
+    </p>
+  </div>
+  <div class="qr">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgQAAAIEAQAAAABOeQs7AAADfklEQVR4nO2dQZLcIAxFv1K9xzeY+x+rbwAn+FkgQOBUshgmIZ7PosdDq16hKqtlSQgb8blRfnwSAIgggggiiCCCCCL8t4RifaCYXaiTdb7O2AUUW4U3rkEEEQ4ivOofjzLKVa+tf5bLmqglolychc/QQgQRvoZQ2u9/Iooxwz5IEonM4NvcWSzCe9cggginEF7rRLkAWKIVI2ApWyISDZhMY+caRBDheEIiAGYwD0Owq838nTWIIMI/JjR/kUYdo7oJJPpkMbrv4F34DC1EEOFLCJ5gujwN5QFFvc4u2qOMIbx1DSKIcAzhBSy//0BzDVbDCgDh4iZ8ghYiiLCXAJIeO9QbPrHOeKDBMNnTU2T/lvkELUQQYS8BfsdnAH7/15vfRxrfDtOoduFfnaCFCCLsJWAYRU1D9ZHRb/5Fsn7VxE7QQgQR9hJu/iJeBPcxXEYej1iyCxEeSphv9bw+OPV/q9fwz8lMTtBCBBH2ElrUAPRHphGJz6YxbAdQ3C3CownDLuIT1IgjEEOJFoDk6FlO0EIEEfYSRpYJmDaBjGD8FmJg8iMnaCGCCHsJ83NURr0Agl1kF4sZWvTklexChAcSRj4qGsgSU/i47Y+SXYjwcEJib8Hj2wB4jx6ameR2DfBtvahxlhYiiLCHEPxFiKkX9xHr3cOPKL4Q4bGEOe7GrbTXihr3fVOKL0R4LiHe4fdc0xR0902DQ0B2IcKjCXbBPohiJL13u7ZafJBkve4Zqtq+p/4LEZ5LCPsGY/1u+eR4plpKG/IXIjyfUKwfEgUgHiQVpeZ27/O0EEGEz46pX88b9BLND48ytvkoUA+VaqZyghYiiLCXMHcbIbTppV9smlpStXqOEuGhhJCJSpxCjFDIQNv1ESvdsgsRnkuY6noIu6F6zpa9s7WXNmJnn+xChAcT5pZVACiGxH5yTo21EfJXOrdZhIcT1iPKYWb1oNout9Q19q9BBBEOIqxFinhmDsNYu/lGAH6CFiKI8DWEeJ55KG376zBaUYMZ9aTBVuzeugYRRDiW0Cp6daeHXeDbejdfNQe3mqL4QoSnEm7n/IfjN1kslvAs5UnOc7YnaCGCCHsJt/PM26su2EsV5arvTkIxpLyUws/QQgQR9hLcLkaOyd8OBt8QkuivD4u5qeZEuGcNIohwGsH4Z5nfDr2/WwQRRBBBBBFE+KaEn2Oygc5RC5B4AAAAAElFTkSuQmCC" alt="QR de la clase en el celular">
+    <span>Abre la clase en tu celular</span>
+  </div>
+</section>
+
+<!-- 2 · CALENTAMIENTO -->
+<section class="slide layout-center" id="s-calentamiento">
+  <h2>Cambia el marcador</h2>
+  <div class="marcador" id="cal-marcador">hoy</div>
+  <div class="accion" id="cal-accion">comer arroz</div>
+  <div class="respuesta" id="cal-respuesta"></div>
+  <div class="fila">
+    <button type="button" id="cal-btn-marcador">Otro marcador</button>
+    <button type="button" id="cal-btn-accion">Otra acción</button>
+    <button type="button" id="cal-btn-ver">Ver la frase</button>
+  </div>
+</section>
+
+<!-- 3 · EL ANCLA -->
+<section class="slide layout-three" id="s-ancla">
+  <h2>Tres preguntas</h2>
+  <div class="carta s">
+    <div class="dedos">1</div>
+    <div class="preg">¿Tiene fecha y terminó?</div>
+    <div class="forma"><span class="v s">comí</span></div>
+    <div class="marcas">ayer · en 2019 · el año pasado · ese día</div>
+  </div>
+  <div class="carta i">
+    <div class="dedos">2</div>
+    <div class="preg">¿Es el escenario o una costumbre?</div>
+    <div class="forma"><span class="v i">comía</span></div>
+    <div class="marcas">de niño · antes · siempre · mientras</div>
+  </div>
+  <div class="carta c">
+    <div class="dedos">3</div>
+    <div class="preg">¿Toca el presente o no tiene fecha?</div>
+    <div class="forma"><span class="v c">he comido</span></div>
+    <div class="marcas">hoy · esta semana · alguna vez · nunca · ya</div>
+  </div>
+</section>
+
+<!-- 4 · AUDIO -->
+<section class="slide layout-center" id="s-audio" data-audio>
+  <h1>Un encuentro inesperado</h1>
+  <p>Lucía e Íker se conocen en un café.</p>
+</section>
+
+<!-- 5 · FRASES CLAVE (pasos internos) -->
+<section class="slide layout-center" id="s-frases" data-audio data-pasos="frases">
+  <div class="cuenta" id="fr-cuenta"></div>
+  <div class="frase" id="fr-texto"></div>
+  <div class="insignias" id="fr-insignias"></div>
+</section>
+
+<!-- 6 · MITADES -->
+<section class="slide layout-flex-col" id="s-mitades">
+  <h2 style="text-align:center">Mitades</h2>
+  <div class="qr-row">
+    <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgQAAAIEAQAAAABOeQs7AAADi0lEQVR4nO2dTY4cIQyFn6Ps4Qa5/7H6BuYEzsIGTPUoiwyTEPLQaFRNuT+B1G7/Fi2Gz4327ZMAgAQSSCCBBBJIIOGfJTQZA4CISMW8aOICPvMQPmgXJJCwm2A+FABQDC1Uw14yREUExZ7CJ+2CBBI2E9r4/gcAU6CJmUmF6wJcHVxNFuGTdkECCV9GsJe4OkiFKUI1khH5A2sggYS/Svj+q5tNABggRQHIx0In7IIEEvYSul50ZwmtWrGsAlLUmlhLcyUXPU7YBQkkfAkhEkwVANDEFPYSU/iFy/jLp/BJuyCBhE2EnlzKwz//xVBiYkh+IK8n7IIEEvYSEIpgFjlYBbpp8MlxK6LvpC/UCxIuJcT3/yxMKKaCFJs2or+cpkRBvSDhUkL/zCcbMR0nnTFF2A4Nbyrp0Qm7IIGEvYRkC5I35S9nfFFWO5KjDOoFCRcS1vpFqwZYqwZIMTRBUc9GSU/eSq9o+MUZuyCBhL2Epdlp+EjToeo2YpoJ7daEfhQJ1xKmRwTgXR2QApAxgxyMUC9IuJCQ8rRYWgRnUXukZ8dbdL6LekHCjYSlfrHE2kAOt5E8rnmXekHCnYQ1MTt8qqUDCjMZ9V77pl6QcCuhiX/5x0N5FQ+jgBFZeIdtl9y5BhJIOIiw1Lhz5W4G46Oip0DypuhHkXA5oX/svXU2Hu6uEBEzQ+8wlx/mz/G5fdm8BhJIOIjw1h+Vyxm6Fix62WKkp2gvSLiUsNS73TBYq4haNqSoF74NiP+A+V+rm9ZAAgmnEZb6xXKtAFZLkdtomY8i4XpCiSAiskxNUEx+TIfqMaRGzmrnGkgg4SBC+FFSTIpKURQTYDzQHY7T8KD6pM1jEE7YBQkk7CWkjo439yni8dQEkuvg7AMh4V7CqhG55UNnQDHvltQKwvoFCdcS8AgiZpI2XWSNCDEdBb4TdkECCXsJ7+d7xGROPWUXK9fHqRck3EzIR5QXixq3F7V7sXvU/tDkA8Ln10ACCQcRlrj7edCBC+gzslgbpU7YBQkk7CVgqAN61DDbPDQElujbB/0oEv4rglcoNE4yH/99SJ12pCevjtwFCSR8arydZ15MmkTZrqgUE9eUYngcaR7FvhN2QQIJX0MoNg0B4jcv7CX2khFuh/lIv5q0eQ0kkHAKofeBjIlW55lR3h/SBEXze0YfCO0FCZcShL/fTQIJJJBAAgkkkPBb4ydBla39YUVaTQAAAABJRU5ErkJggg==" alt="QR alumno A"><span>Alumno A</span></div>
+    <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgQAAAIEAQAAAABOeQs7AAADfElEQVR4nO2dTXIcIQyFn1Leww18/2P5BnACZYEkRM9kkTKuIuRRXvTQ9Fejhazf1ojie6v/+iYAIIEEEkgggQQSSPhnCV1ijV2pACAidlEhIujy7vAxUpBAwm6CjtUAmApIBYoCQBdt0ObasR4+SgoSSNhM6P7/37VgWAf9EhSVCqlQ1dCUsCxnSUECCXsIH++3i6WppCgABbRXAdDlJX91ghQkkLCX8EYvBBjGQHs1q+EKgl5/4DuQQMKphKKqZgq02ccRYgyfykKP+jx8lhQkkLCVYAmmarv6JRZofHkc0WVqx3L4IClIIGETwZNLsRoAoGiEGCPcHisu0vkTpCCBhL0EDF3wpCvMQXJPKZTFnKv1JPWChEsJphfDOoRS2L2x2d6YjGFQqBckXEpY7EXYhWkvmpsJd7HCgfJnT5CCBBL2EhZP6ZGSsmQU4KYhnddQlhOkIIGEvYTkR5UUR4RDFdqRHK1pX6gXJNxJWJudcmSRomz1DpDsZTHuJuFeApJH5B912osZdDfEzrgA7QUJ1xIQWaany9SWu4vtyEUN6gUJFxJmPmqG3pGASrdsub2IMIR6QcKNBOsblKICoKiUpqNvcLQI5sK3nxz73iByghQkkPBTBG3+Up73QVmU0UU+VdXewhgHxv7270ACCWcQlvhiqfHp9KYAPLK1rF+QcDUh5WlLKurBqxgp4g6faslcUS9IuJCQErNl/cMSbk9rEhkq6gUJ1xIeTtHaCoIlARW3Yp96QcKlhFnRe7UXtpKxyP3nzNOScC/B8rQKoIt20S759lAP7aK95gv0qjYD4QQpSCBhLyF1gGQnSpfC95Kwyn4X7QUJdxKe7188dx4pqdQ66CdPkIIEEvYS1j6QsB25ZjGWp22Xp6gXJNxJePbT2mZ7nlki8XiQekHCxQRveXr4VEvHIHJvOcZwzp3fgQQSDiK8WApNsfbz1TzkPzC+IOF2QmSZ0GWE1TbPPNynsQ+zGvLJeYMkXEzw+bSjPBHbvVoho1ctil5jaK2PrvVCxhFSkEDCXsIf5pmPNzKSjZDSYmiz9iqF9oKEiwlv9EK7qI/3t+J3r+Nae1W4K7XtO5BAwqkEb3yKX4GZLyh1G9E8R5p3kRqpqpOkIIGEPYQ3lYuZjNI5DGEZA9LysydIQQIJewmvv3/0l4u/300CCSSQQAIJJPynhN+S588eEgPTIgAAAABJRU5ErkJggg==" alt="QR alumno B"><span>Alumno B</span></div>
+  </div>
+  <p style="text-align:center">Une las 5 frases con <span class="conector">cuando</span> o <span class="conector">por eso</span>. Tu celular es secreto.</p>
+</section>
+
+<!-- 7 · MITADES · MODELO -->
+<section class="slide layout-flex-col" id="s-mitades-modelo">
+  <h2>Así se une</h2>
+  <div class="modelo"><span class="v i">Hacía</span> calor, <span class="conector">por eso</span> <span class="v s">abrió</span> la ventana.</div>
+  <div class="modelo"><span class="v i">Dormía</span> <span class="conector">cuando</span> <span class="v s">sonó</span> el teléfono.</div>
+</section>
+
+<!-- 8 · MITADES · SOLUCIONES -->
+<section class="slide layout-flex-col" id="s-mitades-sol">
+  <h2>El viaje de Lucía</h2>
+  <ul class="lista">
+    <li><span class="v i">Llovía</span> mucho, <span class="conector">por eso</span> <span class="v s">compró</span> un paraguas.</li>
+    <li><span class="v i">Tenía</span> mucha hambre, <span class="conector">por eso</span> <span class="v s">comió</span> un ceviche.</li>
+    <li><span class="v i">Estaba</span> muy cansada, <span class="conector">por eso</span> <span class="v s">se durmió</span> en el autobús.</li>
+    <li><span class="v i">Caminaba</span> por el mercado <span class="conector">cuando</span> <span class="v s">vio</span> una llama.</li>
+    <li><span class="v i">Escribía</span> en su cuaderno <span class="conector">cuando</span> <span class="v s">llegó</span> el taxi.</li>
+  </ul>
+</section>
+
+<!-- 9 · ENTREVISTA · MODELO -->
+<section class="slide layout-two-col" id="s-entrevista-modelo">
+  <div style="height:100%;display:flex;align-items:center;justify-content:center;min-height:0">
+    <img src="../aula-2026-10-03/images/a1-cavalo.png" alt="" style="max-height:78vh;max-width:100%;border-radius:22px;display:block">
+  </div>
+  <ul class="lista">
+    <li>— ¿Alguna vez <span class="v c">has montado</span> a caballo?<br>— Sí, <span class="v c">he montado</span> a caballo.</li>
+    <li>— ¿Cuándo <span class="v s">fue</span>?<br>— <span class="v s">Fue</span> en 2019.</li>
+    <li>— ¿Cómo <span class="v i">era</span>?<br>— <span class="v i">Era</span> grande. <span class="v i">Hacía</span> calor.</li>
+  </ul>
+</section>
+
+<!-- 10 · ENTREVISTA -->
+<section class="slide layout-two-col" id="s-entrevista">
+  <div class="pasos">
+    <div class="paso">¿Alguna vez <span class="v c">has</span> …?</div>
+    <div class="flecha">↓</div>
+    <div class="paso">¿Cuándo <span class="v s">fue</span>?</div>
+    <div class="flecha">↓</div>
+    <div class="paso">¿Cómo <span class="v i">era</span>?</div>
+  </div>
+  <div class="qr">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgQAAAIEAQAAAABOeQs7AAADY0lEQVR4nO2dQY4jIQxFv0e9hxvk/sfqG8AJPAvANlW1GTWZYchHrahSRZ5Aihvb3xBR/KzVXz8EACSQQAIJJJBAAgn/LaGKNVSRDMkQEclAFQAiAqC/jZ0XjoEEEjYiQFW1QFsrUFUAdtE6IKnfnztr2WEWJJDwHkId//+raAGSAsM0qrRVA23JiJ3XjoEEErYlJJWXNieqW0FSJG3XWv7KGEgg4R8Tvh7uVdGa4w2t0p2qdE/r7jALEkh4D2FEEOYy6bd0n6oKkqKKqvan1nntGEggYTNCTzBlIDhL7jVV8de581azIIGERYSRXAqtBRQ99L5kn+6N+SgSDiSMPG1Pus4+UtJrknYYTvjIDrMggYS1hKBfBNOY8rStDRvBWGLGZ3eYBQkkvIUgIi09aw9UdUQQ3UAsbdtk8RF9bDQLEkhYROh52p6YTQWAtsRszQoogJrR74w/QMaasscsSCBhLeHiFMHibruJUArSwgq/ph9FwpmEsV4AgiDbmZBnzZK07TWVdWMggYTdCIirAEyzuITecxg+pae4XpBwIGH2o3RWLi6aRek3AbcU2gUJxxKsxsOKQNTCaq+hbdWDkkMksnAMJJCwEWFoFpgUPfOUunUkj74vF1wvSDiRcJWw+8VtdxJG6OF9GF+QcCxhqjOXVjfb3qQiMPEiN4GjKxfUL0g4nPAQWT8UDdojhA5dxdhhFiSQsJbg+ajp2paD2yv3d5PwQYQWdIeUlG1HmvboWZKK+y9IOJngnpK7RqoxuPYou0zJKzAfRcKxBP+q+5e/XPXuSfhjnTkJ5xNCsFCCMFH6o94pedBxyeLSLkg4llBFXn7ogarKS7VAsttCf7VTB5ePgQQSNiKE+MJ8qmECl6XEwxC4/Mf1goQTCSGUxkNVbVTAo/bNuJuEowm3Uz5CzTnmOvOwRoRInHZBwqmE+YhyeY1T1KJ+MZwrr7ktS8dAAgkbEXy/HgDUjKQytnu3m21Dt230dmmP9VEkHEsI+/U89TopFAh7lOKnQD+KhE8i9Jxtux6elR/RmSbJe9tZkEDCSoIdRTu0DDcEdFtoEoZ+8/eSSDiV8Px7Sf1RqI+K1jHXn+8wCxJIWEuY9AvECpCn+iiE/RfU9Ug4l3A7J+pPG3+/mwQSSCCBBBJI+FDCb9l3zmT5CuJyAAAAAElFTkSuQmCC" alt="QR de la clase en el celular">
+    <span>Tus imágenes</span>
+  </div>
+</section>
+
+<!-- 11 · ANÉCDOTA 3-2-1 -->
+<section class="slide layout-two-col" id="s-anecdota">
+  <div>
+    <h2>Mi anécdota</h2>
+    <ul class="lista andamio" style="margin-top:4vh">
+      <li><span class="v c">He</span> …</li>
+      <li><span class="v s">Fue</span> en …</li>
+      <li><span class="v i">Era</span> …, <span class="v i">había</span> …, <span class="v i">estaba</span> …</li>
+      <li>De repente …</li>
+    </ul>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:3vh">
+    <div class="reloj" id="an-reloj">3:00</div>
+    <div class="aviso" id="an-aviso"></div>
+    <div class="fila">
+      <button type="button" data-ronda="1" data-seg="180">Ronda 1</button>
+      <button type="button" data-ronda="2" data-seg="120">Ronda 2</button>
+      <button type="button" data-ronda="3" data-seg="60">Ronda 3</button>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · TAREA -->
+<section class="slide layout-center" id="s-tarea">
+  <h2>Para casa</h2>
+  <p>Escribe tu anécdota en 5 o 6 frases.</p>
+  <p><span class="v c">he comido</span> &nbsp;·&nbsp; <span class="v s">comí</span> &nbsp;·&nbsp; <span class="v i">comía</span></p>
+  <h1 style="margin-top:3vh">¡Hasta el sábado!</h1>
+</section>
+
+<!-- audio global: sigue sonando al cambiar de diapositiva -->
+<div id="audio-dock">
+  <audio id="audio" controls preload="auto" src="audio/encuentro.mp3"></audio>
+</div>
+
+<div id="nav">
+  <button type="button" id="nav-prev" aria-label="Anterior">←</button>
+  <span id="contador"></span>
+  <button type="button" id="nav-next" aria-label="Siguiente">→</button>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var actual = 0;
+  var contador = document.getElementById('contador');
+
+  /* ---------- frases clave: pasos internos ---------- */
+  var NOMBRE = {s:'1 · comí', i:'2 · comía', c:'3 · he comido'};
+  var FRASES = [
+    {h:'El año pasado <span class="v s">viajé</span> sola a Cusco.', t:['s']},
+    {h:'En 2023 <span class="v s">compré</span> esta cámara azul.', t:['s']},
+    {h:'<span class="v i">Hacía</span> frío y <span class="v i">había</span> mucha gente en las calles.', t:['i']},
+    {h:'¿<span class="v c">Has dibujado</span> alguna vez a alguien con una cámara?', t:['c']},
+    {h:'Ese día <span class="v s">dibujé</span> a un chico en la plaza.', t:['s']},
+    {h:'Mi chaqueta <span class="v i">era</span> roja.', t:['i']},
+    {h:'Este año <span class="v c">he recuperado</span> mi cuaderno.', t:['c']},
+    {h:'Nunca <span class="v c">he visto</span> un dibujo mío.', t:['c']}
+  ];
+  var fr = {i:0, ver:false};
+  var frTexto = document.getElementById('fr-texto');
+  var frIns = document.getElementById('fr-insignias');
+  var frCuenta = document.getElementById('fr-cuenta');
+  function pintarFrase(){
+    var f = FRASES[fr.i];
+    frTexto.innerHTML = f.h;
+    frTexto.classList.toggle('ver', fr.ver);
+    frIns.innerHTML = f.t.map(function(t){return '<span class="insignia '+t+'">'+NOMBRE[t]+'</span>';}).join('');
+    frIns.classList.toggle('ver', fr.ver);
+    frCuenta.textContent = (fr.i+1) + ' / ' + FRASES.length;
+  }
+  var PASOS = {
+    frases: {
+      next: function(){
+        if(!fr.ver){ fr.ver = true; pintarFrase(); return true; }
+        if(fr.i < FRASES.length-1){ fr.i++; fr.ver = false; pintarFrase(); return true; }
+        return false;
+      },
+      prev: function(){
+        if(fr.ver){ fr.ver = false; pintarFrase(); return true; }
+        if(fr.i > 0){ fr.i--; fr.ver = true; pintarFrase(); return true; }
+        return false;
+      }
+    }
+  };
+  pintarFrase();
+
+  /* ---------- navegación ---------- */
+  function mostrar(n){
+    actual = Math.max(0, Math.min(slides.length-1, n));
+    slides.forEach(function(s, i){ s.classList.toggle('active', i === actual); });
+    document.body.classList.toggle('con-audio', slides[actual].hasAttribute('data-audio'));
+    contador.textContent = (actual+1) + ' / ' + slides.length;
+  }
+  function pasos(){ return PASOS[slides[actual].getAttribute('data-pasos')] || null; }
+  function siguiente(){ var p = pasos(); if(p && p.next()) return; mostrar(actual+1); }
+  function anterior(){ var p = pasos(); if(p && p.prev()) return; mostrar(actual-1); }
+  document.getElementById('nav-next').addEventListener('click', siguiente);
+  document.getElementById('nav-prev').addEventListener('click', anterior);
+  document.addEventListener('keydown', function(e){
+    var tag = (e.target.tagName || '').toLowerCase();
+    if(tag === 'button' || tag === 'audio') {
+      if(e.key === ' ' || e.key === 'Enter') return;
+    }
+    if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' '){ e.preventDefault(); siguiente(); }
+    else if(e.key === 'ArrowLeft' || e.key === 'PageUp'){ e.preventDefault(); anterior(); }
+  });
+  mostrar(0);
+
+  /* ---------- calentamiento ---------- */
+  var MARCADORES = [
+    {m:'hoy', t:'c'}, {m:'ayer', t:'s'}, {m:'de niño / de niña', t:'i'}, {m:'esta semana', t:'c'},
+    {m:'el año pasado', t:'s'}, {m:'antes', t:'i'}, {m:'nunca', t:'c'}, {m:'en 2020', t:'s'}
+  ];
+  var ACCIONES = [
+    {inf:'comer arroz', s:'comí', i:'comía', c:'he comido', r:'arroz'},
+    {inf:'viajar a la playa', s:'viajé', i:'viajaba', c:'he viajado', r:'a la playa'},
+    {inf:'ver una película', s:'vi', i:'veía', c:'he visto', r:'una película'},
+    {inf:'hablar con mi familia', s:'hablé', i:'hablaba', c:'he hablado', r:'con mi familia'},
+    {inf:'escribir una carta', s:'escribí', i:'escribía', c:'he escrito', r:'una carta'},
+    {inf:'ir al mercado', s:'fui', i:'iba', c:'he ido', r:'al mercado'}
+  ];
+  var cal = {m:0, a:0};
+  var calM = document.getElementById('cal-marcador');
+  var calA = document.getElementById('cal-accion');
+  var calR = document.getElementById('cal-respuesta');
+  function pintarCal(){
+    calM.textContent = MARCADORES[cal.m].m;
+    calA.textContent = ACCIONES[cal.a].inf;
+    calR.innerHTML = '';
+  }
+  document.getElementById('cal-btn-marcador').addEventListener('click', function(){ cal.m = (cal.m+1) % MARCADORES.length; pintarCal(); });
+  document.getElementById('cal-btn-accion').addEventListener('click', function(){ cal.a = (cal.a+1) % ACCIONES.length; pintarCal(); });
+  document.getElementById('cal-btn-ver').addEventListener('click', function(){
+    var m = MARCADORES[cal.m], a = ACCIONES[cal.a];
+    var ini = m.m.charAt(0).toUpperCase() + m.m.slice(1);
+    calR.innerHTML = ini + ' <span class="v '+m.t+'">'+a[m.t]+'</span> ' + a.r + '.';
+  });
+  pintarCal();
+
+  /* ---------- anécdota 3-2-1 ---------- */
+  var reloj = document.getElementById('an-reloj');
+  var aviso = document.getElementById('an-aviso');
+  var sAnec = document.getElementById('s-anecdota');
+  var tic = null, resta = 180;
+  function fmt(s){ return Math.floor(s/60) + ':' + ('0' + (s%60)).slice(-2); }
+  function pitido(){
+    try{
+      var C = window.AudioContext || window.webkitAudioContext; var ctx = new C();
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.frequency.value = 880; o.connect(g); g.connect(ctx.destination);
+      g.gain.setValueAtTime(0.25, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.9);
+      o.start(); o.stop(ctx.currentTime + 0.9);
+    }catch(e){}
+  }
+  Array.prototype.forEach.call(sAnec.querySelectorAll('button[data-ronda]'), function(b){
+    b.addEventListener('click', function(){
+      clearInterval(tic);
+      resta = parseInt(b.getAttribute('data-seg'), 10);
+      sAnec.classList.toggle('sin-andamio', b.getAttribute('data-ronda') === '3');
+      reloj.classList.remove('fin'); reloj.textContent = fmt(resta); aviso.textContent = '';
+      tic = setInterval(function(){
+        resta--; reloj.textContent = fmt(Math.max(resta, 0));
+        if(resta <= 0){
+          clearInterval(tic); reloj.classList.add('fin'); pitido();
+          aviso.textContent = b.getAttribute('data-ronda') === '3' ? '¡Muy bien!' : 'Cambia de compañero';
+        }
+      }, 1000);
+    });
+  });
+})();
+</script>
+</body>
+</html>

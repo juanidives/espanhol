@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mitades · Alumno B</title>
+<style>
+  :root{--fondo:#FBF6EC;--papel:#fff;--tinta:#1F2A37;--suave:#5B6676;
+    --simple:#D2452A;--imperfecto:#12807F;--acento:#D2452A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--fondo);color:var(--tinta);
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+  body{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
+  header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
+  .letra{font-family:Georgia,serif;font-weight:700;font-size:26px;background:var(--acento);color:#fff;
+    width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .puntos{display:flex;gap:8px}
+  .puntos i{width:12px;height:12px;border-radius:50%;background:#D9CFBB}
+  .puntos i.on{background:var(--tinta)}
+  main{flex:1;min-height:0;display:flex;flex-direction:column}
+  .pantalla{display:none;flex:1;min-height:0}
+  .pantalla.on.p-carta{display:flex;flex-direction:column}
+  .pantalla.on.p-final{display:flex;flex-direction:column;padding:8px 20px 12px;overflow-y:auto}
+  .foto{flex:1;min-height:0;padding:0 12px}
+  .foto img{width:100%;height:100%;object-fit:contain;display:block;border-radius:18px}
+  .frase{font-family:Georgia,serif;font-size:clamp(30px,8.6vw,46px);line-height:1.2;text-align:center;padding:14px 16px 6px}
+  .v{font-weight:700}
+  .v.i{color:var(--imperfecto)} .v.s{color:var(--simple)}
+  .con{font-weight:800;text-decoration:underline;text-underline-offset:.15em}
+  .p-final h1{font-family:Georgia,serif;font-size:34px;margin:6px 0 14px}
+  .p-final .pista{font-size:26px;line-height:1.35;margin-bottom:18px}
+  .sol{list-style:none;display:none;flex-direction:column;gap:14px}
+  .sol.on{display:flex}
+  .sol li{background:var(--papel);border-radius:14px;padding:14px 16px;font-size:24px;line-height:1.3}
+  nav{display:flex;gap:12px;padding:10px 16px calc(12px + env(safe-area-inset-bottom))}
+  button{font:inherit;font-size:26px;font-weight:800;border:3px solid var(--tinta);background:var(--papel);color:var(--tinta);
+    border-radius:999px;min-height:60px;cursor:pointer}
+  nav button{flex:1}
+  button:disabled{opacity:.25}
+  button:focus-visible{outline:4px solid var(--acento);outline-offset:2px}
+  #ver{align-self:stretch;margin-bottom:18px;background:var(--tinta);color:var(--fondo)}
+</style>
+</head>
+<body>
+<header>
+  <div class="letra">B</div>
+  <div class="puntos" id="puntos"></div>
+</header>
+<main id="main">
+  <section class="pantalla p-carta">
+    <div class="foto"><img src="images/b4-llama.png" alt="Vio una llama."></div>
+    <p class="frase"><span class="v s">Vio</span> una llama.</p>
+  </section>
+  <section class="pantalla p-carta">
+    <div class="foto"><img src="images/b2-ceviche.png" alt="Comió un ceviche."></div>
+    <p class="frase"><span class="v s">Comió</span> un ceviche.</p>
+  </section>
+  <section class="pantalla p-carta">
+    <div class="foto"><img src="images/b5-taxi.png" alt="Llegó el taxi."></div>
+    <p class="frase"><span class="v s">Llegó</span> el taxi.</p>
+  </section>
+  <section class="pantalla p-carta">
+    <div class="foto"><img src="images/b1-paraguas.png" alt="Compró un paraguas."></div>
+    <p class="frase"><span class="v s">Compró</span> un paraguas.</p>
+  </section>
+  <section class="pantalla p-carta">
+    <div class="foto"><img src="images/b3-durmio.png" alt="Se durmió en el autobús."></div>
+    <p class="frase"><span class="v s">Se durmió</span> en el autobús.</p>
+  </section>
+  <section class="pantalla p-final">
+    <h1>¿Ya unieron las 5?</h1>
+    <p class="pista">… <span class="con">por eso</span> …<br>… <span class="con">cuando</span> …</p>
+    <button type="button" id="ver">Ver soluciones</button>
+    <ul class="sol" id="sol">
+      <li><span class="v i">Caminaba</span> por el mercado <span class="con">cuando</span> <span class="v s">vio</span> una llama.</li>
+      <li><span class="v i">Tenía</span> mucha hambre, <span class="con">por eso</span> <span class="v s">comió</span> un ceviche.</li>
+      <li><span class="v i">Escribía</span> en su cuaderno <span class="con">cuando</span> <span class="v s">llegó</span> el taxi.</li>
+      <li><span class="v i">Llovía</span> mucho, <span class="con">por eso</span> <span class="v s">compró</span> un paraguas.</li>
+      <li><span class="v i">Estaba</span> muy cansada, <span class="con">por eso</span> <span class="v s">se durmió</span> en el autobús.</li>
+    </ul>
+  </section>
+</main>
+<nav>
+  <button type="button" id="prev" aria-label="Anterior">←</button>
+  <button type="button" id="next" aria-label="Siguiente">→</button>
+</nav>
+<script>
+(function(){
+  var p = Array.prototype.slice.call(document.querySelectorAll('.pantalla'));
+  var puntos = document.getElementById('puntos'), n = 0;
+  p.forEach(function(){ puntos.appendChild(document.createElement('i')); });
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  function ir(k){
+    n = Math.max(0, Math.min(p.length-1, k));
+    p.forEach(function(s,i){ s.classList.toggle('on', i===n); });
+    Array.prototype.forEach.call(puntos.children, function(d,i){ d.classList.toggle('on', i===n); });
+    prev.disabled = n===0; next.disabled = n===p.length-1;
+  }
+  prev.addEventListener('click', function(){ ir(n-1); });
+  next.addEventListener('click', function(){ ir(n+1); });
+  var x0 = null, main = document.getElementById('main');
+  main.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  main.addEventListener('touchend', function(e){
+    if(x0===null) return; var d = e.changedTouches[0].clientX - x0; x0 = null;
+    if(Math.abs(d) > 50) ir(n + (d<0 ? 1 : -1));
+  });
+  document.getElementById('ver').addEventListener('click', function(){
+    document.getElementById('sol').classList.add('on'); this.style.display = 'none';
+  });
+  ir(0);
+})();
+</script>
+</body>
+</html>
