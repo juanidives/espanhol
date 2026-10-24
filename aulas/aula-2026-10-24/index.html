@@ -73,10 +73,10 @@
   .layout-gram h2{grid-column:1/-1}
 
   /* sílabas en cajas */
-  .silabas{display:flex;gap:.25em;justify-content:center;font-family:Georgia,serif;font-size:clamp(44px,6.4vw,120px);font-weight:700}
+  .silabas{display:flex;gap:.25em;justify-content:center;font-family:Georgia,serif;font-size:clamp(36px,min(6.4vw,9vh),120px);font-weight:700}
   .silabas span{background:var(--papel);border:3px solid var(--linea);border-radius:.2em;padding:.05em .3em;line-height:1.1}
   .silabas span.f{background:var(--marca);border-color:var(--marca);color:#fff}
-  .fila-sil{display:flex;flex-direction:column;gap:3vh;align-items:center}
+  .fila-sil{display:flex;flex-direction:column;gap:2vh;align-items:center}
   .fila-sil .nota{font-size:clamp(20px,2.2vw,40px);color:var(--suave);font-weight:700}
 
   /* pares diacríticos */
@@ -111,9 +111,10 @@
     font-size:clamp(18px,1.9vw,34px);font-weight:700;padding:.45em 1.1em;border-radius:999px}
   button:hover{background:var(--pizarra);color:var(--tiza)}
   button:focus-visible{outline:4px solid var(--oro);outline-offset:3px}
-  #nav{position:fixed;right:3vw;bottom:2.4vh;z-index:5;display:flex;align-items:center;gap:1vw}
-  #nav button{padding:.3em .8em}
-  #contador{font-weight:700;color:var(--suave);font-size:clamp(16px,1.5vw,26px);min-width:4.5em;text-align:center}
+  #nav{position:fixed;right:1.2vw;bottom:1.2vh;z-index:5;display:flex;align-items:center;gap:.5vw;opacity:.75}
+  #nav:hover{opacity:1}
+  #nav button{font-size:14px;padding:.15em .6em;border-width:2px}
+  #contador{font-weight:700;color:var(--suave);font-size:13px;min-width:3.8em;text-align:center}
   body.en-pizarra #contador{color:var(--tiza)}
   body.en-pizarra #nav button{background:transparent;border-color:var(--tiza);color:var(--tiza)}
 </style>
