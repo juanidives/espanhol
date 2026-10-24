@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repaso · Posesivos y acentuación</title>
+<style>
+  :root{
+    --crema:#F5EFDF;
+    --papel:#FFFCF4;
+    --pizarra:#1E3B34;
+    --pizarra-2:#2C5249;
+    --tiza:#F3ECD6;
+    --tinta:#1B2622;
+    --suave:#56635D;
+    --linea:#DCD2B8;
+    --marca:#B8452A;       /* posesivo / sílaba tónica */
+    --marca-bg:#F6DED4;
+    --oro:#C8941E;         /* tilde */
+    --oro-bg:#F7EBC9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--crema);color:var(--tinta);
+    font-family:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif}
+  h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:700;line-height:1.08;letter-spacing:-.01em}
+  h1{font-size:clamp(46px,7.4vw,132px)}
+  h2{font-size:clamp(34px,4.4vw,80px)}
+  p{font-size:clamp(22px,2.5vw,46px);line-height:1.35}
+
+  
+  h1{font-size:2.3rem} h2{font-size:1.55rem;margin-bottom:.4rem}
+  p{font-size:1.08rem;line-height:1.45}
+  body{padding:0 0 3rem}
+  .card{padding:1.6rem 1.1rem;border-bottom:1px solid var(--linea);display:flex;flex-direction:column;gap:.9rem}
+  .pizarra{background:var(--pizarra);color:var(--tiza);border-bottom:0}
+  .pizarra p{color:var(--tiza)}
+  .etiqueta{align-self:flex-start;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:2px solid currentColor;border-radius:999px;padding:.25em .9em}
+  .centro{align-items:center;text-align:center}
+  .centro .etiqueta{align-self:center}
+  .pizarra .grande{font-family:Georgia,serif;font-size:1.25rem;opacity:.9}
+  
+/* ---------- marcas ---------- */
+  .p{color:var(--marca);font-weight:800}                 /* posesivo */
+  .t{color:var(--marca);font-weight:800;text-decoration:underline;text-decoration-thickness:.07em;text-underline-offset:.14em} /* sílaba tónica */
+  .ti{color:var(--oro);font-weight:800}                 /* la tilde / letra con tilde */
+  .pizarra .p,.pizarra .t{color:#F2A487}
+
+  /* ---------- tablas ---------- */
+  table{border-collapse:collapse;width:100%;background:var(--papel);border-radius:18px;overflow:hidden}
+  th,td{text-align:left;padding:.42em .7em;border-bottom:2px solid var(--linea);font-size:clamp(20px,2.15vw,40px);line-height:1.2}
+  th{background:var(--pizarra);color:var(--tiza);font-size:clamp(17px,1.7vw,30px);letter-spacing:.06em;text-transform:uppercase}
+  td:first-child{color:var(--suave);font-weight:700}
+  tr:last-child td{border-bottom:0}
+  .solo-es{font-size:.6em;color:var(--suave);font-weight:600}
+
+  /* ---------- listas y tarjetas ---------- */
+  .lista{list-style:none;display:flex;flex-direction:column;gap:2.2vh}
+  .lista li{font-size:clamp(25px,3vw,56px);line-height:1.25}
+  .modelo{background:var(--papel);border-left:12px solid var(--pizarra);padding:.5em .8em;border-radius:0 18px 18px 0;
+    font-size:clamp(25px,3vw,56px);line-height:1.3}
+  .ojo{background:var(--oro-bg);border-left:12px solid var(--oro);padding:.55em .8em;border-radius:0 18px 18px 0;
+    font-size:clamp(22px,2.5vw,46px);line-height:1.3}
+  .ojo b{font-weight:800}
+  .carta{background:var(--papel);border-radius:24px;padding:3.2vh 2vw;border-top:16px solid var(--pizarra);display:flex;flex-direction:column;gap:2vh;align-self:stretch}
+  .carta .nombre{font-family:Georgia,serif;font-size:clamp(32px,3.8vw,70px);font-weight:700}
+  .carta .donde{font-size:clamp(20px,2.1vw,40px);color:var(--suave);font-weight:700}
+  .carta .regla{font-size:clamp(22px,2.4vw,44px);font-weight:700;background:var(--oro-bg);padding:.4em .6em;border-radius:14px}
+  .carta .ej{font-size:clamp(24px,2.7vw,50px);line-height:1.35}
+
+  /* sílabas en cajas */
+  .silabas{display:flex;gap:.25em;justify-content:center;font-family:Georgia,serif;font-size:clamp(44px,6.4vw,120px);font-weight:700}
+  .silabas span{background:var(--papel);border:3px solid var(--linea);border-radius:.2em;padding:.05em .3em;line-height:1.1}
+  .silabas span.f{background:var(--marca);border-color:var(--marca);color:#fff}
+  .fila-sil{display:flex;flex-direction:column;gap:3vh;align-items:center}
+  .fila-sil .nota{font-size:clamp(20px,2.2vw,40px);color:var(--suave);font-weight:700}
+
+  /* pares diacríticos */
+  .pares{display:grid;grid-template-columns:repeat(2,1fr);gap:2vh 3vw}
+  .par{background:var(--papel);border-radius:18px;padding:1.6vh 1.4vw;display:flex;flex-direction:column;gap:.8vh}
+  .par .w{font-family:Georgia,serif;font-size:clamp(28px,3.2vw,60px);font-weight:700}
+  .par .s{font-size:clamp(18px,1.95vw,36px);line-height:1.3}
+
+  /* palabras para practicar */
+  .palabras{display:grid;grid-template-columns:repeat(4,1fr);gap:2.2vh 2vw;counter-reset:n}
+  .palabras li{list-style:none;background:var(--papel);border-radius:16px;padding:1.4vh 1vw;text-align:center;
+    font-family:Georgia,serif;font-size:clamp(28px,3.4vw,64px);font-weight:700;counter-increment:n;position:relative}
+  .palabras li::before{content:counter(n);position:absolute;left:.6em;top:.4em;font-family:"Segoe UI",system-ui,sans-serif;
+    font-size:.42em;color:var(--suave);font-weight:700}
+  .palabras .sol,.frases .sol{display:none}
+  .ver-sol .palabras .sin,.ver-sol .frases .sin{display:none}
+  .ver-sol .palabras .sol,.ver-sol .frases .sol{display:inline}
+  .palabras .tipo{display:none;font-family:"Segoe UI",system-ui,sans-serif;font-size:.4em;color:var(--suave);font-weight:700;margin-top:.4vh}
+  .ver-sol .palabras .tipo{display:block}
+  .frases{list-style:none;display:flex;flex-direction:column;gap:2.6vh}
+  .frases li{font-family:Georgia,serif;font-size:clamp(28px,3.4vw,64px);line-height:1.3;background:var(--papel);border-radius:16px;padding:.4em .7em}
+  .pasos4{display:flex;gap:1.4vw;flex-wrap:wrap;justify-content:center}
+  .pasos4 span{font-size:clamp(17px,1.8vw,32px);font-weight:800;background:var(--pizarra);color:var(--tiza);border-radius:999px;padding:.35em .9em}
+
+  
+  th,td{font-size:.98rem;padding:.45em .55em}
+  th{font-size:.72rem}
+  .table-wrap{overflow-x:auto}
+  .lista{gap:.55rem}.lista li{font-size:1.08rem}
+  .modelo,.ojo{font-size:1.02rem;border-left-width:6px}
+  .carta{padding:1rem;border-top-width:8px;gap:.6rem;border-radius:16px}
+  .carta .nombre{font-size:1.4rem}.carta .donde{font-size:.9rem}.carta .regla{font-size:1rem}.carta .ej{font-size:1.1rem}
+  .silabas{font-size:2.2rem}.fila-sil{gap:.7rem}
+  .pares{grid-template-columns:1fr;gap:.6rem}.par{padding:.7rem .9rem;border-radius:14px}
+  .par .w{font-size:1.4rem}.par .s{font-size:1rem}
+  .palabras{grid-template-columns:repeat(2,1fr);gap:.6rem;padding:0}
+  .palabras li{font-size:1.45rem;padding:.6rem .4rem;border-radius:12px}
+  .frases{gap:.6rem;padding:0}.frases li{font-size:1.15rem}
+  .pasos4{gap:.4rem}.pasos4 span{font-size:.78rem}
+  button{font:inherit;cursor:pointer;border:2px solid var(--pizarra);background:var(--papel);color:var(--pizarra);font-size:1rem;font-weight:700;padding:.6em 1.3em;border-radius:999px}
+</style>
+</head>
+<body>
+<section class="card pizarra" id="s-portada"><div>
+    <span class="etiqueta">Aula de repaso</span>
+    <h1>Posesivos y acentuación</h1>
+    <p class="grande">¿Es <span class="p">tuyo</span>? &nbsp;·&nbsp; ¿Lleva <span class="t">tilde</span>?</p>
+  </div>
+  </section>
+<section class="card" id="s-objetivos">
+  <h2>Hoy vamos a repasar</h2>
+  <div class="modelo"><b>1 · Los posesivos</b> — decir de quién es algo.<br>
+    Es <span class="p">mi</span> mochila. · La mochila es <span class="p">mía</span>. · <span class="p">La mía</span> es la roja.</div>
+  <div class="modelo"><b>2 · La acentuación</b> — saber cuándo una palabra lleva tilde.<br>
+    ca<span class="t">fé</span> · <span class="t">lá</span>piz · <span class="t">mú</span>sica · <span class="t">dí</span>a · ¿<span class="t">dón</span>de?</div>
+</section>
+<section class="card centro pizarra" id="s-tema1">
+  <span class="etiqueta">Tema 1</span>
+  <h1>Los posesivos</h1>
+  <p class="grande">¿De quién es?</p>
+</section>
+<section class="card" id="s-pos-concepto">
+  <h2>¿Para qué sirven?</h2>
+  <p>Dicen <b>de quién es</b> una cosa. Hay dos formas, y la diferencia es <b>dónde van</b>:</p>
+  <div class="modelo"><b>Antes del sustantivo</b> → Es <span class="p">mi</span> mochila.</div>
+  <div class="modelo"><b>Después del verbo</b> → La mochila es <span class="p">mía</span>.</div>
+  <div class="ojo">Las dos dicen lo mismo. Cambia solo el lugar.</div>
+</section>
+<section class="card" id="s-pos-tabla">
+  <h2>Del pronombre al posesivo</h2>
+  <table>
+    <thead><tr><th>Pronombre</th><th>Antes del sustantivo</th><th>Después del verbo</th></tr></thead>
+    <tbody>
+      <tr><td>yo</td><td><span class="p">mi</span> / <span class="p">mis</span></td><td><span class="p">mío</span> / a / os / as</td></tr>
+      <tr><td>tú</td><td><span class="p">tu</span> / <span class="p">tus</span></td><td><span class="p">tuyo</span> / a / os / as</td></tr>
+      <tr><td>vos</td><td><span class="p">tu</span> / <span class="p">tus</span></td><td><span class="p">tuyo</span> / a / os / as</td></tr>
+      <tr><td>él / ella / usted</td><td><span class="p">su</span> / <span class="p">sus</span></td><td><span class="p">suyo</span> / a / os / as</td></tr>
+      <tr><td>nosotros / nosotras</td><td><span class="p">nuestro</span> / a / os / as</td><td><span class="p">nuestro</span> / a / os / as</td></tr>
+      <tr><td>vosotros / vosotras <span class="solo-es">(España)</span></td><td><span class="p">vuestro</span> / a / os / as</td><td><span class="p">vuestro</span> / a / os / as</td></tr>
+      <tr><td>ellos / ellas / ustedes</td><td><span class="p">su</span> / <span class="p">sus</span></td><td><span class="p">suyo</span> / a / os / as</td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="card" id="s-pos-antes">
+  <h2>Antes del sustantivo</h2>
+  <p>Van <b>pegados</b> al sustantivo y <b>nunca</b> van solos.</p>
+  <ul class="lista">
+    <li>¿Dónde está <span class="p">mi</span> celular?</li>
+    <li><span class="p">Tus</span> llaves están en la mesa.</li>
+    <li><span class="p">Nuestra</span> profesora es de Brasil.</li>
+    <li>Ana trae <span class="p">su</span> cuaderno todos los sábados.</li>
+  </ul>
+</section>
+<section class="card" id="s-pos-despues">
+  <h2>Después del verbo</h2>
+  <p>Van después del verbo (casi siempre <b>ser</b>) y sirven para <b>contestar</b>.</p>
+  <ul class="lista">
+    <li>— ¿De quién es este celular? — Es <span class="p">mío</span>.</li>
+    <li>— ¿Es <span class="p">tuya</span> la chaqueta? — No, es <span class="p">suya</span>.</li>
+    <li>— Estas llaves son <span class="p">nuestras</span>.</li>
+  </ul>
+</section>
+<section class="card" id="s-pos-concordancia">
+  <h2>Concuerdan con la cosa, no con el dueño</h2>
+  <ul class="lista">
+    <li>Pedro dice: «Es <span class="p">mi</span> mochila y son <span class="p">mis</span> libros».</li>
+    <li>Pedro dice: «La mochila es <span class="p">mía</span> y los libros son <span class="p">míos</span>».</li>
+  </ul>
+  <div class="ojo">El dueño es <b>Pedro</b>, un hombre. Pero <b>mochila</b> es femenino → <span class="p">mía</span>, y <b>libros</b> es plural → <span class="p">mis</span>, <span class="p">míos</span>.</div>
+</section>
+<section class="card" id="s-pos-nuevo">
+  <h2>Algo nuevo: <span class="p">el mío</span>, <span class="p">la tuya</span></h2>
+  <p>Con el artículo, el posesivo <b>reemplaza al sustantivo</b>. Así no repetimos la palabra.</p>
+  <div class="modelo">— ¿Cuál es tu mochila?<br>— <span class="p">La mía</span> es la roja. ¿Y <span class="p">la tuya</span>?<br>— <span class="p">La mía</span> es la negra.</div>
+  <div class="modelo">Mi celular es viejo. <span class="p">El tuyo</span> es nuevo.</div>
+  <div class="ojo">Y también después del sustantivo: <b>un amigo <span class="p">mío</span></b> = uno de mis amigos.</div>
+</section>
+<section class="card" id="s-pos-su">
+  <h2>Ojo: <span class="p">su</span> tiene muchos dueños</h2>
+  <p>«Es <span class="p">su</span> casa». ¿De quién? ¿De él? ¿De ella? ¿De usted? ¿De ellos?</p>
+  <p>Para aclarar, usamos <b>de + pronombre</b>:</p>
+  <ul class="lista">
+    <li>Es la casa <b>de él</b>. &nbsp;·&nbsp; Es la casa <b>de ella</b>.</li>
+    <li>Es la casa <b>de usted</b>. &nbsp;·&nbsp; Es la casa <b>de ellos</b>.</li>
+  </ul>
+  <div class="ojo">Después de <b>de</b>, <b>para</b>, <b>con</b>: nunca <i>yo</i> o <i>tú</i>. Es para <b>mí</b>, es para <b>ti</b>.</div>
+</section>
+<section class="card" id="s-pos-practica">
+  <div>
+    <h2>¿Es tuyo?</h2>
+    <ul class="lista">
+      <li>1. Pon <b>un objeto tuyo</b> en la mesa.</li>
+      <li>2. Mezclamos todo.</li>
+      <li>3. Toma un objeto y busca al dueño.</li>
+    </ul>
+  </div>
+  <ul class="lista">
+    <li class="modelo">— ¿Es <span class="p">tuyo</span> este bolígrafo?</li>
+    <li class="modelo">— No, no es <span class="p">mío</span>. Es <b>de ella</b>.</li>
+    <li class="modelo">— Sí, es <span class="p">mío</span>. ¡Gracias!</li>
+    <li class="modelo">— ¿Cuál es <span class="p">el tuyo</span>?</li>
+  </ul>
+</section>
+<section class="card centro pizarra" id="s-tema2">
+  <span class="etiqueta">Tema 2</span>
+  <h1>La acentuación</h1>
+  <p class="grande">¿Dónde cae la fuerza?</p>
+</section>
+<section class="card" id="s-ac-tonica">
+  <h2>La sílaba tónica</h2>
+  <p>Todas las palabras tienen <b>una sílaba más fuerte</b>: la sílaba tónica. Para encontrarla, di la palabra en voz alta.</p>
+  <div class="fila-sil">
+    <div class="silabas"><span>mo</span><span class="f">chi</span><span>la</span></div>
+    <div class="silabas"><span>ca</span><span class="f">fé</span></div>
+    <div class="silabas"><span>te</span><span class="f">lé</span><span>fo</span><span>no</span></div>
+  </div>
+  <div class="ojo">En español hay <b>una sola tilde</b>: <span class="ti">´</span> &nbsp;(á · é · í · ó · ú). No existe ^ ni `.</div>
+</section>
+<section class="card" id="s-ac-tipos">
+  <h2>Tres tipos de palabras</h2>
+  <div class="carta">
+    <div class="nombre">Agudas</div>
+    <div class="donde">la fuerza en la <b>última</b> sílaba</div>
+    <div class="ej">re<span class="t">loj</span><br>ca<span class="t">fé</span><br>can<span class="t">ción</span></div>
+  </div>
+  <div class="carta">
+    <div class="nombre">Llanas</div>
+    <div class="donde">la fuerza en la <b>penúltima</b></div>
+    <div class="ej"><span class="t">me</span>sa<br><span class="t">lá</span>piz<br><span class="t">ár</span>bol</div>
+  </div>
+  <div class="carta">
+    <div class="nombre">Esdrújulas</div>
+    <div class="donde">la fuerza en la <b>antepenúltima</b></div>
+    <div class="ej"><span class="t">mú</span>sica<br><span class="t">sá</span>bado<br>te<span class="t">lé</span>fono</div>
+  </div>
+</section>
+<section class="card" id="s-ac-agudas">
+  <h2>Agudas · la última sílaba</h2>
+  <div class="carta">
+    <div class="regla">Llevan tilde si terminan en <b>n</b>, <b>s</b> o <b>vocal</b>.</div>
+    <p>La mayoría de las palabras que terminan en consonante son agudas. Por eso, si terminan en <b>n</b>, <b>s</b> o <b>vocal</b>, la tilde avisa.</p>
+  </div>
+  <table>
+    <thead><tr><th>Con tilde</th><th>Sin tilde</th></tr></thead>
+    <tbody>
+      <tr><td>ca<span class="t">fé</span></td><td>re<span class="t">loj</span></td></tr>
+      <tr><td>can<span class="t">ción</span></td><td>pa<span class="t">pel</span></td></tr>
+      <tr><td>in<span class="t">glés</span></td><td>ciu<span class="t">dad</span></td></tr>
+      <tr><td>so<span class="t">fá</span></td><td>espa<span class="t">ñol</span></td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="card" id="s-ac-llanas">
+  <h2>Llanas · la penúltima sílaba</h2>
+  <div class="carta">
+    <div class="regla">Llevan tilde si <b>no</b> terminan en <b>n</b>, <b>s</b> o <b>vocal</b>.</div>
+    <p>Es la regla contraria a las agudas. Casi todas las palabras del español son llanas y terminan en vocal: por eso casi nunca llevan tilde.</p>
+  </div>
+  <table>
+    <thead><tr><th>Con tilde</th><th>Sin tilde</th></tr></thead>
+    <tbody>
+      <tr><td><span class="t">lá</span>piz</td><td><span class="t">me</span>sa</td></tr>
+      <tr><td><span class="t">ár</span>bol</td><td>e<span class="t">xa</span>men</td></tr>
+      <tr><td><span class="t">fá</span>cil</td><td><span class="t">jo</span>ven</td></tr>
+      <tr><td>a<span class="t">zú</span>car</td><td>za<span class="t">pa</span>tos</td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="card" id="s-ac-esdrujulas">
+  <h2>Esdrújulas · la antepenúltima sílaba</h2>
+  <div class="carta">
+    <div class="regla">Llevan tilde <b>siempre</b>.</div>
+    <p>No hay excepción. Si la fuerza está antes de la penúltima sílaba, la palabra lleva tilde.</p>
+  </div>
+  <table>
+    <thead><tr><th>Siempre con tilde</th></tr></thead>
+    <tbody>
+      <tr><td><span class="t">mú</span>sica</td></tr>
+      <tr><td><span class="t">sá</span>bado</td></tr>
+      <tr><td><span class="t">lám</span>para</td></tr>
+      <tr><td><span class="t">pá</span>jaro</td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="card" id="s-ac-resumen">
+  <h2>Las reglas en una tabla</h2>
+  <table>
+    <thead><tr><th>Tipo</th><th>¿Dónde está la fuerza?</th><th>¿Cuándo lleva tilde?</th></tr></thead>
+    <tbody>
+      <tr><td>Aguda</td><td>última sílaba</td><td>termina en <b>n</b>, <b>s</b> o <b>vocal</b></td></tr>
+      <tr><td>Llana</td><td>penúltima sílaba</td><td><b>no</b> termina en <b>n</b>, <b>s</b> o <b>vocal</b></td></tr>
+      <tr><td>Esdrújula</td><td>antepenúltima sílaba</td><td><b>siempre</b></td></tr>
+    </tbody>
+  </table>
+  <div class="ojo">Cuatro pasos: <b>1</b> dividir en sílabas · <b>2</b> decir la palabra y encontrar la fuerza · <b>3</b> ver qué tipo es · <b>4</b> aplicar la regla.</div>
+</section>
+<section class="card" id="s-ac-hiato">
+  <h2>Algo nuevo: la tilde que rompe la regla</h2>
+  <p><b>día</b> es llana y termina en vocal… ¿por qué lleva tilde?</p>
+  <div class="fila-sil">
+    <div class="silabas"><span class="f">dí</span><span>a</span></div>
+  </div>
+  <p>Cuando la fuerza cae en la <b>i</b> o en la <b>u</b> y está pegada a otra vocal, las dos se separan. La tilde marca esa separación, <b>aunque la regla diga que no</b>.</p>
+  <ul class="lista">
+    <li><span class="t">dí</span>a · pa<span class="t">ís</span> · Ra<span class="t">úl</span> · <span class="t">frí</span>o · Ma<span class="t">rí</span>a</li>
+    <li>Y los posesivos: <span class="p">mío</span> · <span class="p">mía</span> · <span class="p">míos</span> · <span class="p">mías</span></li>
+  </ul>
+</section>
+<section class="card" id="s-ac-diacritica">
+  <h2>Misma palabra, otro significado</h2>
+  <p>Las palabras de una sílaba no llevan tilde. Pero algunas sí, para no confundirlas:</p>
+  <div class="pares">
+    <div class="par"><div class="w"><span class="p">mi</span> / m<span class="ti">í</span></div><div class="s">Es <b>mi</b> libro. · Es para <b>mí</b>.</div></div>
+    <div class="par"><div class="w"><span class="p">tu</span> / t<span class="ti">ú</span></div><div class="s">¿Es <b>tu</b> casa? · ¿Y <b>tú</b>?</div></div>
+    <div class="par"><div class="w">el / <span class="ti">é</span>l</div><div class="s"><b>El</b> auto es de <b>él</b>.</div></div>
+    <div class="par"><div class="w">si / s<span class="ti">í</span></div><div class="s"><b>Si</b> quieres, voy. · ¡<b>Sí</b>, claro!</div></div>
+    <div class="par"><div class="w">te / t<span class="ti">é</span></div><div class="s"><b>Te</b> invito a un <b>té</b>.</div></div>
+    <div class="par"><div class="w">se / s<span class="ti">é</span></div><div class="s">No <b>sé</b> cómo <b>se</b> llama.</div></div>
+  </div>
+</section>
+<section class="card" id="s-ac-interrogativos">
+  <h2>Las palabras que preguntan</h2>
+  <p>Cuando preguntan o exclaman, llevan tilde <b>siempre</b>:</p>
+  <p style="font-family:Georgia,serif;font-weight:700">qu<span class="ti">é</span> · qui<span class="ti">é</span>n · c<span class="ti">ó</span>mo · cu<span class="ti">á</span>ndo · d<span class="ti">ó</span>nde · cu<span class="ti">á</span>nto · cu<span class="ti">á</span>l · por qu<span class="ti">é</span></p>
+  <table>
+    <thead><tr><th>Pregunta</th><th>Respuesta</th></tr></thead>
+    <tbody>
+      <tr><td>¿<b>Dónde</b> vives?</td><td>Vivo <b>donde</b> trabajo.</td></tr>
+      <tr><td>¿<b>Por qué</b> estudias español?</td><td><b>Porque</b> me gusta.</td></tr>
+      <tr><td>¡<b>Qué</b> lindo día!</td><td>Creo <b>que</b> va a llover.</td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="card" id="s-ac-brasil">
+  <h2>Ojo: en español la fuerza cambia de lugar</h2>
+  <table>
+    <thead><tr><th>Portugués</th><th>Español</th></tr></thead>
+    <tbody>
+      <tr><td>te-le-<b>fo</b>-ne</td><td>te-<span class="t">lé</span>-fo-no</td></tr>
+      <tr><td>fu-te-<b>bol</b></td><td><span class="t">fút</span>-bol</td></tr>
+      <tr><td>he-<b>rói</b></td><td><span class="t">hé</span>-roe</td></tr>
+      <tr><td>o-ce-<b>a</b>-no</td><td>o-<span class="t">cé</span>-a-no</td></tr>
+      <tr><td>po-<b>lí</b>-cia</td><td>po-li-<span class="t">cí</span>-a</td></tr>
+      <tr><td><b>cé</b>-re-bro</td><td>ce-<span class="t">re</span>-bro</td></tr>
+    </tbody>
+  </table>
+</section>
+<section class="card" id="s-ac-practica1">
+  <h2>En el cuaderno: ¿lleva tilde?</h2>
+  <div class="pasos4"><span>1 · sílabas</span><span>2 · la fuerza</span><span>3 · el tipo</span><span>4 · ¿tilde?</span></div>
+  <ol class="palabras">
+    <li><span class="sin">cafe</span><span class="sol">ca<span class="t">fé</span></span><span class="tipo">aguda · vocal</span></li>
+    <li><span class="sin">reloj</span><span class="sol">re<span class="t">loj</span></span><span class="tipo">aguda · j → no</span></li>
+    <li><span class="sin">lapiz</span><span class="sol"><span class="t">lá</span>piz</span><span class="tipo">llana · z</span></li>
+    <li><span class="sin">examen</span><span class="sol">e<span class="t">xa</span>men</span><span class="tipo">llana · n → no</span></li>
+    <li><span class="sin">musica</span><span class="sol"><span class="t">mú</span>sica</span><span class="tipo">esdrújula</span></li>
+    <li><span class="sin">cancion</span><span class="sol">can<span class="t">ción</span></span><span class="tipo">aguda · n</span></li>
+    <li><span class="sin">arbol</span><span class="sol"><span class="t">ár</span>bol</span><span class="tipo">llana · l</span></li>
+    <li><span class="sin">ciudad</span><span class="sol">ciu<span class="t">dad</span></span><span class="tipo">aguda · d → no</span></li>
+    <li><span class="sin">telefono</span><span class="sol">te<span class="t">lé</span>fono</span><span class="tipo">esdrújula</span></li>
+    <li><span class="sin">facil</span><span class="sol"><span class="t">fá</span>cil</span><span class="tipo">llana · l</span></li>
+    <li><span class="sin">dia</span><span class="sol"><span class="t">dí</span>a</span><span class="tipo">hiato</span></li>
+    <li><span class="sin">mesa</span><span class="sol"><span class="t">me</span>sa</span><span class="tipo">llana · vocal → no</span></li>
+  </ol>
+  <div style="text-align:center"><button type="button" class="btn-sol">Ver respuestas</button></div>
+</section>
+<section class="card" id="s-ac-practica2">
+  <h2>En el cuaderno: pon las tildes</h2>
+  <ol class="frases">
+    <li>1. <span class="sin">¿Tu sabes donde esta mi libro?</span><span class="sol">¿<span class="ti">Tú</span> sabes <span class="ti">dónde</span> <span class="ti">está</span> mi libro?</span></li>
+    <li>2. <span class="sin">El cuaderno es de el, no es mio.</span><span class="sol">El cuaderno es de <span class="ti">él</span>, no es <span class="ti">mío</span>.</span></li>
+    <li>3. <span class="sin">¿Que musica te gusta? — A mi, el rock.</span><span class="sol">¿<span class="ti">Qué</span> <span class="ti">música</span> te gusta? — A <span class="ti">mí</span>, el rock.</span></li>
+    <li>4. <span class="sin">Si, este telefono es tuyo.</span><span class="sol"><span class="ti">Sí</span>, este <span class="ti">teléfono</span> es tuyo.</span></li>
+  </ol>
+  <div style="text-align:center"><button type="button" class="btn-sol">Ver respuestas</button></div>
+</section>
+<section class="card" id="s-resumen">
+  <h2>Lo que repasamos hoy</h2>
+  <div class="carta">
+    <div class="nombre">Posesivos</div>
+    <div class="ej">Es <span class="p">mi</span> mochila.<br>La mochila es <span class="p">mía</span>.<br><span class="p">La mía</span> es la roja.<br>Es la casa <b>de ella</b>.</div>
+  </div>
+  <div class="carta">
+    <div class="nombre">Acentuación</div>
+    <div class="ej">ca<span class="t">fé</span> · <span class="t">lá</span>piz · <span class="t">mú</span>sica<br><span class="t">dí</span>a · <span class="p">mío</span><br>tu / <b>tú</b> · mi / <b>mí</b><br>¿<b>dónde</b>? · ¿<b>qué</b>?</div>
+  </div>
+</section>
+<section class="card centro pizarra" id="s-tarea">
+  <span class="etiqueta">Para casa</span>
+  <p>Escribe 6 frases sobre las cosas de tu casa: ¿de quién son?</p>
+  <p class="grande">Usa <span class="p">mi</span> · <span class="p">mío</span> · <span class="p">el mío</span> · <b>de él / de ella</b> — y revisa las tildes.</p>
+  <h1>¡Hasta el sábado!</h1>
+</section>
+<script>
+document.querySelectorAll('table').forEach(function(t){var w=document.createElement('div');w.className='table-wrap';t.parentNode.insertBefore(w,t);w.appendChild(t);});
+document.querySelectorAll('.btn-sol').forEach(function(b){
+  b.addEventListener('click',function(){var s=b.closest('.card');var v=s.classList.toggle('ver-sol');b.textContent=v?'Ocultar respuestas':'Ver respuestas';});
+});
+</script>
+</body>
+</html>
